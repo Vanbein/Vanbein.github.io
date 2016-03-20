@@ -1,0 +1,98 @@
+---
+layout: post
+title: 2016-3-4 笔记
+category: tips
+tags: iOS Tip
+image: /images/head-800x400/-4.png
+description: 2016.3第一周知识点笔记
+homepage: true
+---
+
+
+### 一、调整导航栏自定义的 BarButtonItem 到屏幕边侧的间距
+
+比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔
+
+```objc
+	UIButton *rightbutton1;
+	UIButton *rightbutton2;
+    UIBarButtonItem *backButton1 = [[UIBarButtonItem alloc] initWithCustomView:rightbutton1];
+    UIBarButtonItem *backButton2 = [[UIBarButtonItem alloc] initWithCustomView:rightbutton2];
+    //
+    //调整 rightBarButtonItems 到屏幕右侧的间距
+    UIBarButtonItem *rightNegativeSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    rightNegativeSpacer.width = -1; 
+    /**
+     *  width为负数时，相当于 btn 向右移动 width 数值个像素，
+     *  由于按钮本身和边界间距为 16 px，所以width设为 -1 时，间距正好调整为 15
+     *  width为正数时，正好相反，相当于往左移动width数值个像素
+     */
+    UIBarButtonItem *rightNegativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                            target:nil action:nil];
+    rightNegativeSpacer2.width = 18; // rightButton1 和 rightButton2 的间隔默认为0
+    //
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightNegativeSpacer, backButton1, rightNegativeSpacer2, backButton2, nil]];
+```
+
+### 二、获得任意 view 相对于屏幕的 frame
+
+```objc
+    CGRect frame = [[UIApplication sharedApplication].keyWindow convertRect:CGRectMake(0, 0, targetView.frame.size.width, targetView.frame.size.height) fromView:targetView];
+    NSLog(@"\n\n targetView frame: x: %f   y: %f  \n\n width: %f   height: %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+```
+
+### 三、通过颜色来生成一个纯色图片
+
+```objc
+- (UIImage *)imageFromColor:(UIColor *)color{
+    CGRect rect = CGRectMake(0, 0, 100, 100);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+```
+
+### 四、设置 UINavigationBar 背景色，背景图片, 
+
+下面的代码，可以设置 UINavigationBar 背景色和背景图片
+   
+```objc
+	//背景色
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]];
+	//背景图
+    [[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
+```
+
+如果你发现实际的颜色比设置的颜色淡一点，那是因为导航栏默认带了半透明效果，我们可以通过代码或在storyboard中取消半透明效果。
+
+```objc
+    [[UINavigationBar appearance] setTranslucent:NO];
+```
+
+![storyboard取消Translucent](/images/2016/03/Translucent.png)
+
+但是如果导航栏下方刚好有一个颜色和导航栏背景色一样的View时，比如 SegmentFalut，
+
+![SegmentFalut](images/2016/03/SegmentFalut.png)
+
+此时会在导航栏下方出现一根黑线，比较难看，使用下面的代码可以去除导航栏下方的横线，
+
+```objc
+	//#107cdb
+	[[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
+	[[UINavigationBar appearance] setShadowImage:[UIImage new]];
+	//
+	//如果设置了导航栏背景色，不想要 backgroundImage，则 backgroundImage 可以设置为 `[UIImage new]`，如下
+	//[[UINavigationBar appearance] setBackgroundImage: [UIImage new] forBarMetrics:UIBarMetricsDefault];
+```
+
+![compare](/images/2016/03/compare.png)
+
+
+

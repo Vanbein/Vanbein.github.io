@@ -1,0 +1,202 @@
+---
+layout: post
+title: subView 的获取和响应
+category: iOS-Base, tips
+tags: iOS subView
+image: /images/head-800x400/-20.png
+description: 最近在项目中需要判断当前是否打开了YouTube播放视频，因为YouTube播放后有一个可收缩的播控条，它是在 `AppDelegate.m` 中添加在window上的，因此在需要判断的时候，就需要判断当前window的subViews中是否有YouTube的播控条View。此时就是通过设置播控条的**Tag**值，遍历window的subViews，进行比较判断出来的。
+homepage: false
+---
+
+<!--more-->
+
+> 最近在项目中需要判断当前是否打开了YouTube播放视频，因为YouTube播放后有一个可收缩的播控条，它是在 `AppDelegate.m` 中添加在window上的，因此在需要判断的时候，就需要判断当前window中是否有YouTube的播控条。此时就是通过设置播控条的**Tag**值，遍历window的subViews，进行比较判断出来的。
+
+```objc
+for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews]) {
+            if (isShowView.tag == YouTubePlayControl_ShowControl_ViewTag) {
+            //找到了播控条
+	}
+}
+```
+
+##subView的获取
+
+通常我们在view层级里面对subView的操作可以通过两种方式：
+
+* 1、保留一个subview的引用，然后在类中通过该引用对该subview进行操作，但是要注意在适当的位置添加内存维护的代码，退出前手动释放。
+* 2、设置subview的Tag，让后在要使用的时候，通过`viewWithTag:`获取到相应的subview，这种方法比较简洁，也不用自己去维护内存。
+
+　　`ViewWithTag:` 通常采用**深度遍历优先**的算法，从底层开始遍历，返回第一个tag和给定Tag相等的subview。这就导致了一个当一个view的多个subview的tag相同的时候，我们通过该方法得到的view可能并不是自己想要的。
+
+　　下面通过一个小例子验证一下，其View层级结构如下：
+　　
+![subViews](/images/2015/12/subView1.png "View层级结构")
+
+代码如下：
+　
+####添加View
+
+```objc
+- (void)addSubviews{
+    //设置bgView
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 290)];
+    [self.bgView setBackgroundColor:[UIColor grayColor]];
+    self.bgView.tag = 1000;
+    [self.view addSubview:self.bgView];
+    //
+    //添加subView1
+    UIView *subView1 = [[UIView alloc]initWithFrame:CGRectMake(20, 40, 200, 160)];
+    [subView1 setBackgroundColor:[UIColor orangeColor]];
+    subView1.tag = 1111;
+    [self.bgView addSubview:subView1];
+    //
+    //添加subView2
+    UILabel *subView2 = [[UILabel alloc] initWithFrame:CGRectMake(20, 220, 200, 40)];
+    [subView2 setBackgroundColor:[UIColor brownColor]];
+    subView2.tag = 13;
+    subView2.text = @"  subView2 tag:13";
+    [self.bgView addSubview:subView2];
+    //
+    //添加subView11，12，13
+    UILabel *subView11 = [[UILabel alloc]initWithFrame:CGRectMake(25, 10, 150, 40)];
+    subView11.text = @"  subView11 tag:11";
+    [subView11 setBackgroundColor:[UIColor whiteColor]];
+    subView11.tag = 11;
+    [subView1 addSubview:subView11];
+    //
+    UILabel *subView12 = [[UILabel alloc]initWithFrame:CGRectMake(25, 60, 150, 40)];
+    subView12.text = @"  subView12 tag:11";
+    [subView12 setBackgroundColor:[UIColor greenColor]];
+    subView12.tag = 11;
+    [subView1 addSubview:subView12];
+    //
+    UILabel *subView13 = [[UILabel alloc]initWithFrame:CGRectMake(25, 110, 150, 40)];
+    subView13.text = @"  subView13 tag:13";
+    [subView13 setBackgroundColor:[UIColor yellowColor]];
+    subView13.tag = 13;
+    [subView1 addSubview:subView13];
+}
+```
+
+####只显示tag=11的view
+
+```objc
+- (void)showTag11{
+    //先隐藏所有
+    for (UIView *tempView in [self.bgView subviews]) {
+        for (UIView *view2 in tempView.subviews) {
+            if ([view2 isKindOfClass:[UILabel class]]) {
+                view2.hidden = YES;
+            }
+        }
+        if ([tempView isKindOfClass:[UILabel class]]) {
+            tempView.hidden = YES;
+        }
+    }
+    //显示tag = 11的view
+    UIView *tagView = [self.view viewWithTag:11];
+    tagView.hidden = NO;
+    tagView.superview.hidden = NO;
+}
+```
+
+####只显示tag = 13的view
+
+```objc
+- (void)showTag13{
+    //先隐藏所有
+    for (UIView *tempView in [self.bgView subviews]) {
+        for (UIView *view2 in tempView.subviews) {
+            if ([view2 isKindOfClass:[UILabel class]]) {
+                view2.hidden = YES;
+            }
+        }
+        if ([tempView isKindOfClass:[UILabel class]]) {
+            tempView.hidden = YES;
+        }
+    }
+    //显示tag = 13的view
+    UIView *tagView = [self.view viewWithTag:13];
+    tagView.hidden = NO;
+    tagView.superview.hidden = NO;
+}
+```
+　
+    例子中将想要测试的view都放在了bgView中，每个subview都是一个UILabel，而且设置了相应的内容。按钮的响应函数的实现思路：首先隐藏所有类型为UILabel的subview，然后通过方法 `viewWithTag:`根据指定的Tag获取到相应的subview，该subview及其superView的hidden属性为NO。这样就可以保证点击按钮的时候只显示的是第一个tag和指定tag相等的subview。
+
+####为了验证viewWithTag:获取subview的原理：
+
+* 首先我在subview1中添加了两个tag都为11的subview11和subview12。 运行程序可以，当我们点击"Show Tag 11"按钮的时候屏幕上将显示“SubView11”，而非“SubView12”。同时不管你点击几次该按钮，始终只显示“SubView11”。这样可以看出来同一层级中获取subview时候查找顺序为index从小到大的原则，即位于相对下层的将首先被找到。
+
+* 其次我还在subview1中添加了tag均为13的subview13，同时向view中添加了tag也为13的subview2，运行程序点击“Show Tag 13”按钮，屏幕上将会显示“SubView13”，而非“SubView2”。这可以验证viewWithTag在搜索的时候遵循深度优先遍历的原则，即会首先查找最下层的view并递归查询其subview。
+
+**综上两点我们可以看出来viewWithTag获取subview的基本原则，即遵循深度优先，下层优先两个原则。**
+
+> ####注意
+> 苹果文档上提到过
+> 
+> * tag值较小的，如 0-100 为苹果保留使用， 而0就是保留着给自己这个view使用的，也就是说没有手动设置tag值的view**默认是0**。
+> * 对于其它的view, 如scrollview, 则更上面的0, 1,2 都可能会是保留值。 
+> * 
+> 所以在使用`viewWithTag:`，以及在设置子view的Tag值时， 需要注意不要使用数值较小的Tag值，使用时建议加一个定值
+
+```objc
+#define subViewTag   10000
+```
+
+##Subview的事件响应
+
+* 在view的层级里面，默认情况下subview是可以显示到其父view的frame区域以外的，通过设置`clipToBounds`属性为YES，可以限制subview的显示区域。
+
+* 但是touch在各个UIView中传递的时候，区域是**限制在view的frame内的**，即出了父View的subView将不能收到消息，此处包含两个信息：
+
+	* 1、在当前view的frame以外所做的操作是不会传递到该view中的，这一点很容易理解。
+	* 2、如果touch事件是发生在当前view的frame以外，该view所有的subview将也不会再收到该消息。
+
+这一点通常容易被我们忽略，很多奇怪的问题就是这个引起的。
+
+* 在程序中一定要注意，当前程序view的最底层是充满整个window的可用区域的，否则将会导致某些区域明明有按钮但是却点不中的问题
+
+　
+举个例子测试如下：
+
+```objc
+{
+	//父视图
+	UIView *fatherView = [[UIView alloc] initWithFrame:CGRectMake(20, 400, 100, 40)];
+	fatherView.backgroundColor = [UIColor redColor];
+	//子视图
+	UIButton *kidButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[kidButton setFrame:CGRectMake(70, 0, 60, 30)];
+	[kidButton setBackgroundColor:[UIColor blueColor]];
+	[kidButton setTitle:@"test" forState:UIControlStateNormal];
+	[kidButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
+	[kidButton addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+	//
+	[fatherView addSubview:kidButton];
+	//thirdView.clipsToBounds = YES; //添加后超出父视图的部分不显示，默认为NO
+	[self.view addSubview:fatherView];
+}
+//
+- (void)test{
+    NSLog(@"\n\n 点击了kidButton \n\n");
+}
+```
+
+![subView2](/images/2015/12/subView2.png "View的响应")
+
+
+该例子中我们设置定制 `fatherView` 的背景颜色为红色，然后创建一个一半位于 fatherView 内，一半位于 `fatherView` 外的UIButton，我们可以发现点击 `fatherView` 外的button界面根本没有变化，在`test`函数中加断点，也不会进去，这就说明该按钮根本没有接受到消息，同时点击 `fatherView` 内的button界面时按钮运行正常，点击后控制台会输出信息“ 点击了kidButton ”。这些可以说明subview接收事件的范围是受其superview的frame闲限制的，不可能接受到superview的frame以外的touch事件。
+
+　　如果我们的程序有些时候看着一些按钮明明正常但是却不能正常接收touch消息的时候，可能就是其显示位置已经跑出了superview的frame范围了。所以程序的**rootview**一定要时刻充满整个window，否则就可能导致程序的某些地方不能正常相应用户消息。同时建议对于那些只是充当容器的view，最好设置 `autoresizingMask` 的值为 `UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight` ，这样当其superview的大小发生变化时候就会自动缩放至superview一样大小，保证每一刻都充满其superview，从而避免因显示位置出界导致的不能正常相应用户touch事件等问题。
+　　
+　　附上github代码地址：[subView的获取和响应](https://github.com/Vanbein/SubViewObtainAndResponse)
+　
+　
+　
+　
+　
+　
+　
+　

@@ -1,0 +1,10 @@
+<!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    {% for tag in site.tags limit: 20 %}
+    <a href="/tags/#{{ tag | first }}">{{ tag | first }}</a>
+    {% endfor %}
+  </div>
+</div>
+<!-- End Tags -->
