@@ -4,13 +4,9 @@ title: 动画CAAnimation系列--CABasicAnimation
 category: iOS-Pro
 tags: iOS Animation
 image: /images/head-800x400/-9.png
-description: CABasicAnimation 类是 CAAnimation 的子类，CABasicAnimation
-通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的CAKeyFrameAnimation
+description: CABasicAnimation 类是 CAAnimation 的子类，CABasicAnimation通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的 CAKeyFrameAnimation
 homepage: false
 ---
-
-<!--more-->
-
 
 在iOS中，展示动画可以类比于显示生活中的“拍电影”。拍电影有三大要素：演员+剧本+开拍，概念类比如下：
 
