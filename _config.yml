@@ -8,10 +8,10 @@ description: This blog theme was designed by Frank Lin. I am updating this blog 
 # Base url
 url: "http://vanbein.com"
 
-# Pre-processing
+# Pre-processing  #Pygments
 
 markdown: kramdown
-highlighter: Pygments
+highlighter: rouge
 kramdown:
   input:          GFM
   auto_ids:       true
