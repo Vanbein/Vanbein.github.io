@@ -5,7 +5,7 @@ category: tips
 tags: iOS Tip
 image: /images/head-800x400/-10.png
 description: 2016.3第三周知识点笔记
-homepage: true
+homepage: false
 ---
 
 ### 一、随机生成一种颜色

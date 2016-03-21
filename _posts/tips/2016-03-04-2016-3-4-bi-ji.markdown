@@ -5,7 +5,7 @@ category: tips
 tags: iOS Tip
 image: /images/head-800x400/-4.png
 description: 2016.3第一周知识点笔记
-homepage: true
+homepage: false
 ---
 
 

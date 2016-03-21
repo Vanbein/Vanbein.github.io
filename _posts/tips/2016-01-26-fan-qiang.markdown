@@ -5,7 +5,7 @@ category: tips
 tags: Tip 翻墙
 image: /images/head-800x400/-27.png
 description: 本文主要介绍两种免费的翻墙的方式。
-homepage: false
+homepage: true
 ---
 
 <!--more-->
