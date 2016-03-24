@@ -28,7 +28,7 @@ lsi: false # Lexical analysis (true) takes longer for higher quality
 source:       .
 destination:  ./_site
 plugins_dir:  ./_plugins
-layouts_dir:  ./_layouts
+layouts_dir:  ./layouts
 data_dir:     ./_data
 includes_dir: ./_includes
 collections:  null

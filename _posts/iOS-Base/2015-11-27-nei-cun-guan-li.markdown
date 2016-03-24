@@ -6,7 +6,6 @@ tags: iOS Objective-C
 image: /images/head-800x400/-7.png
 description: 内存管理是iOS非常重要的一环，只有理解了iOS的内存管理机制，才能掌握好自己App的内存，写出优秀的App应用。
 homepage: false
-
 ---
 
 内存管理是iOS非常重要的一环，只有理解了iOS的内存管理机制，才能掌握好自己App的内存，写出优秀的App应用。
