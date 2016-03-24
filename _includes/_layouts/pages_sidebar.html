@@ -12,7 +12,7 @@
           <div class="row"><!--  row -->
             <!-- Main content -->
             <div class="col col_9_of_12">
-              {% include pagination.html %}
+              {{ content }}
             </div><!-- Main content End -->
             {% include indexsidebar.html %}
           </div><!-- end row -->
@@ -20,6 +20,6 @@
       </section><!-- Section End -->
       {% include footer.html %}
     </div><!-- Wrapper End -->
-    <!--{% include js.html %}-->
+    {% include js.html %}
   </body>
 </html>
