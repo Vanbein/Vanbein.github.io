@@ -5,7 +5,7 @@ category: Jekyll
 tags: Jekyll QRcode
 image: /images/head-800x400/-2.png
 description: 自己动手，用jquery-qrcode生成二维码。
-homepage: false
+homepage: true
 ---
 
 看到别人这么做，自己也试了下，确实可以。不过还是用分享按钮里面现成的吧。
