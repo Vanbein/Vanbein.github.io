@@ -6,9 +6,7 @@ categories: Jekyll
 tags: Jekyll markdown
 image: /images/head-800x400/-23.png
 description: 使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。
-homepage: false
----
-
+homepage: true
 ---
 
 使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。
