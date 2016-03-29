@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "UIBezierPath详解"
-date: 2016-01-12 10:30:07 +0800
-comments: true
-categories: iOS高级
+title: UIBezierPath详解
+category: iOS进阶
+tags: iOS Animation Bezier
+image: /images/head-800x400/10.png
+description: 使用 UIBezierPath 类可以创建基于矢量的路径，这个类在UIKit中。此类是 Core Graphics 框架关于path的一个封装。使用此类可以定义简单的形状，如椭圆或者矩形，或者有多个直线和曲线段组成的形状。
+homepage: false
 ---
-
-<!--more-->
 
 使用`UIBezierPath`类可以创建基于矢量的路径，这个类在UIKit中。此类是`Core Graphics`框架关于path的一个封装。使用此类可以定义简单的形状，如椭圆或者矩形，或者有多个直线和曲线段组成的形状。
 

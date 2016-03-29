@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "UIApplication、UIView生命周期相关"
-date: 2015-12-28 16:18:35 +0800
-comments: true
-categories: iOS基础
+title: UIApplication、UIView生命周期相关
+category: iOS基础
+tags: iOS Tip ViewLife UIApplication
+image: /images/head-800x400/10.png
+description: 记录下和 UIApplication、UIView生命周期相关的知识点
+homepage: false
 ---
-
-<!--more-->
 
 http://www.cnblogs.com/wayne23/p/3868441.html
 

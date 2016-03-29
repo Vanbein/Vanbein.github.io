@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 动画CAAnimation系列--CAKeyframeAnimation
-category: iOS-Pro
+category: iOS进阶
 tags: iOS Animation
 image: /images/head-800x400/-16.png
 description: CAKeyframeAnimation 是 CApropertyAnimation 的子类，跟 CABasicAnimation 的区别是：CABasicAnimation 只能从一个数值(fromValue)变到另一个数值(toValue)，而CAKeyframeAnimation 会使用一个NSArray保存这些数值

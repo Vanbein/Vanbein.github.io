@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Singleton--单例"
-date: 2015-12-09 14:35:41 +0800
-comments: true
-categories: Objective-C
+title: Singleton--单例
+category: iOS基础
+tags: iOS 单例 Objective-C
+image: /images/head-800x400/10.png
+description: 说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。
+homepage: false
 ---
-
-<!--more-->
 
 ##一、单例介绍
 

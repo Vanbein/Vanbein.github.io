@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "GCD的理解"
-date: 2015-12-15 10:39:55 +0800
-comments: true
-categories: iOS高级
+title: GCD的理解
+category: iOS进阶
+tags: iOS GCD 多线程
+image: /images/head-800x400/10.png
+description: GCD(Grand Central Dispatch)是iOS开发中的一大“利器“，需要仔细研究学习。
+homepage: false
 ---
-
 
 GCD(Grand Central Dispatch)是iOS开发中的一大“利器“，需要仔细研究学习。
 
-<!--more-->
 
 ##简介
 

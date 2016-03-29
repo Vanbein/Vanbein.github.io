@@ -1,10 +1,13 @@
 ---
 layout: post
-title: "NSUserDefaults--数据存取"
-date: 2015-12-10 13:37:24 +0800
-comments: true
-categories: [Objective-C, iOS高级]
+title: NSUserDefaults--数据存取
+category: iOS进阶
+tags: iOS NSUserDefaults Objective-C
+image: /images/head-800x400/10.png
+description: 对于应用来说，每个用户都有自己的独特偏好设置，而好的应用会让用户根据喜好选择合适的使用方式，把这些偏好记录在应用包的plist文件中，通过 NSUserDefaults 类来访问，这是 NSUserDefaults 的常用姿势。如果有一些设置你希望用户即使升级后还可以继续使用，比如玩游戏时得过的最高分、喜好和通知设置、主题颜色甚至一个用户头像，那么你可以使用 NSUserDefaults 来存储这些信息，如果有更多需求，可以了解数据持久化相关的知识。
+homepage: false
 ---
+
 
 关于` NSUserDefaults `首先要看苹果官方的定义：[NSUserDefault官方文档](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSUserDefaults_Class/index.html)
 

@@ -1,10 +1,13 @@
 ---
 layout: post
-title: "delegate、block、NSNotification"
-date: 2015-12-17 14:51:32 +0800
-comments: true
-categories: [iOS基础, Objective-C, 经验累积]
+title: delegate、block、NSNotification的用法区分
+category: iOS基础
+tags: iOS delegate、block、NSNotification
+image: /images/head-800x400/10.png
+description: 对delegate、block、NSNotification的用法做一个总结
+homepage: false
 ---
+
 
 <!--more-->
 

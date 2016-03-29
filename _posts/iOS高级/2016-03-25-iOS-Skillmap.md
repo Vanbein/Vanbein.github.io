@@ -1,21 +1,21 @@
 ---
 layout: post
-title: iOS开发工程师职业图谱
+title: 点亮我的 iOS开发技能树
 category: iOS高级
 tags: iOS SkillMap
 image: /images/head-800x400/-24.png
-description: iOS开发工程师职业图谱
+description: iOS开发技能树，需要一个不落得去点亮
 homepage: false
 ---
 
-# iOS 开发工程师职业图谱
+## iOS 开发工程师职业图谱
 
-## 说明
+### 说明
 
 - 难度等级：R1-R5, 对应关系：零基础(R1)、简单(R2)、一般(R3)、困难(R4)、非常困难(R5)
 - 达到程度：P1-P5, 对应关系：了解(P1)、熟悉(P2)、掌握(P3)、精通(P4)、专家(P5)
 
-## 职业图谱
+#### 职业图谱
 
 - 通用基础(R3,P2)
   - 理论基础(R4,P3)

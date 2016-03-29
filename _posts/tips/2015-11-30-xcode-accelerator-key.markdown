@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xcode基础快捷键 -- 提高你的编码速率
-category: tips
+category: Tips
 tags: Xocde iOS
 image: /images/head-800x400/-19.png
 description: 在 Xcode 中有许多快捷键，它可以使得我们的编码工作更为高效，对于在代码文件中快速导航、定位Bug以及新增应用特性都是极有效的。

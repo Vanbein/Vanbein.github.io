@@ -1,7 +1,7 @@
 ---
 layout: post
 title: UIApplication详解
-category: iOS-Base
+category: iOS基础
 tags: iOS
 image: /images/head-800x400/-22.png
 description: 总结一下和 UIApplication 相关的知识点.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: iOS开发中一些常用的小知识或技巧
-category: tips
+category: Tips
 tags: iOS Tip
 image: /images/head-800x400/-26.png
 description: true本文将记录在学习iOS开发过程中所学到的小知识点，以及一些技巧，会保持更新。

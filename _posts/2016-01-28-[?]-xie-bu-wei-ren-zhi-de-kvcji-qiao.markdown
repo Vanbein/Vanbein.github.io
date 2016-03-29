@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "一些不为人知的KVC技巧"
-date: 2016-01-28 17:13:12 +0800
-comments: true
-categories: [iOS高级, 经验累积]
+title: KVC的一些不为人知小技巧
+category: iOS进阶
+tags: iOS KVC Bezier
+image: /images/head-800x400/10.png
+description: 本文主要来记录下一些不为人知，也经常被忽略掉，并且很实用的KVC干货小技巧
+homepage: false
 ---
 
 本文主要来记录下一些不为人知，也经常被忽略掉，并且很实用的KVC干货小技巧
-<!--more-->
 
 ###一、获取数组里的,最大、最小、平均、求和
 

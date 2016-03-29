@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Foundation框架基础
-category: iOS-Base
+category: iOS基础
 tags: iOS Objective-C Foundation
 image: /images/head-800x400/-15.png
 description: 介绍Foundation框架中一些常用的类

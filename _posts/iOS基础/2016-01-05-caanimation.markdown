@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CAAnimation入门
-category: iOS-Base
+category: iOS基础
 tags: iOS Animation CATransition
 image: /images/head-800x400/-21.png
 description: 初次学习使用动画，需要用到`CATransition`，于是就先来了解下`CAAnimation`

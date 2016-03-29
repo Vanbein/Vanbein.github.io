@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 关于CALayer
-category: iOS-Base
+category: iOS基础
 tags: iOS Animation layer
 image: /images/head-800x400/-5.png
 description: 在iOS中，你能看得见摸得着的东西基本上都是UIView，比如一个按钮、一个文本标签、一个文本输入框、一个图标等等，这些都是UIView。其实UIView之所以能显示在屏幕上，完全是因为它内部的一个图层，在创建UIView对象时，UIView内部会自动创建一个图层(即CALayer对象)，通过UIView的layer属性可以访问这个层

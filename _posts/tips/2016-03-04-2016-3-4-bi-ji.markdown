@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 2016-3-4 笔记
-category: tips
+category: Tips
 tags: iOS Tip
 image: /images/head-800x400/-4.png
 description: 2016.3第一周知识点笔记

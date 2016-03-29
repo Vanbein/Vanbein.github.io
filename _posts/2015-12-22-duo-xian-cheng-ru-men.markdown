@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "多线程入门"
-date: 2015-12-22 14:18:23 +0800
-comments: true
-categories: iOS基础
+title: 多线程入门
+category: iOS基础
+tags: iOS 多线程
+image: /images/head-800x400/10.png
+description: 多线程入门，基本概念：即1个进程中可以开启多条线程，每条线程可以并行（同时）执行不同的任务。
+homepage: false
 ---
 
 <!--more-->

@@ -1,13 +1,15 @@
 ---
 layout: post
-title: "delegate--代理"
-date: 2015-12-07 15:03:31 +0800
-comments: true
-categories: Objective-C
+title: delegate--代理
+category: iOS基础
+tags: iOS delegate Objective-C
+image: /images/head-800x400/10.png
+description: delegate(委托/代理)是iOS开发中常用的设计模式，表示将一个对象的部分功能转交给另外一个对象，借助协议protocol可以很方便的实现这种设计模式。
+homepage: false
 ---
 
 delegate(委托/代理)是iOS开发中常用的设计模式，表示将一个对象的部分功能转交给另外一个对象，借助协议protocol可以很方便的实现这种设计模式。
-<!--more-->
+
 ###1. 代理 delegate
 
 #####什么是delegate，苹果的官方文档给了清晰的解释：

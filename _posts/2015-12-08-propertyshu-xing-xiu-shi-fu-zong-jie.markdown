@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "property属性修饰符总结"
-date: 2015-12-08 22:28:10 +0800
-comments: true
-categories: Objective-C
+title: property属性修饰符总结
+category: iOS基础
+tags: iOS property Objective-C
+image: /images/head-800x400/10.png
+description: 刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 copy/strong/weak/__weak/__strong/assign 的使用场景总结总结。
+homepage: false
 ---
 
-<!--more-->
 
 刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 `copy/strong/weak/__weak/__strong/assign` 的使用场景总结总结。如果有说得不对的地方，敬请指出。
 

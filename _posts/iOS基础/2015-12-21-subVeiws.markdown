@@ -1,7 +1,7 @@
 ---
 layout: post
 title: subView 的获取和响应
-category: iOS-Base, tips
+category: iOS基础
 tags: iOS subView
 image: /images/head-800x400/-20.png
 description: 最近在项目中需要判断当前是否打开了YouTube播放视频，因为YouTube播放后有一个可收缩的播控条，它是在 `AppDelegate.m` 中添加在window上的，因此在需要判断的时候，就需要判断当前window的subViews中是否有YouTube的播控条View。此时就是通过设置播控条的**Tag**值，遍历window的subViews，进行比较判断出来的。

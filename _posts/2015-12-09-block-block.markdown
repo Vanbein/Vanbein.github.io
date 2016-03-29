@@ -1,10 +1,13 @@
 ---
 layout: post
-title: "Block--Block"
-date: 2015-12-09 13:35:30 +0800
-comments: true
-categories: Objective-C
+title: 关于Block代码块
+category: iOS基础
+tags: iOS Block Objective-C
+image: /images/head-800x400/10.png
+description: 本文主要来阐述下Block是什么？
+homepage: false
 ---
+
 
 Block是什么？用一句话来概括就是带有**自动变量的匿名函数**。
 

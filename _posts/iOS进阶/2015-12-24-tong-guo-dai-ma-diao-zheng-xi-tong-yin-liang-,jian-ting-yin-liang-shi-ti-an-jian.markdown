@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 通过代码调整系统音量，监听音量实体按键
-category: iOS-Pro, tips
-tags: iOS
+category: iOS进阶
+tags: iOS 
 image: /images/head-800x400/-14.png
 description: 最近项目有个功能需要用到监听音量实体键，并能够通过滑动应用内的UISlider调整系统的音量，其中遇到不少问题，所以记录下这个学习过程。
 homepage: false

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 访问权限：相册、相机、定位，耳机...
-category: iOS-Pro, tips
+category: iOS进阶
 tags: iOS authorization
 image: /images/head-800x400/-12.png
 description: iOS7以后需要用户授权才能访问相机、相册、定位等信息，所以进行查询现在的授权状态很有必要。

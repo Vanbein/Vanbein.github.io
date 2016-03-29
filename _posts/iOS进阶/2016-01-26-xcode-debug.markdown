@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xcode常用的Debug调试技巧总结
-category: iOS-Pro
+category: iOS进阶
 tags: iOS debug
 image: /images/head-800x400/-13.png
 description: 本文主要记录下Xcode结合LLDB调试命令以及OBJC运行时的调试技巧，不定期更新.

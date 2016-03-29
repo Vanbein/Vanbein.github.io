@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "Notification--通知"
-date: 2015-12-09 16:30:05 +0800
-comments: true
-categories: [Objective-C, iOS基础]
+title: Notification--通知
+category: iOS基础
+tags: iOS NSNotification Objective-C
+image: /images/head-800x400/10.png
+description: Notification(通知)是iOS系统下重要的消息传递机制之一，通知封装了诸如窗口获得焦点、网络连接关闭等事件信息，通知的内容可按照我们实际的需求来定制。在实际开发中或多或少都会接触到。
+homepage: false
 ---
 
 Notification(通知)是iOS系统下重要的消息传递机制之一，通知封装了诸如窗口获得焦点、网络连接关闭等事件信息，通知的内容可按照我们实际的需求来定制。在实际开发中或多或少都会接触到。

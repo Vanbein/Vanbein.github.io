@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "NSString属性什么时候用copy，什么时候用strong?"
-date: 2015-12-17 15:00:39 +0800
-comments: true
-categories: 经验累积
+title: NSString属性什么时候用copy，什么时候用strong?
+category: iOS基础
+tags: iOS Tip
+image: /images/head-800x400/10.png
+description: 我们在声明一个NSString属性时，对于其内存相关特性，通常有两种选择(基于ARC环境)：strong与copy。那这两者有什么区别呢？什么时候该用strong，什么时候该用copy呢?
+homepage: false
 ---
 
 <!--more-->

@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "Method结构, SEL, IMP理解"
-date: 2015-12-10 10:36:35 +0800
-comments: true
-categories: iOS高级
+title: Method结构, SEL, IMP理解
+category: iOS进阶
+tags: iOS SEL
+image: /images/head-800x400/10.png
+description: 一直在代码中使用@Selector(method:)，但其原理也是有必要去了解的。
+homepage: false
 ---
-一直在代码中使用@Selector(method:)，但其原理也是有必要去了解的。
 
-<!--more-->
+一直在代码中使用@Selector(method:)，但其原理也是有必要去了解的。
 
 
 ###定义

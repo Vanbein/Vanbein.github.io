@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "Protocol--协议"
-date: 2015-12-07 13:29:36 +0800
-comments: true
-categories: Objective-C
+title: Protocol--协议
+category: iOS基础
+tags: iOS Protocol Objective-C
+image: /images/head-800x400/10.png
+description: 在写jave的时候都会有接口interface这个概念，接口就是一堆方法的声明没有实现，而在Obejective-C里面interface是一个类的头文件的声明，并不是真正意义上的接口的意思，在Objective-C中接口是由一个叫做协议的protocol来实现的模式，表示将一个对象的部分功能转交给另外一个对象，借助协议protocol可以很方便的实现这种设计模式。
+homepage: false
 ---
-<!--more-->
 
 ###1. Protocol
 * ####概念

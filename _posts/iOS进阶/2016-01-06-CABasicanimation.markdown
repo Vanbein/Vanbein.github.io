@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 动画CAAnimation系列--CABasicAnimation
-category: iOS-Pro
+category: iO进阶
 tags: iOS Animation
 image: /images/head-800x400/-9.png
 description: CABasicAnimation 类是 CAAnimation 的子类，CABasicAnimation通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的 CAKeyFrameAnimation

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: iOS 面试题集锦
-category: tips
+category: Tips
 tags: iOS Tip 
 image: /images/head-800x400/-28.png
 description: 整理一些面试相关的知识。
