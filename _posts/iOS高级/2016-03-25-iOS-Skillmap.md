@@ -3,7 +3,7 @@ layout: post
 title: 点亮我的 iOS开发技能树
 category: iOS高级
 tags: iOS SkillMap
-image: /images/head-800x400/-24.png
+image: /images/head-800x400/-18.png
 description: iOS开发技能树，需要一个不落得去点亮
 homepage: false
 ---
