@@ -46,7 +46,7 @@ incremental:  false
 gist:
   noscript: false
 
-relative_permalinks: true
+# relative_permalinks: false
 
 # Handling Reading
 include:      [".htaccess"]
