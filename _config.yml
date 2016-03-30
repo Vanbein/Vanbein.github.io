@@ -11,14 +11,18 @@ url: "http://vanbein.com"
 # Pre-processing
 
 markdown: kramdown
-highlighter: rouge
+highlighter: rouge # pygments
 kramdown:
   input:         GFM
   auto_ids:      true
 auto_id_prefix: 'id-'
 safe: true
 
-permalink: date
+permalink: /posts/:categories/:title
+
+# pretty # YYYY/MM/DD/page-title/index.html
+
+# /posts/:categories/:title/
 
 # /posts/:categories/:year-:month-:day-:title/
 
@@ -41,10 +45,10 @@ data_dir:     ./_data
 includes_dir: ./_includes
 collections:  null
 
-incremental:  false
+# incremental:  false
 
-gist:
-  noscript: false
+# gist:
+#   noscript: false
 
 # relative_permalinks: false
 
@@ -59,7 +63,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 # Filtering Content
 show_drafts: null
 limit_posts: 0
-# future: true
+future: false
 unpublished: false
 tag_items: 20     # Applies to categories and tags lists
 related_items: 3  # Fix 3 items in single post
@@ -78,13 +82,13 @@ gems:
   - jekyll-paginate
 
 feed:
-path: atom.xml
+  path: atom.xml
 
 # Serving
-detach:  false
-port:    4000
-host:    127.0.0.1
-baseurl: "" # does not include hostname
+# detach:  false
+# port:    4000
+# host:    127.0.0.1
+# baseurl: "" # does not include hostname
 
 # Embeds
 google_api_key: "AIzaSyCJM2ZoBzZi3kQ0xf0u-r6Zs-j9huq8wfY"

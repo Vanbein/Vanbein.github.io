@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>property属性修饰符总结 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/propertyshu-xing-xiu-shi-fu-zong-jie">
+  <meta name="description" content="刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 copy/strong/weak/__weak/__strong/assign 的使用场景总结总结。">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 1200 && screenWidth > 1200){
+        $('#fixed_search').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixed_search').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <li><a href="/archieves/">Blog Archives</a></li>
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+                 <li><a href="/404.html">404 Page</a></li>
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/15/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/media/blue-xuwei">许巍 - 蓝莲花</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/blog">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016-3-7-bi-ji">2016-3-9 笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/04/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016-3-4-bi-ji">2016.3第一周知识点笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/26/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/xcode-debug">Xcode常用的Debug调试技巧总结</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/23/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/ios-interview">iOS 面试题集锦</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap"><img src="/images/head-800x400/-18.png" alt="点亮我的 iOS开发技能树"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">点亮我的 iOS开发技能树</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 25, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/chang-yong-de-xiao-ji-qiao" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/chang-yong-de-xiao-ji-qiao"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">iOS开发中一些常用的小知识或技巧</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 18, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016-3-13-bi-ji" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016-3-13-bi-ji"><img src="/images/head-800x400/-10.png" alt="2016-3-16 笔记"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016-3-13-bi-ji">2016-3-16 笔记</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 16, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016-3-13-bi-ji">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/media/blue-xuwei" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/media/blue-xuwei"><img src="/demo/500x500.jpg" alt="许巍 - 蓝莲花"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/media/blue-xuwei">许巍 - 蓝莲花</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 15, 2016</span>
+            <span class="meta_author"><a href="/posts/media/blue-xuwei">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (22)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (7)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#journal">journal</a> (1)</li>
+      
+      <li><a href="/categories/#media">media</a> (1)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-49.png" class="popup_link"><img src="/images/head-800x400/-49.png" alt="property属性修饰符总结"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Dec 8, 2015</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>property</u> <u>Objective-C</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">property属性修饰符总结</h1><!-- End Entry title -->
+                  <p>刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 <code>copy/strong/weak/__weak/__strong/assign</code> 的使用场景总结总结。如果有说得不对的地方，敬请指出。</p>
+
+<p>##一、自动引用计数</p>
+
+<p>Apple官方文档关于自动引用计数的说明：<br />
+&gt; Automatic Reference Counting (ARC) is a compiler feature that provides automatic memory management of Objective-C objects. Rather than having to think about retain and release operations, ARC allows you to concentrate on the interesting code, the object graphs, and the relationships between objects in your application.</p>
+
+<p>翻译过来就是：<code>Automatic Reference Counting (ARC)</code>是一个编译器的特性，提供了对iOS对象的自动内存管理，ARC在编译期间自动在适当的地方添加ObjC对象的retain和release操作代码，而不需要我们关心。</p>
+
+<p>ARC在编译期间，根据 Objective-C 对象的存活周期，在适当的位置添加<code>retain</code>和<code>release</code>代码。从概念上讲，ARC与手动引用计数内存管理遵循同样的内存管理规则，但是ARC也无法防止循环强引用。</p>
+
+<p><strong>ARC</strong>还引入了新的修饰符来修饰变量和声明属性：</p>
+
+<ul>
+  <li>
+    <p>声明变量的修饰符：strong, weak, unsafe_unretained, autoreleasing;</p>
+  </li>
+  <li>
+    <p>声明属性的修饰符：strong, weak, unsafe_unretained。</p>
+  </li>
+  <li>
+    <p>对象和<code>Core Foundation-style</code>对象直接的转换修饰符号：<code>bridge</code>，<code>bridge_retained</code>或<code>CFBridgingRetain</code>, <code>__bridge_transfer</code>或<code>CFBridgingRelease</code>。</p>
+  </li>
+  <li>
+    <p>对于线程的安全，有<code>nonatomic</code>，这样效率就更高了，但是不是线程的。如果要线程安全，可以使用<code>atomic</code>，这样在访问是就会有线程锁。</p>
+  </li>
+  <li>
+    <p>记住内存管理法则：谁使对象的引用计数+1，不再引用时，谁就负责将该对象的引用计数-1。</p>
+  </li>
+</ul>
+
+<p>##二、实战性学习</p>
+
+<p>下面我们来声明一个Person类来学习：</p>
+
+<pre><code class="language-objc">@interface Person : NSObject
+// 注意：苹果有命名规范的，命名属性时，不能以copy开头。
+// 如果下面的属性声明为copyString，会编译不通过。
+@property (nonatomic, copy) NSString *copiedString;
+// 默认会是什么呢？
+@property (nonatomic) NSString *name;
+// 默认是strong类型
+@property (nonatomic) NSArray *array;
+@end
+</code></pre>
+
+<p>如果属性没有指定类型，默认是什么呢？其实是<strong>strong</strong>。如果证明呢？验证方法：分别将array属性的类型分别设置为weak, assign,strong,不设置，这四种情况的结果分别是：第一种打印为空，第二种直接直接崩溃，第三种和最后一种是可以正常使用。如下面的验证代码：</p>
+
+<pre><code class="language-objc">Person *lili = [[Person alloc] init];
+lili.name = @"LiLi";
+lili.copiedString = @"LiLi\' father is LLL";
+lili.array = @[@"谢谢", @"感谢"];
+//
+NSArray *otherArray = lili.array;
+lili = nil;
+NSLog(@"%@", otherArray);
+</code></pre>
+
+<p>再继续添加下面的代码。默认声明变量的类型为<code>__strong</code>类型，因此上面的<code>NSArray *otherArray = lili.array;</code> 与 <code>__strong NSArray *otherArray = lili.array;</code> 是一样的。如果我们要使用弱引用，特别是在解决循环强引用时就特别重要了。我们可以使用<code>__weak</code>声明变量为弱引用，这样就不会增加引用计数值。</p>
+
+<pre><code class="language-objc">__strong NSArray *strongArray = otherArray;
+otherArray = nil;
+// 打印出来正常的结果。
+NSLog(@"strongArray = %@", strongArray);
+//
+__weak NSArray * weakArray = strongArray;
+strongArray = nil;
+// 打印出来：null
+NSLog(@"weakArray: %@", weakArray);
+</code></pre>
+
+<p>##三、xib/storybard连接的对象为什么可以使用weak</p>
+
+<pre><code>@property (nonatomic, weak) IBOutlet UIButton *button;
+</code></pre>
+
+<p>像上面这行代码一样，在连接时自动生成为<code>weak</code>。因为这个button已经放到view上了，因此只要这个View不被释放，这个button的引用计数都不会为0，因此这里可以使用weak引用。</p>
+
+<p>如果我们不使用<code>xib/storyboard</code>，而是使用纯代码创建呢？</p>
+
+<pre><code>@property (nonatomic, weak) UIButton *button;
+</code></pre>
+
+<p>使用<code>weak</code>时，由于button在创建时，没有任何强引用，因此就有可能提前释放。Xcode编译器会告诉我们，这里不能使用weak。因此我们需要记住，只要我们在创建以后需要使用它，我们必须保证至少有一个强引用，否则引用计数为0，就会被释放掉。对于上面的代码，就是由于在创建时使用了<code>weak</code>引用，因此button的引用计数仍然为0，也就是会被释放，编译器在编译时会检测出来的。</p>
+
+<p>这样写，在创建时通过 <code>self.button = ...</code> 就是出现错误，因为这是弱引用。所以我们需要声明为强引用，也就是这样：</p>
+
+<pre><code>@property (nonatomic, strong) UIButton *button;
+</code></pre>
+
+<p>##四、block声明使用copy</p>
+
+<p>在使用block时，尽量使用 typedef 来起一个别名，这样更容易阅读。使block作为属性时，使用copy。</p>
+
+<pre><code>typedef void (^HYBTestBlock)(NSString *name);
+@property (nonatomic, copy) HYBTestBlock testBlock;
+</code></pre>
+
+<p>###字符串使用copy<br />
+对于字符串，通常都是使用copy的方式。虽然使用strong似乎也没有没有问题，但是事实上在开发中都会使用copy。为什么这么做？因为对于字符串，我们希望是一次内容的拷贝，外部修改也不会影响我们的原来的值，而且NSString类遵守了<code>NSCopying</code>, <code>NSMutableCopying</code>, <code>NSSecureCoding</code>协议。</p>
+
+<p>下面时使用copy的方式，验证如下：</p>
+
+<pre><code>NSString *hahaString = @"哈哈";
+NSString *heheString = [hahaString copy];
+// 哈哈, 哈哈
+NSLog(@"%@, %@", hahaString, heheString);
+heheString = @"呵呵";
+// 哈哈, 呵呵
+NSLog(@"%@, %@", hahaString, heheString);
+</code></pre>
+
+<p>我们修改了heheString，并不会影响到原来的hahaString。copy一个对象变成新的对象(新内存地址) 引用计数为1 原来对象计数不变。</p>
+
+<p>##属性声明修饰符</p>
+
+<p>属性声明修饰符有：strong, weak, unsafe_unretained, readWrite，默认strong, readWrite。</p>
+
+<ul>
+  <li>
+    <p>strong：strong和retain相似,只要有一个strong指针指向对象，该对象就不会被销毁</p>
+  </li>
+  <li>
+    <p>weak：声明为weak的指针，weak指针指向的对象一旦被释放，weak的指针都将被赋值为nil；</p>
+  </li>
+  <li>
+    <p>unsafe_unretained：用unsafe_unretained声明的指针，指针指向的对象一旦被释放，这些指针将成为野指针。</p>
+  </li>
+</ul>
+
+<pre><code>@property (nonatomic, copy) NSString *name;
+// 一旦所指向的对象被释放，就会成为野指针
+@property (nonatomic, unsafe_unretained) NSString *unsafeName;
+//
+lili.name = @"Lili";
+lili.unsafeName = lili.name;
+lili.name = nil;
+// unsafeName就变成了野指针。这里不会崩溃，因为为nil.
+NSLog(@"%@", lili.unsafeName);
+</code></pre>
+
+<p>##深拷贝与浅拷贝<br />
+关于浅拷贝，简单来说，就像是人与人的影子一样。而深拷贝就像是梦幻西游中的龙宫有很多个长得一样的龙宫，但是他们都是不同的精灵，因此他们各自都是独立的。</p>
+
+<p>我相信还有不少朋友有这样一种误解：浅拷贝就是用copy，深拷贝就是用mutableCopy。如果有这样的误解，一定要更正过来。copy只是不可变拷贝，而mutableCopy是可变拷贝。比如，<code>NSArray arr = [modelsArray copy]</code>，那么arr是不可变的。而<code>NSMutableArray ma = [modelsArray mutableCopy]</code>，那么ma是可变的。</p>
+
+<pre><code>lili.array = [@[@"谢谢", @"感谢"] mutableCopy];
+NSMutableArray *otherArray = [lili.array copy];
+lili.array[0] = @"修改了谢谢";
+// 打印： 谢谢 修改了谢谢
+// 说明数组里面是字符串时，直接使用copy是相当于深拷贝的。
+NSLog(@"%@ %@", otherArray[0], lili.array[0]);
+</code></pre>
+
+<p>这里就是浅拷贝，但是由于数组中的元素都是字符串，因此不会影响原来的值。</p>
+
+<p>数组中是对象时：</p>
+
+<pre><code>NSMutableArray *personArray = [[NSMutableArray alloc] init];
+Person *person1 = [[Person alloc] init];
+person1.name = @"lili";
+[personArray addObject:person1];
+//
+Person *person2 = [[Person alloc] init];
+person2.name = @"lisa";
+[personArray addObject:person2];
+//
+// 浅拷贝
+NSArray *newArray = [personArray copy];
+Person *p = newArray[0];
+p.name = @"lili的名字被修改了";
+//
+// 打印结果：lili的名字被修改了
+// 说明这边修改了，原来的数组对象的值也被修改了。虽然newArray和personArray不是同一个数组，不是同一块内存，
+// 但是实际上两个数组的元素都是指向同一块内存。
+NSLog(@"%@", ((Person *)(personArray[0])).name);
+深拷贝，其实就是对数组中的所有对象都创建一个新的对象：
+//
+NSMutableArray *personArray = [[NSMutableArray alloc] init];
+Person *person1 = [[Person alloc] init];
+person1.name = @"lili";
+[personArray addObject:person1];
+//
+Person *person2 = [[Person alloc] init];
+person2.name = @"lisa";
+[personArray addObject:person2];
+//
+// 深拷贝
+NSMutableArray *newArray = [[NSMutableArray alloc] init];
+for (Person *p in personArray) {
+Person *newPerson = [[Person alloc] init];
+newPerson.name = p.name;
+//
+[newArray addObject:newPerson];
+}
+Person *p = newArray[0];
+p.name = @"lili的名字被修改了";
+//
+// 打印结果：lili
+NSLog(@"%@", ((Person *)(personArray[0])).name);
+</code></pre>
+
+<p>##Getter/Setter<br />
+在ARC下，getter/setter的写法与MRC的不同</p>
+
+<pre><code>@property (nonatomic, strong) NSMutableArray *array;
+//
+- (void)setArray:(NSMutableArray *)array {
+  if (_array != array) {
+    _array = nil;
+    _array = array;
+  }
+}
+</code></pre>
+
+<p>如果是要重写<code>getter</code>,就得增加一个变量了，如果同时重写getter/setter方法，就不会自动生成_array变量，因此我们可以声明一个变量为_array:</p>
+
+<pre><code>- (void)setArray:(NSMutableArray *)array {
+  if (_array != array) {
+    _array = nil;
+    _array = array;
+  }
+}
+- (NSMutableArray *)array {
+  return _array;
+}
+</code></pre>
+
+<p>##总结<br />
+关于属性的这些选项的学习，做一下总结：</p>
+
+<ul>
+  <li>
+    <p>atomic//默认属性</p>
+
+    <ul>
+      <li>当一个变量声明为atomic时，意味着在多线程中只能有一个线程能对它进行访问</li>
+      <li>当一个变量声明为atomic时，该变量为线程安全型，但是会影响访问速度，</li>
+      <li>当一个变量声明为atomic时，在非ARC编译环境下，需要设置访问锁来保证对该变量进行正确的get/set</li>
+    </ul>
+  </li>
+  <li>
+    <p>nonatomic</p>
+
+    <ul>
+      <li>当一个变量声明为nonatomic时，意味着多个线程可以同时对其进行访问</li>
+      <li>当一个变量声明为nonatomic时，它是非线程安全型，访问速度快；</li>
+      <li>当一个变量声明为nonatomic时，当两个不同的线程对其访问时，容易失控。</li>
+    </ul>
+  </li>
+  <li>
+    <p>所有的属性，都尽可能使用nonatomic，以提高效率，除非真的有必要考虑线程安全。</p>
+  </li>
+  <li>
+    <p>strong：ARC中默认属性，等于非ARC中的retain，对于继承于NSObject类型的对象，若要声明为强使用，使用strong，若要使用弱引用，使用__weak来引用，用于解决循环强引用的问题。</p>
+  </li>
+  <li>
+    <p>strong：对于变量的声明，如果要使用强引用，可以使用strong，默认就是strong，因此不写与写strong声明都是一样的。</p>
+  </li>
+  <li>
+    <p>weak：与assign 相对应，应用场景：用于<code>IBOutlets</code>,如，<code>UIViewController</code>的子类，即一般的控件。</p>
+  </li>
+  <li>
+    <p>weak：对于xib上的控件引用，可以使用weak，也可以使用strong。</p>
+  </li>
+  <li>
+    <p>readonly：此标记说明属性是只读的，默认的标记是读写，如果你指定了只读，在@implementation中只需要一个读取器。或者如果你使用@synthesize关键字，也是有读取器方法被解析。而且如果你试图使用点操作符为属性赋值，你将得到一个编译错误。</p>
+  </li>
+  <li>
+    <p>readwrite：此标记说明属性会被当成读写的，这也是默认属性。设置器和读取器都需要在@implementation中实现。如果使用@synthesize关键字，读取器和设置器都会被解析。</p>
+  </li>
+  <li>
+    <p>assign：简单赋值，不更改索引计数，假设你用malloc分配了一块内存，并且把它的地址赋值给了指针a，后来你希望指针b也共享这块内存，于是你又把a赋值给（assign）了b。此时a 和b指向同一块内存，请问当a不再需要这块内存，能否直接释放它？答案是否定的，因为a并不知道b是否还在使用这块内存，如果a释放了，那么b在使用这块内存的时候会引起程序crash掉</p>
+  </li>
+  <li>
+    <p>retain：指定retain会在赋值时唤醒传入值的retain消息。此属性只能用于Objective-C对象类型，而不能用于Core Foundation对象。(原因很明显，retain会增加对象的引用计数，而基本数据类型或者Core Foundation对象都没有引用计数——译者注)。<br />
+与strong相对应，使用了引用计数，retain+1,release -1;当引用 计数为0时，dealloc会被调用，内存被释放</p>
+  </li>
+  <li>
+    <p>copy：用于非共享内存时，每个指针有自己的内存空间</p>
+  </li>
+  <li></li>
+  <li>
+    <p>NSString：通常都使用copy，以得到新的内存分配，而不只是原来的引用。</p>
+  </li>
+  <li>
+    <p>__weak：对于变量的声明，如果要使用弱引用，可以使用weak，如：weak typeof(Model)</p>
+  </li>
+  <li>
+    <p>weakModel = model;就可以直接使用weakModel了。</p>
+  </li>
+  <li>
+    <p>unsafe_unretained：这个是比较少用的，几乎没有使用到。在所引用的对象被释放后，该指针就成了野指针，不好控制。</p>
+  </li>
+  <li>
+    <p>_unsafeunretained：也是很少使用。同上。</p>
+  </li>
+  <li>autoreleasing：如果要在循环过程中就释放，可以手动使用autoreleasing来声明将之放到自动释放池。</li>
+</ul>
+
+<blockquote>
+  <p>####strong与weak的区别举例：<br />
+前提：<br />
+我们把要用strong或者weak的对象比作一只风筝，风筝想挣脱线的束缚，自由飞翔去，如果此时有一根线，那么这只风筝就挣脱不了<br />
+过程分析</p>
+</blockquote>
+
+<blockquote>
+  <p>strong属性的变量：<br />
+当我们把指向一只风筝的变量声明为strong时，此时，你就拥有控制这只风筝的线，假如此时有五个人同时控制这只风筝（即这只风筝对象有三个strong类型的变量指向它），那么只有一种情况，这只风筝才会挣脱掉线的束缚：这三个人都放掉手中的线，（release掉）</p>
+</blockquote>
+
+<blockquote>
+  <p>weak属性的变量：<br />
+当我们把指向一只风筝的变量声明为weak时，此时，就像站在旁边看风筝的观众们一样，当上面的三个人还握着手中的线时，他们只能看到风筝，并不能控制它，他们能做的只能是用手指指向风筝，并大喊，“看，那只风筝飞得真高！”，然而，当上面的三个人把手中的线都放掉时，此时，风筝飞走了，看不见了，不管有再多的观众，他们再也看不到风筝了，这个故事告诉我们一个道理：当strong类型的指针被释放掉之后，所有的指向同一个对象的weak指针都会被清零。</p>
+</blockquote>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#property">property</a>
+                    
+                    <a href="/tags/#Objective-C">Objective-C</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS基础">iOS基础</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/propertyshu-xing-xiu-shi-fu-zong-jie" data-title="property属性修饰符总结" data-images="/images/head-800x400/-49.png" data-content="刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 copy/strong/weak/__weak/__strong/assign 的使用场景总结总结。" data-url="http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/propertyshu-xing-xiu-shi-fu-zong-jie">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'property属性修饰符总结',
+  			bdDesc : '刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 copy/strong/weak/__weak/__strong/assign 的使用场景总结总结。',
+  			bdUrl : 'http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/propertyshu-xing-xiu-shi-fu-zong-jie',
+  			bdPic : '/images/head-800x400/-49.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/ios%E5%9F%BA%E7%A1%80/protocol-xie-yi"><i class="fa fa-chevron-left"></i> 上一篇：Protocol--协议</a>
+  
+  
+    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/block-block">下一篇：关于Block代码块 <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E5%9F%BA%E7%A1%80/propertyshu-xing-xiu-shi-fu-zong-jie" data-title="property属性修饰符总结" data-url="http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/propertyshu-xing-xiu-shi-fu-zong-jie"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <!---->
+    <!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap"><img src="/images/head-800x400/-18.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 25, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">点亮我的 iOS开发技能树</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/chang-yong-de-xiao-ji-qiao"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 18, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">iOS开发中一些常用的小知识或技巧</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016-3-13-bi-ji"><img src="/images/head-800x400/-10.png" alt="2016-3-16 笔记" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 16, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016-3-13-bi-ji">2016-3-16 笔记</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+
+  </body>
+</html>

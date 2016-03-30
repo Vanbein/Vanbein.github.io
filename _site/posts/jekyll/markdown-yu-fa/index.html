@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>markdown 语法总结 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://vanbein.com/posts/jekyll/markdown-yu-fa">
+  <meta name="description" content="使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 1200 && screenWidth > 1200){
+        $('#fixed_search').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixed_search').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <li><a href="/archieves/">Blog Archives</a></li>
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+                 <li><a href="/404.html">404 Page</a></li>
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/15/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/media/blue-xuwei">许巍 - 蓝莲花</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/blog">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016-3-7-bi-ji">2016-3-9 笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/04/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016-3-4-bi-ji">2016.3第一周知识点笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/26/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/xcode-debug">Xcode常用的Debug调试技巧总结</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/23/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/ios-interview">iOS 面试题集锦</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap"><img src="/images/head-800x400/-18.png" alt="点亮我的 iOS开发技能树"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">点亮我的 iOS开发技能树</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 25, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/chang-yong-de-xiao-ji-qiao" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/chang-yong-de-xiao-ji-qiao"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">iOS开发中一些常用的小知识或技巧</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 18, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016-3-13-bi-ji" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016-3-13-bi-ji"><img src="/images/head-800x400/-10.png" alt="2016-3-16 笔记"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016-3-13-bi-ji">2016-3-16 笔记</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 16, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016-3-13-bi-ji">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/media/blue-xuwei" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/media/blue-xuwei"><img src="/demo/500x500.jpg" alt="许巍 - 蓝莲花"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/media/blue-xuwei">许巍 - 蓝莲花</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 15, 2016</span>
+            <span class="meta_author"><a href="/posts/media/blue-xuwei">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (22)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (7)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#journal">journal</a> (1)</li>
+      
+      <li><a href="/categories/#media">media</a> (1)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-23.png" class="popup_link"><img src="/images/head-800x400/-23.png" alt="markdown 语法总结"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Oct 30, 2015</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>Jekyll</u> <u>markdown</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">markdown 语法总结</h1><!-- End Entry title -->
+                  <p>使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。</p>
+
+<blockquote>
+  <p>比较系统的英文版<a href="http://daringfireball.net/projects/markdown/syntax">markdown语法</a>。</p>
+</blockquote>
+
+<blockquote>
+  <p>简体中文版的看这:<a href="http://www.appinn.com/markdown/">markdown语法</a></p>
+</blockquote>
+
+<ul>
+  <li>在 Mac OS X 上，我强烈建议你用 <strong>Mou</strong> 这款免费且十分好用的 Markdown 编辑器，它支持实时预览，既左边是你编辑 Markdown 语言，右边会实时的生成预览效果。不仅如此，Mou 还有一些有趣的偏好设置（Preference），例如主题（Themes）与样式（CSS），它们可以配置出定制化的文本编辑效果与导出效果，如果你对自带的主题与样式不满意还可以到 GitHub 上搜索其它爱好者为 Mou 编写的更多主题样式，导入的方式可以在偏好设置的 Themes 或 CSS 选项中 选择 reload。如果你和我一样采用<code>octopress + github</code>写博客，我建议把 <strong>Mou</strong>的Preference 中CSS格式设置为<code>Github2</code>。</li>
+</ul>
+
+<p>##一、段落、标题、区块代码</p>
+
+<p>一个段落是由一个以上的连接的行句组成，而一个以上的空行则会划分出不同的段落（空行的定义是显示上看起来像是空行，就被视为空行，例如有一行只有空白和 tab，那该行也会被视为空行），一般的段落不需要用空白或换行缩进。</p>
+
+<p>Markdown 支持两种标题的语法，<code>Setext</code> 和 <code>atx</code> 形式。<code>Setext</code> 形式是用底线的形式，利用 <code>= </code>（最高阶标题）和 <code>-</code> （第二阶标题），<code>Atx</code> 形式在行首插入 1 到 6 个 <code>#</code> ，对应到标题 1 到 6 阶。</p>
+
+<p>区块引用则使用 email 形式的 <code>&gt;</code>角括号。</p>
+
+<p>语法：</p>
+
+<pre><code>	A First Level Header
+	====================
+	A Second Level Header
+	---------------------
+
+	Now is the time for all good men to come to
+	the aid of their country. This is just a
+	regular paragraph.
+	
+	The quick brown fox jumped over the lazy
+	dog's back.
+	#Header1
+	### Header 3
+	######hearder6
+
+	&gt; This is a blockquote.
+	&gt; 
+	&gt; This is the second paragraph in the blockquote.
+	&gt;
+	&gt; ## This is an H2 in a blockquote
+</code></pre>
+
+<p>效果为：</p>
+
+<h1 id="a-first-level-header">A First Level Header</h1>
+<p>A Second Level Header<br />
+———————</p>
+
+<p>Now is the time for all good men to come to<br />
+the aid of their country. This is just a<br />
+regular paragraph.</p>
+
+<p>The quick brown fox jumped over the lazy<br />
+dog’s back.<br />
+#Header1<br />
+### Header 3<br />
+######hearder6</p>
+
+<blockquote>
+  <p>This is a blockquote.</p>
+
+  <p>This is the second paragraph in the blockquote.</p>
+
+  <h2 id="this-is-an-h2-in-a-blockquote">This is an H2 in a blockquote</h2>
+</blockquote>
+
+<ul>
+  <li>区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &gt; ：</li>
+</ul>
+
+<p>语法：</p>
+
+<pre><code>&gt; This is the first level of quoting.
+&gt;
+&gt; &gt; This is nested blockquote.
+&gt;
+&gt; Back to the first level.
+</code></pre>
+
+<p>显示效果：</p>
+
+<blockquote>
+  <p>This is the first level of quoting.</p>
+
+  <blockquote>
+    <p>This is nested blockquote.</p>
+  </blockquote>
+
+  <p>Back to the first level.</p>
+</blockquote>
+
+<ul>
+  <li>Markdown 也允许你偷懒只在整个段落的第一行最前面加上 &gt; ：</li>
+</ul>
+
+<p>语法：</p>
+
+<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>显示效果：</p>
+
+<blockquote>
+  <p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,<br />
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.<br />
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+</blockquote>
+
+<blockquote>
+  <p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse<br />
+id sem consectetuer libero luctus adipiscing.</p>
+</blockquote>
+
+<p>引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：</p>
+
+<p>语法：</p>
+
+<pre><code>&gt; ## 这是一个标题。
+&gt; 
+&gt; 1.   这是第一行列表项。
+&gt; 2.   这是第二行列表项。
+&gt; 
+&gt; 给出一些例子代码：
+&gt; 
+&gt;     return shell_exec("echo $input | $markdown_script");
+</code></pre>
+
+<p>显示效果：</p>
+
+<blockquote>
+  <h2 id="section">这是一个标题。</h2>
+
+  <ol>
+    <li>这是第一行列表项。</li>
+    <li>这是第二行列表项。</li>
+  </ol>
+
+  <p>给出一些例子代码：</p>
+
+  <pre><code>return shell_exec("echo $input | $markdown_script");
+</code></pre>
+</blockquote>
+
+<p>##二、修辞和强调</p>
+
+<ul>
+  <li>Markdown 使用星号和底线来标记需要强调的区段。</li>
+  <li>一个星号/底线便是斜体，两个表示加粗强调</li>
+  <li>但是如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号。</li>
+</ul>
+
+<p>语法:</p>
+
+<pre><code>	Some of these words *are emphasized*.
+	Some of these words _are emphasized also_.
+	Use two asterisks for **strong emphasis**.
+	Or, if you prefer, __use two underscores instead__.
+</code></pre>
+
+<p>显示效果：</p>
+
+<p>Some of these words <em>are emphasized</em>.<br />
+Some of these words <em>are emphasized also</em>.<br />
+Use two asterisks for <strong>strong emphasis</strong>.<br />
+Or, if you prefer, <strong>use two underscores instead</strong>.</p>
+
+<ul>
+  <li>如果要在文字前后直接插入普通的星号或底线，你可以用反斜线：<br />
+示例语法：</li>
+</ul>
+
+<pre><code>\*this text is surrounded by literal asterisks\*
+</code></pre>
+<p>显示效果：</p>
+
+<p>*this text is surrounded by literal asterisks*</p>
+
+<p>##三、列表<br />
+####1.无序列表</p>
+
+<p>无序列表使用星号、加号和减号来做为列表的项目标记，这些符号是都可以使用的，</p>
+
+<p>使用星号：</p>
+
+<pre><code>* Candy.
+* Gum.
+* Booze.
+</code></pre>
+
+<p>加号：</p>
+
+<pre><code>+ Candy.
++ Gum.
++ Booze.
+</code></pre>
+
+<p>和减号</p>
+
+<pre><code>- Candy.
+- Gum.
+- Booze.
+</code></pre>
+
+<p>显示效果都为：</p>
+
+<ul>
+  <li>Candy.</li>
+  <li>Gum.</li>
+  <li>Booze.</li>
+</ul>
+
+<p>####2.有序列表</p>
+
+<p>有序列表则是使用一般的数字接着一个英文句点作为项目标记：<br />
+语法：</p>
+
+<pre><code>1. Red
+2. Green
+3. Blue
+</code></pre>
+
+<p>显示效果：</p>
+
+<ol>
+  <li>Red</li>
+  <li>Green</li>
+  <li>Blue</li>
+</ol>
+
+<p><em><strong>很重要的一点是</strong>，你在列表标记上使用的数字并不会影响输出</em><br />
+如果你的列表标记写成了了：</p>
+
+<pre><code>4. Red
+1. Green
+1. Blue
+6. Yellow
+</code></pre>
+<p>显示效果为：</p>
+
+<ol>
+  <li>Red</li>
+  <li>Green</li>
+  <li>Blue</li>
+  <li>Yellow</li>
+</ol>
+
+<p><em>要让列表看起来<strong>更漂亮</strong>，你可以把内容用固定的缩进整理好：</em></p>
+
+<p>语法：</p>
+
+<pre><code>*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+    viverra nec, fringilla in, laoreet vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+    Suspendisse id sem consectetuer libero luctus adipiscing.
+*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+viverra nec, fringilla in, laoreet vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+Suspendisse id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>显示效果：</p>
+
+<ul>
+  <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br />
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,<br />
+viverra nec, fringilla in, laoreet vitae, risus.</li>
+  <li>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.<br />
+Suspendisse id sem consectetuer libero luctus adipiscing.</li>
+  <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br />
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,<br />
+viverra nec, fringilla in, laoreet vitae, risus.</li>
+  <li>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.<br />
+Suspendisse id sem consectetuer libero luctus adipiscing.</li>
+</ul>
+
+<p><em>如果你在项目之间插入空行，那项目的内容会用 &lt;p&gt; 包起来，你也可以在一个项目内放上多个段落，只要在它前面缩排 4 个空白或 1 个 tab 。</em></p>
+
+<p>示例语法：</p>
+
+<pre><code>	* A list item.
+	With multiple paragraphs.
+	
+	* Another item in the list.
+</code></pre>
+
+<p>显示效果：</p>
+
+<ul>
+  <li>
+    <p>A list item.<br />
+With multiple paragraphs.</p>
+  </li>
+  <li>
+    <p>Another item in the list.</p>
+  </li>
+</ul>
+
+<p><em>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：</em></p>
+
+<p>语法：</p>
+
+<pre><code>1.  This is a list item with two paragraphs. Lorem ipsum dolor
+    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+    mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+    sit amet velit.
+
+2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+</code></pre>
+
+<p>效果：</p>
+
+<ol>
+  <li>
+    <p>This is a list item with two paragraphs. Lorem ipsum dolor<br />
+sit amet, consectetuer adipiscing elit. Aliquam hendrerit<br />
+mi posuere lectus.</p>
+
+    <p>Vestibulum enim wisi, viverra nec, fringilla in, laoreet<br />
+vitae, risus. Donec sit amet nisl. Aliquam semper ipsum<br />
+sit amet velit.</p>
+  </li>
+  <li>
+    <p>Suspendisse id sem consectetuer libero luctus adipiscing.</p>
+  </li>
+</ol>
+
+<p><em>如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：</em></p>
+
+<pre><code>*   一列表项包含一个列表区块：
+        &lt;代码写在这&gt;
+</code></pre>
+
+<p><em>当然，项目列表很可能会不小心产生，像是下面这样的写法：</em></p>
+
+<pre><code>1986. What a great season.
+</code></pre>
+
+<p>换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠。</p>
+
+<pre><code>1986\. What a great season.
+</code></pre>
+
+<p>##四、链接</p>
+
+<p>Markdown 支援两种形式的链接语法： <code>行内</code> 和 <code>参考</code> 两种形式，两种都是使用角括号来把文字转成连结。</p>
+
+<p>####行内形式</p>
+
+<p>行内形式是直接在后面用括号直接接上链接：</p>
+
+<p>语法：</p>
+
+<pre><code>This is an [example link](http://example.com/)
+//你也可以选择性的加上 title 属性：
+This is an [example link](http://example.com/ "With a Title").
+</code></pre>
+
+<p>显示效果：</p>
+
+<p>This is an <a href="http://example.com/">example link</a></p>
+
+<p>This is an <a href="http://example.com/" title="With a Title">example link</a>.</p>
+
+<p>####参考形式</p>
+
+<p>参考形式的链接让你可以为链接定一个名称，之后你可以在文件的其他<code>任意</code>地方定义该链接的内容：</p>
+
+<p>语法：</p>
+
+<pre><code>	I get 10 times more traffic from [Google][1] than from
+	[Yahoo][2] or [MSN][3].
+	
+	[1]: http://google.com/ "Google"
+	[2]: http://search.yahoo.com/ "Yahoo Search"
+	[3]: http://search.msn.com/ "MSN Search"
+</code></pre>
+
+<p>显示效果：</p>
+
+<p>get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from<br />
+<a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>
+
+<p>当然，<code>title</code> 属性是选择性的，链接名称可以用字母、数字和空格，但是不分大小写：</p>
+
+<p>示例语法：</p>
+
+<pre><code>	I start my morning with a cup of coffee and
+	[The New York Times][NY Times].
+	
+	[ny times]: http://www.nytimes.com/
+</code></pre>
+
+<p>显示效果：</p>
+
+<p>I start my morning with a cup of coffee and<br />
+<a href="http://www.nytimes.com/">The New York Times</a>.</p>
+
+<p>####自动链接</p>
+
+<p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：<br />
+示例语法:</p>
+
+<pre><code>&lt;http://example.com/&gt;
+</code></pre>
+
+<p>显示效果：</p>
+
+<p><a href="http://example.com/">http://example.com/</a></p>
+
+<p>##五、图片</p>
+
+<p>图片的语法和链接很像。</p>
+
+<p>####1.行内形式（title 是选择性的）：<br />
+语法：</p>
+
+<pre><code>![alt text](/path/to/img.jpg "Title")
+</code></pre>
+
+<p>详细叙述如下：</p>
+
+<ul>
+  <li>一个惊叹号 !</li>
+  <li>接着一个方括号，里面放上图片的替代文字</li>
+  <li>接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上 选择性的 ‘title’ 文字。</li>
+</ul>
+
+<p>####2.参考形式：</p>
+
+<p>语法：</p>
+
+<pre><code>![alt text][id]
+
+[id]: /path/to/img.jpg "Title"
+</code></pre>
+
+<p>到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 <img /> 标签。</p>
+
+<p>##六、代码区块</p>
+
+<p>如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：<br />
+语法示例：</p>
+
+<pre><code>Use the `printf()` function.
+</code></pre>
+
+<p>效果：</p>
+
+<p>Use the <code>printf()</code> function.</p>
+
+<p>在一般的段落文字中，你可以使用反引号 ` 来标记代码区段，区段内的 &amp;、&lt; 和 &gt; 都会被自动的转换成 HTML 实体，这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
+
+<p>示例语法：</p>
+
+<pre><code>I strongly recommend against using any `&lt;blink&gt;` tags.
+I wish SmartyPants used named entities like `&amp;mdash;`
+instead of decimal-encoded entites like `&amp;#8212;`.
+</code></pre>
+
+<p>显示效果：</p>
+
+<p>I strongly recommend against using any <code>&lt;blink&gt;</code> tags.</p>
+
+<p>I wish SmartyPants used named entities like <code>&amp;mdash;</code></p>
+
+<p>instead of decimal-encoded entites like <code>&amp;#8212;</code>.</p>
+
+<p>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：</p>
+
+<pre><code>这是一个普通段落：
+
+    这是一个代码区块。
+</code></pre>
+
+<p>显示效果：</p>
+
+<p>这是一个普通段落：</p>
+
+<pre><code>这是一个代码区块。
+</code></pre>
+
+<ul>
+  <li>一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。</li>
+  <li>代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号，这表示你可以很容易地以 Markdown 语法撰写 Markdown 语法相关的文件。</li>
+</ul>
+
+<p>######代码区块还可以用三个`号包起来表示</p>
+
+<p>示例语法：</p>
+
+<pre><code>```语言类型 代码文件名 代码下载链接
+//这是一个代码区块
+//这种会显示代码行数
+//会自动判断代码语言类型进行语法高亮
+NSString *string = @"Hello world!";
+NSLog(@"%@",string);
+```
+
+```ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+class Fixnum
+	def prime?
+		('1' * self) !~ /^1?$|^(11+?)\1+$/
+	end
+end
+```
+</code></pre>
+
+<p>显示效果：</p>
+
+<p><code>objc Test.m
+//这是一个代码区块
+//这种会显示代码行数
+//会自动判断代码语言类型进行语法高亮
+NSString *string = @"Hello world!";
+NSLog(@"%@",string);
+</code></p>
+
+<p>或者：</p>
+
+<p><code>ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+class Fixnum
+  def prime?
+    ('1' * self) !~ /^1?$|^(11+?)\1+$/
+  end
+end
+</code></p>
+
+<p>##七、分割线</p>
+
+<p>你可以在你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+
+<pre><code>* * *
+
+***
+
+*****
+
+- - -
+
+---------------------------------------
+</code></pre>
+
+<p>显示效果都为：</p>
+
+<hr />
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#Jekyll">Jekyll</a>
+                    
+                    <a href="/tags/#markdown">markdown</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/jekyll/markdown-yu-fa" data-title="markdown 语法总结" data-images="/images/head-800x400/-23.png" data-content="使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。" data-url="http://vanbein.com/posts/jekyll/markdown-yu-fa">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'markdown 语法总结',
+  			bdDesc : '使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。',
+  			bdUrl : 'http://vanbein.com/posts/jekyll/markdown-yu-fa',
+  			bdPic : '/images/head-800x400/-23.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/archieves/"><i class="fa fa-chevron-left"></i> Blog Archieves</a>
+  
+  
+    <a class="alignright" href="/posts/jekyll/typo-css">下一篇：排版实例TYPO.CSS <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/jekyll/markdown-yu-fa" data-title="markdown 语法总结" data-url="http://vanbein.com/posts/jekyll/markdown-yu-fa"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <!---->
+    <!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap"><img src="/images/head-800x400/-18.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 25, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">点亮我的 iOS开发技能树</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/chang-yong-de-xiao-ji-qiao"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 18, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">iOS开发中一些常用的小知识或技巧</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016-3-13-bi-ji"><img src="/images/head-800x400/-10.png" alt="2016-3-16 笔记" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 16, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016-3-13-bi-ji">2016-3-16 笔记</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Foundation框架基础 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/nsstring">
+  <meta name="description" content="介绍Foundation框架中一些常用的类">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 1200 && screenWidth > 1200){
+        $('#fixed_search').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixed_search').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <li><a href="/archieves/">Blog Archives</a></li>
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+                 <li><a href="/404.html">404 Page</a></li>
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/15/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/media/blue-xuwei">许巍 - 蓝莲花</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/blog">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016-3-7-bi-ji">2016-3-9 笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/04/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016-3-4-bi-ji">2016.3第一周知识点笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/26/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/xcode-debug">Xcode常用的Debug调试技巧总结</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/23/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/ios-interview">iOS 面试题集锦</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap"><img src="/images/head-800x400/-18.png" alt="点亮我的 iOS开发技能树"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">点亮我的 iOS开发技能树</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 25, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/chang-yong-de-xiao-ji-qiao" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/chang-yong-de-xiao-ji-qiao"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">iOS开发中一些常用的小知识或技巧</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 18, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016-3-13-bi-ji" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016-3-13-bi-ji"><img src="/images/head-800x400/-10.png" alt="2016-3-16 笔记"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016-3-13-bi-ji">2016-3-16 笔记</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 16, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016-3-13-bi-ji">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/media/blue-xuwei" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/media/blue-xuwei"><img src="/demo/500x500.jpg" alt="许巍 - 蓝莲花"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/media/blue-xuwei">许巍 - 蓝莲花</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 15, 2016</span>
+            <span class="meta_author"><a href="/posts/media/blue-xuwei">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (22)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (7)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#journal">journal</a> (1)</li>
+      
+      <li><a href="/categories/#media">media</a> (1)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-15.png" class="popup_link"><img src="/images/head-800x400/-15.png" alt="Foundation框架基础"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Nov 25, 2015</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>Objective-C</u> <u>Foundation</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">Foundation框架基础</h1><!-- End Entry title -->
+                  <p>Foundation框架中一些常用的类</p>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>字符串型：<br />
+  NSString：不可变字符串<br />
+  NSMutableString:可变字符串</p>
+  </li>
+  <li>
+    <p>集合型：</p>
+
+    <p>NSArray：OC不可变数组  <br />
+  NSMutableArray：可变数组</p>
+
+    <p>NSSet  <br />
+  NSMutableSet</p>
+
+    <p>NSDictiorary  <br />
+  NSMutableDictiorary</p>
+  </li>
+</ul>
+
+<p>其它：<br />
+	NSDate<br />
+	NSObject</p>
+
+<p>###一、NSString<br />
+#####1）初始化<br />
+<code>Objective-C
+NSString *str = @"Hello world!";//创建一个字符串常量
+//应尽量少使用以下方式通过使用 alloc 创建一个字符串对象，不推荐使用
+NSString *str2 = [[NSString alloc] initWithFormat:@"__%@__",str];
+//推荐使用 工厂方法 创建一个字符串，
+NSString *str3 = [NSString stringWithFormat:@"__%@__",str];
+</code><br />
+#####2）截取子字符串</p>
+
+<p>获取子字符串,有3种方法</p>
+
+<pre><code>NSString *subStrTo = [@"HelloWorld" substringToIndex:6];  //从字符串开始到第六个字符        
+NSString *subStrFrom = [@"HelloWorld" substringFromIndex:6]; //从第6个字符开始到字符串结束
+NSRange range = NSMakeRange(3, 5);  //从第3个字符开始，截取5个字符
+NSString *subStrRange = [@"HelloWorld" substringWithRange:range];
+</code></pre>
+
+<p>#####3）分割字符串</p>
+
+<p>将字符串按照指定的字符进行分割</p>
+
+<pre><code>//这里以.为依据进行分割
+NSArray *array = [@"www.baidu.com" componentsSeparatedByString:@"."];
+//得到arrry = @[@"www",@"baidu",@"com"];
+</code></pre>
+
+<p>#####4）查找子字符串</p>
+
+<pre><code>NSRange range = [@"12rasd124" rangeOfString:@"asd"];
+if (range.location != NSNotFound) {
+     NSString *str = [@"12rasd124" substringWithRange:range];
+}
+</code></pre>
+<p>#####5）替换子字符串<br />
+<code>
+NSString *str = [@"asdasd" stringByReplacingOccurrencesOfString:@"asd" withString:@"ok"];
+</code><br />
+#####6）路径相关<br />
+<code>
+[filepath lastPathComponent];                 //获得文件名
+[filepath pathExtension];                     //获得文件扩展名
+[filtpaht stringByDeletingLastPathComponent]; //获得文件的所在文件夹路径
+[filtpath stringByDeletingPathExtension];     //获得去除扩展名的文件路径
+</code><br />
+#####7）判断字符串是否为空<br />
+<code>
+if (str.length &gt; 0) //不管str是不是nil都可以这么判断
+</code><br />
+#####8）判断字符串相等</p>
+
+<pre><code>if ([@"asd" isEqualToString:@"asd"]) {
+	//字符串相等   
+}
+</code></pre>
+<p>#####9）判断字符串大小</p>
+
+<p>比较字符串的大小，返回值 NSComparisonResult 是枚举类型，有三个值，NSOrderedAscending、NSOrderedSame、NSOrderedDescending，分别表示-1，0，1，对应小于、等于、大于</p>
+
+<pre><code>NSString *stra = @"asd";
+NSString *strb = @"dfs";
+NSComparisonResult compResult = [stra compare:strb];
+switch (compResult) {
+    case NSOrderedAscending:
+		//stra &lt; strb    
+        break;
+    case NSOrderedSame:
+		//stra = strb
+        break;
+    case NSOrderedDescending:
+		//stra &gt; strb
+        break;
+    default:
+        break;
+}
+</code></pre>
+<p>#####10）将字符串类型的数据内容转换为相应的数据类型<br />
+<code>
+NSString *str4 = @"123";
+nt num = [str4 intValue];
+</code>      <br />
+#####11）判断字符串前缀/后缀<br />
+<code>
+//判断字符串前缀
+if ([str3 hasPrefix:@"http://"]){
+    NSLog(@"is url");
+}else{
+	NSLog(@"is not url");
+}
+//判断字符串后缀
+if ([str3 hasSuffix:@".mp3"]){
+    NSLog(@"is music");
+}else{
+    NSLog(@"is not music");
+}
+</code><br />
+###二、NSMutableString<br />
+* 不可变字符串immutable，不可以对字符串进行增加，删除，改变等操作，NSString 是不可变字符串<br />
+* 可变字符串mutable，可对字符串进行增加，删除，改变等操作，NSMutableString 是可变字符串</p>
+
+<pre><code>NSMutableString *mutableString = [NSMutableString stringWithString:@"www.baidu.com"];
+//替换字符串
+[mutableString replaceCharactersInRange:NSMakeRange(4, 5) withString:@"changhong"];
+//插入字符串
+[mutableString insertString:@"http://" atIndex:0];
+//删除字符串
+[mutableString deleteCharactersInRange:NSMakeRange(0, 7)];
+//在字符串后面添加/写入字符串
+[mutableString appendString:@"/game"];
+</code></pre>
+<hr />
+<p>###三、NSArray</p>
+
+<ul>
+  <li>Obiective-C的<code>NSArray</code>只能存放对象类型,不能存放非OC对象，如int，结构体和枚举等。</li>
+  <li>创建后一定要初始化数据</li>
+  <li>数组赋值的时候以nil表示结束，所以数组里面不能存放nil的对象</li>
+</ul>
+
+<pre><code>null C语言类型的指针为空
+NSNULL 只有在数组中使用，表示一个空的对象
+nil  表示OC对象为空
+</code></pre>
+
+<p>#####1）创建数组</p>
+
+<pre><code>//以下是两种方法创建了一个数组
+NSArray *namesArray = @[@"abc",@"123",@"ncs"];
+NSArray *array2 = [NSArray arrayWithObjects:@"abc",@"123",@"ios",@"qwer",nil];
+</code></pre>
+<p>#####2）获取数组的元素个数<br />
+<code>
+NSInteger num = array2.count;
+NSInteger num_2 = [array2 count];
+</code><br />
+#####3）获取某一个元素<br />
+<code>
+NSString *temp = [array2 objectAtIndex:3]; //第4个元素
+NSString *temp2 = [array2 firstObject]; //第一个元素
+NSString *temp3 = [array2 lastObject]; //最后一个元素
+</code></p>
+
+<p>#####4）获取某个元素所对应的索引值/位置<br />
+<code>
+NSInteger index = [array2 indexOfObject:@"123"];
+</code><br />
+<strong>注意：</strong><br />
+<code>
+NSArray *array = [NSArray arrayWithObjects:@"hello",@"123",@"ios",@"123",nil];
+NSInteger index = [array2 indexOfObject:@"123"];
+//index = 1;
+</code></p>
+
+<p>#####5）判断数组是否包含某一个对象<br />
+<code>
+if ([array2 containsObject:@"ncs"]){
+	NSLog(@"Contains!");
+}else{
+	NSLog(@"Not contains!");
+}
+</code><br />
+#####6）将数组的所有字符串对象拼接成一个字符串<br />
+<code>
+NSArray *urlsArray = @[@"www",@"baidu",@"com"];
+NSString *url = [urlsArray componentsJoinedByString:@"."]; //用.拼接
+</code><br />
+###四、NSMutableArray<br />
+#####1）创建<br />
+创建一个array的方法有很多种：<br />
+<code>
+NSMutableArray *mArray1 = [NSMutableArray array];//创建并初始化，元素个数不定
+NSMutableArray *mArray2 = [NSMutableArray arrayWithCapacity:3];//预留3个元素空间
+NSMutableArray *mArray3 = [NSMutableArray arrayWithArray:mArray1];//从另外一个array创建
+NSMutableArray *mArray4 = [NSMutableArray arrayWithContentsOfFile:filePath];//从文件路径创建
+NSMutableArray *mArray5 = [NSMutableArray arrayWithContentsOfURL:NSURL];//从URL创建
+NSMutableArray *mArray6 = [NSMutableArray arrayWithObjects:@"HELLO", @"WORLD", nil];
+</code></p>
+
+<p>#####2）添加数据<br />
+<code>
+[mArray addObject:@"hello"];
+[mArray addObject:@"world"];
+[mArray addObject:@"iOS"];
+</code></p>
+
+<p>#####3）插入数据，数组元素个数增加<br />
+<code>
+[mArray insertObject:@"Duang" atIndex:2];
+</code><br />
+#####4）删除对象<br />
+<code>
+[mArray removeObject:@"Duang"];
+[mArray removeObjectAtIndex:2];//删除第3个元素
+[mArray removeLastObject];//删除最后一个元素
+[mArray removeAllObjects];//清空数组所有元素
+</code><br />
+#####5）替换一个对象<br />
+<code>
+[mArray replaceObjectAtIndex:1 withObject:@"world"];
+</code><br />
+#####6）遍历array</p>
+
+<ul>
+  <li>for循环<br />
+<code>
+for(int i = 0; i &lt; mArray.count; i ++){
+  NSString *string = [mArray objectAtIndex:i];
+  NSLog(@"%@",string);
+  if([string isEqualToString:@"iOS"]){
+      break;//停止遍历
+  }
+}
+</code></li>
+  <li>快速枚举</li>
+</ul>
+
+<pre><code> for(NSString *string in mArray){
+    NSLog(@"%@",string);
+    if([string isEqualToString:@"iOS"]){
+		break;//停止遍历 break只使用在两种场合，即switch和循环结构中。
+	}
+ }
+</code></pre>
+<ul>
+  <li>Block遍历<br />
+<code>
+// 每遍历到一个元素，就会调用一次block
+// 并且当前元素和索引位置当做参数传给block
+[mArray enumerateObjectsUsingBlock:^(id obj, NSInteger idx, BOOL *stop){
+  NSLog(@"%ld -- %@", idx, obj);
+  if(idx == 0){
+      *stop = YES; //停止遍历 stop参数用来停止遍历，其值若为YES，则停止。
+  }
+}]
+</code><br />
+——–<br />
+###五、NSDictionary</li>
+</ul>
+
+<p>OC中的NSDictionary：根据key找到value。里面存储的东西都是键值对。</p>
+
+<p>#####1）创建<br />
+<code>
+//1.
+NSDictionary *mydic = [NSDictionary dictionaryWithObject:@"10086" forKey:@"PhoneNumber"];
+//2.前面是值，后面是键
+NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                             @"1",@"one",
+                             @"2",@"two",
+                             nil];
+//3.快速创建，前面是键，后面是值，
+//注意：快速创建字典是编译器特性，只适用于不可变字典
+NSDictionary *dic2 = @{
+                       @"age":@"22",
+                       @"address":@"chengdu",
+                       @"name":@"xiaoming",
+                       };
+//4.
+NSArray *objects = @[@"jack", @"tom", @"rose"];
+NSArray *keys = @[@"name1", @"name2", @"name3"];
+NSDictionary *newdic = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+</code></p>
+
+<p>#####2）访问<br />
+<code>
+//1. 获取字典所有的keys
+NSArray *allKeys = [dic allKeys];
+//2. 获取所有的values
+NSArray *allValues = [dic allValues];
+//3. 获取key对应的object
+NSString *value = [dic objectForKey:@"name"];
+//4. 获取当前字典中键值对的个数
+NSIntger count = dic.count;
+//5. 快速访问
+NSString *value = dic[@"name"];
+</code></p>
+
+<p>#####3）遍历<br />
+* 字典不允许有相同的key，但可以有相同的value（object）<br />
+* 字典是无序的<br />
+<code>
+//1. for循环
+NSArray *allKeys = [dic allKeys];
+for(int i = 0; i &lt; dic.count; i ++){
+	NSString *key = allKeys[i];
+	NSString *value = dic[key];
+	NSLog(@"%@ = %@",key, object);
+}
+//2. 使用block
+[dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+	NSLog(@"%ld -- %@", key, obj);
+	if(idx == 0){
+		*stop = YES; //停止遍历 stop参数用来停止遍历，其值若为YES，则停止。
+	}
+}]
+</code></p>
+
+<p>###六、NSMutableDictionary<br />
+#####1）创建<br />
+<code>
+NSMutableDictionary *mdic = [NSMutableDictionary dictionary]; //创建一个空的可变字典
+NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:0];
+//注意不可变字典的快速创建方式不适用于可变字典       
+</code><br />
+#####2）添加键值对<br />
+<code>
+[mdic setObject:@"4" forKey:@"four"];
+[mdic setObject:@"3" forKey:@"three"];
+[mdic setObject:@"2" forKey:@"two"];
+[mdic setObject:@"1" forKey:@"one"];
+</code><br />
+#####3）更改一个key对应的object<br />
+<code>
+[mdic setObject:@"two2" forKey:@"two"];
+</code><br />
+#####4）删除<br />
+<code>
+//删除一个特定键值对
+[mdic removeObjectForKey:@"four"];
+//删除所有的键值对
+[mdic removeAllObjects];
+</code></p>
+
+<p>###七、NSNumber<br />
+* NSNumber可以将基本数据类型包装起来，形成一个对象，这样就可以给其发送消息，装入NSArray中等等。</p>
+
+<pre><code>//封装
+NSNumber *intNumber=[NSNumber numberWithInt：100];
+NSNumber *floatNumber=[NSNUmber numberWithFloat:100.00];
+//取出
+int i = [intNumber intValue]; 
+//判断比较
+if([intNumber isEqualToNumber:floatNumber]) ....
+</code></pre>
+<ul>
+  <li>NSNumber继承NSObject ，可以使用比较 compare： isEqual等消息</li>
+</ul>
+
+<p>###八、NSDate</p>
+
+<ol>
+  <li>NSDate对象用来表示一个具体的时间点。</li>
+  <li>NSDate是一个类簇，我们所使用的NSDate对象，都是NSDate的私有子类的实体。</li>
+  <li>NSDate存储的是GMT时间，使用的时候会根据 当前应用 指定的 时区 进行时间上的增减，以供计算或显示。</li>
+</ol>
+
+<p>#####1）获取当前的时间<br />
+<code>
+NSDate *nowDate = [NSDate date];
+</code><br />
+#####2）设置日期格式<br />
+<code>
+NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+[formatter setDateFormat :@"yyyy-MM-dd aa:H-mm-ss"];
+NSString *dateString = [formatter stringFromDate:nowDate];
+//打印格式：2015-11-25 下午:13-32-09
+</code></p>
+
+<p>#####3）常用的方法<br />
+<code>
+NSDate *dateFromNow = [NSDate dateWithTimeIntervalSinceNow:60];
+NSDate *dateFromAnotherDate = [[NSDate alloc] initWithTimeInterval:60 sinceDate:dateFromNow];
+NSTimeInterval timeInterval1 = [now timeIntervalSinceDate:dateFromNow];
+NSTimeInterval timeInterval2 = [now timeIntervalSinceNow];
+NSDate *distantPast = [NSDate distantPast];   //  可以表示的最早的时间
+NSDate *distantFuture = [NSDate distantFuture];  //  可以表示的最远的未来时间
+//从String得到Date
+NSString *stringDate = @"12/31/9999";
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+[dateFormatter setDateFormat:@"MM/dd/yyyy"];
+NSDate *dateCheck = [dateFormatter dateFromString:stringDate];
+//NSLog(@"Date = %@", dateCheck);
+Output:
+Date = 1999-12-30 16:00:00 +0000
+*iOS中用NSDate表示的时间只能在distantPast和distantFuture之间！
+</code></p>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#Objective-C">Objective-C</a>
+                    
+                    <a href="/tags/#Foundation">Foundation</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS基础">iOS基础</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/nsstring" data-title="Foundation框架基础" data-images="/images/head-800x400/-15.png" data-content="介绍Foundation框架中一些常用的类" data-url="http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/nsstring">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'Foundation框架基础',
+  			bdDesc : '介绍Foundation框架中一些常用的类',
+  			bdUrl : 'http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/nsstring',
+  			bdPic : '/images/head-800x400/-15.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/jekyll/typo-css"><i class="fa fa-chevron-left"></i> 上一篇：排版实例TYPO.CSS</a>
+  
+  
+    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/nei-cun-guan-li">下一篇：内存管理 <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E5%9F%BA%E7%A1%80/nsstring" data-title="Foundation框架基础" data-url="http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/nsstring"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <!---->
+    <!-- Tags -->
+<div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap"><img src="/images/head-800x400/-18.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 25, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap">点亮我的 iOS开发技能树</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/chang-yong-de-xiao-ji-qiao"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 18, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/chang-yong-de-xiao-ji-qiao">iOS开发中一些常用的小知识或技巧</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016-3-13-bi-ji"><img src="/images/head-800x400/-10.png" alt="2016-3-16 笔记" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 16, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016-3-13-bi-ji">2016-3-16 笔记</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+
+  </body>
+</html>
