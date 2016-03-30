@@ -59,7 +59,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 # Filtering Content
 show_drafts: null
 limit_posts: 0
-future: true
+# future: true
 unpublished: false
 tag_items: 20     # Applies to categories and tags lists
 related_items: 3  # Fix 3 items in single post
