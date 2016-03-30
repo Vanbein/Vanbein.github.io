@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2016-03-18 23:52:02 +0800
 title: iOS开发中一些常用的小知识或技巧
 category: Tips
 tags: iOS Tip

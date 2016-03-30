@@ -17,7 +17,12 @@ kramdown:
   auto_ids:      true
 auto_id_prefix: 'id-'
 safe: true
-permalink: /posts/:categories/:title/
+
+permalink: /posts/:categories/:year-:month-:day-:title/
+
+# permalink: /:categories/:year-:month-:day-:title/
+
+# /posts/:categories/:title/
 
 # none = /:categories/:title.html
 # pretty = /:categories/:year/:month/:day/:title/
@@ -52,7 +57,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 # Filtering Content
 show_drafts: null
 limit_posts: 0
-future:      false
+future: true
 unpublished: false
 tag_items: 20     # Applies to categories and tags lists
 related_items: 3  # Fix 3 items in single post

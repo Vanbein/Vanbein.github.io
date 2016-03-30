@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2015-11-30 23:52:02 +0800
 title: Xcode基础快捷键 -- 提高你的编码速率
 category: Tips
 tags: Xocde iOS

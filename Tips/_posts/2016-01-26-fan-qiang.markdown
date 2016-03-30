@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2016-01-26 23:52:02 +0800
 title: 翻墙的正确方式 - 免费且简单粗暴
 category: Tips
 tags: Tip 翻墙

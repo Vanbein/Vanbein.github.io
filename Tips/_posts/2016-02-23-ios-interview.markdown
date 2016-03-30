@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2016-02-23 23:52:02 +0800
 title: iOS 面试题集锦
 category: Tips
 tags: iOS Tip 

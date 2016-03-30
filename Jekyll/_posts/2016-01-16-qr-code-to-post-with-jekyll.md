@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2016-01-16 23:52:02 +0800
 title: 转 - 为Jekyll文章添加二维码
 category: Jekyll
 tags: Jekyll QRcode
