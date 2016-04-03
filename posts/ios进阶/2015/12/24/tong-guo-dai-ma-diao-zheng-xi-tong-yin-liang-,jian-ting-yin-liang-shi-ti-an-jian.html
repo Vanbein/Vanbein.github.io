@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>通过代码调整系统音量，监听音量实体按键 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2015/12/24/tong-guo-dai-ma-diao-zheng-xi-tong-yin-liang-,jian-ting-yin-liang-shi-ti-an-jian.html">
+  <meta name="description" content="最近项目有个功能需要用到监听音量实体键，并能够通过滑动应用内的UISlider调整系统的音量，其中遇到不少问题，所以记录下这个学习过程。">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 1200 && screenWidth > 1200){
+        $('#fixed_search').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixed_search').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <li><a href="/archieves/">Blog Archives</a></li>
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+                 <li><a href="/404.html">404 Page</a></li>
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <!--<li><a href="/categories/">Categories</a></li>-->
+            <li><a href="/archieves/">Archives</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/15/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/media/2016/03/15/blue-xuwei.html">许巍 - 蓝莲花</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/2016/03/09/blog.html">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/04/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/04/March-bi-ji.html">2016.3知识点笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/26/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html">Xcode常用的Debug调试技巧总结</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/23/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/02/23/ios-interview.html">iOS 面试题集锦</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/22/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html">KVC的一些不为人知小技巧</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 25, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Xcode基础快捷键 -- 提高你的编码速率"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 21, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 18, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/media/2016/03/15/blue-xuwei.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/media/2016/03/15/blue-xuwei.html"><img src="/images/head-800x400/-53.png" alt="许巍 - 蓝莲花"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/media/2016/03/15/blue-xuwei.html">许巍 - 蓝莲花</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 15, 2016</span>
+            <span class="meta_author"><a href="/posts/media/2016/03/15/blue-xuwei.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (22)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (5)</li>
+      
+      <li><a href="/categories/#journal">journal</a> (1)</li>
+      
+      <li><a href="/categories/#media">media</a> (1)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#ShareX">ShareX</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-14.png" class="popup_link"><img src="/images/head-800x400/-14.png" alt="通过代码调整系统音量，监听音量实体按键"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Dec 24, 2015</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">通过代码调整系统音量，监听音量实体按键</h1><!-- End Entry title -->
+                  <p>最近项目有个功能需要用到监听音量实体键，并能够通过滑动应用内的UISlider调整系统的音量，其中遇到不少问题，所以记录下这个学习过程。</p>
+
+<blockquote>
+  <p>尽管<code>AVPlayer</code>和<code>AVPAudiolayer</code>这些类提供了音量调节功能，但这些音量控制属于App级别的控制。好处就是音量调节独立于系统音量，调节大小时不会影响系统音量。但有时候我们可能希望修改系统音量，以免在调节声音的时候，如果系统音量过小，App调节音量效果不明显。</p>
+</blockquote>
+
+<h2 id="section">一、监听手机实体音量按键</h2>
+
+<ul>
+  <li>和监听键盘弹出类似的，Apple提供了一个通知给我们，只要在合适的地方添加对这个通知的监听即可。</li>
+</ul>
+
+<pre><code class="language-objc">- (void)registeNotification{images
+    //1.注册监听系统音量变化，记得在适当的地方移除监听
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    								selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+    	//让 UIApplication 开始响应远程的控制，必须添加，不然没效果
+    	[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+}
+- (void)volumeChanged:(NSNotification *)notification{
+    //2.获取到当前音量
+    float volume = [[[notification userInfo] objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
+    //do something here
+}
+- (void) removeNotification{
+    //3.移除监听
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+}
+	//结束远程的控制
+	[[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+</code></pre>
+
+<h3 id="section-1">虽然有效果，但是问题来了</h3>
+<p>#### 1.实体键按下的时候，会出现系统的”铃声”，而我想要显示”音量”</p>
+
+<p><img src="/images/2015/12/systemRingVC.PNG" alt="出现系统铃声控制" title="按下音量实体键系统显示铃声" /></p>
+
+<p>这个时候可以添加一句代码，即可让在这个页面时，按下音量实体键显示<strong>音量</strong>，而不是铃声</p>
+
+<pre><code class="language-objc">//使音量控制实体键响应“音量”而不是”铃声”
+[[AVAudioSession sharedInstance] setActive:YES error:NULL];
+</code></pre>
+
+<p><img src="/images/2015/12/systemVolumeVC.PNG" alt="出现系统铃声控制" title="按下音量实体键系统显示音量" /></p>
+
+<h4 id="resignactive-">2.出现了”音量”，但是因锁屏、进入后台等原因 ResignActive 重新激活后，又显示了”铃声”而不是”音量”</h4>
+
+<p>这是因为程序进入后台后，上述一行代码 [AVAudioSession sharedInstance] 又不再是 Active 状态，所以需要在<code>AppDelegate.m</code>里面重新设置，这样即可一直响应“音量”了，比如：</p>
+
+<p><code>objc AppDelegate.m
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+      //使程序重新激活后，对音量实体键响应为“音量”而不是“铃声”
+      [[AVAudioSession sharedInstance] setActive:YES error:NULL];
+}
+</code></p>
+
+<h4 id="section-2">3.我不想出现”音量”</h4>
+
+<p>这个时候就需要用到 <code>MPVolumeView</code> 了,它不仅可以不显示“音量”，还可以修改设置手机音量。</p>
+
+<blockquote>
+  <p>这个方法是苹果官方推荐的方法。MPVolumeView是<code>Media Player Framework</code>中的一个UI组件，直接包含了对系统音量和Airplay设备的音频镜像路由的控制功能。其中包含一个<strong>MPVolumeSlider</strong>的subview用来控制音量。这个<code>MPVolumeSlider</code>是一个私有类，我们无法手动创建此类，但这个类是UISlider的子类。MPVolumeView的使用很简单，只需要将其加入到一个父视图中，给予父视图合适的大小，再创建 MPVolumeView 示例，将其加入到父视图中即可，<a href="https://developer.apple.com/library/ios/documentation/MediaPlayer/Reference/MPVolumeView_Class/index.html">苹果官方的文档</a>中有示例代码可以参考。</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>这个方法的缺点如下：</p>
+
+    <ul>
+      <li>UI可定制的的程度低。 MPVolumeView只提供了有限的几个方法来定制其中的Slider和Route Button的样式，而且基本上只能靠换图片解决。如果你想把Slider操作换成Button或者其他的UI组件，那是不可能的。</li>
+      <li>没有额外的音量控制API。 目前为止没有发现iOS的公开API中有可以直接操作系统音量的，所以修改系统音量只能使用这个UI组件。如果还想给UI加入手势操作来控制音量，这种直接使用MPVolumeView 是做不到的，那么有没有什么方法可以绕过这限制呢？办法还是有的。</li>
+    </ul>
+  </li>
+  <li>
+    <p>实际上MPVolumeView没有提供任何接口来调节是否需要显示系统音量提示。但是我们发现一点：当MPVolumeView处在当前视图的层级之中时，系统就不会显示音量提示。那么事情好办了，我们只要确保两点：</p>
+    <ul>
+      <li>MPVolumeView视图处在屏幕上看不见的地方，比如某个不透明视图的下方，或者本视图的非可见区域，一个常见的做法就是把该视图的frame设置为区域以外的地方，比如<code> volumeView.frame = CGRectMake(-1000, -100, 100, 100);</code></li>
+      <li>确保MPVolumeView视图的<code>hidden</code>属性值为<strong>NO</strong>。因为当hidden为YES时，同样会弹出提示。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>于是想要隐藏”音量提示框”就可以通过添加以下代码实现：</p>
+
+<pre><code class="language-objc">//隐藏"音量提示框"
+//注意使用之前需要添加`MediaPlayer.framework`
+MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-100, -100, 100, 100)];
+volumeView.hidden = NO;
+[self.view addSubview:volumeView];
+</code></pre>
+
+<h2 id="section-3">代码实现调节系统音量，不通过实体按键</h2>
+
+<p>上面我们提到了MPVolumeView这个组件中，有一个subview来控制音量，即<strong>MPVolumeSlider</strong>。于是我们可以通过遍历 MPVolumeView 实例的subviews来得到MPVolumeSlider的实例，从而通过这个UI组件来操作系统音量。</p>
+
+<ul>
+  <li>步骤如下：
+    <ul>
+      <li>1.通过创建一个MPVolumeView</li>
+      <li>2.遍历找出MPVolumeSlider的实例</li>
+      <li>3.可以通过<code>volumeSlider.value</code>这个属性来获取当前的系统音量。</li>
+      <li>4.这个实例提供<code>setValue:animated:</code>方法来设置系统音量</li>
+      <li>5.添加一个自定义的视图比如一个slider，通过这个视图来改变系统音量</li>
+    </ul>
+  </li>
+</ul>
+
+<p>具体的代码如下：</p>
+
+<pre><code class="language-objc">- (void)viewDidLoad {
+    [super viewDidLoad];
+	//不显示“铃声”，显示“音量”
+    [[AVAudioSession sharedInstance] setActive:YES error:NULL];
+    //1. 获得 MPVolumeView 实例，
+    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-100, -100, 100, 100)];
+    //volumeView.hidden = NO;
+    //[self.view addSubview:volumeView]; //添加后不显示“音量”
+    volumeViewSlider = nil;
+    //2. 遍历MPVolumeView的subViews得到MPVolumeSlider
+    for (UIView *view in [volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    //3.获取系统音量
+    float systemVolume = volumeViewSlider.value;
+    //4.添加一个全局的 slider，滑动时同步改变系统音量
+    VolSlider = [[UISlider alloc] initWithFrame:CGRectMake(30, 200, 300, 20)];
+    VolSlider.value = systemVolume;  //初始值
+    [VolSlider setMinimumValue:0.0]; //最小值
+    [VolSlider setMaximumValue:1.0]; //最大值
+    [VolSlider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged]; //添加事件
+    [self.view addSubview:VolSlider];
+    //注册监听实体键按下事件
+    [self registeNotification];
+}
+//
+//VolSlider滑动事件
+- (void)sliderValueChange:(UISlider *)slider{ 
+    //得到当前用户设置的value
+    float value = slider.value; 
+    //改变系统音量大小，默认音量大小从 0.0 - 1.0
+    [volumeViewSlider setValue:value animated:NO];
+    //使setValue立即生效，
+    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+//
+//监听音量实体键按下后，响应事件
+- (void)volumeChanged:(NSNotification *)notification{   
+    //获取到当前系统音量
+    float volume = [[[notification userInfo] objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
+    //同步设置自定义视图的值
+	[VolSlider setValue:volume animated:YES];
+}
+</code></pre>
+
+<p>设置后即可使 VolSlider 与系统的音量提示框同步了，效果如下：</p>
+
+<p><img src="/images/2015/12/synchronizeControl.PNG" alt="同步效果" title="实体按键与自定义UI同步控制" /></p>
+
+<blockquote>
+  <p>附上代码github链接：<a href="https://github.com/Vanbein/changeSystemVolume">changeSystemVolume</a></p>
+</blockquote>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS进阶">iOS进阶</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E8%BF%9B%E9%98%B6/2015/12/24/tong-guo-dai-ma-diao-zheng-xi-tong-yin-liang-,jian-ting-yin-liang-shi-ti-an-jian" data-title="通过代码调整系统音量，监听音量实体按键" data-images="/images/head-800x400/-14.png" data-content="最近项目有个功能需要用到监听音量实体键，并能够通过滑动应用内的UISlider调整系统的音量，其中遇到不少问题，所以记录下这个学习过程。" data-url="http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2015/12/24/tong-guo-dai-ma-diao-zheng-xi-tong-yin-liang-,jian-ting-yin-liang-shi-ti-an-jian.html">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : '通过代码调整系统音量，监听音量实体按键',
+  			bdDesc : '最近项目有个功能需要用到监听音量实体键，并能够通过滑动应用内的UISlider调整系统的音量，其中遇到不少问题，所以记录下这个学习过程。',
+  			bdUrl : 'http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2015/12/24/tong-guo-dai-ma-diao-zheng-xi-tong-yin-liang-,jian-ting-yin-liang-shi-ti-an-jian.html',
+  			bdPic : '/images/head-800x400/-14.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/22/duo-xian-cheng-ru-men.html"><i class="fa fa-chevron-left"></i> 上一篇：多线程入门</a>
+  
+  
+    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/24/uiapplication.html">下一篇：UIApplication详解 <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E8%BF%9B%E9%98%B6/2015/12/24/tong-guo-dai-ma-diao-zheng-xi-tong-yin-liang-,jian-ting-yin-liang-shi-ti-an-jian" data-title="通过代码调整系统音量，监听音量实体按键" data-url="http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2015/12/24/tong-guo-dai-ma-diao-zheng-xi-tong-yin-liang-,jian-ting-yin-liang-shi-ti-an-jian.html"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <!---->
+    <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#ShareX">ShareX</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 25, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Xcode基础快捷键 -- 提高你的编码速率" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 21, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 18, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="https://jekyllrb.com/">Jekyll</a></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+            <li><a href="www.jianshu.com">简书</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+
+  </body>
+</html>

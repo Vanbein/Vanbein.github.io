@@ -3,10 +3,10 @@
   <channel>
     <title>Vanbein&#39;s Blog</title>
     <description>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</description>
-    <link>http://vanbein.com/</link>
-    <atom:link href="http://vanbein.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 30 Mar 2016 23:14:50 +0800</pubDate>
-    <lastBuildDate>Wed, 30 Mar 2016 23:14:50 +0800</lastBuildDate>
+    <link>http://www.vanbein.com/</link>
+    <atom:link href="http://www.vanbein.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 03 Apr 2016 14:38:07 +0800</pubDate>
+    <lastBuildDate>Sun, 03 Apr 2016 14:38:07 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -282,8 +282,8 @@
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 25 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/iOS-Skillmap</guid>
+        <link>http://www.vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html</guid>
         
         <category>iOS</category>
         
@@ -295,10 +295,257 @@
       </item>
     
       <item>
+        <title>Xcode基础快捷键 -- 提高你的编码速率</title>
+        <description>&lt;p&gt;在 Xcode 中有许多快捷键，它可以使得我们的编码工作更为高效，对于在代码文件中快速导航、定位Bug以及新增应用特性都是极有效的。&lt;/p&gt;
+
+&lt;p&gt;我相信想要成为一名出色的iOS开发，Xcode 快捷键是我们应该熟悉掌握的。而且其中大部分快捷键在其他一些编辑器也是通用的，所以在学习到如何使用之后，也许就再也离不开它们了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;一、编码快捷键&lt;/h3&gt;
+
+&lt;p&gt;下面的快捷对提高我们编码速率非常有帮助，值得我们慢慢熟练使用并牢记。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;1. 上下左右 移动选中代码&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;代码上移：option + command +[ ;&lt;/li&gt;
+  &lt;li&gt;代码下移：option + command +] ;&lt;/li&gt;
+  &lt;li&gt;代码左缩进 &lt;strong&gt;command + [&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;代码右缩进 &lt;strong&gt;command + ]&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;自动排版代码：Xcode默认的是 Control + shift + \, 但是为了方便，我推荐重新设置为&lt;strong&gt;Command + =&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;2. 使选择的内容上下左右移来选择更多&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;shift + 上/下/左/右 方向键&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;3. 将方法或者注释收起、展开&lt;/h4&gt;
+
+&lt;p&gt;使用时只要鼠标在方法或注释的范围内就好&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;收起：&lt;strong&gt;option + command + &amp;lt;—&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;展开：&lt;strong&gt;option + command + —&amp;gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;4.光标相关操作&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Command + &amp;lt;—&lt;/strong&gt;  光标跳到行首，推荐&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Command + —&amp;gt;&lt;/strong&gt;  光标跳到行尾，推荐&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Command + 上方向键&lt;/strong&gt;  光标跳到页面顶部，推荐&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Command + 下方向键&lt;/strong&gt;  光标跳到页面底部，推荐&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Option + &amp;lt;—&lt;/strong&gt;  光标回退到左边一个词组前，推荐&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Option + —&amp;gt;&lt;/strong&gt;  光标回退右边一个词组尾，推荐&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Option + 上方向键&lt;/strong&gt;  光标移到上一行最前面，推荐&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Option + 下方向键&lt;/strong&gt;  光标移到下一行最后面，推荐&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Ctrl + A (Ahead),  光标跳到行首&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ctrl + E (End),      光标跳到行尾&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Ctrl + B (Back)&lt;/strong&gt;, 光标回退一个字符&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Ctrl + F (Forward)&lt;/strong&gt;,  光标前进一个字符&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Ctrl + N (Next)&lt;/strong&gt;,  光标跳到下一行&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Ctrl + P (Previous)&lt;/strong&gt;,  光标跳到上一行&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Ctrl + D (), 删除光标右边的一个字符&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ctrl + H (), 删除光标左边的一个字符&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ctrl + K (Kill), 删除光标后面所有内容&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;删除光标所在行，使用组合键
+    &lt;ul&gt;
+      &lt;li&gt;Ctrl + AK (Kill), ，&lt;/li&gt;
+      &lt;li&gt;**Command + —&amp;gt; + delete ** 推荐&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;删除光标所在的词，比如变量名，方法名等，使用组合键
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Option + —&amp;gt; + Delete&lt;/strong&gt;  推荐&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;scope-&quot;&gt;5. 一次性修改一个 Scope 里的变量名：&lt;/h4&gt;
+
+&lt;p&gt;点击该变量，出现下划虚线，然后 &lt;strong&gt;command + control + E&lt;/strong&gt; 激活所有相同变量，然后进行修改。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;6. 删除&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;删除一个词：Option + Delete，会删除光标的位置所在行的左边一个词&lt;/li&gt;
+  &lt;li&gt;删除一句话：Command + Delete，会删除光标的位置所在行的左边的内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;7. 快捷搜索：&lt;/h4&gt;
+&lt;p&gt;先点亮想要搜索的词，然后** Command + E &lt;strong&gt;将该次放入剪贴板，然后使用&lt;/strong&gt; Command + G &lt;strong&gt;来向下遍历该词，&lt;/strong&gt;Shift + Command + G** 向上遍历。&lt;/p&gt;
+
+&lt;h4 id=&quot;debug&quot;&gt;8. Debug调试常用快捷键：&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;断点时，执行下一行：F6，如果发现按F6没效果，那请使用Fn + F6，下面类似&lt;/li&gt;
+  &lt;li&gt;断点时，进入方法：F7&lt;/li&gt;
+  &lt;li&gt;断点时，跳出方法：F8&lt;/li&gt;
+  &lt;li&gt;全速执行到下一断点：Command + Control + Y&lt;/li&gt;
+  &lt;li&gt;清除 Debug Console 全部内容：&lt;strong&gt;Command + K&lt;/strong&gt;  推荐&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;二、以下快捷键可帮你在代码编写过程中尽可能少地使用鼠标或触控板。&lt;/h3&gt;
+
+&lt;h4 id=&quot;command--r-command--&quot;&gt;1. 运行程序: &lt;strong&gt;Command + R&lt;/strong&gt;, 停止运行&lt;strong&gt;Command + .&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;在编写代码的过程中，我通常会使用该快捷键来自由运行应用程序。尽可能地测试应用程序，这样你可以在早期找到并修复应用中的bug。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+R.png&quot; alt=&quot;Command + R&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;command--shift--k&quot;&gt;2. 清除工程: Command + Shift + K&lt;/h4&gt;
+
+&lt;p&gt;当Xcode运行出现问题，比如应用无法响应，或者出现了意料之外的情况，我们应该首先去清除工程并再次运行它。如果这样还不能解决问题，那就只能重启Xcode了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+Shift+K.png&quot; alt=&quot;Command + Shift + K&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;command--b&quot;&gt;3. 构建应用程序: Command + B&lt;/h4&gt;
+
+&lt;p&gt;检查所写代码以确保其正常工作是我们经常要做的事情，编译app工程可让你在编写下一个特性之前确定其是否正常工作。即便 Xcode 在代码编写后会很快进行检查，但也有所延迟，或者给出一些不恰当的错误提示。&lt;/p&gt;
+
+&lt;p&gt;因此假如仅仅做一些小的改变，我们无需总是运行应用程序，那么编译工作可帮你做一个快速检查，这样可以返回添加下一行代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+B.png&quot; alt=&quot;Command + B&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;xcode&quot;&gt;三、Xcode导航快捷键&lt;/h3&gt;
+
+&lt;h4 id=&quot;command--1&quot;&gt;1. 工程导航控制器：Command + 1&lt;/h4&gt;
+
+&lt;p&gt;快速浏览代码、图片以及用户界面文件。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+1.png&quot; alt=&quot;Command+1&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;还可以试试 Command + 2/3/4/5/6/7/8&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;command0&quot;&gt;2.显示/隐藏导航器面板:Command+0&lt;/h4&gt;
+
+&lt;p&gt;当在对屏幕进行截图的时候可能会想要隐藏起与我们感兴趣内容的无关的部分。假如想要使用辅助编辑器或者想要设计用户界面并将其连接到代码的时候，这个快捷键会相当有用&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+0.png&quot; alt=&quot;Command+0&quot; /&gt;&lt;br /&gt;
+#### 3.显示/隐藏实用工具面板:Command+Option+0&lt;/p&gt;
+
+&lt;p&gt;实用工具面板主要用于编辑用户界面文件时，在只考虑写代码的时候，就可以隐藏它。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+Option+0.png&quot; alt=&quot;Command+Option+0.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;option&quot;&gt;4.在辅助编辑器中打开文件:在项目导航器中选中文件执行Option+(左键)点击操作。&lt;/h4&gt;
+
+&lt;p&gt;一个快速打开&lt;code&gt;Assistant Editor&lt;/code&gt;的方式–只需要按住Option键并点击你想要在当前编辑框右边打开的文件即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Option+Left-click.png&quot; alt=&quot;Option+Left-click.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;find-navigatorcommandshiftf&quot;&gt;5.搜索导航器(Find Navigator，也就是搜索):Command+Shift+F&lt;/h4&gt;
+
+&lt;p&gt;使用项目搜索可以找到某个变量或方法名的被提到的次数。可以依据实例来匹配，并可忽略大小写字母。另外还可以对查找的变量名进行替换。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+Shift+F.png&quot; alt=&quot;Command+Shift+F.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;command--shift--o&quot;&gt;6.快速打开: Command + Shift + O&lt;/h4&gt;
+
+&lt;p&gt;喜欢使用键盘但不喜欢使用鼠标的人会大爱这个快捷方式，可以直接跳转到某个方法定义或者指定的代码文件。&lt;br /&gt;
+另外，键入第一个字母即可快速切换至某个文件或者找到特定的代码行。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+Shift+0.png&quot; alt=&quot;Command+Shift+O.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;h--m-control--command--&quot;&gt;7. .h &amp;amp; .m文件间的快速切换: Control + Command + 上下或左右方向键&lt;/h4&gt;
+
+&lt;p&gt;如果你用Objective-C或Swift来编写程序，或者使用其他语言编写。我们可以使用&lt;strong&gt;Control + Command + 方向键&lt;/strong&gt;组合键操作在两个文件间相互切换&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Control+Command+方向键.png&quot; alt=&quot;Control+Command+方向键.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;四、文档和帮助&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在学习过程中，自助学习非常重要，对于没有浏览过Xcode文档帮助的开发者来说，这些快捷键可帮忙查看相关的代码参考，更好地理解苹果提供的代码，从而开发出更优秀的APP。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;command--shift--0-zero&quot;&gt;11.文档和参考: Command + Shift + 0 (Zero)&lt;/h4&gt;
+
+&lt;p&gt;使用Xcode在后台安装文档，并支持离线搜索查看，非常适合外出办公。打开文档和参考，并键入代码中的某个关键字，Xcode文档还提供了一些额外的资源和示例工程。&lt;/p&gt;
+
+&lt;p&gt;通过 Documentation and Reference 指南了解如何使用代码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Command+Shift+0.png&quot; alt=&quot;Command+Shift+0.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;option--left-click&quot;&gt;12.快速帮助: 在类或者方法名上执行Option + Left-click操作&lt;/h4&gt;
+
+&lt;p&gt;内联帮助可帮开发者快速学习类或代码片段的用法。在变量、类、或者方法名上执行Option + Left-click操作来获得更多细节信息。假使你点击了弹出视图底部的参考链接，那么就可以方便地跳转到Xcode提供的文档中。你还可以在变量、类或者方法名上执行Option+双击名称操作，从而更方便地跳转至文档。&lt;/p&gt;
+
+&lt;p&gt;编写代码时获得快速帮助&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Option+Leftclick.png&quot; alt=&quot;Option+Leftclick.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;show-related-itemscontrol--1&quot;&gt;13.打开’Show Related Items弹出菜单：Control + 1&lt;/h4&gt;
+&lt;p&gt;该快捷键可打开 &lt;strong&gt;Show Related Items&lt;/strong&gt; 弹出菜单。当把光标放在任何方法中，并按下 &lt;strong&gt;CTRL + 1&lt;/strong&gt;，就可以很方便地通过弹出的视图访问该方法的所有调用者和被调用者。我们可以通过浏览方法的调用者从而了解如何使用该方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/11/Control+1.png&quot; alt=&quot;Control+1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;五、其他一些常用的快捷键&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建项目 &lt;strong&gt;Command + Shift + N&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建文件 &lt;strong&gt;Command + N&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建空文件 Command + Control + N&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;打开 Command + O&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;关闭窗口 &lt;strong&gt;Command + W&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;保存所有文件 Command + Option + S&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;还原到保存时状态 Command + U&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;撤销操作 &lt;strong&gt;Command + Z&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建快照 Command + Control + S  (保存文件快照，以后可进行对比修改情况)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Mon, 21 Mar 2016 23:52:02 +0800</pubDate>
+        <link>http://www.vanbein.com/posts/tips/2016/03/21/xcode-acceleratorKey.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/tips/2016/03/21/xcode-acceleratorKey.html</guid>
+        
+        <category>Xocde</category>
+        
+        <category>iOS</category>
+        
+        
+        <category>tips</category>
+        
+      </item>
+    
+      <item>
         <title>iOS开发中一些常用的小知识或技巧</title>
         <description>&lt;p&gt;true本文将记录在学习iOS开发过程中所学到的小知识点，以及一些技巧，会保持更新。&lt;/p&gt;
 
-&lt;p&gt;###1. 将图片设置为圆形，或给button，label等设置圆角&lt;/p&gt;
+&lt;h3 id=&quot;buttonlabel&quot;&gt;1. 将图片设置为圆形，或给button，label等设置圆角&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;UIImageView *testImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)] ;
 // 设置圆角半径，一般要求图片是正方形，
@@ -318,7 +565,7 @@ testButton.layer.masksToBounds = YES;
 
 &lt;p&gt;&lt;img src=&quot;/images/2015/12/cornerRadius.png&quot; alt=&quot;storyBoard设置圆角&quot; title=&quot;设置圆角&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;###2. 根据内容计算高度，宽度&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;2. 根据内容计算高度，宽度&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -340,7 +587,7 @@ NSString *contentString = @&quot;String! String!&quot; ; //目标字符串
 CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:15]} context:nil] ;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###3. 隐藏状态栏 修改状态栏风格&lt;/p&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;3. 隐藏状态栏 修改状态栏风格&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;-(UIStatusBarStyle)preferredStatusBarStyle 
 { 
@@ -353,7 +600,7 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###4. 当有多个导航控制器时,一次设置多个导航控制器&lt;/p&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;4. 当有多个导航控制器时,一次设置多个导航控制器&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;UINavigationBar *navBar = [UINavigationBar appearance] ;
 // 所有导航条颜色都会改变 -- 一键设置
@@ -361,10 +608,12 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
 [navBar setBackgroundImage:[UIImage imageNamed:@&quot;bg_nav.png&quot;] forBarMetrics:UIBarMetricsDefault] ;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###5. Objective-C语法简写&lt;/p&gt;
+&lt;h3 id=&quot;objective-c&quot;&gt;5. Objective-C语法简写&lt;/h3&gt;
 
-&lt;p&gt;####(1). @&lt;br /&gt;
-+ @() 代表NSNumber类型&lt;/p&gt;
+&lt;h4 id=&quot;section-3&quot;&gt;(1). @&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;@() 代表NSNumber类型&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;@1; 等价于 [NSNumber numberWithInt:1];   
 @(&#39;c&#39;); 等价于 [NSNumber numberWithChar:&#39;c&#39;]; 
@@ -386,8 +635,10 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
 [NSDictionary dictionaryWithObject:@&quot;123&quot; forKey:@&quot;456&quot;];
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####(2).方法声明&lt;br /&gt;
-* 返回值如果不写括号，编译器默认是id类型:&lt;/p&gt;
+&lt;h4 id=&quot;section-4&quot;&gt;(2).方法声明&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;返回值如果不写括号，编译器默认是id类型:&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;-sendMessage;  //等价于
 -(id)sendMessage;
@@ -409,19 +660,19 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
 -(void)sendMessage:(id)msg1 message2:(id)msg2; 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####(3).结构体&lt;/p&gt;
+&lt;h4 id=&quot;section-5&quot;&gt;(3).结构体&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;CGRect rect = {1, 2};  //等价于
 CGRect rect = {1, 2, 0, 0};
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####(4).三元条件表达式（针对字符串）&lt;/p&gt;
+&lt;h4 id=&quot;section-6&quot;&gt;(4).三元条件表达式（针对字符串）&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;NSString *string = inputString ?: @&quot;default&quot;; // 等价于
 NSString *string = inputString ? inputString : @&quot;default&quot;; 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####(5).小括号内联复合表达式&lt;/p&gt;
+&lt;h4 id=&quot;section-7&quot;&gt;(5).小括号内联复合表达式&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;RETURN_VALUE_RECEIVER = {( 
 // Do whatever you want
@@ -439,7 +690,7 @@ UIView *view = ({
 //这样使得代码量增大时层次仍然能比较明确。
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###6. UIImage与字符串互转&lt;/p&gt;
+&lt;h3 id=&quot;uiimage&quot;&gt;6. UIImage与字符串互转&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;//图片转字符串  
 -(NSString *)UIImageToBase64Str:(UIImage *) image  
@@ -458,7 +709,7 @@ UIView *view = ({
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###7. 根据汉字字符串 获取该字符串的拼音 然后取得首字母&lt;/p&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;7. 根据汉字字符串 获取该字符串的拼音 然后取得首字母&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;//第一种方法：先将汉字转换为 拼音 再获取首字母
 //获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
@@ -509,48 +760,8 @@ if ([string length])
 
 </description>
         <pubDate>Fri, 18 Mar 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/tips/chang-yong-de-xiao-ji-qiao</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/tips/chang-yong-de-xiao-ji-qiao</guid>
-        
-        <category>iOS</category>
-        
-        <category>Tip</category>
-        
-        
-        <category>tips</category>
-        
-      </item>
-    
-      <item>
-        <title>2016-3-16 笔记</title>
-        <description>&lt;h3 id=&quot;section&quot;&gt;一、随机生成一种颜色&lt;/h3&gt;
-
-&lt;p&gt;我们可以使用标准库中的&lt;code&gt;drand48()&lt;/code&gt;函数，它会随机生成一个0.0-1.0之间的double，因此我们只需要随机生成R, G, B三个值最后用UIColor的&lt;code&gt;colorWithRed:green:blue:alpha&lt;/code&gt;方法创建UIColor，即可。&lt;/p&gt;
-
-&lt;p&gt;需要注意的是，&lt;code&gt;drand48&lt;/code&gt;函数需要使用&lt;code&gt;srand48&lt;/code&gt;来初始化随机数种子，示例代码如下：&lt;br /&gt;
-&lt;code&gt;objc
-- (UIColor *)randomColor{    
-    static BOOL seeded = NO;
-    if (!seeded) {
-        seeded = YES;
-        srand48(time(0));
-    }
-    CGFloat r = (CGFloat)drand48();
-    CGFloat g = (CGFloat)drand48();
-    CGFloat b = (CGFloat)drand48();
-    return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
-}
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;demo的github地址：&lt;a href=&quot;https://github.com/Vanbein/RandomColor&quot;&gt;随机生成一个UIColor&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;###二、待续&lt;/p&gt;
-</description>
-        <pubDate>Wed, 16 Mar 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/tips/2016-3-13-bi-ji</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/tips/2016-3-13-bi-ji</guid>
+        <link>http://www.vanbein.com/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html</guid>
         
         <category>iOS</category>
         
@@ -569,115 +780,63 @@ if ([string length])
 
 &lt;blockquote&gt;
   &lt;p&gt;没有什么能够阻挡&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;你对自由的向往&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;天马行空的生涯&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;你的心了无牵挂&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;穿过幽暗的岁月&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;也曾感到彷徨&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;当你低头的瞬间&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;才发觉脚下的路&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;心中那自由的世界&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;如此的清澈高远&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;盛开着永不凋零&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;蓝莲花&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;（music）&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;穿过幽暗的岁月&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;也曾感到彷徨&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;当你低头的瞬间&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;才发觉脚下的路&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;穿过幽暗的岁月&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;也曾感到彷徨&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;当你低头的瞬间&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;才发觉脚下的路&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;心中那自由地世界&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;如此的清澈高远&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;盛开着永不凋零&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;蓝莲花&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;（music）&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
   &lt;p&gt;啦啦啦啦啦&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Tue, 15 Mar 2016 00:00:00 +0800</pubDate>
-        <link>http://vanbein.com/posts/media/blue-xuwei</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/media/blue-xuwei</guid>
+        <link>http://www.vanbein.com/posts/media/2016/03/15/blue-xuwei.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/media/2016/03/15/blue-xuwei.html</guid>
         
         <category>许巍</category>
         
@@ -779,22 +938,39 @@ github.map.fastly.net.	151	IN	A	185.31.17.133
 
 &lt;h4 id=&quot;gitcafe-clone--jekyll-30-&quot;&gt;1. 从 gitcafe clone 下来的源码不适用于 jekyll 3.0 以上版本&lt;/h4&gt;
 
-&lt;p&gt;当我 clone 下源码后，根据我自己我需求做了一下配置更改，然后通过 jekyll build 命令后发现居然没有生成每篇blog的静态文件，只有主页等几个主界面，每篇文章的 post 页面不存在，点进去就是 404 Error，折腾了好久也没搞定，于是去请教了主题的作者 林宏 ，经过一番耐心仔细的帮助后，觉得问题应该是出在 jekyll 升级到 3.0 的原因，所以我卸载了jekyll，重装了一个 jekyll 2.5.2 版本，然后就发现好使了。&lt;/p&gt;
+&lt;p&gt;当我 clone 下源码后，根据我自己我需求做了一下配置更改，然后通过 &lt;code&gt;jekyll build&lt;/code&gt; 命令后发现居然没有生成每篇blog的静态文件，只有主页等几个主界面，每篇文章的 post 页面不存在，点进去就是 &lt;strong&gt;404 Error&lt;/strong&gt;，折腾了好久也没搞定，于是去请教了主题的作者 林宏 ，经过一番耐心仔细的帮助后，觉得问题应该是出在 jekyll 升级到 3.0 的原因，所以我卸载了jekyll，重装了一个 &lt;strong&gt;jekyll 2.5.2&lt;/strong&gt; 版本，然后就发现好使了。&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;备注下&lt;br /&gt;
-卸载 jekyll，执行命令&lt;br /&gt;
-$ gem uninstall jekyll  # 如果有多个版本，全部都要卸载&lt;br /&gt;
-安装2.5.2版本的 jekyll，执行命令&lt;br /&gt;
-$ gem install jekyll –version “=2.5.2”&lt;br /&gt;
-如果安装提示 没权限，可以尝试执行下面的命令：&lt;br /&gt;
-sudo gem install jekyll –version “=2.5.2”&lt;br /&gt;
-如果还是不行，提示了 &lt;code&gt;Operation not permitted&lt;/code&gt;，那么执行&lt;br /&gt;
-sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
-最后，如果没必要，建议把 bundler 卸载了再重新装 jekyll，执行命令 &lt;code&gt;gem uninstall bundler&lt;/code&gt; 即可&lt;/p&gt;
+  &lt;p&gt;备注下&lt;/p&gt;
+
+  &lt;p&gt;卸载 jekyll，执行命令&lt;/p&gt;
+
+  &lt;p&gt;$ gem uninstall jekyll  # 如果有多个版本，全部都要卸载&lt;/p&gt;
+
+  &lt;p&gt;安装2.5.2版本的 jekyll，执行命令&lt;/p&gt;
+
+  &lt;p&gt;$ gem install jekyll –version “=2.5.2”&lt;/p&gt;
+
+  &lt;p&gt;如果安装提示 没权限，可以尝试执行下面的命令：&lt;/p&gt;
+
+  &lt;p&gt;sudo gem install jekyll –version “=2.5.2”&lt;/p&gt;
+
+  &lt;p&gt;如果还是不行，提示了 &lt;code&gt;Operation not permitted&lt;/code&gt;，那么执行&lt;/p&gt;
+
+  &lt;p&gt;sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;/p&gt;
+
+  &lt;p&gt;最后，如果没必要，建议把 bundler 卸载了再重新装 jekyll，执行命令 &lt;code&gt;gem uninstall bundler&lt;/code&gt; 即可&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;于是，接下来的问题变成了，github 已经升级到 3.0，如果我要使用3.0，需要作出哪些配置调整呢？ 嗯，还在研究中，研究出来再贴出来结果吧&lt;/p&gt;
+&lt;p&gt;于是，接下来的问题变成了，github 已经升级到 3.0，如果我要使用3.0，需要作出哪些配置调整呢？&lt;/p&gt;
+
+&lt;h4 id=&quot;jekyll-312-303blog&quot;&gt;2. 源码在jekyll 3.1.2 下好使，在3.0.3下无法生成blog静态文件&lt;/h4&gt;
+
+&lt;p&gt;经过一番试验，发现，发现如果 jekyll 版本是最新的 &lt;strong&gt;3.1.2&lt;/strong&gt; ，那么是可以正常使用的； 但如果是 &lt;strong&gt;3.0.3&lt;/strong&gt;，就有问题：首先它不会在设置的 &lt;code&gt;permalink&lt;/code&gt; 对应的路径下生成静态文件，第二不管 &lt;code&gt;permalink &lt;/code&gt;设置为什么，文章的 url 都不会跟随着变化，一直都是 &lt;code&gt;/posts/:categories/:year-:month-:day-:title/&lt;/code&gt; ，这令我很不解，而现在 github 使用的 jekyll 版本正是 &lt;strong&gt;3.0.3&lt;/strong&gt;。而在 &lt;strong&gt;3.0.3&lt;/strong&gt; 下 build 了其他博客源码，是没问题的，看来是哪个地方设置得有问题吧，和 &lt;strong&gt;3.0.3&lt;/strong&gt; 冲突了！嗯，于是这个问题仍没有彻底解决，需要继续研究下哪儿的问题，或者等到github 升级到 jekyll 3.1.2 就好使了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;现在的解决方案：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在 2.5.2 或 3.1.2 版本下&lt;code&gt;build&lt;/code&gt;生成网站静态文件，将 _site 目录下所有文件 push 到 github 的 master分支下，替代原先的所有文件，跳过 Github Pages 自动部署这个步骤。当然，这不是长久之计&lt;/p&gt;
 
 &lt;h3 id=&quot;github--jekyll-30&quot;&gt;Github 升级 Jekyll 3.0&lt;/h3&gt;
 
@@ -810,8 +986,8 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 09 Mar 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/jekyll/blog</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/jekyll/blog</guid>
+        <link>http://www.vanbein.com/posts/jekyll/2016/03/09/blog.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/jekyll/2016/03/09/blog.html</guid>
         
         <category>Jekyll</category>
         
@@ -821,74 +997,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
       </item>
     
       <item>
-        <title>2016-3-9 笔记</title>
-        <description>&lt;h3 id=&quot;app-&quot;&gt;一、获得一款 APP 的所有图片资源&lt;/h3&gt;
-
-&lt;p&gt;当我们想模仿一款app的时候，通过ipa包，可以拿到基本的图片，但是有一些个别的图片还是不能拿到的，可以通过一些工具插件来完成，推荐使用下面这款, github代码地址:&lt;a href=&quot;https://github.com/devcxm/iOS-Images-Extractor&quot;&gt;iOS-Images-Extractor&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;xcode-&quot;&gt;二、Xcode 查看谁改动的代码&lt;/h3&gt;
-
-&lt;p&gt;如果我们源代码有版本控制，那么当程序出了问题或bug，找到问题代码所在行后，可以通过右键 - Show Blame for Line 查看是谁改动的代码。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2016/03/ShowBalmeForLine.png&quot; alt=&quot;Show Balme for Line&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2016/03/ShowBalme.png&quot; alt=&quot;Show Balme for Line&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;三、屏幕截图并保存&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;//snapshotImage 这个方法效率比较低，
-- (UIImage *)snapshotImage {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return snap;
-}
-//iOS 7上UIView上提供了drawViewHierarchyInRect:afterScreenUpdates:来截图，速度比renderInContext:快15倍。
-- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
-    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        return [self snapshotImage];
-    }
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
-    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:afterUpdates];
-    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return snap;
-}
-//保存截图到相册
-- (void)saveImageToPhotos:(UIImage *)image{
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-}
-//状态回调
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    if (!error) {
-        NSLog(@&quot;\n\n保存成功\n\n&quot;);
-    } else {
-        NSLog(@&quot;\n\n保存失败\n\n&quot;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;图片高斯模糊，毛玻璃效果&lt;/h3&gt;
-
-&lt;p&gt;详细请走传送门：&lt;a href=&quot;http://www.jianshu.com/p/6dd0eab888a6&quot;&gt;http://www.jianshu.com/p/6dd0eab888a6&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 09 Mar 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/tips/2016-3-7-bi-ji</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/tips/2016-3-7-bi-ji</guid>
-        
-        <category>iOS</category>
-        
-        <category>Tip</category>
-        
-        
-        <category>tips</category>
-        
-      </item>
-    
-      <item>
-        <title>2016.3第一周知识点笔记</title>
+        <title>2016.3知识点笔记</title>
         <description>&lt;h3 id=&quot;barbuttonitem-&quot;&gt;一、调整导航栏自定义的 BarButtonItem 到屏幕边侧的间距&lt;/h3&gt;
 
 &lt;p&gt;比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔&lt;/p&gt;
@@ -968,10 +1077,84 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/03/compare.png&quot; alt=&quot;compare&quot; /&gt;&lt;/p&gt;
 
+&lt;h3 id=&quot;section-1&quot;&gt;五、随机生成一种颜色&lt;/h3&gt;
+
+&lt;p&gt;我们可以使用标准库中的&lt;code&gt;drand48()&lt;/code&gt;函数，它会随机生成一个0.0-1.0之间的double，因此我们只需要随机生成R, G, B三个值最后用UIColor的&lt;code&gt;colorWithRed:green:blue:alpha&lt;/code&gt;方法创建UIColor，即可。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，&lt;code&gt;drand48&lt;/code&gt;函数需要使用&lt;code&gt;srand48&lt;/code&gt;来初始化随机数种子，示例代码如下：&lt;br /&gt;
+&lt;code&gt;objc
+- (UIColor *)randomColor{    
+    static BOOL seeded = NO;
+    if (!seeded) {
+        seeded = YES;
+        srand48(time(0));
+    }
+    CGFloat r = (CGFloat)drand48();
+    CGFloat g = (CGFloat)drand48();
+    CGFloat b = (CGFloat)drand48();
+    return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;demo的github地址：&lt;a href=&quot;https://github.com/Vanbein/RandomColor&quot;&gt;随机生成一个UIColor&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;app-&quot;&gt;六、获得一款 APP 的所有图片资源&lt;/h3&gt;
+
+&lt;p&gt;当我们想模仿一款app的时候，通过ipa包，可以拿到基本的图片，但是有一些个别的图片还是不能拿到的，可以通过一些工具插件来完成，推荐使用下面这款, github代码地址:&lt;a href=&quot;https://github.com/devcxm/iOS-Images-Extractor&quot;&gt;iOS-Images-Extractor&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;xcode-&quot;&gt;七、Xcode 查看谁改动的代码&lt;/h3&gt;
+
+&lt;p&gt;如果我们源代码有版本控制，那么当程序出了问题或bug，找到问题代码所在行后，可以通过右键 - Show Blame for Line 查看是谁改动的代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016/03/ShowBalmeForLine.png&quot; alt=&quot;Show Balme for Line&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016/03/ShowBalme.png&quot; alt=&quot;Show Balme for Line&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;八、屏幕截图并保存&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;//snapshotImage 这个方法效率比较低，
+- (UIImage *)snapshotImage {
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snap;
+}
+//iOS 7上UIView上提供了drawViewHierarchyInRect:afterScreenUpdates:来截图，速度比renderInContext:快15倍。
+- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
+    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+        return [self snapshotImage];
+    }
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
+    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:afterUpdates];
+    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snap;
+}
+//保存截图到相册
+- (void)saveImageToPhotos:(UIImage *)image{
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+//状态回调
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (!error) {
+        NSLog(@&quot;\n\n保存成功\n\n&quot;);
+    } else {
+        NSLog(@&quot;\n\n保存失败\n\n&quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;九、图片高斯模糊，毛玻璃效果&lt;/h3&gt;
+
+&lt;p&gt;详细请走传送门：&lt;a href=&quot;http://www.jianshu.com/p/6dd0eab888a6&quot;&gt;http://www.jianshu.com/p/6dd0eab888a6&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Fri, 04 Mar 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/tips/2016-3-4-bi-ji</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/tips/2016-3-4-bi-ji</guid>
+        <link>http://www.vanbein.com/posts/tips/2016/03/04/March-bi-ji.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/tips/2016/03/04/March-bi-ji.html</guid>
         
         <category>iOS</category>
         
@@ -986,8 +1169,8 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
         <title>Xcode常用的Debug调试技巧总结</title>
         <description>&lt;p&gt;本文主要记录下Xcode结合LLDB调试命令以及OBJC运行时的调试技巧，不定期更新&lt;/p&gt;
 
-&lt;p&gt;###常用宏定义&lt;br /&gt;
-####1、OPTIMIZE，Debug和Release判定&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;常用宏定义&lt;/h3&gt;
+&lt;p&gt;#### 1、OPTIMIZE，Debug和Release判定&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Release编译时定义&lt;/li&gt;
@@ -1003,8 +1186,8 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####2、i386与x86_64，模拟器环境判定&lt;br /&gt;
-有时工程依赖的Lib库只编译了真机的代码，模拟器编译出错。为了可以模拟器调试，使用此宏略过不能编译的代码&lt;/p&gt;
+&lt;h4 id=&quot;i386x8664&quot;&gt;2、i386与x86_64，模拟器环境判定&lt;/h4&gt;
+&lt;p&gt;有时工程依赖的Lib库只编译了真机的代码，模拟器编译出错。为了可以模拟器调试，使用此宏略过不能编译的代码&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;- (BOOL)isSimulatorMode{
 #if defined (__i386__) || defined (__x86_64__)
@@ -1015,7 +1198,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####3、__IPHONE_8_0等，编译SDK的判定&lt;/p&gt;
+&lt;h4 id=&quot;iphone80sdk&quot;&gt;3、__IPHONE_8_0等，编译SDK的判定&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;SDK中会声明当前SDK版本定义，并且保留过往SDK版本定义&lt;/li&gt;
@@ -1050,7 +1233,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 //······
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####4、NOP，空语句&lt;/p&gt;
+&lt;h4 id=&quot;nop&quot;&gt;4、NOP，空语句&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;C语言中有nop()函数，表示一条空语句。OC中没有提供。&lt;/li&gt;
@@ -1064,9 +1247,9 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 #endif
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###二、常用调试命令&lt;/p&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;二、常用调试命令&lt;/h3&gt;
 
-&lt;p&gt;####1、PO，输出对象信息&lt;/p&gt;
+&lt;h4 id=&quot;po&quot;&gt;1、PO，输出对象信息&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;po调用NSObject的description方法打印对象&lt;/li&gt;
@@ -1081,7 +1264,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
   &lt;li&gt;配合表达式进行复杂查询&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;####2、P，输出变量的值&lt;/p&gt;
+&lt;h4 id=&quot;p&quot;&gt;2、P，输出变量的值&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;使用格式：p (类型)表达式&lt;/li&gt;
@@ -1090,9 +1273,11 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/p.png&quot; alt=&quot;p,输出变量的值&quot; title=&quot;LLDB--p,输出变量的值&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####3、Call，执行一段代码&lt;br /&gt;
-* 使用格式：call (返回类型)表达式&lt;br /&gt;
-* 调试状态下，对于点语法支持不佳。如果发现符号未找到的情况，尝试使用发送消息的方式。如果还不行，根据提示，声明类型。对于PO、P等指令同样也需要注意&lt;/p&gt;
+&lt;h4 id=&quot;call&quot;&gt;3、Call，执行一段代码&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;使用格式：call (返回类型)表达式&lt;/li&gt;
+  &lt;li&gt;调试状态下，对于点语法支持不佳。如果发现符号未找到的情况，尝试使用发送消息的方式。如果还不行，根据提示，声明类型。对于PO、P等指令同样也需要注意&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/call_1.png&quot; alt=&quot;call_1&quot; /&gt;&lt;/p&gt;
 
@@ -1110,13 +1295,13 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/call_3.png&quot; alt=&quot;call_3&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####4、bt，打印调用栈&lt;/p&gt;
+&lt;h4 id=&quot;bt&quot;&gt;4、bt，打印调用栈&lt;/h4&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/bt.png&quot; alt=&quot;bt&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;###三、断点的使用技巧&lt;/p&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;三、断点的使用技巧&lt;/h3&gt;
 
-&lt;p&gt;####1、一个普通断点可以做什么事情&lt;/p&gt;
+&lt;h4 id=&quot;section-3&quot;&gt;1、一个普通断点可以做什么事情&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;可以加入一个条件，当满足此条件时触发断点。&lt;/li&gt;
@@ -1127,18 +1312,18 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/breakpoint_1.png&quot; alt=&quot;breakpoint&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####2、略特殊的断点&lt;br /&gt;
-在&lt;code&gt;Breakpoint Navigator&lt;/code&gt;栏的左下角，点击加号可以给程序添加几种不同类型的断点：&lt;/p&gt;
+&lt;h4 id=&quot;section-4&quot;&gt;2、略特殊的断点&lt;/h4&gt;
+&lt;p&gt;在&lt;code&gt;Breakpoint Navigator&lt;/code&gt;栏的左下角，点击加号可以给程序添加几种不同类型的断点：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/breakpoint_2.png&quot; alt=&quot;breakpoint_2&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####3、Exception Breakpoint 全局异常断点&lt;/p&gt;
+&lt;h4 id=&quot;exception-breakpoint-&quot;&gt;3、Exception Breakpoint 全局异常断点&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;某些crash是由程序抛出的异常导致的，比如数组越界。可以通过添加异常断点监控异常抛出的位置。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;####4、符号断点 Symbolic Breakpoint&lt;/p&gt;
+&lt;h4 id=&quot;symbolic-breakpoint&quot;&gt;4、符号断点 Symbolic Breakpoint&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;当符号对应的方法被调用时，中断&lt;/li&gt;
@@ -1148,7 +1333,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/breakpoint_3.png&quot; alt=&quot;breakpoint_3&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####5、内存断点&lt;/p&gt;
+&lt;h4 id=&quot;section-5&quot;&gt;5、内存断点&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;当该块内存被调用时中断&lt;/li&gt;
@@ -1164,7 +1349,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/breakpoint_5.png&quot; alt=&quot;breakpoint_5&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;###四、灵活的使用调试手段&lt;/p&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;四、灵活的使用调试手段&lt;/h3&gt;
 
 &lt;p&gt;以上这些调试手段虽然看起来比较简单，但只要灵活运用，就可以为调试带来很多便利和可能性。&lt;br /&gt;
 比如下面一个例子&lt;/p&gt;
@@ -1179,8 +1364,8 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 
 </description>
         <pubDate>Fri, 26 Feb 2016 00:00:00 +0800</pubDate>
-        <link>http://vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/xcode-debug</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/xcode-debug</guid>
+        <link>http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html</guid>
         
         <category>iOS</category>
         
@@ -1195,9 +1380,7 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
         <title>iOS 面试题集锦</title>
         <description>&lt;p&gt;整理一些面试相关的知识。&lt;/p&gt;
 
-&lt;!--more--&gt;
-
-&lt;p&gt;###1.简述OC中内存管理机制。与retain配对使用的方法是dealloc还是release，为什么？需要与alloc配对使用的方法是dealloc还是release，为什么？readwrite，readonly，assign，retain，copy，nonatomic 、atomic、strong、weak属性的作用？&lt;/p&gt;
+&lt;h3 id=&quot;ocretaindeallocreleaseallocdeallocreleasereadwritereadonlyassignretaincopynonatomic-atomicstrongweak&quot;&gt;1.简述OC中内存管理机制。与retain配对使用的方法是dealloc还是release，为什么？需要与alloc配对使用的方法是dealloc还是release，为什么？readwrite，readonly，assign，retain，copy，nonatomic 、atomic、strong、weak属性的作用？&lt;/h3&gt;
 
 &lt;p&gt;管理机制：使用了一种叫做引用计数的机制来管理内存中的对象。OC中每个对象都对应着他们自己的引用计数，引用计数可以理解为一个整数计数器，当使用alloc方法创建对象的时候，持有计数会自动设置为1。当你向一个对象发送retain消息 时，持有计数数值会增加1。相反，当你像一个对象发送release消息时，持有计数数值会减小1。当对象的持有计数变为0的时候，对象会释放自己所占用的内存。&lt;/p&gt;
 
@@ -1232,13 +1415,15 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
 }  }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###2.类变量的@protected ,@private,@public,@package，声明各有什么含义？&lt;br /&gt;
-* @private：作用范围只能在自身类&lt;br /&gt;
-* @protected：作用范围在自身类和继承自己的子类  （默认）&lt;br /&gt;
-* @public：作用范围最大，可以在任何地方被访问。&lt;br /&gt;
-* @package：这个类型最常用于框架类的实例变量,同一包内能用，跨包就不能访问&lt;/p&gt;
+&lt;h3 id=&quot;protected-privatepublicpackage&quot;&gt;2.类变量的@protected ,@private,@public,@package，声明各有什么含义？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;@private：作用范围只能在自身类&lt;/li&gt;
+  &lt;li&gt;@protected：作用范围在自身类和继承自己的子类  （默认）&lt;/li&gt;
+  &lt;li&gt;@public：作用范围最大，可以在任何地方被访问。&lt;/li&gt;
+  &lt;li&gt;@package：这个类型最常用于框架类的实例变量,同一包内能用，跨包就不能访问&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;###3.线程是什么？进程是什么？二者有什么区别和联系？&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;3.线程是什么？进程是什么？二者有什么区别和联系？&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;一个程序至少有一个进程,一个进程至少有一个线程：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1260,32 +1445,36 @@ sudo gem install -n /usr/local/bin/ jekyll –version “=2.5.2”&lt;br /&gt;
   &lt;p&gt;举例说明：操作系统有多个软件在运行（QQ、office、音乐等），这些都是一个个进程，而每个进程里又有好多线程（比如QQ，你可以同时聊天，发送文件等）&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###4.谈谈你对多线程开发的理解？ios中有几种实现多线程的方法？&lt;/p&gt;
+&lt;h3 id=&quot;ios&quot;&gt;4.谈谈你对多线程开发的理解？ios中有几种实现多线程的方法？&lt;/h3&gt;
 
-&lt;p&gt;#####好处：&lt;br /&gt;
-* 1.使用线程可以把占据时间长的程序中的任务放到后台去处理&lt;br /&gt;
-* 2.用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度&lt;br /&gt;
-* 3.程序的运行速度可能加快&lt;br /&gt;
-* 4·在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。&lt;br /&gt;
-#####缺点：&lt;br /&gt;
-* 1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。&lt;br /&gt;
-* 2.更多的线程需要更多的内存空间。&lt;br /&gt;
-* 3.线程的中止需要考虑其对程序运行的影响。&lt;br /&gt;
-* 4.通常块模型数据是在多个线程间共享的，需要防止线程死锁情况的发生。&lt;br /&gt;
-####实现多线程的方法：&lt;br /&gt;
-* NSObject类方法&lt;br /&gt;
-* NSThread&lt;br /&gt;
-* NSOperation&lt;br /&gt;
-* GCD&lt;/p&gt;
+&lt;h5 id=&quot;section-1&quot;&gt;好处：&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.使用线程可以把占据时间长的程序中的任务放到后台去处理&lt;/li&gt;
+  &lt;li&gt;2.用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度&lt;/li&gt;
+  &lt;li&gt;3.程序的运行速度可能加快&lt;/li&gt;
+  &lt;li&gt;4·在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。&lt;br /&gt;
+##### 缺点：&lt;/li&gt;
+  &lt;li&gt;1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。&lt;/li&gt;
+  &lt;li&gt;2.更多的线程需要更多的内存空间。&lt;/li&gt;
+  &lt;li&gt;3.线程的中止需要考虑其对程序运行的影响。&lt;/li&gt;
+  &lt;li&gt;4.通常块模型数据是在多个线程间共享的，需要防止线程死锁情况的发生。&lt;br /&gt;
+#### 实现多线程的方法：&lt;/li&gt;
+  &lt;li&gt;NSObject类方法&lt;/li&gt;
+  &lt;li&gt;NSThread&lt;/li&gt;
+  &lt;li&gt;NSOperation&lt;/li&gt;
+  &lt;li&gt;GCD&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;###5.线程同步和异步的区别？IOS中如何实现多线程的同步？&lt;br /&gt;
-* &lt;strong&gt;异步&lt;/strong&gt;：举个简单的例子 就是游戏，游戏会有图像和背景音乐&lt;br /&gt;
-* &lt;strong&gt;同步&lt;/strong&gt;:是指一个线程要等待上一个线程执行完之后才开始执行当前的线程,上厕所&lt;br /&gt;
-* NSOperationQueue：maxcurrentcount&lt;br /&gt;
-* NSConditionLock&lt;br /&gt;
-* GCD -&amp;gt; &lt;a href=&quot;http://blog.csdn.net/onlyou930/article/details/8225906&quot;&gt;(http://blog.csdn.net/onlyou930/article/details/8225906&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;ios-1&quot;&gt;5.线程同步和异步的区别？IOS中如何实现多线程的同步？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;异步&lt;/strong&gt;：举个简单的例子 就是游戏，游戏会有图像和背景音乐&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;同步&lt;/strong&gt;:是指一个线程要等待上一个线程执行完之后才开始执行当前的线程,上厕所&lt;/li&gt;
+  &lt;li&gt;NSOperationQueue：maxcurrentcount&lt;/li&gt;
+  &lt;li&gt;NSConditionLock&lt;/li&gt;
+  &lt;li&gt;GCD -&amp;gt; &lt;a href=&quot;http://blog.csdn.net/onlyou930/article/details/8225906&quot;&gt;(http://blog.csdn.net/onlyou930/article/details/8225906&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;###6.假设有一个字符串aabcad，请写一段程序，去掉字符串中不相邻的重复字符串，即上述字符串处理之后的输出结果为：aabcd&lt;/p&gt;
+&lt;h3 id=&quot;aabcadaabcd&quot;&gt;6.假设有一个字符串aabcad，请写一段程序，去掉字符串中不相邻的重复字符串，即上述字符串处理之后的输出结果为：aabcd&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSMutableString * str = [[NSMutableString alloc]initWithFormat;@“aabcad”];
 for (int i = 0 ,i &amp;lt; str.length - 1 ;i++){
@@ -1303,7 +1492,7 @@ for (int i = 0 ,i &amp;lt; str.length - 1 ;i++){
 NSLog(@“%@”,str);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###7.获取一台设备唯一标识的方法有哪些？&lt;/p&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;7.获取一台设备唯一标识的方法有哪些？&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/max5945/archive/2013/06/24/3152292.html&quot;&gt;http://www.cnblogs.com/max5945/archive/2013/06/24/3152292.html&lt;/a&gt;&lt;/p&gt;
 
@@ -1317,11 +1506,11 @@ NSLog(@“%@”,str);
 &amp;gt; ios7以后使用keychain&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###8.iOS类是否可以多继承？如果没有，那可以用其他方法实现吗？简述实现过程。&lt;/p&gt;
+&lt;h3 id=&quot;ios-2&quot;&gt;8.iOS类是否可以多继承？如果没有，那可以用其他方法实现吗？简述实现过程。&lt;/h3&gt;
 
 &lt;p&gt;不可以多继承    用protocol实现&lt;/p&gt;
 
-&lt;p&gt;###9.堆和栈的区别？&lt;/p&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;9.堆和栈的区别？&lt;/h3&gt;
 
 &lt;p&gt;堆需要用户手动释放内存，而栈则是编译器自动释放内存&lt;/p&gt;
 
@@ -1329,23 +1518,24 @@ NSLog(@“%@”,str);
   &lt;p&gt;问题扩展：要知道OC中NSString的内存存储方式&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###10.iOS本地数据存储都有哪几种方式？&lt;br /&gt;
-* NSKeyedArchiver    &lt;br /&gt;
-* NSUserDefaults&lt;br /&gt;
-* Write写入方式&lt;br /&gt;
-* SQLite3&lt;br /&gt;
+&lt;h3 id=&quot;ios-3&quot;&gt;10.iOS本地数据存储都有哪几种方式？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;NSKeyedArchiver&lt;/li&gt;
+  &lt;li&gt;NSUserDefaults&lt;/li&gt;
+  &lt;li&gt;Write写入方式&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SQLite3&lt;br /&gt;
 &lt;a href=&quot;http://blog.csdn.net/tianyitianyi1/article/details/7713103&quot;&gt;http://blog.csdn.net/tianyitianyi1/article/details/7713103&lt;/a&gt;&lt;br /&gt;
 &amp;gt; 问题扩展：什么情况下使用什么样的数据存储&lt;/p&gt;
-
-&lt;ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;1.NSKeyedArchiver：采用归档的形式来保存数据，数据对象需要遵守NSCoding协议，对象对应的类必须提供encodeWithCoder:和initWithCoder:方法。缺点：只能一次性归档保存以及一次性解压。所以只能针对小量数据，对数据操作比较笨拙，如果想改动数据的某一小部分，需要解压或归档整个数据。&lt;/li&gt;
   &lt;li&gt;2.NSUserDefaults：用来保存应用程序设置和属性、用户保存的数据。用户再次打开程序或开机后这些数据仍然存在。NSUserDefaults可以存储的数据类型包括：NSData、NSString、NSNumber、NSDate、NSArray、NSDictionary。缺点：如果要存储其他类型，需要转换为前面的类型，才能用NSUserDefaults存储。&lt;/li&gt;
   &lt;li&gt;3.Write写入方式：永久保存在磁盘中。第一步：获得文件即将保存的路径：第二步：生成在该路径下的文件：第三步：往文件中写入数据：最后：从文件中读出数据：&lt;/li&gt;
   &lt;li&gt;4.SQLite：采用SQLite数据库来存储数据。SQLite作为一中小型数据库，应用ios中，跟前三种保存方式相比，相对比较复杂一些。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###11.写出方法获取iOS内存使用情况。&lt;br /&gt;
-&lt;a href=&quot;http://blog.sina.com.cn/s/blog_698415f20100yjlo.html&quot;&gt;http://blog.sina.com.cn/s/blog_698415f20100yjlo.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;ios-4&quot;&gt;11.写出方法获取iOS内存使用情况。&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_698415f20100yjlo.html&quot;&gt;http://blog.sina.com.cn/s/blog_698415f20100yjlo.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// 获取当前设备可用内存及所占内存的头文件
 #import &amp;lt;sys/sysctl.h&amp;gt;
@@ -1387,8 +1577,8 @@ NSLog(@“%@”,str);
   &lt;p&gt;问题扩展：如何利用Xcode观察内存使用情况&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###12.深拷贝和浅拷贝的理解？&lt;br /&gt;
-&lt;a href=&quot;http://blog.sina.com.cn/s/blog_7b9d64af01019jq8.html&quot;&gt;http://blog.sina.com.cn/s/blog_7b9d64af01019jq8.html&lt;/a&gt;&lt;br /&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;12.深拷贝和浅拷贝的理解？&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_7b9d64af01019jq8.html&quot;&gt;http://blog.sina.com.cn/s/blog_7b9d64af01019jq8.html&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://blog.sina.com.cn/s/blog_7b9d64af01019k6n.html&quot;&gt;http://blog.sina.com.cn/s/blog_7b9d64af01019k6n.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1397,22 +1587,22 @@ NSLog(@“%@”,str);
   &lt;li&gt;深拷贝时复制一个跟源对象不同地址的对象 改变源对象对新对象没有影响&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###13.怎样实现一个singleton的类。&lt;br /&gt;
-&lt;a href=&quot;http://blog.csdn.net/zhugq_1988/article/details/8568033&quot;&gt;http://blog.csdn.net/zhugq_1988/article/details/8568033&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;singleton&quot;&gt;13.怎样实现一个singleton的类。&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/zhugq_1988/article/details/8568033&quot;&gt;http://blog.csdn.net/zhugq_1988/article/details/8568033&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;问题扩展：单例的好处是什么？–&amp;gt; 节省内存&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###14.什么是安全释放？&lt;/p&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;14.什么是安全释放？&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;置nil 再释放&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;###15.RunLoop是什么？&lt;br /&gt;
-&lt;a href=&quot;http://blog.csdn.net/jjunjoe/article/details/8313016&quot;&gt;http://blog.csdn.net/jjunjoe/article/details/8313016&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;runloop&quot;&gt;15.RunLoop是什么？&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/jjunjoe/article/details/8313016&quot;&gt;http://blog.csdn.net/jjunjoe/article/details/8313016&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;###16.什么是序列化和反序列化，可以用来做什么？如何在OC中实现复杂对象的存储？&lt;br /&gt;
-&lt;a href=&quot;http://blog.csdn.net/zjl201309/article/details/12707979&quot;&gt;http://blog.csdn.net/zjl201309/article/details/12707979&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;oc&quot;&gt;16.什么是序列化和反序列化，可以用来做什么？如何在OC中实现复杂对象的存储？&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/zjl201309/article/details/12707979&quot;&gt;http://blog.csdn.net/zjl201309/article/details/12707979&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;序列化是把对象转化成字节序列的过程  反序列化是把字节序列恢复成对象&lt;/li&gt;
@@ -1420,7 +1610,7 @@ NSLog(@“%@”,str);
   &lt;li&gt;遵循NSCoding协议 实现复杂对象的存储 实现该协议后可以对其进行打包或解包，转化成NSData&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###17.写一个标准宏MIN，这个宏输入两个参数并返回较小的一个？&lt;/p&gt;
+&lt;h3 id=&quot;min&quot;&gt;17.写一个标准宏MIN，这个宏输入两个参数并返回较小的一个？&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;\#define MIN(X,Y)  ((X)&amp;gt;(Y)?(Y):(X))
 &lt;/code&gt;&lt;/pre&gt;
@@ -1432,12 +1622,12 @@ NSLog(@“%@”,str);
 3. 结尾无分号&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###18.iOS有没有垃圾回收机制？简单阐述一下OC内存管理。&lt;/p&gt;
+&lt;h3 id=&quot;iosoc&quot;&gt;18.iOS有没有垃圾回收机制？简单阐述一下OC内存管理。&lt;/h3&gt;
 
 &lt;p&gt;iOS没有垃圾回收机制  oc的内存管理是&lt;strong&gt;谁创建谁释放&lt;/strong&gt;  程序中遇到retain 该对象引用计数+1 遇release该对象引用计数-1 retainCount为0时 内存释放&lt;/p&gt;
 
-&lt;p&gt;###19.简述应用程序按Home键进入后台时的生命周期，以及从后台回到前台时的生命周期？&lt;br /&gt;
-&lt;a href=&quot;http://blog.csdn.net/totogo2010/article/details/8048652&quot;&gt;http://blog.csdn.net/totogo2010/article/details/8048652&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;home&quot;&gt;19.简述应用程序按Home键进入后台时的生命周期，以及从后台回到前台时的生命周期？&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/totogo2010/article/details/8048652&quot;&gt;http://blog.csdn.net/totogo2010/article/details/8048652&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;自己可以写个demo来测试一下&lt;br /&gt;
 进入后台时&lt;/p&gt;
@@ -1452,8 +1642,8 @@ NSLog(@“%@”,str);
 -(void)applicationWillResignActive:(UIApplication *)application;
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;###20.ViewController 的 alloc，loadView, viewDidLoad,viewWillAppear,viewDidUnload,dealloc、init分别是在什么时候调用的？在自定义ViewController的时候这几个函数里面应该做什么工作？&lt;br /&gt;
-&lt;a href=&quot;http://www.xuebuyuan.com/672935.html&quot;&gt;http://www.xuebuyuan.com/672935.html&lt;/a&gt;&lt;br /&gt;
+&lt;h3 id=&quot;viewcontroller--allocloadview-viewdidloadviewwillappearviewdidunloaddeallocinitviewcontroller&quot;&gt;20.ViewController 的 alloc，loadView, viewDidLoad,viewWillAppear,viewDidUnload,dealloc、init分别是在什么时候调用的？在自定义ViewController的时候这几个函数里面应该做什么工作？&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.xuebuyuan.com/672935.html&quot;&gt;http://www.xuebuyuan.com/672935.html&lt;/a&gt;&lt;br /&gt;
 自己写代码测试加深理解&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1466,16 +1656,18 @@ NSLog(@“%@”,str);
   &lt;li&gt;init视图初始化时调用&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###21.描述应用程序的启动顺序。&lt;br /&gt;
-1. 程序入口main函数创建UIApplication实例和UIApplication代理实例。&lt;br /&gt;
-2. 在UIApplication代理实例中重写启动方法，设置第一ViewController。&lt;br /&gt;
-3. 在第一ViewController中添加控件，实现应用程序界面。&lt;/p&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;21.描述应用程序的启动顺序。&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;程序入口main函数创建UIApplication实例和UIApplication代理实例。&lt;/li&gt;
+  &lt;li&gt;在UIApplication代理实例中重写启动方法，设置第一ViewController。&lt;/li&gt;
+  &lt;li&gt;在第一ViewController中添加控件，实现应用程序界面。&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;###22.为什么很多内置类如UITableViewControl的delegate属性都是assign而不是retain？请举例说明。&lt;/p&gt;
+&lt;h3 id=&quot;uitableviewcontroldelegateassignretain&quot;&gt;22.为什么很多内置类如UITableViewControl的delegate属性都是assign而不是retain？请举例说明。&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;防止循环引用&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;###23.使用UITableView时候必须要实现的几种方法？&lt;/p&gt;
+&lt;h3 id=&quot;uitableview&quot;&gt;23.使用UITableView时候必须要实现的几种方法？&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;//
 -(NSInteger)tableView:(UITableView *)tableView NumberOfRowsInSection:(NSInteger)section;
@@ -1486,14 +1678,14 @@ NSLog(@“%@”,str);
 ``` 这个方法是返回我们调用的每一个单元格。通过我们索引的路径的section和row来确定
 
 
-###24.写一个便利构造器。
+### 24.写一个便利构造器。
 ```objc
 //id代表任意类型指针，这里代表Student *,类方法
 +(id)studentWithName:(NSString *)newName  andAge:(int)newAge {     Student *stu=[[Student alloc]initName:newName andAge:newAge];     return [stu autorelease];//自动释放 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###25.UIImage初始化一张图片有几种方法？简述各自的优缺点。&lt;br /&gt;
-&lt;a href=&quot;http://blog.sina.com.cn/s/blog_a843a8850101flo3.html&quot;&gt;http://blog.sina.com.cn/s/blog_a843a8850101flo3.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;uiimage&quot;&gt;25.UIImage初始化一张图片有几种方法？简述各自的优缺点。&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_a843a8850101flo3.html&quot;&gt;http://blog.sina.com.cn/s/blog_a843a8850101flo3.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;三种：&lt;/p&gt;
 
@@ -1503,13 +1695,13 @@ NSLog(@“%@”,str);
   &lt;li&gt;&lt;code&gt;imageWithCGImage：scale：orientation&lt;/code&gt; 当scale=1&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###26.回答person的retainCount值，并解释为什么&lt;/p&gt;
+&lt;h3 id=&quot;personretaincount&quot;&gt;26.回答person的retainCount值，并解释为什么&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;Person * per = [[Person alloc] init];
 self.person = per;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###27.这段代码有什么问题吗:&lt;/p&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;27.这段代码有什么问题吗:&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;@implementation Person
 - (void)setAge:(int)newAge {
@@ -1532,7 +1724,7 @@ self.person = per;
   &lt;p&gt;扩展：知道如何正确写setter和getter方法&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###28.这段代码有什么问题,如何修改&lt;/p&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;28.这段代码有什么问题,如何修改&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;for (int i = 0; i &amp;lt; someLargeNumber; i++) { 
 	NSString *string = @”Abc”;//常量区
@@ -1544,15 +1736,7 @@ self.person = per;
 &lt;p&gt;在for循环里添加自动释放池&lt;br /&gt;
 &amp;gt; 扩展：常量区的retaincount是怎么个情况&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;###29.截取字符串”20&lt;/td&gt;
-      &lt;td&gt;http://www.baidu.com”中，”&lt;/td&gt;
-      &lt;td&gt;”字符前面和后面的数据，分别输出它们。&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;h3 id=&quot;httpwwwbaiducom&quot;&gt;29.截取字符串”20 | http://www.baidu.com”中，”|”字符前面和后面的数据，分别输出它们。&lt;/h3&gt;
 
 &lt;p&gt;使用方法&lt;code&gt;componentsSeparatedByString:&lt;/code&gt;，示例如下：&lt;/p&gt;
 
@@ -1561,7 +1745,7 @@ for(NSString*s in [str componentsSeparatedByString:&quot;|&quot;]){
 NSLog(@“%@“,s);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###30.用obj-c写一个冒泡排序&lt;/p&gt;
+&lt;h3 id=&quot;obj-c&quot;&gt;30.用obj-c写一个冒泡排序&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;for（int i = 0, i &amp;lt; arr.count - 1,i++){
 	for (int j = 0,j &amp;lt; arr.count - 1 - i;j++){
@@ -1575,27 +1759,27 @@ NSLog(@“%@“,s);
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###31.简述你对UIView、UIWindow和CALayer的理解&lt;/p&gt;
+&lt;h3 id=&quot;uiviewuiwindowcalayer&quot;&gt;31.简述你对UIView、UIWindow和CALayer的理解&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/kuqideyupian/article/details/7731942&quot;&gt;http://blog.csdn.net/kuqideyupian/article/details/7731942&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://o0o0o0o.iteye.com/blog/1728599&quot;&gt;http://o0o0o0o.iteye.com/blog/1728599&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;###32.写一个完整的代理，包括声明，实现&lt;/p&gt;
+&lt;h3 id=&quot;section-9&quot;&gt;32.写一个完整的代理，包括声明，实现&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;注意手写的准确性&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###33.分析json、xml的区别？json、xml解析方式的底层是如何处理的？&lt;/p&gt;
+&lt;h3 id=&quot;jsonxmljsonxml&quot;&gt;33.分析json、xml的区别？json、xml解析方式的底层是如何处理的？&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.open-open.com/bbs/view/1324367918671&quot;&gt;http://www.open-open.com/bbs/view/1324367918671&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://hi.baidu.com/fevelen/item/a25253ab76f766756cd455b6&quot;&gt;http://hi.baidu.com/fevelen/item/a25253ab76f766756cd455b6&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;###34.ViewController 的 didReceiveMemoryWarning 是在什么时候被调用的？默认的操作是什么?&lt;/p&gt;
+&lt;h3 id=&quot;viewcontroller--didreceivememorywarning-&quot;&gt;34.ViewController 的 didReceiveMemoryWarning 是在什么时候被调用的？默认的操作是什么?&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_68661bd80101nn6p.html&quot;&gt;http://blog.sina.com.cn/s/blog_68661bd80101nn6p.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;###35.面向对象的三大特征，并作简单的介绍&lt;/p&gt;
+&lt;h3 id=&quot;section-10&quot;&gt;35.面向对象的三大特征，并作简单的介绍&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;封装、继承、多态&lt;/strong&gt;&lt;/p&gt;
 
@@ -1650,7 +1834,7 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 
 &lt;p&gt;(UITableViewCell *)指向cell子类对象&lt;/p&gt;
 
-&lt;p&gt;###36.重写一个NSString类型的，retain方式声明name属性的setter和getter方法&lt;/p&gt;
+&lt;h3 id=&quot;nsstringretainnamesettergetter&quot;&gt;36.重写一个NSString类型的，retain方式声明name属性的setter和getter方法&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;-(void)settetName:(NSString *)name{
 	if(_name){
@@ -1663,20 +1847,20 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###37.简述NotificationCenter、KVC、KVO、Delegate？并说明它们之间的区别？&lt;/p&gt;
+&lt;h3 id=&quot;notificationcenterkvckvodelegate&quot;&gt;37.简述NotificationCenter、KVC、KVO、Delegate？并说明它们之间的区别？&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/zuoerjin/article/details/7858488&quot;&gt;http://blog.csdn.net/zuoerjin/article/details/7858488&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://blog.sina.com.cn/s/blog_bf9843bf0101j5px.html&quot;&gt;http://blog.sina.com.cn/s/blog_bf9843bf0101j5px.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;###38.What is lazy loading?&lt;/p&gt;
+&lt;h3 id=&quot;what-is-lazy-loading&quot;&gt;38.What is lazy loading?&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;懒加载模式&lt;/strong&gt;，只在用到的时候才去初始化。也可以理解成延时加载。我觉得最好也最简单的一个列子就是tableView中图片的加载显示了。一个延时载，避免内存过高，一个异步加载，避免线程堵塞&lt;/p&gt;
 
-&lt;p&gt;###39.什么是Protocol？什么是代理？写一个委托的interface？委托的property声明用什么属性？为什么？&lt;/p&gt;
+&lt;h3 id=&quot;protocolinterfaceproperty&quot;&gt;39.什么是Protocol？什么是代理？写一个委托的interface？委托的property声明用什么属性？为什么？&lt;/h3&gt;
 
 &lt;p&gt;委托的property声明用什么属性是assign（防止循环引用）&lt;/p&gt;
 
-&lt;p&gt;###40.分别描述类别（categories）和延展（extensions）是什么？以及两者的区别？继承和类别在实现中有何区别？为什么Category只能为对象添加方法，却不能添加成员变量？&lt;/p&gt;
+&lt;h3 id=&quot;categoriesextensionscategory&quot;&gt;40.分别描述类别（categories）和延展（extensions）是什么？以及两者的区别？继承和类别在实现中有何区别？为什么Category只能为对象添加方法，却不能添加成员变量？&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;考虑类目比继承的优点&lt;/li&gt;
@@ -1686,11 +1870,11 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
   &lt;li&gt;类别如果可以添加成员变量 就跟继承没什么两样了  而且在上线的项目更新中 用类别笔继承更能维护项目的稳定性&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###41.Objective-C有私有方法么？私有变量呢？如多没有的话，有没有什么代替的方法？&lt;/p&gt;
+&lt;h3 id=&quot;objective-c&quot;&gt;41.Objective-C有私有方法么？私有变量呢？如多没有的话，有没有什么代替的方法？&lt;/h3&gt;
 
 &lt;p&gt;OC没有私有方法 但是有私有变量 @property  私有方法可以用延展代替&lt;/p&gt;
 
-&lt;p&gt;###42.#import、#include和@class有什么区别&lt;/p&gt;
+&lt;h3 id=&quot;importincludeclass&quot;&gt;42.#import、#include和@class有什么区别&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;#import 系统文件、自定义文件引用 不用担心重复引用的问题&lt;/li&gt;
@@ -1698,11 +1882,11 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
   &lt;li&gt;@class 只是告诉系统有这个类 但是如果在实现类中用到这个类 需要重新用#import导入该类头文件&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;###43.谈谈你对MVC的理解？为什么要用MVC？在Cocoa中MVC是怎么实现的？你还熟悉其他的OC设计模式或别的设计模式吗？&lt;/p&gt;
+&lt;h3 id=&quot;mvcmvccocoamvcoc&quot;&gt;43.谈谈你对MVC的理解？为什么要用MVC？在Cocoa中MVC是怎么实现的？你还熟悉其他的OC设计模式或别的设计模式吗？&lt;/h3&gt;
 
 &lt;p&gt;mvc - model view controller ，避免了view与model 的强耦合 使代码更灵活 更容易维护 可复用 可扩展   OC其他设计模式有Notification 。target；action.  singleton delegate&lt;/p&gt;
 
-&lt;p&gt;###44.如监测系统键盘的弹出&lt;/p&gt;
+&lt;h3 id=&quot;section-11&quot;&gt;44.如监测系统键盘的弹出&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;//监听通知
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector( ) name:UIKeyboardWillShowNotification object:nil];
@@ -1711,15 +1895,15 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
   &lt;p&gt;扩展：ios 弹出键盘挡住UITextView的解决方式&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###45.举出5个以上你所熟悉的ios  sdk库有哪些和第三方库有哪些？&lt;/p&gt;
+&lt;h3 id=&quot;ios--sdk&quot;&gt;45.举出5个以上你所熟悉的ios  sdk库有哪些和第三方库有哪些？&lt;/h3&gt;
 
 &lt;p&gt;AFWorking / WebKit / SQLite / Core Data / Address Book&lt;/p&gt;
 
-&lt;p&gt;###46.如何将产品进行多语言发布？&lt;/p&gt;
+&lt;h3 id=&quot;section-12&quot;&gt;46.如何将产品进行多语言发布？&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://fengmm521.blog.163.com/blog/static/25091358201291645852889/&quot;&gt;http://fengmm521.blog.163.com/blog/static/25091358201291645852889/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;###47.如何将敏感字变成**&lt;/p&gt;
+&lt;h3 id=&quot;section-13&quot;&gt;47.如何将敏感字变成**&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;	search = @&quot;某某某&quot;;
     replace = @&quot;***&quot;;
@@ -1728,12 +1912,12 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
     NSLog(@&quot;%@&quot;,mstr);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;###48.objc中的减号与加号代表什么？&lt;/p&gt;
+&lt;h3 id=&quot;objc&quot;&gt;48.objc中的减号与加号代表什么？&lt;/h3&gt;
 
 &lt;p&gt;-表示实例方法&lt;br /&gt;
 +表示类方法&lt;/p&gt;
 
-&lt;p&gt;###49.单例目的是什么，并写出一个？&lt;/p&gt;
+&lt;h3 id=&quot;section-14&quot;&gt;49.单例目的是什么，并写出一个？&lt;/h3&gt;
 
 &lt;p&gt;避免重复创建  节省内存空间&lt;br /&gt;
 &lt;code&gt;
@@ -1748,7 +1932,7 @@ static Model * model;
 }
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;###50.说说响应链&lt;/p&gt;
+&lt;h3 id=&quot;section-15&quot;&gt;50.说说响应链&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.tuicool.com/articles/6jmUje&quot;&gt;http://www.tuicool.com/articles/6jmUje&lt;/a&gt;&lt;/p&gt;
 
@@ -1756,8 +1940,8 @@ static Model * model;
 
 </description>
         <pubDate>Tue, 23 Feb 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/tips/ios-interview</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/tips/ios-interview</guid>
+        <link>http://www.vanbein.com/posts/tips/2016/02/23/ios-interview.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/tips/2016/02/23/ios-interview.html</guid>
         
         <category>iOS</category>
         
@@ -1769,190 +1953,62 @@ static Model * model;
       </item>
     
       <item>
-        <title>UINavigationController基础</title>
-        <description>&lt;!--more--&gt;
+        <title>KVC的一些不为人知小技巧</title>
+        <description>&lt;p&gt;本文主要来记录下一些不为人知，也经常被忽略掉，并且很实用的KVC干货小技巧&lt;/p&gt;
 
-&lt;p&gt;##一、UINavigationController 设置&lt;br /&gt;
-UINavigationController通常被我们称为导航栏，它是视图与视图之间联系沟通的桥梁，几乎所有app都用到了它。下面我们来看一下如何建立一个navigation。&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;一、获取数组里的,最大、最小、平均、求和&lt;/h3&gt;
 
-&lt;p&gt;首先，我们通常新建工程是直接将视图控制器添加到window上，而现在有navigation以后，就多了一层：&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;objc AppDelegate.m
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions  
-{  
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];  
-	//
-    self.window.backgroundColor = [UIColor whiteColor];  
-    //至少要有一个被管理的试图控制器，这个控制器我们称作:导航控制器的根视图控制器RootViewController
-    RootViewController *root = [[RootViewController alloc]init];  
-    //先将rootVC添加在navigation上
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:root];
-    //navigation加在window上      
-    [_window setRootViewController:nav];  
-    //
-    [self.window makeKeyAndVisible];  
-    return YES;  
-}
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这样我们的navigation就加载上去了。下面我们来设置navigation的属性：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;- (void)viewDidLoad  
-{  
-    [super viewDidLoad];  
-    //
-    //  获取到 UINavigationBar，
-    UINavigationBar *bar = self.navigationController.navigationBar;
-    //
-    //  设置导航条样式
-    //  默认的时白色半透明（有点灰的感觉）,
-    //  UIBarStyleBlack,UIBarStyleBlackTranslucent,UIBarStyleBlackOpaque都是黑色半透明，
-    //  其实它们有的是不透明有的是透明有的是半透明，但不知为何无效果
-    [bar setBarStyle:UIBarStyleBlack];
-    //
-    //  设置navigationbar的半透明
-    [bar setTranslucent:NO];
-    //
-    //  设置navigationbar上显示的标题 两种方式，推荐第一种 
-    self.title = @&quot;navigationController&quot;; //1
-    [self.navigationItem setTitle:@&quot;navigationController&quot;];  //2
-    //
-    //  设置navigationbar的tittle颜色
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //  它的dictionary的key定义以及其对应的value类型如下：
-    //  Keys for Text Attributes Dictionaries
-	//  NSString *const UITextAttributeFont;                       value: UIFont
-	//  NSString *const UITextAttributeTextColor;                 value: UIColor
-	//  NSString *const UITextAttributeTextShadowColor;       value: UIColor
-	//  NSString *const UITextAttributeTextShadowOffset;      value: NSValue wrapping a UIOffset struct.
-    //  设置navigationbar左边按钮  
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:Nil]; 
-    // 
-    //  设置navigationbar右边按钮 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonItemStylePlain target:self action:Nil]; 
-    //  
-    //  设置navigationbar上左右按钮字体颜色
-    [bar setTintColor:[UIColor whiteColor]]; 
-    //
-    //  设置导航条的左右按钮
-    //  先实例化创建一个UIBarButtonItem，然后把这个按钮赋值给self.navigationItem.leftBarButtonItem即可
-    //  初始化文字的按钮类型有UIBarButtonItemStylePlain和UIBarButtonItemStyleDone两种类型，区别貌似不大
-    //  UIBarButtonItem *barBtn1=[[UIBarButtonItem alloc]initWithTitle:@&quot;左边&quot; style:UIBarButtonItemStylePlain target:self action:@selector(changeColor)];
-    //  self.navigationItem.leftBarButtonItem=barBtn1;
-    //  我们还可以在左边和右边加不止一个按钮，,且可以添加任意视图，以右边为例
-    //  添加多个其实就是rightBarButtonItems属性，注意还有一个rightBarButtonItem，前者是赋予一个UIBarButtonItem对象数组，所以可以显示多个。后者被赋值一个UIBarButtonItem对象，所以只能显示一个
-    //  显示顺序，左边：按数组顺序从左向右；右边：按数组顺序从右向左
-    //  可以初始化成系统自带的一些barButton，比如UIBarButtonSystemItemCamera是摄像机，还有Done，Reply等等，会显示成一个icon图标
-    //  还可以initWithImage初始化成图片
-    //  还可以自定义，可以是任意一个UIView
-    //  UIBarButtonItem *barBtn2=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(changeColor2)];
-    //  UIBarButtonItem *barBtn3=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@&quot;logo-40@2x.png&quot;] style:UIBarButtonItemStylePlain target:self action:@selector(changeColor3)];
-    //  UIView *view4=[[UIView alloc]initWithFrame:CGRectMake(10, 10, 20, 20)];
-    //  view4.backgroundColor=[UIColor blackColor];
-    //  UIBarButtonItem *barBtn4=[[UIBarButtonItem alloc]initWithCustomView:view4];
-    //  NSArray *arr1=[[NSArray alloc]initWithObjects:barBtn2,barBtn3,barBtn4, nil nil];
-    //self.navigationItem.rightBarButtonItems=arr1;
-    //
-    //  设置导航栏背景图片
-    //  其中forBarMetrics有点类似于按钮的for state状态，即什么状态下显示
-    //  UIBarMetricsDefault - 竖屏横屏都有，横屏导航条变宽，则自动repeat图片
-    //  UIBarMetricsCompact - 竖屏没有，横屏有，相当于之前老iOS版本里地UIBarMetricsLandscapePhone
-    //  UIBarMetricsCompactPrompt和UIBarMetricsDefaultPrompt暂时不知道用处，
-    //  官方解释是Applicable only in bars with the prompt property, 
-    //  such as UINavigationBar and UISearchBar，
-    [bar setBackgroundImage:[UIImage imageNamed:@&quot;bg.png&quot;] forBarMetrics:UIBarMetricsDefault];
-    //
-    //  如果图片太大会向上扩展侵占状态栏的位置，设置超出导航栏的部分不显示，
-    //bar.clipsToBounds = YES;
-	//
-    //  设置隐藏，由此点击进入其他视图时导航条也会被隐藏，默认是NO
-    //[self.navigationController setNavigationBarHidden:YES];
-}
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSArray *array = @[@&quot;11&quot;, @&quot;9&quot;, @&quot;2&quot;, @&quot;20&quot;, @&quot;8&quot;]; 
+NSNumber *sum = [array valueForKeyPath:@&quot;@sum.floatValue&quot;]; 
+NSNumber *avg = [array valueForKeyPath:@&quot;@avg.floatValue&quot;]; 
+NSNumber *max = [array valueForKeyPath:@&quot;@max.floatValue&quot;]; 
+NSNumber *min = [array valueForKeyPath:@&quot;@min.floatValue&quot;];  
+NSLog(@&quot;sum:%@&quot;,sum); 
+NSLog(@&quot;avg:%@&quot;,avg);
+NSLog(@&quot;max:%@&quot;,max); 
+NSLog(@&quot;min:%@&quot;,min);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这里还有一个属性常用，就是：&lt;/p&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;二、删除重复数据&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;	NSArray *arr = [NSArray arrayWithObjects:@&quot;1&quot;, @&quot;2&quot;, nil];  
-    UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:arr];  
-    self.navigationItem.titleView = segment;//设置navigation上的titleview  
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSArray *array = @[@&quot;a&quot;, @&quot;b&quot;, @&quot;c&quot;, @&quot;a&quot;, @&quot;d&quot;]; //返回的是一个新的数组
+NSArray *newArray = [array valueForKeyPath:@&quot;@distinctUnionOfObjects.self&quot;]; 
+NSLog(@&quot;%@&quot;, newArray);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2016/02/navigation.png&quot; alt=&quot;&amp;quot;UISegmentedControl&amp;quot;&quot; title=&quot;UISegmentedControl&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;name&quot;&gt;同样可以嵌套使用，先剔除name对应值的重复数据再取值&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;NSArray *array = @[ @{@&quot;title&quot;:@&quot;zxp&quot;,@&quot;name&quot;:@&quot;zhangxiaoping&quot;}, @{@&quot;title&quot;:@&quot;zxp2&quot;,@&quot;name&quot;:@&quot;zhangxiaoping2&quot;}, @{@&quot;title&quot;:@&quot;zxp&quot;,@&quot;name&quot;:@&quot;zhangxiaoping3&quot;}, @{@&quot;title&quot;:@&quot;zxp&quot;,@&quot;name&quot;:@&quot;zhangxiaoping&quot;}];
+//根据name字段，来进行重复删除。
+NSArray *newArray = [array valueForKeyPath:@&quot;@distinctUnionOfObjects.name&quot;];
+//如果要根据title字段来删除重名的写法为`@distinctUnionOfObjects.title` 
+NSLog(@&quot;%@&quot;, newArray);
+// print:( zhangxiaoping3, zhangxiaoping2, zhangxiaoping)是一个字符串数组
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;对，我们看到中间的字变成了两个可选的按钮，这就是navigation的另一个属性：&lt;code&gt;navigationitem.titleview&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;四、进行实例方法的调用&lt;/h3&gt;
 
-&lt;p&gt;##UINavigationController的工作原理&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSArray *array = @[@&quot;name&quot;, @&quot;w&quot;, @&quot;aa&quot;, @&quot;ZXPing&quot;]; 
+NSLog(@&quot;%@&quot;, [array valueForKeyPath:@&quot;uppercaseString&quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;相当于数组中的每个成员执行了&lt;code&gt;uppercaseString&lt;/code&gt;方法，然后把返回的对象组成一个新数组返回。既然可以用&lt;code&gt;uppercaseString&lt;/code&gt;方法，那么NSString的其他方法也可以，比如&lt;code&gt;[array valueForKeyPath:@&quot;length&quot;]&lt;/code&gt;。当然，其他对象的实例方法也可以以此类推来进行调用！&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;UINavigationController通过栈的方式管理控制器的切换，控制入栈和出栈，来展示各个视图控制器&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;UINavigationController的ControllersView里始终显示栈顶控制器的view&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;viewControllers 属性存储了栈中的所有被管理的控制器&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;navigationController属性，父类中的属性，每一个在栈中的控制器都能通过此属性，获取自己所在的UINavigationController对象&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;###出栈和入栈的方法&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;pushViewController: animated  //进入下一个视图控制器&lt;/li&gt;
-  &lt;li&gt;popViewControllerAnimated:  //返回上一个视图控制器&lt;/li&gt;
-  &lt;li&gt;popToViewController: animated //返回到指定的视图控制器&lt;/li&gt;
-  &lt;li&gt;popToRootViewControllerAnimated  //返回到根视图控制器&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;###常用属性有&lt;br /&gt;
-* viewControllers  //所有处于栈中的控制器&lt;br /&gt;
-* topViewController  //位于栈顶的控制器&lt;br /&gt;
-* visibleViewController //当前正在显示的控制器&lt;br /&gt;
-* navigationBar  //导航条&lt;br /&gt;
-* topViewController 代表当前navigation栈中最上层的VC，而visibleViewController代表当前可见的VC，它可能是topViewController，也可能是当前topViewController present出来的VC。因此UINavigationController的这两个属性通常情况下是一样，但也有可能不同。&lt;br /&gt;
-####关于 UINavigationBar&lt;br /&gt;
-* navigationBar–导航条，iOS7以后默认是透明的，iOS7以前默认是不透明的。&lt;br /&gt;
-* navigationBar在透明情况下，与contentView会重合一部分区域&lt;br /&gt;
-* navigationBar在不透明情况，ContentView跟在navigationBar下面&lt;br /&gt;
-* navigationBar竖屏下默认高度44，横屏下默认高度32&lt;/p&gt;
-
-&lt;p&gt;####管理UINavigationItem&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;UINavigationBar处理能管理一组UINavigationItem&lt;/li&gt;
-  &lt;li&gt;与UINavigationController相似，UINavigationBar也是以栈的方式管理一组UINavigationItem。提供push和pop操作item&lt;/li&gt;
-  &lt;li&gt;每个视图控制器都有一个navigationItem属性，navigationItem中设置的做按钮、右按钮、标题等，会随着控制器的显示，也显示到navigationBar上&lt;/li&gt;
-  &lt;li&gt;UINavigationItem属于MVC中的M，封装了要显示在UiNavigationBar上的数据
-    &lt;ul&gt;
-      &lt;li&gt;title： 标题&lt;/li&gt;
-      &lt;li&gt;titleView ：标题视图&lt;/li&gt;
-      &lt;li&gt;leftBarButtonItem ：左按钮&lt;/li&gt;
-      &lt;li&gt;rightBarButtonItem ：右按钮&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;####UIBarButtonItem&lt;br /&gt;
-* UIBarButtonItem属于MVC的M，定义了UINavigationItem上按钮的触发事件，外观等&lt;br /&gt;
-* - initWithBarButtonSystemItem：target：action：设置按钮样式及触发事件&lt;br /&gt;
-* - initWithTiltle：style：target：action： 设置标题的触发事件&lt;br /&gt;
-* - initWithImage：style：target：action：设置视图的触发事件&lt;br /&gt;
-* tintColor  设置tintColor可以影响添加在导航条上的系统样式的按钮的颜色&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;参考文章：&lt;a href=&quot;http://www.jianshu.com/p/a6a0abac1c4a&quot;&gt;高效开发iOS系列 – 那些不为人知的KVC&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 </description>
-        <pubDate>Thu, 18 Feb 2016 00:00:00 +0800</pubDate>
-        <link>http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/uiNavigationController</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/uiNavigationController</guid>
+        <pubDate>Mon, 22 Feb 2016 00:00:00 +0800</pubDate>
+        <link>http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html</guid>
         
         <category>iOS</category>
         
-        <category>navigation</category>
+        <category>KVC</category>
+        
+        <category>Bezier</category>
         
         
-        <category>ios基础</category>
+        <category>ios进阶</category>
         
       </item>
     
@@ -1977,8 +2033,8 @@ UINavigationController通常被我们称为导航栏，它是视图与视图之�
 &lt;p&gt;&amp;lt;iframe frameborder=”no” border=”0” marginwidth=”0” marginheight=”0” width=330 height=86 src=”http://music.163.com/outchain/player?type=2&amp;amp;id=29999506&amp;amp;auto=1&amp;amp;height=66”&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 14 Feb 2016 00:00:00 +0800</pubDate>
-        <link>http://vanbein.com/posts/journal/2016-to-myself</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/journal/2016-to-myself</guid>
+        <link>http://www.vanbein.com/posts/journal/2016/02/14/2016-to-myself.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/journal/2016/02/14/2016-to-myself.html</guid>
         
         <category>life</category>
         
@@ -1988,73 +2044,10 @@ UINavigationController通常被我们称为导航栏，它是视图与视图之�
       </item>
     
       <item>
-        <title>KVC的一些不为人知小技巧</title>
-        <description>&lt;p&gt;本文主要来记录下一些不为人知，也经常被忽略掉，并且很实用的KVC干货小技巧&lt;/p&gt;
-
-&lt;p&gt;###一、获取数组里的,最大、最小、平均、求和&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSArray *array = @[@&quot;11&quot;, @&quot;9&quot;, @&quot;2&quot;, @&quot;20&quot;, @&quot;8&quot;]; 
-NSNumber *sum = [array valueForKeyPath:@&quot;@sum.floatValue&quot;]; 
-NSNumber *avg = [array valueForKeyPath:@&quot;@avg.floatValue&quot;]; 
-NSNumber *max = [array valueForKeyPath:@&quot;@max.floatValue&quot;]; 
-NSNumber *min = [array valueForKeyPath:@&quot;@min.floatValue&quot;];  
-NSLog(@&quot;sum:%@&quot;,sum); 
-NSLog(@&quot;avg:%@&quot;,avg);
-NSLog(@&quot;max:%@&quot;,max); 
-NSLog(@&quot;min:%@&quot;,min);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;###二、删除重复数据&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSArray *array = @[@&quot;a&quot;, @&quot;b&quot;, @&quot;c&quot;, @&quot;a&quot;, @&quot;d&quot;]; //返回的是一个新的数组
-NSArray *newArray = [array valueForKeyPath:@&quot;@distinctUnionOfObjects.self&quot;]; 
-NSLog(@&quot;%@&quot;, newArray);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;###同样可以嵌套使用，先剔除name对应值的重复数据再取值&lt;br /&gt;
-&lt;code&gt;
-NSArray *array = @[ @{@&quot;title&quot;:@&quot;zxp&quot;,@&quot;name&quot;:@&quot;zhangxiaoping&quot;}, @{@&quot;title&quot;:@&quot;zxp2&quot;,@&quot;name&quot;:@&quot;zhangxiaoping2&quot;}, @{@&quot;title&quot;:@&quot;zxp&quot;,@&quot;name&quot;:@&quot;zhangxiaoping3&quot;}, @{@&quot;title&quot;:@&quot;zxp&quot;,@&quot;name&quot;:@&quot;zhangxiaoping&quot;}];
-//根据name字段，来进行重复删除。
-NSArray *newArray = [array valueForKeyPath:@&quot;@distinctUnionOfObjects.name&quot;];
-//如果要根据title字段来删除重名的写法为`@distinctUnionOfObjects.title` 
-NSLog(@&quot;%@&quot;, newArray);
-// print:( zhangxiaoping3, zhangxiaoping2, zhangxiaoping)是一个字符串数组
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;###四、进行实例方法的调用&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;NSArray *array = @[@&quot;name&quot;, @&quot;w&quot;, @&quot;aa&quot;, @&quot;ZXPing&quot;]; 
-NSLog(@&quot;%@&quot;, [array valueForKeyPath:@&quot;uppercaseString&quot;]);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;相当于数组中的每个成员执行了&lt;code&gt;uppercaseString&lt;/code&gt;方法，然后把返回的对象组成一个新数组返回。既然可以用&lt;code&gt;uppercaseString&lt;/code&gt;方法，那么NSString的其他方法也可以，比如&lt;code&gt;[array valueForKeyPath:@&quot;length&quot;]&lt;/code&gt;。当然，其他对象的实例方法也可以以此类推来进行调用！&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;参考文章：&lt;a href=&quot;http://www.jianshu.com/p/a6a0abac1c4a&quot;&gt;高效开发iOS系列 – 那些不为人知的KVC&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        <pubDate>Thu, 28 Jan 2016 00:00:00 +0800</pubDate>
-        <link>http://vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao</guid>
-        
-        <category>iOS</category>
-        
-        <category>KVC</category>
-        
-        <category>Bezier</category>
-        
-        
-        <category>ios进阶</category>
-        
-      </item>
-    
-      <item>
         <title>翻墙的正确方式 - 免费且简单粗暴</title>
-        <description>&lt;!--more--&gt;
+        <description>&lt;p&gt;本文主要介绍两种免费的翻墙的方式。&lt;/p&gt;
 
-&lt;p&gt;本文主要介绍两种免费的翻墙的方式。&lt;/p&gt;
-
-&lt;p&gt;###一、为什么要翻墙？&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;一、为什么要翻墙？&lt;/h3&gt;
 
 &lt;p&gt;我在天朝的IT从业人员中，没有人不知道防火长城GFW(Great Firewall of China)的存在。GFW的利与弊在这不再深究。以下列出的我翻墙的理由：&lt;/p&gt;
 
@@ -2065,7 +2058,7 @@ NSLog(@&quot;%@&quot;, [array valueForKeyPath:@&quot;uppercaseString&quot;]);
   &lt;li&gt;世界那么大，我想去看看。可以看看外面的资讯，避免一面之辞。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;###二、翻墙历程&lt;/p&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;二、翻墙历程&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;第一次翻墙，使用了免费的VPN，使用起来很难受，非常不稳定，网速也慢。&lt;/li&gt;
@@ -2074,13 +2067,13 @@ NSLog(@&quot;%@&quot;, [array valueForKeyPath:@&quot;uppercaseString&quot;]);
   &lt;li&gt;第四次翻墙，同样是使用了免费开源的翻墙工具 – &lt;a href=&quot;https://github.com/getlantern/lantern&quot;&gt;蓝灯Lantern&lt;/a&gt;，这个用起来比XX-Net还要爽，因为它使用非常非常简单，只需安装，不需要任何代理配置，可使用平台也多，截止写这篇文章的时候已经出了安卓版，iOS暂时没出。强烈推荐使用&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;###三、Lantern 的使用&lt;/p&gt;
+&lt;h3 id=&quot;lantern-&quot;&gt;三、Lantern 的使用&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;使用很简单，到&lt;a href=&quot;https://github.com/getlantern/lantern&quot;&gt;github地址&lt;/a&gt;选择下载自己平台的软件，安装，打开浏览器显示lantern运行成功后，即可免费不限流量翻墙了，如果您对速率要求非常高，请选择使用XX-Net或花钱买个VPN。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;###四、XX-Net安装过程&lt;/p&gt;
+&lt;h3 id=&quot;xx-net&quot;&gt;四、XX-Net安装过程&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;该项目的github地址：&lt;a href=&quot;https://github.com/XX-net/XX-Net&quot;&gt;https://github.com/XX-net/XX-Net&lt;/a&gt;&lt;/p&gt;
@@ -2095,17 +2088,17 @@ windows系统的可参照官方教程：&lt;a href=&quot;https://github.com/XX-n
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/XX-Net.png&quot; alt=&quot;集成XX-Net的软件&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####1、下载&lt;code&gt;appifed-xx-net&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;appifed-xx-net&quot;&gt;1、下载&lt;code&gt;appifed-xx-net&lt;/code&gt;&lt;/h4&gt;
 
 &lt;p&gt;如上图所示的地方，下载完成后得到一个&lt;code&gt;XX-Net&lt;/code&gt;应用程序，双击打开后会自动打开Safari，此时只需要再配置一下Safari的代理设置即可打开google了。&lt;/p&gt;
 
-&lt;p&gt;####2、代理配置&lt;/p&gt;
+&lt;h4 id=&quot;section-2&quot;&gt;2、代理配置&lt;/h4&gt;
 
 &lt;p&gt;官方的设置代理方法(&lt;a href=&quot;https://github.com/XX-net/XX-Net/wiki/设置代理&quot;&gt;https://github.com/XX-net/XX-Net/wiki/设置代理&lt;/a&gt;)没有包括Mac OS系统的设置方法，经过我自己的测试，只需要在&lt;code&gt;Safari - 偏好设置 - 高级 - 代理&lt;/code&gt;选择&lt;code&gt;更改设置&lt;/code&gt;，然后选择&lt;code&gt;自动代理配置&lt;/code&gt;，在URL中输入&lt;code&gt;http://127.0.0.1:8086/proxy.pac&lt;/code&gt;保存应用即可完成代理的设置，此时我们就可以打开google进行搜索了。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/delegate.png&quot; alt=&quot;设置代理&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####3、添加自己的AppID&lt;/p&gt;
+&lt;h4 id=&quot;appid&quot;&gt;3、添加自己的AppID&lt;/h4&gt;
 
 &lt;p&gt;首先我们需要去创建一个自己的AppID，官方有一个图文并茂的教程，非常清晰：&lt;a href=&quot;https://github.com/XX-net/XX-Net/wiki/how-to-create-my-AppIDs&quot;&gt;how to create my AppIDs&lt;/a&gt;。&lt;/p&gt;
 
@@ -2131,8 +2124,8 @@ windows系统的可参照官方教程：&lt;a href=&quot;https://github.com/XX-n
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/appidsetting.png&quot; alt=&quot;设置AppID&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;####4、设置部署权限&lt;br /&gt;
-提示：在部署之前，AppID是无法使用的，不要将他们填入到XX-Net的配置中。&lt;br /&gt;
+&lt;h4 id=&quot;section-3&quot;&gt;4、设置部署权限&lt;/h4&gt;
+&lt;p&gt;提示：在部署之前，AppID是无法使用的，不要将他们填入到XX-Net的配置中。&lt;br /&gt;
 1、打开&lt;a href=&quot;http://127.0.0.1:8085/?module=goagent&amp;amp;menu=deploy&quot;&gt;http://127.0.0.1:8085/?module=goagent&amp;amp;menu=deploy&lt;/a&gt; ，按下图说明操作：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2016/01/setting1.png&quot; alt=&quot;配置AppID&quot; /&gt;&lt;br /&gt;
@@ -2144,7 +2137,7 @@ windows系统的可参照官方教程：&lt;a href=&quot;https://github.com/XX-n
 
 &lt;p&gt;3、当你点击“保存并重启”的那一刻，你就脱离了苦海，视频畅饮，没有任何限制&lt;/p&gt;
 
-&lt;p&gt;####5、补充说明&lt;/p&gt;
+&lt;h4 id=&quot;section-4&quot;&gt;5、补充说明&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;每个GAE应用每天限额流量1G，每个帐号限制12个&lt;/li&gt;
@@ -2154,8 +2147,8 @@ windows系统的可参照官方教程：&lt;a href=&quot;https://github.com/XX-n
 
 </description>
         <pubDate>Tue, 26 Jan 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/tips/fan-qiang</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/tips/fan-qiang</guid>
+        <link>http://www.vanbein.com/posts/tips/2016/01/26/fan-qiang.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/tips/2016/01/26/fan-qiang.html</guid>
         
         <category>Tip</category>
         
@@ -2174,39 +2167,27 @@ windows系统的可参照官方教程：&lt;a href=&quot;https://github.com/XX-n
 
 &lt;p&gt;首先去GitHub上clone这个js（&lt;a href=&quot;https://github.com/jeromeetienne/jquery-qrcode.git&quot;&gt;https://github.com/jeromeetienne/jquery-qrcode.git&lt;/a&gt;），放到合适的地方，在需要生成二维码的地方引用：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jquery.qrcode.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;jquery.qrcode.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;然后创建任意一个元素来包含所生成的二维码图片，比如说一个&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;qrcode&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;qrcode&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#code&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;qrcode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://www.vanbein.com/posts/jekyll/2016/01/16/qr-code-to-post-with-jekyll.html&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;qrcode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://vanbein.com/posts/jekyll/qr-code-to-post-with-jekyll&quot;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;其中的text部分按照自己需要修改就可以。长宽也可以自定义。这样就可以任意生成二维码了。&lt;/p&gt;
 
-
-
-其中的text部分按照自己需要修改就可以。长宽也可以自定义。这样就可以任意生成二维码了。
-
-jQuery-qrcode的作者有个完整的[示例](https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html)，也许更有帮助。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;jQuery-qrcode的作者有个完整的&lt;a href=&quot;https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html&quot;&gt;示例&lt;/a&gt;，也许更有帮助。&lt;/p&gt;
 </description>
         <pubDate>Sat, 16 Jan 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/jekyll/qr-code-to-post-with-jekyll</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/jekyll/qr-code-to-post-with-jekyll</guid>
+        <link>http://www.vanbein.com/posts/jekyll/2016/01/16/qr-code-to-post-with-jekyll.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/jekyll/2016/01/16/qr-code-to-post-with-jekyll.html</guid>
         
         <category>Jekyll</category>
         
@@ -2218,431 +2199,713 @@ jQuery-qrcode的作者有个完整的[示例](https://github.com/jeromeetienne/j
       </item>
     
       <item>
-        <title>转 - 多说评论框自定义CSS优化</title>
-        <description>&lt;p&gt;多说的个性化设置里有个自定义CSS，将你要更改的CSS样式代码粘贴进去保存就好了；注意：有些属性如果修改了没效果的话，要在每个属性后面加上一个&lt;code&gt;!important&lt;/code&gt;，将优先级调为最高就可以看到效果了，比如：&lt;code&gt;padding:10px&lt;/code&gt;; 这个属性没生效的话就要这样改：&lt;code&gt;padding:10px !important&lt;/code&gt;; 这样就可以生效了。&lt;/p&gt;
-
-&lt;p&gt;下面将网络上现有的几个不错的css样式整理并分享给大家。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;圆角（或者圆形）+ 阴影&lt;/h2&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;54px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;54px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置图像的长和宽*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;27px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;27px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*圆角效果：兼容webkit浏览器*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-moz-border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;27px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#3333&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置图像阴影效果*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#3333&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-## 鼠标悬浮时，圆形+图像进行360度旋转
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;54px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;54px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置图像的长和宽*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;27px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;27px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*圆角效果：兼容webkit浏览器*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-moz-border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;27px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#3333&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置图像阴影效果*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#3333&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-webkit-transform&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transform&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-moz-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-moz-transform&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*设置鼠标悬浮在头像时的CSS样式*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#fff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;rgba(255,255,255,.6),&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;rgba(255,255,255,1);&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#fff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;rgba(255,255,255,.6),&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;rgba(255,255,255,1);&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotateZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*图像旋转360度*/&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotateZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-moz-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotateZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-## 鼠标悬浮时：圆形+图像进行360度旋转+半圆遮盖
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-comments-tabs&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-tab&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-current&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#848568&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;text-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#dddfc2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-highlight&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Arial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Helvetica&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;14px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#848568&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-comments-tabs&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-tab&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-current&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#696a52&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#d4d6ba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-highlight&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#696a52&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;30px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-hot-posts&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-post-self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-post-self&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-children&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;26px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-14px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;36px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;36px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;46px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#E5E6D0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-children&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-23px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inline-block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#b9baa6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#fff&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#de5a4e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-replybox&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-children&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-replybox.ds-inline-replybox&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-replybox.ds-inline-replybox&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-replybox.ds-inline-replybox&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-replybox&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-replybox&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-in-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-moz-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-in-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-o-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-in-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-ms-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-in-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.4s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-in-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;.ds-post-self&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;-webkit-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-moz-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-o-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-ms-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-comment-body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#F0F0E3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;12px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-comment-body&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#787968&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-comments&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-user-name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#696A52&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-comments&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-user-name&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#D32&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-hot-posts&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-hot-posts&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-gradient-bg&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx-bubble&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx-bubble&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;45px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;45px&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-user-name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;13px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-comment-body&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;border-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#b9baa6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#e8e8dc&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;margin-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-15px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-avatar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;46px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#787968&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#696A52&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-简要说明：
-
-配色是非常重要的，特别是记得改「#ds-reset .ds-avatar, #ds-thread #ds-reset ul.ds-children .ds-avatar {background:网站的背景颜色}」。
-
-**用户气泡提示框代码:** 隐藏用户气泡提示框「#ds-thread #ds-reset #ds-bubble {display:none !important}」，这是隐藏鼠标移至用户名称时弹出来的气泡提示框。
-
-**评论盖楼样式代码:** 倒数1-8行。（不用盖楼的评论方式用户可以直接删除这几行，精简一下代码。）
-
-## 多说css自定义代码（用于细微调整）：
-
-### 将评论框底部的分享到微博QQ空间什么的隐藏起来
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.ds-sync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*隐藏评论框底部分享*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-### 定义评论框背景图片
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.ds-textarea-wrapper.ds-rounded-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ffffff&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(这里添加图片的网址)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;no-repeat&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;bottom&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框背景背景*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-注意图片最好是透明或者白色的，图片的像素大小最好要去你的评论框大小一样，不然可能会出现拉伸。
-
-### 隐藏评论框底部渐变背景
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-gradient-bg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*设置评论框下方渐变*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-话说渐变色什么的虽然立体感较强但是和主题整体风格不融洽，隐藏之，这样底部就是透明的了。
-
-### 定义评论框内字体
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-textarea-wrapper&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;textarea&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-textarea-wrapper&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-hidden-text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘微软雅黑’&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Microsoft&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Yahei&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;12px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;letter-spacing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框内字体*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-这个好像是定义评论框内输入的文字字体的。
-
-### 定义发布按钮字体，以及渐变色背景
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-post-button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘微软雅黑’&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Microsoft&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Yahei&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;12px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义发布按钮字体以及渐变背景*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-### 隐藏评论右上方 最热 最新 排序 按钮
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-sort&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*隐藏最新最热等*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-### 隐藏评论左上方 评论总数背景色及边框
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-tab&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*隐藏评论总数背景及边框*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-### 隐藏底部多说版权
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-powered-by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*隐藏多说底部版权*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-### 定义各种文字高亮颜色，以及浮动窗口的高亮颜色
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-highlight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义高亮字体颜色*/&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框内其他高亮颜色*/&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-bubble&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框内其他高亮颜色*/&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-ctx&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-entry&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.ds-ctx-head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框内其他高亮颜色*/&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-comment-context&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框内其他高亮颜色*/&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;#ds-thread&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ds-reset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ds-comment-context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#49976b&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;/*定义评论框内其他高亮颜色*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-
-
-
-### 评论框左右边距
-
-如果你的评论框左右边距过小（评论框太宽），输入下列代码调整宽度，直到页面上评论框宽度显示合适：
-
-```
-#ds-thread  {padding:24px;}
-```
-
-或
-
-```
-#ds-thread {margin:24px;}
-```
-
-如果你的评论框太窄，可能是宽度被设定了不合适的值，输入下列代码让宽度自动拉伸：
-
-```
-#ds-thread {width:auto;}
-```
-
-### 评论框整体的背景色
-
-多说评论会采用主题的背景色作为整体评论框的背景，这样可能导致评论本身不是很显眼。你可以输入下列代码来更改整体评论框的背景颜色：
-
-```
-#ds-thread {background: #ffffff;}
-```
-
-这个评论背景的边角默认是直角，如果想改成圆角，请输入下列代码（仅在Firefox，Chrome及高版本ie浏览器下有效，ie6,7,8将仍然为直角显示）：
-
-```
-#ds-thread{ border-radius: 5px;}
-```
-注意：其中的#ffffff可以被替换为你希望的颜色，以便于评论文字相适应。
-
-### 高亮字体的颜色
-
-高亮字体包括“n条评论”，“n条微博”，评论者名字的颜色，想修改它的显示颜色（在大多数情况下默认是红色），输入下列代码：
-
-```
-#ds-thread #ds-reset .ds-highlight{color: #ffffff !important;}
-```
-
-### 更改评论字体颜色
-
-想修改评论正文的字体颜色，请输入下列代码：
-
-```
-#ds-thread #ds-reset .ds-comment-body p {color: #ffffff;}
-```
-
-当您在修改一部分上面未示例的标签样式时，遇到无效的情况，请尝试增加`!important`。
-
-### 更改最近访客头像大小
-
-想要修改最新访客头像的大小，请输入下列代码：
-
-```
-#ds-recent-visitors .ds-avatar img {width: 30px !important;height: 30px !important;}
-```
-
-其中30px是宽和高，请根据效果修改不同高度和宽度。
-
----
-📎 **引用来源：**[http://blog.flycmd.com/archives/29](http://blog.flycmd.com/archives/29)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        <title>转 - Jekyll-based 博客中实现代码高亮</title>
+        <description>&lt;p&gt;之前使用别人的博客模板，代码高亮so easy的，直接在&lt;code&gt;_config&lt;/code&gt;中设置&lt;code&gt;highlighter&lt;/code&gt;为&lt;code&gt;pygments&lt;/code&gt;就可以了。可是自己改了一个模板，加上没有认真读&lt;a href=&quot;http://jekyllrb.com/docs/templates/&quot;&gt;Jekyll Docs&lt;/a&gt;，代码高亮失效了。好吧，还是自己动手。&lt;/p&gt;
+
+&lt;p&gt;在GitHub Pages中实现代码高亮有两个选择，一是自定义CSS，另一个是使用嵌入的Gists。&lt;/p&gt;
+
+&lt;h2 id=&quot;css&quot;&gt;自定义CSS样式&lt;/h2&gt;
+
+&lt;p&gt;要让Jekyll为你实现代码高亮，需要做以下三件事：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加一个语法高亮的CSS文件到你的文件目录中，例如&lt;code&gt;css/syntax.css&lt;/code&gt;。Jekyll Docs中提到了一个现成的&lt;a href=&quot;https://github.com/mojombo/tpw/tree/master/css/syntax.css&quot;&gt;syntax.css&lt;/a&gt;，这个是和GitHub用的是同一种风格。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将刚才添加的CSS文件包含到相应的layout文件中，例如&lt;code&gt;_layouts/post.html&lt;/code&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;/css/syntax.css&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;第三步呢，就是在你的post中使用&lt;code&gt;highlight&lt;/code&gt; Liquid tags。当然，你需要在&lt;code&gt;_config.yml&lt;/code&gt;中设置好highlighter。如果你不想显示行号，可以不用加&lt;code&gt;linenos&lt;/code&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;那么，举个栗子，这段Ruby代码经过Jekyll处理之后就变成：&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Outputting a very lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong line&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# show.html.erb&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Outputting a very lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong line&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# show.html.erb&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;还不错吧，你还可以进一步改进CSS，使行号与代码部分以不同样式分隔开，比如说我这里，让行号颜色变浅一些，并添加了竖线分割。要这么做，只需要在CSS中添加：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; /* Add to css/syntax.css */
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; .highlight .lineno { color: #ccc; display:inline-block; padding: 0 5px; border-right:1px solid #ccc; }
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;github-gists&quot;&gt;使用GitHub Gists&lt;/h2&gt;
+
+&lt;p&gt;除了上述Jekyll内置的代码高亮外，另一种实现代码高亮的方法就是采用GitHub Gists。&lt;/p&gt;
+
+&lt;p&gt;打开&lt;a href=&quot;https://gist.github.com/&quot;&gt;GitHub Gist&lt;/a&gt;，创建一个gist，然后复制&lt;code&gt;Embed URL&lt;/code&gt;，就能在post中实现和GitHub中一样一样的代码高亮。&lt;/p&gt;
+
+&lt;p&gt;比如说这样：&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/flinhong/9c155871dadb81927b20.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;目前我还是采用第一种方法，Gists备用吧。&lt;/p&gt;
 </description>
         <pubDate>Fri, 15 Jan 2016 23:52:02 +0800</pubDate>
-        <link>http://vanbein.com/posts/jekyll/duoshuo-css</link>
-        <guid isPermaLink="true">http://vanbein.com/posts/jekyll/duoshuo-css</guid>
+        <link>http://www.vanbein.com/posts/jekyll/2016/01/15/code-highlighting-in-jekyll.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/jekyll/2016/01/15/code-highlighting-in-jekyll.html</guid>
         
         <category>Jekyll</category>
         
         
         <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>UIView动画封装</title>
+        <description>&lt;p&gt;虽然了解了核心动画的使用，但其实UIView本身对于基本动画和关键帧动画、转场动画都有相应的封装，在对动画细节没有特殊要求的情况下使用起来也要简单的多。可以说在日常开发中90%以上的情况使用UIView的动画封装方法都可以搞定，因此在熟悉了核心动画的原理之后还是有必要学习一下UIView中各类动画使用方法的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;基础动画&lt;/h3&gt;
+
+&lt;h4 id=&quot;uiview&quot;&gt;1、UIView动画（首尾）&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;UIKit直接将动画集成到UIView类中，当内部的一些属性发生改变时，UIView将为这些改变提供动画支持&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;执行动画所需要的工作由UIView类自动完成，但仍要在希望执行动画时通知视图，为此需要将改变属性的代码放在&lt;code&gt;[UIView beginAnimations:nil context:nil]&lt;/code&gt;和&lt;code&gt;[UIView commitAnimations]&lt;/code&gt;之间&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;常见方法解析:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationDelegate&lt;/strong&gt;:(id)delegate     设置动画代理对象，当动画开始或者结束时会发消息给代理对象&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationWillStartSelector&lt;/strong&gt;:(SEL)selector   当动画即将开始时，执行delegate对象的selector，并且把&lt;code&gt;beginAnimations:context:&lt;/code&gt;中传入的参数传进selector&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationDidStopSelector&lt;/strong&gt;:(SEL)selector  当动画结束时，执行delegate对象的selector，并且把&lt;code&gt;beginAnimations:context:&lt;/code&gt;中传入的参数传进selector&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationDuration&lt;/strong&gt;:(NSTimeInterval)duration   动画的持续时间，秒为单位&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationDelay&lt;/strong&gt;:(NSTimeInterval)delay  动画延迟delay秒后再开始&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationStartDate&lt;/strong&gt;:(NSDate *)startDate   动画的开始时间，默认为now&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationCurve&lt;/strong&gt;:(UIViewAnimationCurve)curve  动画的节奏控制&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationRepeatCount&lt;/strong&gt;:(float)repeatCount  动画的重复次数&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationRepeatAutoreverses&lt;/strong&gt;:(BOOL)repeatAutoreverses  如果设置为YES,代表动画每次重复执行的效果会跟上一次相反&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(void)&lt;strong&gt;setAnimationTransition&lt;/strong&gt;:(UIViewAnimationTransition)transition &lt;strong&gt;forView&lt;/strong&gt;:(UIView *)view &lt;strong&gt;cache&lt;/strong&gt;:(BOOL)cache  设置视图view的过渡效果, transition指定过渡类型, cache设置YES代表使用视图缓存，性能较好&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;h5 id=&quot;uiviewcalayer&quot;&gt;UIView封装的动画与CALayer动画的对比&lt;/h5&gt;
+  &lt;ul&gt;
+    &lt;li&gt;使用UIView和CALayer都能实现动画效果，但是在真实的开发中，一般还是主要使用UIView封装的动画，而很少使用CALayer的动画。&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;h5 id=&quot;calayeruiview&quot;&gt;CALayer核心动画与UIView动画的区别：&lt;/h5&gt;
+  &lt;ul&gt;
+    &lt;li&gt;UIView封装的动画执行完毕之后不会反弹。即如果是通过CALayer核心动画改变layer的位置状态，表面上看虽然已经改变了，但是实际上它的位置是没有改变的。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;block&quot;&gt;2、block动画&lt;/h4&gt;
+&lt;p&gt;UIView封装的block动画有三种：&lt;/p&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;方法1&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;+(void)&lt;code&gt;animateWithDuration&lt;/code&gt;:(NSTimeInterval)duration &lt;code&gt;delay&lt;/code&gt;:(NSTimeInterval)delay &lt;code&gt;options&lt;/code&gt;:(UIViewAnimationOptions)options &lt;code&gt;animations&lt;/code&gt;:(void (^)(void))animations &lt;code&gt;completion&lt;/code&gt;:(void (^)(BOOL finished))completion&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参数解析:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;duration：动画的持续时间&lt;/li&gt;
+      &lt;li&gt;delay：动画延迟delay秒后开始&lt;/li&gt;
+      &lt;li&gt;options：动画的节奏控制&lt;/li&gt;
+      &lt;li&gt;animations：将改变视图属性的代码放在这个block中&lt;/li&gt;
+      &lt;li&gt;completion：动画结束后，会自动调用这个block&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;方法2、转场动画&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;+(void)&lt;strong&gt;transitionWithView&lt;/strong&gt;:(UIView *)view &lt;strong&gt;duration&lt;/strong&gt;:(NSTimeInterval)duration &lt;strong&gt;options&lt;/strong&gt;:(UIViewAnimationOptions)options &lt;strong&gt;animations&lt;/strong&gt;:(void (^)(void))animations &lt;strong&gt;completion&lt;/strong&gt;:(void (^)(BOOL finished))completion&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参数解析:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;duration：动画的持续时间&lt;/li&gt;
+      &lt;li&gt;view：需要进行转场动画的视图&lt;/li&gt;
+      &lt;li&gt;options：转场动画的类型&lt;/li&gt;
+      &lt;li&gt;animations：将改变视图属性的代码放在这个block中&lt;/li&gt;
+      &lt;li&gt;completion：动画结束后，会自动调用这个block&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;方法3、转场动画&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;+(void)&lt;strong&gt;transitionFromView&lt;/strong&gt;:(UIView *)fromView &lt;strong&gt;toView&lt;/strong&gt;:(UIView *)toView &lt;strong&gt;duration&lt;/strong&gt;:(NSTimeInterval)duration &lt;strong&gt;options&lt;/strong&gt;:(UIViewAnimationOptions)options &lt;strong&gt;completion&lt;/strong&gt;:(void (^)(BOOL finished))completion&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;方法调用完毕后，相当于执行了下面两句代码：&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// 添加toView到父视图
+[fromView.superview addSubview:toView]; 
+// 把fromView从父视图中移除
+[fromView.superview removeFromSuperview];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;参数解析:
+    &lt;ul&gt;
+      &lt;li&gt;duration：动画的持续时间&lt;/li&gt;
+      &lt;li&gt;options：转场动画的类型&lt;/li&gt;
+      &lt;li&gt;completion：动画结束后，会自动调用这个block&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;比如想要实现一个图片的移动动画：将图片移动到点击的位置；可通过下面的代码实现，下面的代码演示了通过&lt;strong&gt;block&lt;/strong&gt;和&lt;strong&gt;静态方法&lt;/strong&gt;实现动画控制的过程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;@interface KCMainViewController (){
+    UIImageView *_imageView;
+}
+@end
+@implementation KCMainViewController
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //
+	//设置背景
+    self.view.backgroundColor=[UIColor whiteColor];
+    //
+    //创建图像显示控件
+    _imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@&quot;icon&quot;]];
+    _imageView.frame = CGRectMake(0, 0, 40, 40);
+    _imageView.layer.cornerRadius = 5;
+    _imageView.center=CGPointMake(50, 150);
+    [self.view addSubview:_imageView];
+}
+//
+#pragma mark 点击事件
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch=touches.anyObject;
+    CGPoint location= [touch locationInView:self.view];
+    //方法1：block方式
+    // 开始动画，UIView的动画方法执行完后动画会停留在重点位置，而不需要进行任何特殊处理
+    //duration:执行时间
+    // delay:延迟时间
+    // options:动画设置，例如自动恢复、匀速运动等
+    // completion:动画完成回调方法
+    //
+//    [UIView animateWithDuration:5.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+//        _imageView.center=location;
+//    } completion:^(BOOL finished) {
+//        NSLog(@&quot;Animation end.&quot;);
+//    }];
+    // 
+    //方法2：静态方法
+    //开始动画
+    [UIView beginAnimations:@&quot;KCBasicAnimation&quot; context:nil];
+    [UIView setAnimationDuration:5.0];
+    //改变UIView的属性
+    _imageView.center=location;
+    //开始动画
+    [UIView commitAnimations];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;#### 补充1 – 弹簧动画效果&lt;/p&gt;
+
+&lt;p&gt;由于在iOS开发中弹性动画使用很普遍，所以在iOS7苹果官方直接提供了一个方法用于弹性动画开发，下面简单的演示一下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;#pragma mark 点击事件
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch=touches.anyObject;
+    CGPoint location= [touch locationInView:self.view];
+    //创建弹性动画
+    // damping:阻尼，范围0-1，阻尼越接近于0，弹性效果越明显
+    // velocity:弹性复位的速度
+    [UIView animateWithDuration:5.0 delay:0 usingSpringWithDamping:0.1 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        _imageView.center=location; //CGPointMake(160, 284);
+    } completion:nil];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;补充2 – 动画设置参数&lt;/h4&gt;
+
+&lt;p&gt;在动画方法中有一个option参数，UIViewAnimationOptions类型，它是一个枚举类型，动画参数分为三类，可以组合使用：&lt;/p&gt;
+
+&lt;h5 id=&quot;section-5&quot;&gt;1.常规动画属性设置（可以同时选择多个进行设置）&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UIViewAnimationOptionLayoutSubviews：动画过程中保证子视图跟随运动。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionAllowUserInteraction：动画过程中允许用户交互。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionBeginFromCurrentState：所有视图从当前状态开始运行。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionRepeat：重复运行动画。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionAutoreverse ：动画运行到结束点后仍然以动画方式回到初始点。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionOverrideInheritedDuration：忽略嵌套动画时间设置。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionOverrideInheritedCurve：忽略嵌套动画速度设置。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionAllowAnimatedContent：动画过程中重绘视图（注意仅仅适用于转场动画）。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionShowHideTransitionViews：视图切换时直接隐藏旧视图、显示新视图，而不是将旧视图从父视图移除（仅仅适用于转场动画）&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionOverrideInheritedOptions ：不继承父动画设置或动画类型。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-6&quot;&gt;2.动画速度控制（可从其中选择一个设置）&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UIViewAnimationOptionCurveEaseInOut：动画先缓慢，然后逐渐加速。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionCurveEaseIn ：动画逐渐变慢。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionCurveEaseOut：动画逐渐加速。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionCurveLinear ：动画匀速执行，默认值。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-7&quot;&gt;3.转场类型（仅适用于转场动画设置，可以从中选择一个进行设置，基本动画、关键帧动画不需要设置）&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionNone：没有转场动画效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionFlipFromLeft ：从左侧翻转效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionFlipFromRight：从右侧翻转效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionCurlUp：向后翻页的动画过渡效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionCurlDown ：向前翻页的动画过渡效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionCrossDissolve：旧视图溶解消失显示下一个新视图的效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionFlipFromTop ：从上方翻转效果。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionTransitionFlipFromBottom：从底部翻转效果。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;关键帧动画&lt;/h3&gt;
+
+&lt;p&gt;从iOS7开始UIView动画中封装了关键帧动画，下面就来看一下如何使用UIView封装方法进行关键帧动画控制，这里实现前面关键帧动画部分对于落叶动画的控制。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //UITouch *touch=touches.anyObject;
+    //CGPoint location= [touch locationInView:self.view];
+    // 关键帧动画
+    // options:
+    [UIView animateKeyframesWithDuration:5.0 delay:0 options: UIViewAnimationOptionCurveLinear| UIViewAnimationOptionCurveLinear animations:^{
+        //第二个关键帧（准确的说第一个关键帧是开始位置）:从0秒开始持续50%的时间，也就是5.0*0.5=2.5秒
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
+            _imageView.center=CGPointMake(80.0, 220.0);
+        }];
+        //第三个关键帧，从0.5*5.0秒开始，持续5.0*0.25=1.25秒
+        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.25 animations:^{
+            _imageView.center=CGPointMake(45.0, 300.0);
+        }];
+        //第四个关键帧：从0.75*5.0秒开始，持所需5.0*0.25=1.25秒
+        [UIView addKeyframeWithRelativeStartTime:0.75 relativeDuration:0.25 animations:^{
+            _imageView.center=CGPointMake(55.0, 400.0);
+        }];
+    } completion:^(BOOL finished) {
+        NSLog(@&quot;Animation end.&quot;);
+    }];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-9&quot;&gt;补充 – 动画设置参数&lt;/h4&gt;
+
+&lt;p&gt;对于关键帧动画也有一些动画参数设置&lt;code&gt;options&lt;/code&gt;，&lt;code&gt;UIViewKeyframeAnimationOptions&lt;/code&gt;类型，和上面基本动画参数设置有些差别，关键帧动画设置参数分为两类，可以组合使用：&lt;/p&gt;
+
+&lt;h5 id=&quot;section-10&quot;&gt;1.常规动画属性设置（可以同时选择多个进行设置）&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UIViewAnimationOptionLayoutSubviews：动画过程中保证子视图跟随运动。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionAllowUserInteraction：动画过程中允许用户交互。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionBeginFromCurrentState：所有视图从当前状态开始运行。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionRepeat：重复运行动画。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionAutoreverse ：动画运行到结束点后仍然以动画方式回到初始点。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionOverrideInheritedDuration：忽略嵌套动画时间设置。&lt;/li&gt;
+  &lt;li&gt;UIViewAnimationOptionOverrideInheritedOptions ：不继承父动画设置或动画类型。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-11&quot;&gt;2.动画模式设置（同前面关键帧动画动画模式一一对应，可以从其中选择一个进行设置）&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UIViewKeyframeAnimationOptionCalculationModeLinear：连续运算模式。&lt;/li&gt;
+  &lt;li&gt;UIViewKeyframeAnimationOptionCalculationModeDiscrete ：离散运算模式。&lt;/li&gt;
+  &lt;li&gt;UIViewKeyframeAnimationOptionCalculationModePaced：均匀执行运算模式。&lt;/li&gt;
+  &lt;li&gt;UIViewKeyframeAnimationOptionCalculationModeCubic：平滑运算模式。&lt;/li&gt;
+  &lt;li&gt;UIViewKeyframeAnimationOptionCalculationModeCubicPaced：平滑均匀运算模式。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意：核心动画里提过关键帧动画有两种形式，上面演示的是&lt;strong&gt;属性值关键帧动画&lt;/strong&gt;，路径关键帧动画目前UIView还不支持。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;转场动画&lt;/h3&gt;
+
+&lt;p&gt;从iOS4.0开始，UIView直接封装了转场动画，使用起来同样很简单。下面举一个图片浏览时的转场动画加以说明：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;- (void)viewDidLoad {
+    [super viewDidLoad];
+    //
+    //定义图片控件
+    _imageView=[[UIImageView alloc]init];
+    _imageView.frame=[UIScreen mainScreen].applicationFrame;
+    _imageView.contentMode=UIViewContentModeScaleAspectFit;
+    _imageView.image=[UIImage imageNamed:@&quot;0.jpg&quot;];//默认图片
+    [self.view addSubview:_imageView];
+    //添加手势
+    //左滑
+    UISwipeGestureRecognizer *leftSwipeGesture=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipe:)];
+    leftSwipeGesture.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:leftSwipeGesture];
+    //右滑
+    UISwipeGestureRecognizer *rightSwipeGesture=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipe:)];
+    rightSwipeGesture.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:rightSwipeGesture];
+}
+//
+#pragma mark 向左滑动浏览下一张图片
+-(void)leftSwipe:(UISwipeGestureRecognizer *)gesture{
+    [self transitionAnimation:YES];
+}
+//
+#pragma mark 向右滑动浏览上一张图片
+-(void)rightSwipe:(UISwipeGestureRecognizer *)gesture{
+    [self transitionAnimation:NO];
+}
+// 
+#pragma mark 转场动画
+-(void)transitionAnimation:(BOOL)isNext{
+    UIViewAnimationOptions option;
+    if (isNext) {
+        option=UIViewAnimationOptionCurveLinear|UIViewAnimationOptionTransitionFlipFromRight;
+    }else{
+        option=UIViewAnimationOptionCurveLinear|UIViewAnimationOptionTransitionFlipFromLeft;
+    }
+    //
+    [UIView transitionWithView:_imageView duration:1.0 options:option animations:^{
+        _imageView.image=[self getImage:isNext];
+    } completion:nil];
+}
+//
+#pragma mark 取得当前图片
+-(UIImage *)getImage:(BOOL)isNext{
+    if (isNext) {
+        _currentIndex=(_currentIndex+1)%IMAGE_COUNT;
+    }else{
+        _currentIndex=(_currentIndex-1+IMAGE_COUNT)%IMAGE_COUNT;
+    }
+    NSString *imageName=[NSString stringWithFormat:@&quot;%i.jpg&quot;,_currentIndex];
+    return [UIImage imageNamed:imageName];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的转场动画演示中，其实仅仅有一个视图UIImageView做转场动画，每次转场通过切换UIImageView的内容而已。如果有两个完全不同的视图，并且每个视图布局都很复杂，此时要在这两个视图之间进行转场可以使用下面的方法进行两个视图间的转场&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;+ (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion NS_AVAILABLE_IOS(4_0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;需要注意的是默认情况下转出的视图会从父视图移除，转入后重新添加，可以通过&lt;code&gt;UIViewAnimationOptionShowHideTransitionViews&lt;/code&gt;参数设置，设置此参数后转出的视图会隐藏（不会移除）转入后再显示。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;注意：转场动画设置参数完全同基本动画参数设置；同直接使用转场动画不同的是使用UIView的装饰方法进行转场动画其动画效果较少，因为这里无法直接使用私有API。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;附本文代码github地址：&lt;a href=&quot;https://github.com/XcodeTalk/UIViewAnimationEncapsulation&quot;&gt;UIViewAnimationEncapsulation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;参考文章：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.cocoachina.com/ios/20141022/10005.html&quot;&gt;iOS开发之让你的应用“动”起来&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 13 Jan 2016 00:00:00 +0800</pubDate>
+        <link>http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/13/uiviewdong-hua-feng-zhuang.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/13/uiviewdong-hua-feng-zhuang.html</guid>
+        
+        <category>iOS</category>
+        
+        <category>Tip</category>
+        
+        <category>Animation</category>
+        
+        
+        <category>ios进阶</category>
+        
+      </item>
+    
+      <item>
+        <title>UIBezierPath详解</title>
+        <description>&lt;p&gt;使用&lt;code&gt;UIBezierPath&lt;/code&gt;类可以创建基于矢量的路径，这个类在UIKit中。此类是&lt;code&gt;Core Graphics&lt;/code&gt;框架关于path的一个封装。使用此类可以定义简单的形状，如椭圆或者矩形，或者有多个直线和曲线段组成的形状。&lt;/p&gt;
+
+&lt;h3 id=&quot;bezier-path-&quot;&gt;一.Bezier Path 基础&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;UIBezierPath&lt;/code&gt;对象是&lt;code&gt;CGPathRef&lt;/code&gt;数据类型的封装。path如果是基于矢量形状的，都用直线和曲线段去创建。我们使用直线段去创建矩形和多边形，使用曲线段去创建弧（arc），圆或者其他复杂的曲线形状。每一段都包括一个或者多个点，绘图命令定义如何去诠释这些点。每一个直线段或者曲线段的结束的地方是下一个的开始的地方。每一个连接的直线或者曲线段的集合成为subpath。一个&lt;code&gt;UIBezierPath&lt;/code&gt;对象定义一个完整的路径包括一个或者多个subpaths。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;创建和使用一个path对象的过程是分开的。创建path是第一步，包含以下步骤：
+    &lt;ol&gt;
+      &lt;li&gt;创建一个&lt;code&gt;Bezier path&lt;/code&gt;对象。&lt;/li&gt;
+      &lt;li&gt;使用方法&lt;code&gt;moveToPoint:&lt;/code&gt;去设置初始线段的起点。&lt;/li&gt;
+      &lt;li&gt;添加line或者curve去定义一个或者多个subpaths。&lt;/li&gt;
+      &lt;li&gt;改变&lt;code&gt;UIBezierPath&lt;/code&gt;对象跟绘图相关的属性。&lt;br /&gt;
+例如，我们可以设置&lt;code&gt;stroked path&lt;/code&gt;的属性&lt;code&gt;lineWidth&lt;/code&gt;和&lt;code&gt;lineJoinStyle&lt;/code&gt;。也可以设置&lt;code&gt;filled path&lt;/code&gt;的属性&lt;code&gt;usesEvenOddFillRule&lt;/code&gt;。&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;当创建path，我们应该管理path上面的点相对于原点（0，0），这样我们在随后就可以很容易的移动path了。为了绘制path对象，我们要用到stroke(描绘)和fill(填充)方法。这些方法在&lt;code&gt;current graphic context&lt;/code&gt;下渲染path的line和curve段。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;uibezierpath---path&quot;&gt;二、使用UIBezierPath创建多边形—在path下面添加直线条形成多边形&lt;/h3&gt;
+
+&lt;p&gt;多边形是一些简单的形状,这些形状是由一些直线线条组成，我们可以用&lt;code&gt;moveToPoint:&lt;/code&gt; 和 &lt;code&gt;addLineToPoint:&lt;/code&gt;方法去构建。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方法&lt;code&gt;moveToPoint:&lt;/code&gt;设置我们想要创建形状的起点。&lt;/li&gt;
+  &lt;li&gt;从这点开始，我们可以用方法&lt;code&gt;addLineToPoint:&lt;/code&gt;去创建一个形状的线段。&lt;/li&gt;
+  &lt;li&gt;我们可以连续的创建line，每一个line的起点都是先前的终点，终点就是指定的点。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面的代码描述了如何用线段去创建一个五边形。第五条线通过调用&lt;code&gt;closePath&lt;/code&gt;方法得到的，它连接了最后一个点（0，40）和第一个点（100，0）&lt;br /&gt;
+&amp;gt; 说明：&lt;br /&gt;
+&amp;gt; &lt;br /&gt;
+&amp;gt; * &lt;code&gt;closePath&lt;/code&gt;方法不仅结束一个shape的subpath表述，它也在最后一个点和第一个点之间画一条线段，如果我们画多边形的话，这个一个便利的方法我们不需要去画最后一条线。&lt;br /&gt;
+&amp;gt; * 注：这个五边形类要继承自UIView。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;- (void)drawRect:(CGRect)rect  
+{  
+    UIColor *color = [UIColor redColor];  
+    [color set]; //设置线条颜色  
+    //  
+    UIBezierPath* aPath = [UIBezierPath bezierPath];  
+    aPath.lineWidth = 5.0;  
+    // 
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角  
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理  
+    // 
+    // Set the starting point of the shape.  
+    [aPath moveToPoint:CGPointMake(100.0, 0.0)];  
+    //
+    // Draw the lines  
+    [aPath addLineToPoint:CGPointMake(200.0, 40.0)];  
+    [aPath addLineToPoint:CGPointMake(160, 140)];  
+    [aPath addLineToPoint:CGPointMake(40.0, 140)];  
+    [aPath addLineToPoint:CGPointMake(0.0, 40.0)];  
+    [aPath closePath];//第五条线通过调用closePath方法得到的  
+  	//
+    [aPath stroke];//Draws line 根据坐标点连线 
+    //[aPath fill]; //填充 
+}   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;uibezierpath&quot;&gt;三、使用UIBezierPath创建图形&lt;/h3&gt;
+
+&lt;p&gt;如果是绘制矩形或者椭圆之类的特殊图形，可以不用像上面一样，&lt;code&gt;UIBezierPath&lt;/code&gt;包含了几个特殊形状的类方法，我们可以直接使用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// 创建矩形
++ (UIBezierPath *)bezierPathWithRect:(CGRect)rect
+//
+// 创建圆角矩形
++ (UIBezierPath *)bezierPathWithRoundedRect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius
+//
+// 创建矩形内切圆
++ (UIBezierPath *)bezierPathWithOvalInRect:(CGRect)rect
+//
+// 创建弧形
+//其中的参数分别指定：这段圆弧的中心，半径，开始角度，结束角度，是否顺时针方向。
++ (UIBezierPath *)bezierPathWithArcCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise
+//
+//下面举个例子,绘制矩形
+- (void)drawRect:(CGRect)rect  
+{  
+    UIColor *color = [UIColor redColor];  
+    [color set]; //设置线条颜色  
+    // 
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithRect:CGRectMake(20, 20, 100, 50)];  
+    //
+    aPath.lineWidth = 5.0;  
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角  
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理  
+    //
+    [aPath stroke];  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;除了这些闭合的特殊路径，也有一些方法用来添加子路径。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// 添加直线
+- (void)addLineToPoint:(CGPoint)point
+//
+// 添加弧形线段
+- (void)addArcWithCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise
+//
+// 添加二阶贝塞尔曲线
+- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint
+//
+// 添加三阶贝塞尔曲线
+- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2
+//
+//一个二阶贝塞尔曲线例子
+- (void)drawRect:(CGRect)rect  
+{  
+    UIColor *color = [UIColor redColor];  
+    [color set]; //设置线条颜色  
+    //
+    UIBezierPath* aPath = [UIBezierPath bezierPath];  
+    aPath.lineWidth = 5.0;  
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角  
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理  
+    //
+    [aPath moveToPoint:CGPointMake(20, 100)];  
+    //
+    [aPath addQuadCurveToPoint:CGPointMake(120, 100) controlPoint:CGPointMake(70, 0)];  
+    //三阶
+    //[aPath addCurveToPoint:CGPointMake(200, 50) controlPoint1:CGPointMake(110, 0) controlPoint2:CGPointMake(110, 100)];  
+   	//   
+    [aPath stroke];  
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;core-graphicspath&quot;&gt;四、使用Core Graphics函数去修改path&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;UIBezierPath&lt;/code&gt;类只是CGPathRef数据类型和path绘图属性的一个封装。虽然通常我们可以用&lt;code&gt;UIBezierPath&lt;/code&gt;类的方法去添加直线段和曲线段，&lt;code&gt;UIBezierPath&lt;/code&gt;类还提供了一个属性&lt;code&gt;CGPath&lt;/code&gt;，我们可以用来直接修改底层的&lt;code&gt;path data type&lt;/code&gt;。如果我们希望用&lt;code&gt;Core Graphics &lt;/code&gt;框架函数去创建path，则我们要用到此属性。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;有两种方法可以用来修改和UIBezierPath对象相关的path。
+    &lt;ol&gt;
+      &lt;li&gt;可以完全的使用Core Graphics函数去修改path&lt;/li&gt;
+      &lt;li&gt;也可以使用Core Graphics函数和UIBezierPath函数混合去修改。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第一种方法在某些方面相对来说比较容易。我们可以创建一个CGPathRef数据类型，并调用我们需要修改path信息的函数。&lt;/p&gt;
+
+&lt;p&gt;下面的代码就是赋值一个新的CGPathRef给UIBezierPath对象。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// Create the path data
+CGMutablePathRef cgPath = CGPathCreateMutable();
+CGPathAddEllipseInRect(cgPath, NULL, CGRectMake(0, 0, 300, 300));
+CGPathAddEllipseInRect(cgPath, NULL, CGRectMake(50, 50, 200, 200));
+// 
+// Now create the UIBezierPath object
+UIBezierPath* aPath = [UIBezierPath bezierPath];
+aPath.CGPath = cgPath;
+aPath.usesEvenOddFillRule = YES;
+//
+// After assigning it to the UIBezierPath object, you can release
+// your CGPathRef data type safely.
+CGPathRelease(cgPath);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我们使用&lt;code&gt;Core Graphics&lt;/code&gt;函数和&lt;code&gt;UIBezierPath&lt;/code&gt;函数混合方法，我们必须小心的移动path 信息在两者之间。因为&lt;code&gt;UIBezierPath&lt;/code&gt;类拥有自己底层的&lt;code&gt;CGPathRef data type&lt;/code&gt;，我们不能简单的检索该类型并直接的修改它。相反，我们应该生成一个副本，然后修改此副本，然后赋值此副本给CGPath属性，如下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;UIBezierPath*    aPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 300, 300)];
+// 
+// Get the CGPathRef and create a mutable version.
+CGPathRef cgPath = aPath.CGPath;
+CGMutablePathRef  mutablePath = CGPathCreateMutableCopy(cgPath);
+// 
+// Modify the path and assign it back to the UIBezierPath object
+CGPathAddEllipseInRect(mutablePath, NULL, CGRectMake(50, 50, 200, 200));
+aPath.CGPath = mutablePath;
+// 
+// Release both the mutable copy of the path.
+CGPathRelease(mutablePath);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;uibezierpathkeyframeanimation&quot;&gt;五、UIBezierPath与keyframeAnimation&lt;/h3&gt;
+
+&lt;p&gt;我们可以使用贝塞尔曲线绘制一条路径，然后通过keyframe动画让动画沿着所设置的路径执行，下面举个例子说明：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;- (void)viewDidLoad{
+	[super viewDidLoad];
+	//路径动画
+    UIView *view8 = [[UIView alloc]initWithFrame:CGRectMake(100, 460, 30, 30)];
+    [view8 setBackgroundColor:[UIColor purpleColor]];
+    view8.layer.cornerRadius = 15;
+    //创建路径
+    UIBezierPath *movePath = [UIBezierPath bezierPath];
+    [movePath moveToPoint:CGPointMake(100.0, 460.0)];
+//    [movePath addQuadCurveToPoint:CGPointMake(200, 200) controlPoint:CGPointMake(300, 350)];
+    [movePath addCurveToPoint:CGPointMake(300, 460) controlPoint1:CGPointMake(170, 360) controlPoint2:CGPointMake(240, 550)];
+    CGPathRef cgPath = movePath.CGPath;
+    CGMutablePathRef path = CGPathCreateMutableCopy(cgPath);
+	//添加动画
+    [view8.layer addAnimation:[self animationKeyframeWithPath:path duration:2.0 repeatTimes:MAXFLOAT] forKey:nil];
+    [self.view addSubview:view8];
+}
+- (CAKeyframeAnimation *)animationKeyframeWithPath:(CGMutablePathRef)path duration:(float)duration repeatTimes:(float)repeatTimes{
+    CAKeyframeAnimation *animation=[CAKeyframeAnimation animationWithKeyPath:@&quot;position&quot;];
+    animation.path = path;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    animation.autoreverses = NO;
+    animation.duration = duration;
+    animation.repeatCount = repeatTimes;   
+    return animation;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;一个在线生成三阶贝塞尔曲线的网站很不错，可以做可视化调整：&lt;a href=&quot;http://cubic-bezier.com/#.17,.74,.53,.43&quot;&gt;网站传送门&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;附本文代码github地址：&lt;a href=&quot;https://github.com/XcodeTalk/UIBezierPath&quot;&gt;UIBezierPath&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;参考文章
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.yeolar.com/note/2015/03/25/ios-uibezierpath/&quot;&gt;iOS的UIBezierPath类和贝塞尔曲线&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/moyunmo/p/3600091.html?utm_source=tuicool&amp;amp;utm_medium=referral&quot;&gt;iOS开发 贝塞尔曲线UIBezierPath&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 12 Jan 2016 00:00:00 +0800</pubDate>
+        <link>http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/12/uibezierpathxiang-jie.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/12/uibezierpathxiang-jie.html</guid>
+        
+        <category>iOS</category>
+        
+        <category>Animation</category>
+        
+        <category>Bezier</category>
+        
+        
+        <category>ios进阶</category>
         
       </item>
     

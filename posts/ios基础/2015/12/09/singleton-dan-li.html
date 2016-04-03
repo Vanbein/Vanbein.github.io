@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Singleton--单例 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html">
+  <meta name="description" content="说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 1200 && screenWidth > 1200){
+        $('#fixed_search').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixed_search').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <li><a href="/archieves/">Blog Archives</a></li>
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+                 <li><a href="/404.html">404 Page</a></li>
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <!--<li><a href="/categories/">Categories</a></li>-->
+            <li><a href="/archieves/">Archives</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/15/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/media/2016/03/15/blue-xuwei.html">许巍 - 蓝莲花</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/2016/03/09/blog.html">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/04/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/04/March-bi-ji.html">2016.3知识点笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/26/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html">Xcode常用的Debug调试技巧总结</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/23/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/02/23/ios-interview.html">iOS 面试题集锦</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/22/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html">KVC的一些不为人知小技巧</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 25, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Xcode基础快捷键 -- 提高你的编码速率"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 21, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 18, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/media/2016/03/15/blue-xuwei.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/media/2016/03/15/blue-xuwei.html"><img src="/images/head-800x400/-53.png" alt="许巍 - 蓝莲花"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/media/2016/03/15/blue-xuwei.html">许巍 - 蓝莲花</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 15, 2016</span>
+            <span class="meta_author"><a href="/posts/media/2016/03/15/blue-xuwei.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (22)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (5)</li>
+      
+      <li><a href="/categories/#journal">journal</a> (1)</li>
+      
+      <li><a href="/categories/#media">media</a> (1)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#ShareX">ShareX</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-45.png" class="popup_link"><img src="/images/head-800x400/-45.png" alt="Singleton--单例"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Dec 9, 2015</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>单例</u> <u>Objective-C</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">Singleton--单例</h1><!-- End Entry title -->
+                  <h2 id="section">一、单例介绍</h2>
+
+<h3 id="section-1">1. 什么是单例</h3>
+
+<p>说到单例首先要提到<strong>单例模式</strong>，因为单例模式是单例存在的目的</p>
+
+<ul>
+  <li>
+    <p>单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
+  </li>
+  <li>
+    <p>单例，顾名思义：单独的实例。</p>
+  </li>
+  <li>
+    <p>简单的说，单例是一个特殊的实例，在单例所属的类中只存在单例这么一个实例，并且单例类似全局变量，在系统任意地方都能访问单例</p>
+  </li>
+  <li>
+    <p>获取单例的规律一般以 default、stand、share开头</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>单例对象<br />
+我们使用一个类获取对象时，多次创建对象或者多次获取对象，得到的都是同一份对象，那么该对象就是 <strong>单例对象</strong> – 同时只存在一个实例对象。<br />
+创建对象时使用的类被称为单例类。</p>
+</blockquote>
+
+<ul>
+  <li>单例对象的特点
+    <ul>
+      <li>可以被全局访问</li>
+      <li>不会被释放</li>
+      <li>创建过程只执行1次</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section-2">2. 单例用处</h3>
+
+<p>根据单例模式的定义，我们知道一般两种情况下使用单例：</p>
+
+<blockquote>
+  <ol>
+    <li>系统中某种对象只能存在一个，多了就会出问题</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol>
+    <li>系统中某种对象实例只需要一个就够用了，多了占内存</li>
+  </ol>
+</blockquote>
+
+<p>对于第一种情况，我们必须使用单例，对于第二种情况，我们虽然可以不用单例，但是单例是更优的选择</p>
+
+<p>iOS的系统中有很多地方用的都是单例:</p>
+
+<pre><code class="language-objc">[UIApplication sharedApplication];
+[NSNotificationCenter defaultCenter];
+[NSFileManager defaultManager];
+[NSUserDefaults standardUserDefaults];
+[NSURLCache sharedURLCache];
+[NSHTTPCookieStorage sharedHTTPCookieStorage];
+</code></pre>
+
+<h2 id="section-3">二、单例的创建</h2>
+
+<p>单例有伪单例和完整的单例之分，一般使用伪单例就足够了 每次都用 sharedDataHandle 创建对象。</p>
+
+<h3 id="section-4">1. 伪单例</h3>
+
+<p>伪单例，可以理解为通过我们特定的方法获取的对象才是单例对象。<br />
+其实现分为两步：<br />
+1、 获取单例对象的方法</p>
+
+<pre><code class="language-objc">// 创建单例对象的方法。类方法 
+// 命名规则： default/standard/shared + 类名
++ (DataHandle *)sharedDataHandle; 
+</code></pre>
+<p>2、 方法的实现，实现可有下面的三种方式<br />
+#### （1）单线程单例</p>
+
+<p>我们知道对于单例类，我们必须留出一个接口来返回生成的单例，由于一个类中只能有一个实例，所以我们在第一次访问这个实例的时候创建，之后访问直接取已经创建好的实例</p>
+
+<pre><code class="language-objc">@implementation DataHandle
+//
+// 因为实例是全局的 因此要定义为全局变量，且需要存储在静态区，不释放。不能存储在栈区。
+static DataHandle *handle = nil;
+//
++ (DataHandle *)sharedDataHandle{
+	if(!handle) {
+		handle = [[DataHandle alloc] init];
+		    }
+	return handle;
+}
+@end
+</code></pre>
+
+<blockquote>
+  <p>备注：严格意义上来说，我们还需要将<code>alloc</code>方法封住，因为严格的单例是不允许再创建其他实例的，而<code>alloc</code>方法可以在外部任意生成实例。但是考虑到<code>alloc</code>属于<code>NSObject</code>，iOS中无法将<code>alloc</code>变成私有方法，最多只能覆盖<code>alloc</code>让其返回空，不过这样做也可能会让使用接口的人误解，造成其他问题。所以我们一般情况下对<code>alloc</code>不做特殊处理。系统的单例也未对<code>alloc</code>做任何处理。理论上对<code>alloc</code>进行处理的单例才算真正意义上完整的单例，下面会有说明的。</p>
+</blockquote>
+
+<h4 id="synchronized-">（2）@synchronized 单例</h4>
+
+<p>对于一个实例，我们一般并不能保证他一定会在单线程模式下使用，所以我们得适配多线程情况。在多线程情况下，上面的单例创建方式可能会出现问题。如果两个线程同时调用<code>sharedDataHandle</code>,可能会创建出2个 handle 来。所以对于多线程情况下，我们需要使用<code>@synchronized</code>来加锁。</p>
+
+<pre><code class="language-objc">@implementation DataHandle
+//
+static DataHandle *handle = nil;
+//
++ (DataHandle *)sharedDataHandle{
+//
+	@synchronized(self){
+		if(!handle) {
+            handle = [[DataHandle alloc] init];
+         }
+    }
+    return handle;
+}
+@end
+</code></pre>
+
+<p>这样的话，当多个线程同时调用<code>sharedDataHandle</code>时，由于<code>@synchronized</code>已经加锁，所以只能有一个线程进入创建 handle。这样就解决了多线程下调用单例的问题</p>
+
+<h3 id="dispatchonce">3. dispatch_once单例</h3>
+
+<p>使用<code>@synchronized</code>虽然解决了多线程的问题，但是并不完美。因为只有在handle未创建时，我们加锁才是有必要的。如果handle已经创建.这时候锁不仅没有好处，而且还会影响到程序执行的性能（多个线程执行<code>@synchronized</code>中的代码时，只有一个线程执行，其他线程需要等待）。那么有没有方法既可以解决问题，又不影响性能呢？</p>
+
+<p>这个方法就是GCD中的<code>dispatch_once</code></p>
+
+<pre><code>@implementation DataHandle
+//
+static DataHandle *handle = nil;
+//
++ (DataHandle *)sharedDataHandle{
+//
+	staticdispatch_once_tonceToken;//①onceToken = 0;
+	dispatch_once(&amp;onceToken, ^{			
+		NSLog(@"%ld",onceToken);//②onceToken = 140734731430192
+		handle = [[DataHandle alloc] init];		
+	    });
+	NSLog(@"%ld",onceToken); //③onceToken = -1;
+	return handle;
+}
+@end
+</code></pre>
+
+<p><code>dispatch_once</code>为什么能做到既解决同步多线程问题又不影响性能呢？</p>
+
+<p>下面我们来看看<code>dispatch_once</code>的原理：</p>
+
+<p><code>dispatch_once</code>主要是根据onceToken的值来决定怎么去执行代码。</p>
+
+<p>当onceToken= 0时，线程执行<code>dispatch_once</code>的block中代码</p>
+
+<p>当onceToken= -1时，线程跳过<code>dispatch_once</code>的block中代码不执行</p>
+
+<p>当onceToken为其他值时，线程被线程被阻塞，等待onceToken值改变</p>
+
+<p>当线程首先调用<code>shareInstance</code>，某一线程要执行block中的代码时，首先需要改变onceToken的值，再去执行block中的代码。这里onceToken的值变为了 140734731430192。</p>
+
+<p>这样当其他线程再获取onceToken的值时，值已经变为 140734731430192。其他线程被阻塞。</p>
+
+<p>当block线程执行完block之后。onceToken变为-1。其他线程不再阻塞，跳过block。</p>
+
+<p>下次再调用<code>shareInstance</code>时，block已经为-1。直接跳过block。</p>
+
+<p>这样<code>dispatch_once</code>在首次调用时同步阻塞线程，生成单例之后，不再阻塞线程。<code>dispatch_once</code>是创建单例的最优方案</p>
+
+<h3 id="section-5">4. 完整的单例</h3>
+
+<p>单例在应用程序运行期间<strong>只会存在一份</strong>，因此不管是alloc、init 还是 copy，mutableCopy 都应当只有一份实例，由于 alloc 方法内部是调用<code>allocWithZone</code>，重写 <code>allocWithZone</code>，让这个方法生成实例的代码只能运行一次即可。</p>
+
+<p><strong>完整的单例</strong>要做到四个方面：</p>
+
+<ol>
+  <li>为单例对象实现一个静态实例,然后设置成nil，</li>
+  <li>构造方法检查静态实例是否为nil，是则新建并返回一个实例，</li>
+  <li>重写allocWithZone方法，用来保证其他人直接使用alloc和init试图获得一个新实例的时候不会产生一个新实例，</li>
+  <li>适当实现copyWithZone，,retain,retainCount,release和autorelease 等方法</li>
+</ol>
+
+<p>注意： 此处完整的单例在进行方法实现时，略有不同 目的是为了避免死循环，如果 在单例类里面重写了 <code>allocWithZone</code> 方法 ， 在创建单例对象时 使用 <code>[[DataHandle alloc] init]</code> 创建，会死循环，具体如下：</p>
+
+<pre><code>@implementation DataHandle
+//
+static DataHandle *handle = nil;
+//
++ (DataHandle *)sharedDataHandle{
+	staticdispatch_once_tonceToken;
+	dispatch_once(&amp;onceToken, ^{			
+           handle = [[super allocWithZone:nil] init]; // 避免死循环
+	    });
+	return handle;
+}
+@end
+</code></pre>
+
+<p>除了alloc 方法还需要考虑 copy 和 mutableCopy，这两个不需要使用到 alloc 就能得到一个实例，因此也需要重写这两个实例。（需要遵守各自的协议才能实现方法）</p>
+
+<pre><code class="language-objc">- (id)copy
+{
+    return self;
+}
+//
+- (id)mutableCopy
+{
+    return self;
+}
+//
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    return [DataHandle sharedDataHandle];
+}
+//
++ (id)copyWithZone:(struct _NSZone *)zone
+{
+    return self;
+}
+</code></pre>
+
+<p>如果是 ARC，单例设计就已经完成，但在 MRC 环境下的时候，还需要做一些额外的事情,因为单例会在应用程序运行时一直存在,因此不需要 retain和 release 操作,而且在 release 之后,如果单例对象被释放掉，由于生成实例的方法只会运行一遍，释放掉之后再运行，返回的实例会是空的，这个并不是预期结果,因此 retain 和 release 方法也都需要重写，另外新需要将 retainCount 方法也重写，以提示这是个特殊的对象。</p>
+
+<pre><code class="language-objc">+ (instancetype)alloc{
+    return [DataHandle sharedDataHandle];
+}
+//
+-(oneway void)release{
+	//nothing
+	//  因为只有一个实例， 一直不释放，所以不增加引用计数。增加无意义。
+ }
+//
+- (instancetype)retain{	 
+    return self;
+}
+//
+- (instancetype)autorelease{
+   		return self;
+}
+//
+- (NSUInteger)retainCount{	    
+    return NSUIntegerMax;
+}
+</code></pre>
+
+<blockquote>
+  <p><strong>注意</strong>:</p>
+
+  <ul>
+    <li>可以使用宏来抽取单例的代码,但要注意区分 ARC 和 MRC</li>
+    <li><code>if __has_feature(objc_arc)</code> 可判断当前项目的环境是否是ARC</li>
+    <li>单例不可以被继承，由于生成实例的方法只会执行一次，如果有继承，父类跟子类最后都会是一样的实例。</li>
+  </ul>
+</blockquote>
+
+<h2 id="section-6">三、总结：</h2>
+
+<ul>
+  <li>
+    <p>单例模式是一个很好的设计模式，他就像一个全局变量一样，可以让我们在任何地方都使用同一个实例。</p>
+  </li>
+  <li>
+    <p>如果要自己创建单例模式，最好使用<code>dispatch_once</code>方法，这样即可解决多线程问题，又能达到高效的目的</p>
+  </li>
+  <li>
+    <p>单例虽然好用，不过他并不适合继承和扩展，所以使用单例的时候要注意这点。千万不要任何东西都使用单例，要适可而止</p>
+  </li>
+</ul>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#单例">单例</a>
+                    
+                    <a href="/tags/#Objective-C">Objective-C</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS基础">iOS基础</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li" data-title="Singleton--单例" data-images="/images/head-800x400/-45.png" data-content="说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'Singleton--单例',
+  			bdDesc : '说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。',
+  			bdUrl : 'http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html',
+  			bdPic : '/images/head-800x400/-45.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi.html"><i class="fa fa-chevron-left"></i> 上一篇：Notification--通知</a>
+  
+  
+    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/10/nskeyedarchiver-gui-dang.html">下一篇：NSKeyedArchiver--对象归档 <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li" data-title="Singleton--单例" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <!---->
+    <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#ShareX">ShareX</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#Foundation">Foundation</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#property">property</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#NSNotification">NSNotification</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#Archiver">Archiver</a>
+    
+    <a href="/tags/#SEL">SEL</a>
+    
+    <a href="/tags/#NSUserDefaults">NSUserDefaults</a>
+    
+    <a href="/tags/#传值">传值</a>
+    
+    <a href="/tags/#GCD">GCD</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 25, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Xcode基础快捷键 -- 提高你的编码速率" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 21, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 18, 2016</span>
+        </div>
+        <h4><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="https://jekyllrb.com/">Jekyll</a></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+            <li><a href="www.jianshu.com">简书</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+
+  </body>
+</html>
