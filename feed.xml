@@ -5,13 +5,13 @@
     <description>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</description>
     <link>http://www.vanbein.com/</link>
     <atom:link href="http://www.vanbein.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 04 Apr 2016 14:55:18 +0800</pubDate>
-    <lastBuildDate>Mon, 04 Apr 2016 14:55:18 +0800</lastBuildDate>
+    <pubDate>Mon, 04 Apr 2016 23:18:19 +0800</pubDate>
+    <lastBuildDate>Mon, 04 Apr 2016 23:18:19 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
         <title>点亮我的 iOS开发技能树</title>
-        <description>&lt;h2 id=&quot;ios-&quot;&gt;iOS 开发工程师职业图谱&lt;/h2&gt;
+        <description>&lt;h3 id=&quot;ios-&quot;&gt;iOS 开发工程师职业图谱&lt;/h3&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;说明&lt;/h3&gt;
 
@@ -20,7 +20,7 @@
   &lt;li&gt;达到程度：P1-P5, 对应关系：了解(P1)、熟悉(P2)、掌握(P3)、精通(P4)、专家(P5)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;section-1&quot;&gt;职业图谱&lt;/h4&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;职业图谱&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;通用基础(R3,P2)
@@ -826,7 +826,7 @@
         <link>http://www.vanbein.com/posts/media/2016/03/15/blue-xuwei.html</link>
         <guid isPermaLink="true">http://www.vanbein.com/posts/media/2016/03/15/blue-xuwei.html</guid>
         
-        <category>许巍</category>
+        <category>Music</category>
         
         
         <category>media</category>
@@ -989,7 +989,7 @@
       </item>
     
       <item>
-        <title>2016.3知识点笔记</title>
+        <title>近期的一点笔记</title>
         <description>&lt;h3 id=&quot;barbuttonitem-&quot;&gt;一、调整导航栏自定义的 BarButtonItem 到屏幕边侧的间距&lt;/h3&gt;
 
 &lt;p&gt;比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔&lt;/p&gt;
@@ -1383,11 +1383,11 @@
 
 &lt;p&gt;线程安全情况下的setter和getter：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
 &lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;@synchronized&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;         
 &lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_value&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;retain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;autorelease&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;     
 &lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aValue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aValue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
 &lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;@synchronized&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;         
 &lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aValue&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;retain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;         
 &lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_value&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;         
@@ -1431,13 +1431,21 @@
   &lt;li&gt;1.使用线程可以把占据时间长的程序中的任务放到后台去处理&lt;/li&gt;
   &lt;li&gt;2.用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度&lt;/li&gt;
   &lt;li&gt;3.程序的运行速度可能加快&lt;/li&gt;
-  &lt;li&gt;4·在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。&lt;br /&gt;
-##### 缺点：&lt;/li&gt;
+  &lt;li&gt;4·在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;缺点：&lt;/h5&gt;
+
+&lt;ul&gt;
   &lt;li&gt;1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。&lt;/li&gt;
   &lt;li&gt;2.更多的线程需要更多的内存空间。&lt;/li&gt;
   &lt;li&gt;3.线程的中止需要考虑其对程序运行的影响。&lt;/li&gt;
-  &lt;li&gt;4.通常块模型数据是在多个线程间共享的，需要防止线程死锁情况的发生。&lt;br /&gt;
-#### 实现多线程的方法：&lt;/li&gt;
+  &lt;li&gt;4.通常块模型数据是在多个线程间共享的，需要防止线程死锁情况的发生。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;实现多线程的方法：&lt;/h4&gt;
+
+&lt;ul&gt;
   &lt;li&gt;NSObject类方法&lt;/li&gt;
   &lt;li&gt;NSThread&lt;/li&gt;
   &lt;li&gt;NSOperation&lt;/li&gt;
@@ -1468,27 +1476,30 @@
 &lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(@&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;%@&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;7.获取一台设备唯一标识的方法有哪些？&lt;/h3&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;7.获取一台设备唯一标识的方法有哪些？&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/max5945/archive/2013/06/24/3152292.html&quot;&gt;http://www.cnblogs.com/max5945/archive/2013/06/24/3152292.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;(1)UDID&lt;/li&gt;
-  &lt;li&gt;(2)UUID&lt;/li&gt;
-  &lt;li&gt;(3)MAC Address&lt;/li&gt;
-  &lt;li&gt;(4)OPEN UDID&lt;/li&gt;
-  &lt;li&gt;(5)广告标识符&lt;/li&gt;
-  &lt;li&gt;(6)Vindor标示符&lt;br /&gt;
-&amp;gt; ios7以后使用keychain&lt;/li&gt;
+  &lt;li&gt;(1) UDID&lt;/li&gt;
+  &lt;li&gt;(2) UUID&lt;/li&gt;
+  &lt;li&gt;(3) MAC Address&lt;/li&gt;
+  &lt;li&gt;(4) OPEN UDID&lt;/li&gt;
+  &lt;li&gt;(5) 广告标识符&lt;/li&gt;
+  &lt;li&gt;(6) Vindor标示符&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ios7以后使用 keychain&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h3 id=&quot;ios-2&quot;&gt;8.iOS类是否可以多继承？如果没有，那可以用其他方法实现吗？简述实现过程。&lt;/h3&gt;
 
 &lt;p&gt;不可以多继承    用protocol实现&lt;/p&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;9.堆和栈的区别？&lt;/h3&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;9.堆和栈的区别？&lt;/h3&gt;
 
 &lt;p&gt;堆需要用户手动释放内存，而栈则是编译器自动释放内存&lt;/p&gt;
 
@@ -1501,11 +1512,15 @@
   &lt;li&gt;NSKeyedArchiver&lt;/li&gt;
   &lt;li&gt;NSUserDefaults&lt;/li&gt;
   &lt;li&gt;Write写入方式&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;SQLite3&lt;br /&gt;
-&lt;a href=&quot;http://blog.csdn.net/tianyitianyi1/article/details/7713103&quot;&gt;http://blog.csdn.net/tianyitianyi1/article/details/7713103&lt;/a&gt;&lt;br /&gt;
-&amp;gt; 问题扩展：什么情况下使用什么样的数据存储&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;SQLite3&lt;br /&gt;
+&lt;a href=&quot;http://blog.csdn.net/tianyitianyi1/article/details/7713103&quot;&gt;http://blog.csdn.net/tianyitianyi1/article/details/7713103&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;问题扩展：什么情况下使用什么样的数据存储&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
   &lt;li&gt;1.NSKeyedArchiver：采用归档的形式来保存数据，数据对象需要遵守NSCoding协议，对象对应的类必须提供encodeWithCoder:和initWithCoder:方法。缺点：只能一次性归档保存以及一次性解压。所以只能针对小量数据，对数据操作比较笨拙，如果想改动数据的某一小部分，需要解压或归档整个数据。&lt;/li&gt;
   &lt;li&gt;2.NSUserDefaults：用来保存应用程序设置和属性、用户保存的数据。用户再次打开程序或开机后这些数据仍然存在。NSUserDefaults可以存储的数据类型包括：NSData、NSString、NSNumber、NSDate、NSArray、NSDictionary。缺点：如果要存储其他类型，需要转换为前面的类型，才能用NSUserDefaults存储。&lt;/li&gt;
   &lt;li&gt;3.Write写入方式：永久保存在磁盘中。第一步：获得文件即将保存的路径：第二步：生成在该路径下的文件：第三步：往文件中写入数据：最后：从文件中读出数据：&lt;/li&gt;
@@ -1554,7 +1569,7 @@
   &lt;p&gt;问题扩展：如何利用Xcode观察内存使用情况&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;12.深拷贝和浅拷贝的理解？&lt;/h3&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;12.深拷贝和浅拷贝的理解？&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_7b9d64af01019jq8.html&quot;&gt;http://blog.sina.com.cn/s/blog_7b9d64af01019jq8.html&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://blog.sina.com.cn/s/blog_7b9d64af01019k6n.html&quot;&gt;http://blog.sina.com.cn/s/blog_7b9d64af01019k6n.html&lt;/a&gt;&lt;/p&gt;
 
@@ -1571,7 +1586,7 @@
   &lt;p&gt;问题扩展：单例的好处是什么？–&amp;gt; 节省内存&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;14.什么是安全释放？&lt;/h3&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;14.什么是安全释放？&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;置nil 再释放&lt;/strong&gt;&lt;/p&gt;
 
@@ -1589,7 +1604,7 @@
 
 &lt;h3 id=&quot;min&quot;&gt;17.写一个标准宏MIN，这个宏输入两个参数并返回较小的一个？&lt;/h3&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#define MIN(X,Y)  ((X)&amp;gt;(Y)?(Y):(X))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;扩展：在定义宏的时候需要注意哪些问题？&lt;br /&gt;
@@ -1630,7 +1645,7 @@
   &lt;li&gt;init视图初始化时调用&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;21.描述应用程序的启动顺序。&lt;/h3&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;21.描述应用程序的启动顺序。&lt;/h3&gt;
 &lt;ol&gt;
   &lt;li&gt;程序入口main函数创建UIApplication实例和UIApplication代理实例。&lt;/li&gt;
   &lt;li&gt;在UIApplication代理实例中重写启动方法，设置第一ViewController。&lt;/li&gt;
@@ -1643,14 +1658,15 @@
 
 &lt;h3 id=&quot;uitableview&quot;&gt;23.使用UITableView时候必须要实现的几种方法？&lt;/h3&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSInteger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tableView:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UITableView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tableView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NumberOfRowsInSection:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSInteger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSInteger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tableView:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UITableView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tableView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NumberOfRowsInSection:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSInteger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt; 这个方法返回每个分段(section)的行数，不同分段返回不同的行数可以用switch来做，如果是单个列表就直接返回单个你想要的函数即可。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// - (UITableViewCell *)tableView:(UITableView *)tableView CellForRowAtIndexPath:(NSIndexPath)indexPath;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UITableViewCell&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;tableView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UITableView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tableView&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;CellForRowAtIndexPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSIndexPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indexPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt; 这个方法是返回我们调用的每一个单元格。通过我们索引的路径的section和row来确定&lt;/p&gt;
 
-&lt;h3 id=&quot;section-7&quot;&gt;24.写一个便利构造器。&lt;/h3&gt;
+&lt;h3 id=&quot;section-9&quot;&gt;24.写一个便利构造器。&lt;/h3&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//id代表任意类型指针，这里代表Student *,类方法&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;studentWithName:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;newName&lt;/span&gt;  &lt;span class=&quot;nf&quot;&gt;andAge:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;newAge&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;Student&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Student&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;initName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newName&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;andAge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newAge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stu&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;autorelease&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//自动释放 }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -1662,8 +1678,8 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code&gt;imageNamed:&lt;/code&gt; 系统会先检查系统缓存中是否有该名字的Image，如果有的话，则直接返回，如果没有，则先加载图像到缓存，然后再返回。&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;initWithContentsOfFile：&lt;/code&gt; 系统不会检查系统缓存，而直接从文件系统中加载并返回。&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;imageWithCGImage：scale：orientation&lt;/code&gt; 当scale=1&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;initWithContentsOfFile:&lt;/code&gt; 系统不会检查系统缓存，而直接从文件系统中加载并返回。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;imageWithCGImage: scale: orientation&lt;/code&gt; 当scale=1&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;personretaincount&quot;&gt;26.回答person的retainCount值，并解释为什么&lt;/h3&gt;
@@ -1671,7 +1687,7 @@
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;per&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;per&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;section-8&quot;&gt;27.这段代码有什么问题吗:&lt;/h3&gt;
+&lt;h3 id=&quot;section-10&quot;&gt;27.这段代码有什么问题吗:&lt;/h3&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@implementation&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setAge:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;newAge&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1692,13 +1708,13 @@
   &lt;p&gt;扩展：知道如何正确写setter和getter方法&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-9&quot;&gt;28.这段代码有什么问题,如何修改&lt;/h3&gt;
+&lt;h3 id=&quot;section-11&quot;&gt;28.这段代码有什么问题,如何修改&lt;/h3&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;someLargeNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; 	&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Abc&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//常量区&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; 	&lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;Abc&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//常量区&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; 	&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowercaseString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//新的堆区&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt; 	&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stringByAppendingString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;xyz&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//新的堆区&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; 	&lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(@&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; 	&lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;%@&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;在for循环里添加自动释放池&lt;br /&gt;
@@ -1730,7 +1746,7 @@
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/kuqideyupian/article/details/7731942&quot;&gt;http://blog.csdn.net/kuqideyupian/article/details/7731942&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://o0o0o0o.iteye.com/blog/1728599&quot;&gt;http://o0o0o0o.iteye.com/blog/1728599&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section-10&quot;&gt;32.写一个完整的代理，包括声明，实现&lt;/h3&gt;
+&lt;h3 id=&quot;section-12&quot;&gt;32.写一个完整的代理，包括声明，实现&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;注意手写的准确性&lt;/p&gt;
@@ -1745,7 +1761,7 @@
 
 &lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_68661bd80101nn6p.html&quot;&gt;http://blog.sina.com.cn/s/blog_68661bd80101nn6p.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section-11&quot;&gt;35.面向对象的三大特征，并作简单的介绍&lt;/h3&gt;
+&lt;h3 id=&quot;section-13&quot;&gt;35.面向对象的三大特征，并作简单的介绍&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;封装、继承、多态&lt;/strong&gt;&lt;/p&gt;
 
@@ -1850,7 +1866,7 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
 
 &lt;p&gt;mvc - model view controller ，避免了view与model 的强耦合 使代码更灵活 更容易维护 可复用 可扩展   OC其他设计模式有Notification 。target；action.  singleton delegate&lt;/p&gt;
 
-&lt;h3 id=&quot;section-12&quot;&gt;44.如监测系统键盘的弹出&lt;/h3&gt;
+&lt;h3 id=&quot;section-14&quot;&gt;44.如监测系统键盘的弹出&lt;/h3&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//监听通知&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSNotificationCenter&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defaultCenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;@selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIKeyboardWillShowNotification&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -1863,11 +1879,11 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
 
 &lt;p&gt;AFWorking / WebKit / SQLite / Core Data / Address Book&lt;/p&gt;
 
-&lt;h3 id=&quot;section-13&quot;&gt;46.如何将产品进行多语言发布？&lt;/h3&gt;
+&lt;h3 id=&quot;section-15&quot;&gt;46.如何将产品进行多语言发布？&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://fengmm521.blog.163.com/blog/static/25091358201291645852889/&quot;&gt;http://fengmm521.blog.163.com/blog/static/25091358201291645852889/&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section-14&quot;&gt;47.如何将敏感字变成**&lt;/h3&gt;
+&lt;h3 id=&quot;section-16&quot;&gt;47.如何将敏感字变成**&lt;/h3&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;某某某&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;***&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -1880,7 +1896,7 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
 &lt;p&gt;-表示实例方法&lt;br /&gt;
 +表示类方法&lt;/p&gt;
 
-&lt;h3 id=&quot;section-15&quot;&gt;49.单例目的是什么，并写出一个？&lt;/h3&gt;
+&lt;h3 id=&quot;section-17&quot;&gt;49.单例目的是什么，并写出一个？&lt;/h3&gt;
 
 &lt;p&gt;避免重复创建  节省内存空间&lt;/p&gt;
 
@@ -1894,7 +1910,7 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
 &lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt; 	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;section-16&quot;&gt;50.说说响应链&lt;/h3&gt;
+&lt;h3 id=&quot;section-18&quot;&gt;50.说说响应链&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.tuicool.com/articles/6jmUje&quot;&gt;http://www.tuicool.com/articles/6jmUje&lt;/a&gt;&lt;/p&gt;
 
@@ -1936,7 +1952,7 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;NSArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueForKeyPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;@distinctUnionOfObjects.self&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
 &lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;%@&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;name&quot;&gt;同样可以嵌套使用，先剔除name对应值的重复数据再取值&lt;/h3&gt;
+&lt;h3 id=&quot;name&quot;&gt;三、同样可以嵌套使用，先剔除name对应值的重复数据再取值&lt;/h3&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;NSArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@[&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zxp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zhangxiaoping&amp;quot;&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zxp2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zhangxiaoping2&amp;quot;&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zxp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zhangxiaoping3&amp;quot;&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zxp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;zhangxiaoping&amp;quot;&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;}]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//根据name字段，来进行重复删除。&lt;/span&gt;
@@ -1964,8 +1980,6 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
         <category>iOS</category>
         
         <category>KVC</category>
-        
-        <category>Bezier</category>
         
         
         <category>ios进阶</category>
@@ -2858,8 +2872,6 @@ windows系统的可参照官方教程：&lt;a href=&quot;https://github.com/XX-n
         <category>iOS</category>
         
         <category>Animation</category>
-        
-        <category>Bezier</category>
         
         
         <category>ios进阶</category>
