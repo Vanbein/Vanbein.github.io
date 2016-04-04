@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -484,7 +521,7 @@ ds.charset = 'UTF-8';
                   <span class="meta_date">Jan 5, 2016</span>
                   <span class="meta_author">Vanbein</span>
                   
-                  <span class="meta_tags"> <u>iOS</u> <u>Animation</u> <u>CATransition</u> 
+                  <span class="meta_tags"> <u>iOS</u> <u>Animation</u> 
                   
                 </div><!-- End Full meta -->
                 <!-- Entry content -->
@@ -584,23 +621,22 @@ ds.charset = 'UTF-8';
 
 <p>看一段动画代码：</p>
 
-<pre><code class="language-objc">	//给imageView设置新图片
-	[_imgView setImage:[UIImage imageNamed:@"QQ"]];
-	//添加imageView的切换动画，
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:1.0];
-    [animation setFillMode:kCAFillModeForwards];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-    [animation setType:@"rippleEffect"];// rippleEffect
-    [animation setSubtype:kCATransitionFromTop];
-    [_imgView.layer addAnimation:animation forKey:nil];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//给imageView设置新图片</span>
+<span class="lineno"> 2</span> 	<span class="p">[</span><span class="n">_imgView</span> <span class="nl">setImage</span><span class="p">:[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;QQ&quot;</span><span class="p">]];</span>
+<span class="lineno"> 3</span> 	<span class="c1">//添加imageView的切换动画，</span>
+<span class="lineno"> 4</span>     <span class="bp">CATransition</span> <span class="o">*</span><span class="n">animation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CATransition</span> <span class="n">animation</span><span class="p">];</span>
+<span class="lineno"> 5</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setDuration</span><span class="p">:</span><span class="mf">1.0</span><span class="p">];</span>
+<span class="lineno"> 6</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setFillMode</span><span class="p">:</span><span class="n">kCAFillModeForwards</span><span class="p">];</span>
+<span class="lineno"> 7</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setTimingFunction</span><span class="p">:[</span><span class="bp">CAMediaTimingFunction</span> <span class="nl">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseOut</span><span class="p">]];</span>
+<span class="lineno"> 8</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setType</span><span class="p">:</span><span class="s">@&quot;rippleEffect&quot;</span><span class="p">];</span><span class="c1">// rippleEffect</span>
+<span class="lineno"> 9</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setSubtype</span><span class="p">:</span><span class="n">kCATransitionFromTop</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="p">[</span><span class="n">_imgView</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addAnimation</span><span class="p">:</span><span class="n">animation</span> <span class="nl">forKey</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
+
 <p>实现功能就是，在UIImageView换新图片的时候，做相应的动画效果！好让，UIImageView转化时，不至于太单调！</p>
 
 <p>首先第一句：</p>
 
-<pre><code class="language-objc">CATransition *animation = [CATransition animation];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">CATransition</span> <span class="o">*</span><span class="n">animation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CATransition</span> <span class="n">animation</span><span class="p">];</span></code></pre></div>
 
 <p>因为<code>CATransition</code>是<code>CAAnimation</code>的子类,所以直接通过<code>CATransition</code>的<code>+ (id)animation</code> 方法创建了一个<code>CATransition</code>对象</p>
 
@@ -610,8 +646,7 @@ ds.charset = 'UTF-8';
   <li>delegate</li>
 </ul>
 
-<pre><code>@property(retain) id delegate
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">retain</span><span class="p">)</span> <span class="kt">id</span> <span class="n">delegate</span></code></pre></div>
 
 <p>为CAAnimation设置代理。默认为nil。<br />
 注意：一个CAAnimation实例，不能设置delegate为self。会引起循环引用。</p>
@@ -620,8 +655,7 @@ ds.charset = 'UTF-8';
   <li>removedOnCompletion</li>
 </ul>
 
-<pre><code>@property(getter=isRemovedOnCompletion) BOOL removedOnCompletion
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">getter</span><span class="o">=</span><span class="n">isRemovedOnCompletion</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">removedOnCompletion</span></code></pre></div>
 
 <p>设置是否动画完成后，动画效果从设置的layer上移除。默认为YES，代表动画执行完毕后就从图层上移除，图形会恢复到动画执行前的状态。如果想让图层保持显示动画执行后的状态，那就设置为NO，不过还要设置fillMode为kCAFillModeForwards</p>
 
@@ -629,8 +663,7 @@ ds.charset = 'UTF-8';
   <li>timingFunction</li>
 </ul>
 
-<pre><code>@property(retain) CAMediaTimingFunction *timingFunction
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">retain</span><span class="p">)</span> <span class="bp">CAMediaTimingFunction</span> <span class="o">*</span><span class="n">timingFunction</span></code></pre></div>
 
 <p>速度控制函数，控制动画运行的节奏，也就是动画自身的“节奏”：比如：开始快，结束时变慢；开始慢，结束时变快；匀速；等，在动画过程中的“时机”效果。</p>
 
@@ -638,16 +671,15 @@ ds.charset = 'UTF-8';
   <li>animation</li>
 </ul>
 
-<pre><code>+ (id)animation
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">animation</span></code></pre></div>
+
 <p>创建并返回一个CAAnimation实例。</p>
 
 <ul>
   <li>defaultValueForKey</li>
 </ul>
 
-<pre><code>+ (id)defaultValueForKey:(NSString *)key
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">defaultValueForKey:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span></code></pre></div>
 
 <p>根据属性key，返回相应的属性值。</p>
 
@@ -677,8 +709,7 @@ ds.charset = 'UTF-8';
   <li>shouldArchiveValueForKey</li>
 </ul>
 
-<pre><code>- (BOOL)shouldArchiveValueForKey:(NSString *)key
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldArchiveValueForKey:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span></code></pre></div>
 
 <p>返回指定的属性值是否可以归档。<br />
 &gt; key：指定的属性。<br />
@@ -689,8 +720,8 @@ ds.charset = 'UTF-8';
   <li>animationDidStart</li>
 </ul>
 
-<pre><code>- (void)animationDidStart:(CAAnimation *)theAnimation
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStart:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">theAnimation</span></code></pre></div>
+
 <p>动画开始时，执行的方法。<br />
 theAnimation：正在执行动画的CAAnimation实例。</p>
 
@@ -698,8 +729,7 @@ theAnimation：正在执行动画的CAAnimation实例。</p>
   <li>animationDidStop:finished</li>
 </ul>
 
-<pre><code>- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStop:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">theAnimation</span> <span class="nf">finished:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">flag</span></code></pre></div>
 
 <p>动画执行完成或者动画为执行被删除时，执行该方法。<br />
 &gt; theAnimation：完成或者被删除的动画实例<br />
@@ -718,8 +748,6 @@ theAnimation：正在执行动画的CAAnimation实例。</p>
                     <a href="/tags/#iOS">iOS</a>
                     
                     <a href="/tags/#Animation">Animation</a>
-                    
-                    <a href="/tags/#CATransition">CATransition</a>
                     
                     
                   </div><!-- End Entry tags -->
@@ -862,8 +890,6 @@ theAnimation：正在执行动画的CAAnimation实例。</p>
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -897,6 +923,44 @@ theAnimation：正在执行动画的CAAnimation实例。</p>
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

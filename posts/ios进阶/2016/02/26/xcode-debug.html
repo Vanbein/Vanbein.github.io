@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -501,26 +538,24 @@ ds.charset = 'UTF-8';
   <li>当我们想要某些代码只在Debug环境下才运行可以使用此宏定义判别，代码如下：</li>
 </ul>
 
-<pre><code class="language-objc">- (BOOL)isDebugMode{ 
-#ifndef __OPTIMIZE__
-    return YES;
-#else
-    return NO;
-#endif
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isDebugMode</span><span class="p">{</span> 
+<span class="lineno">2</span> <span class="cp">#ifndef __OPTIMIZE__</span>
+<span class="lineno">3</span>     <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">4</span> <span class="cp">#else</span>
+<span class="lineno">5</span>     <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">6</span> <span class="cp">#endif</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
 
 <h4 id="i386x8664">2、i386与x86_64，模拟器环境判定</h4>
 <p>有时工程依赖的Lib库只编译了真机的代码，模拟器编译出错。为了可以模拟器调试，使用此宏略过不能编译的代码</p>
 
-<pre><code class="language-objc">- (BOOL)isSimulatorMode{
-#if defined (__i386__) || defined (__x86_64__)
-    return YES;  //模拟器
-#else
-    return NO; //真机
-#endif
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isSimulatorMode</span><span class="p">{</span>
+<span class="lineno">2</span> <span class="cp">#if defined (__i386__) || defined (__x86_64__)</span>
+<span class="lineno">3</span>     <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>  <span class="c1">//模拟器</span>
+<span class="lineno">4</span> <span class="cp">#else</span>
+<span class="lineno">5</span>     <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span> <span class="c1">//真机</span>
+<span class="lineno">6</span> <span class="cp">#endif</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
 
 <h4 id="iphone80sdk">3、__IPHONE_8_0等，编译SDK的判定</h4>
 
@@ -530,32 +565,31 @@ ds.charset = 'UTF-8';
   <li><code>__IPHONE_OS_VERSION_MAX_ALLOWED</code>，此宏定义声明了当前编译的SDK版本，可进行比较</li>
 </ul>
 
-<pre><code>#define __IPHONE_2_0     20000
-#define __IPHONE_2_1     20100
-#define __IPHONE_2_2     20200
-#define __IPHONE_3_0     30000
-#define __IPHONE_3_1     30100
-#define __IPHONE_3_2     30200
-#define __IPHONE_4_0     40000
-#define __IPHONE_4_1     40100
-#define __IPHONE_4_2     40200
-#define __IPHONE_4_3     40300
-#define __IPHONE_5_0     50000
-#define __IPHONE_5_1     50100
-#define __IPHONE_6_0     60000
-#define __IPHONE_6_1     60100
-#define __IPHONE_7_0     70000
-#define __IPHONE_7_1     70100
-#define __IPHONE_8_0     80000
-#define __IPHONE_8_1     80100
-#define __IPHONE_8_2     80200
-#define __IPHONE_8_3     80300
-#define __IPHONE_8_4     80400
-#define __IPHONE_9_0     90000
-#define __IPHONE_9_1     90100
-#define __IPHONE_9_2     90200
-//······
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="cp">#define __IPHONE_2_0     20000</span>
+<span class="lineno"> 2</span> <span class="cp">#define __IPHONE_2_1     20100</span>
+<span class="lineno"> 3</span> <span class="cp">#define __IPHONE_2_2     20200</span>
+<span class="lineno"> 4</span> <span class="cp">#define __IPHONE_3_0     30000</span>
+<span class="lineno"> 5</span> <span class="cp">#define __IPHONE_3_1     30100</span>
+<span class="lineno"> 6</span> <span class="cp">#define __IPHONE_3_2     30200</span>
+<span class="lineno"> 7</span> <span class="cp">#define __IPHONE_4_0     40000</span>
+<span class="lineno"> 8</span> <span class="cp">#define __IPHONE_4_1     40100</span>
+<span class="lineno"> 9</span> <span class="cp">#define __IPHONE_4_2     40200</span>
+<span class="lineno">10</span> <span class="cp">#define __IPHONE_4_3     40300</span>
+<span class="lineno">11</span> <span class="cp">#define __IPHONE_5_0     50000</span>
+<span class="lineno">12</span> <span class="cp">#define __IPHONE_5_1     50100</span>
+<span class="lineno">13</span> <span class="cp">#define __IPHONE_6_0     60000</span>
+<span class="lineno">14</span> <span class="cp">#define __IPHONE_6_1     60100</span>
+<span class="lineno">15</span> <span class="cp">#define __IPHONE_7_0     70000</span>
+<span class="lineno">16</span> <span class="cp">#define __IPHONE_7_1     70100</span>
+<span class="lineno">17</span> <span class="cp">#define __IPHONE_8_0     80000</span>
+<span class="lineno">18</span> <span class="cp">#define __IPHONE_8_1     80100</span>
+<span class="lineno">19</span> <span class="cp">#define __IPHONE_8_2     80200</span>
+<span class="lineno">20</span> <span class="cp">#define __IPHONE_8_3     80300</span>
+<span class="lineno">21</span> <span class="cp">#define __IPHONE_8_4     80400</span>
+<span class="lineno">22</span> <span class="cp">#define __IPHONE_9_0     90000</span>
+<span class="lineno">23</span> <span class="cp">#define __IPHONE_9_1     90100</span>
+<span class="lineno">24</span> <span class="cp">#define __IPHONE_9_2     90200</span>
+<span class="lineno">25</span> <span class="c1">//······</span></code></pre></div>
 
 <h4 id="nop">4、NOP，空语句</h4>
 
@@ -564,12 +598,11 @@ ds.charset = 'UTF-8';
   <li>可以设计一个宏进行代替，用于挂载条件断点调试使用。</li>
 </ul>
 
-<pre><code class="language-objc">#ifndef __OPTIMIZE__
-    #define ___NOP___   \assert(1)
-#else
-    #define ___NOP___
-#endif
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="cp">#ifndef __OPTIMIZE__</span>
+<span class="lineno">2</span>     <span class="cp">#define ___NOP___   \assert(1)</span>
+<span class="lineno">3</span> <span class="cp">#else</span>
+<span class="lineno">4</span>     <span class="cp">#define ___NOP___</span>
+<span class="lineno">5</span> <span class="cp">#endif</span></code></pre></div>
 
 <h3 id="section-1">二、常用调试命令</h3>
 
@@ -839,8 +872,6 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -874,6 +905,44 @@ ds.charset = 'UTF-8';
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

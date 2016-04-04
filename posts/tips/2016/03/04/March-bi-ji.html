@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -495,62 +532,57 @@ ds.charset = 'UTF-8';
 
 <p>比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔</p>
 
-<pre><code class="language-objc">	UIButton *rightbutton1;
-	UIButton *rightbutton2;
-    UIBarButtonItem *backButton1 = [[UIBarButtonItem alloc] initWithCustomView:rightbutton1];
-    UIBarButtonItem *backButton2 = [[UIBarButtonItem alloc] initWithCustomView:rightbutton2];
-    //
-    //调整 rightBarButtonItems 到屏幕右侧的间距
-    UIBarButtonItem *rightNegativeSpacer = [[UIBarButtonItem alloc]
-                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                       target:nil action:nil];
-    rightNegativeSpacer.width = -1; 
-    /**
-     *  width为负数时，相当于 btn 向右移动 width 数值个像素，
-     *  由于按钮本身和边界间距为 16 px，所以width设为 -1 时，间距正好调整为 15
-     *  width为正数时，正好相反，相当于往左移动width数值个像素
-     */
-    UIBarButtonItem *rightNegativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                            target:nil action:nil];
-    rightNegativeSpacer2.width = 18; // rightButton1 和 rightButton2 的间隔默认为0
-    //
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightNegativeSpacer, backButton1, rightNegativeSpacer2, backButton2, nil]];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="bp">UIButton</span> <span class="o">*</span><span class="n">rightbutton1</span><span class="p">;</span>
+<span class="lineno"> 2</span> 	<span class="bp">UIButton</span> <span class="o">*</span><span class="n">rightbutton2</span><span class="p">;</span>
+<span class="lineno"> 3</span>     <span class="bp">UIBarButtonItem</span> <span class="o">*</span><span class="n">backButton1</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIBarButtonItem</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithCustomView</span><span class="p">:</span><span class="n">rightbutton1</span><span class="p">];</span>
+<span class="lineno"> 4</span>     <span class="bp">UIBarButtonItem</span> <span class="o">*</span><span class="n">backButton2</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIBarButtonItem</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithCustomView</span><span class="p">:</span><span class="n">rightbutton2</span><span class="p">];</span>
+<span class="lineno"> 5</span>     <span class="c1">//</span>
+<span class="lineno"> 6</span>     <span class="c1">//调整 rightBarButtonItems 到屏幕右侧的间距</span>
+<span class="lineno"> 7</span>     <span class="bp">UIBarButtonItem</span> <span class="o">*</span><span class="n">rightNegativeSpacer</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIBarButtonItem</span> <span class="n">alloc</span><span class="p">]</span>
+<span class="lineno"> 8</span>                                        <span class="nl">initWithBarButtonSystemItem</span><span class="p">:</span><span class="n">UIBarButtonSystemItemFixedSpace</span>
+<span class="lineno"> 9</span>                                        <span class="nl">target</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">action</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="n">rightNegativeSpacer</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> 
+<span class="lineno">11</span>     <span class="cm">/**</span>
+<span class="lineno">12</span> <span class="cm">     *  width为负数时，相当于 btn 向右移动 width 数值个像素，</span>
+<span class="lineno">13</span> <span class="cm">     *  由于按钮本身和边界间距为 16 px，所以width设为 -1 时，间距正好调整为 15</span>
+<span class="lineno">14</span> <span class="cm">     *  width为正数时，正好相反，相当于往左移动width数值个像素</span>
+<span class="lineno">15</span> <span class="cm">     */</span>
+<span class="lineno">16</span>     <span class="bp">UIBarButtonItem</span> <span class="o">*</span><span class="n">rightNegativeSpacer2</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIBarButtonItem</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBarButtonSystemItem</span><span class="p">:</span><span class="n">UIBarButtonSystemItemFixedSpace</span>
+<span class="lineno">17</span>                                             <span class="nl">target</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">action</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">18</span>     <span class="n">rightNegativeSpacer2</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span> <span class="c1">// rightButton1 和 rightButton2 的间隔默认为0</span>
+<span class="lineno">19</span>     <span class="c1">//</span>
+<span class="lineno">20</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">navigationItem</span> <span class="nl">setRightBarButtonItems</span><span class="p">:[</span><span class="bp">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="n">rightNegativeSpacer</span><span class="p">,</span> <span class="n">backButton1</span><span class="p">,</span> <span class="n">rightNegativeSpacer2</span><span class="p">,</span> <span class="n">backButton2</span><span class="p">,</span> <span class="nb">nil</span><span class="p">]];</span></code></pre></div>
 
 <h3 id="view--frame">二、获得任意 view 相对于屏幕的 frame</h3>
 
-<pre><code class="language-objc">    CGRect frame = [[UIApplication sharedApplication].keyWindow convertRect:CGRectMake(0, 0, targetView.frame.size.width, targetView.frame.size.height) fromView:targetView];
-    NSLog(@"\n\n targetView frame: x: %f   y: %f  \n\n width: %f   height: %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">CGRect</span> <span class="n">frame</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">keyWindow</span> <span class="nl">convertRect</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">targetView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">targetView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="nl">fromView</span><span class="p">:</span><span class="n">targetView</span><span class="p">];</span>
+<span class="lineno">2</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;</span><span class="se">\n\n</span><span class="s"> targetView frame: x: %f   y: %f  </span><span class="se">\n\n</span><span class="s"> width: %f   height: %f&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">frame</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">);</span></code></pre></div>
 
 <h3 id="section">三、通过颜色来生成一个纯色图片</h3>
 
-<pre><code class="language-objc">- (UIImage *)imageFromColor:(UIColor *)color{
-    CGRect rect = CGRectMake(0, 0, 100, 100);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return img;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">imageFromColor:</span><span class="p">(</span><span class="bp">UIColor</span> <span class="o">*</span><span class="p">)</span><span class="nv">color</span><span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="bp">CGRect</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="lineno"> 3</span>     <span class="n">UIGraphicsBeginImageContext</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">size</span><span class="p">);</span>
+<span class="lineno"> 4</span>     <span class="n">CGContextRef</span> <span class="n">context</span> <span class="o">=</span> <span class="n">UIGraphicsGetCurrentContext</span><span class="p">();</span>
+<span class="lineno"> 5</span>     <span class="n">CGContextSetFillColorWithColor</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="p">[</span><span class="n">color</span> <span class="bp">CGColor</span><span class="p">]);</span>
+<span class="lineno"> 6</span>     <span class="n">CGContextFillRect</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">rect</span><span class="p">);</span>
+<span class="lineno"> 7</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">img</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">();</span>
+<span class="lineno"> 8</span>     <span class="n">UIGraphicsEndImageContext</span><span class="p">();</span>
+<span class="lineno"> 9</span>     <span class="k">return</span> <span class="n">img</span><span class="p">;</span>
+<span class="lineno">10</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="uinavigationbar-">四、设置 UINavigationBar 背景色，背景图片,</h3>
 
 <p>下面的代码，可以设置 UINavigationBar 背景色和背景图片</p>
 
-<pre><code class="language-objc">	//背景色
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]];
-	//背景图
-    [[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//背景色</span>
+<span class="lineno">2</span>     <span class="p">[[</span><span class="bp">UINavigationBar</span> <span class="n">appearance</span><span class="p">]</span> <span class="nl">setBarTintColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="nl">colorWithRed</span><span class="p">:</span><span class="mi">16</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">green</span><span class="p">:</span><span class="mi">126</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">blue</span><span class="p">:</span><span class="mi">219</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">alpha</span><span class="p">:</span><span class="mf">1.0</span><span class="p">]];</span>
+<span class="lineno">3</span> 	<span class="c1">//背景图</span>
+<span class="lineno">4</span>     <span class="p">[[</span><span class="bp">UINavigationBar</span> <span class="n">appearance</span><span class="p">]</span> <span class="nl">setBackgroundImage</span><span class="p">:[</span><span class="nb">self</span> <span class="nl">imageFromColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="nl">colorWithRed</span><span class="p">:</span><span class="mi">16</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">green</span><span class="p">:</span><span class="mi">126</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">blue</span><span class="p">:</span><span class="mi">219</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">alpha</span><span class="p">:</span><span class="mf">1.0</span><span class="p">]]</span> <span class="nl">forBarMetrics</span><span class="p">:</span><span class="n">UIBarMetricsDefault</span><span class="p">];</span></code></pre></div>
 
 <p>如果你发现实际的颜色比设置的颜色淡一点，那是因为导航栏默认带了半透明效果，我们可以通过代码或在storyboard中取消半透明效果。</p>
 
-<pre><code class="language-objc">    [[UINavigationBar appearance] setTranslucent:NO];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[[</span><span class="bp">UINavigationBar</span> <span class="n">appearance</span><span class="p">]</span> <span class="nl">setTranslucent</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span></code></pre></div>
 
 <p><img src="/images/2016/03/Translucent.png" alt="storyboard取消Translucent" /></p>
 
@@ -560,13 +592,12 @@ ds.charset = 'UTF-8';
 
 <p>此时会在导航栏下方出现一根黑线，比较难看，使用下面的代码可以去除导航栏下方的横线，</p>
 
-<pre><code class="language-objc">	//#107cdb
-	[[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
-	[[UINavigationBar appearance] setShadowImage:[UIImage new]];
-	//
-	//如果设置了导航栏背景色，不想要 backgroundImage，则 backgroundImage 可以设置为 `[UIImage new]`，如下
-	//[[UINavigationBar appearance] setBackgroundImage: [UIImage new] forBarMetrics:UIBarMetricsDefault];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//#107cdb</span>
+<span class="lineno">2</span> 	<span class="p">[[</span><span class="bp">UINavigationBar</span> <span class="n">appearance</span><span class="p">]</span> <span class="nl">setBackgroundImage</span><span class="p">:[</span><span class="nb">self</span> <span class="nl">imageFromColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="nl">colorWithRed</span><span class="p">:</span><span class="mi">16</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">green</span><span class="p">:</span><span class="mi">126</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">blue</span><span class="p">:</span><span class="mi">219</span><span class="o">/</span><span class="mf">255.0</span> <span class="nl">alpha</span><span class="p">:</span><span class="mf">1.0</span><span class="p">]]</span> <span class="nl">forBarMetrics</span><span class="p">:</span><span class="n">UIBarMetricsDefault</span><span class="p">];</span>
+<span class="lineno">3</span> 	<span class="p">[[</span><span class="bp">UINavigationBar</span> <span class="n">appearance</span><span class="p">]</span> <span class="nl">setShadowImage</span><span class="p">:[</span><span class="bp">UIImage</span> <span class="n">new</span><span class="p">]];</span>
+<span class="lineno">4</span> 	<span class="c1">//</span>
+<span class="lineno">5</span> 	<span class="c1">//如果设置了导航栏背景色，不想要 backgroundImage，则 backgroundImage 可以设置为 `[UIImage new]`，如下</span>
+<span class="lineno">6</span> 	<span class="c1">//[[UINavigationBar appearance] setBackgroundImage: [UIImage new] forBarMetrics:UIBarMetricsDefault];</span></code></pre></div>
 
 <p><img src="/images/2016/03/compare.png" alt="compare" /></p>
 
@@ -574,20 +605,19 @@ ds.charset = 'UTF-8';
 
 <p>我们可以使用标准库中的<code>drand48()</code>函数，它会随机生成一个0.0-1.0之间的double，因此我们只需要随机生成R, G, B三个值最后用UIColor的<code>colorWithRed:green:blue:alpha</code>方法创建UIColor，即可。</p>
 
-<p>需要注意的是，<code>drand48</code>函数需要使用<code>srand48</code>来初始化随机数种子，示例代码如下：<br />
-<code>objc
-- (UIColor *)randomColor{    
-    static BOOL seeded = NO;
-    if (!seeded) {
-        seeded = YES;
-        srand48(time(0));
-    }
-    CGFloat r = (CGFloat)drand48();
-    CGFloat g = (CGFloat)drand48();
-    CGFloat b = (CGFloat)drand48();
-    return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
-}
-</code></p>
+<p>需要注意的是，<code>drand48</code>函数需要使用<code>srand48</code>来初始化随机数种子，示例代码如下：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIColor</span> <span class="o">*</span><span class="p">)</span><span class="nf">randomColor</span><span class="p">{</span>    
+<span class="lineno"> 2</span>     <span class="k">static</span> <span class="kt">BOOL</span> <span class="n">seeded</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno"> 3</span>     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">seeded</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="n">seeded</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="n">srand48</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="lineno"> 6</span>     <span class="p">}</span>
+<span class="lineno"> 7</span>     <span class="n">CGFloat</span> <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="n">drand48</span><span class="p">();</span>
+<span class="lineno"> 8</span>     <span class="n">CGFloat</span> <span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="n">drand48</span><span class="p">();</span>
+<span class="lineno"> 9</span>     <span class="n">CGFloat</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="n">drand48</span><span class="p">();</span>
+<span class="lineno">10</span>     <span class="k">return</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="nl">colorWithRed</span><span class="p">:</span><span class="n">r</span> <span class="nl">green</span><span class="p">:</span><span class="n">g</span> <span class="nl">blue</span><span class="p">:</span><span class="n">b</span> <span class="nl">alpha</span><span class="p">:</span><span class="mf">1.0</span><span class="p">];</span>
+<span class="lineno">11</span> <span class="p">}</span></code></pre></div>
 
 <blockquote>
   <p>demo的github地址：<a href="https://github.com/Vanbein/RandomColor">随机生成一个UIColor</a></p>
@@ -607,38 +637,37 @@ ds.charset = 'UTF-8';
 
 <h3 id="section-2">八、屏幕截图并保存</h3>
 
-<pre><code class="language-objc">//snapshotImage 这个方法效率比较低，
-- (UIImage *)snapshotImage {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return snap;
-}
-//iOS 7上UIView上提供了drawViewHierarchyInRect:afterScreenUpdates:来截图，速度比renderInContext:快15倍。
-- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
-    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        return [self snapshotImage];
-    }
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
-    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:afterUpdates];
-    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return snap;
-}
-//保存截图到相册
-- (void)saveImageToPhotos:(UIImage *)image{
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-}
-//状态回调
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    if (!error) {
-        NSLog(@"\n\n保存成功\n\n");
-    } else {
-        NSLog(@"\n\n保存失败\n\n");
-    }
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//snapshotImage 这个方法效率比较低，</span>
+<span class="lineno"> 2</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">snapshotImage</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="n">UIGraphicsBeginImageContextWithOptions</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">opaque</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 4</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span> <span class="nl">renderInContext</span><span class="p">:</span><span class="n">UIGraphicsGetCurrentContext</span><span class="p">()];</span>
+<span class="lineno"> 5</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">snap</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">();</span>
+<span class="lineno"> 6</span>     <span class="n">UIGraphicsEndImageContext</span><span class="p">();</span>
+<span class="lineno"> 7</span>     <span class="k">return</span> <span class="n">snap</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="p">}</span>
+<span class="lineno"> 9</span> <span class="c1">//iOS 7上UIView上提供了drawViewHierarchyInRect:afterScreenUpdates:来截图，速度比renderInContext:快15倍。</span>
+<span class="lineno">10</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">snapshotImageAfterScreenUpdates:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">afterUpdates</span> <span class="p">{</span>
+<span class="lineno">11</span>     <span class="k">if</span> <span class="p">([</span><span class="nb">self</span> <span class="nl">respondsToSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">drawViewHierarchyInRect</span><span class="p">:</span><span class="nl">afterScreenUpdates</span><span class="p">:)])</span> <span class="p">{</span>
+<span class="lineno">12</span>         <span class="k">return</span> <span class="p">[</span><span class="nb">self</span> <span class="n">snapshotImage</span><span class="p">];</span>
+<span class="lineno">13</span>     <span class="p">}</span>
+<span class="lineno">14</span>     <span class="n">UIGraphicsBeginImageContextWithOptions</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">opaque</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="lineno">15</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">drawViewHierarchyInRect</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span> <span class="nl">afterScreenUpdates</span><span class="p">:</span><span class="n">afterUpdates</span><span class="p">];</span>
+<span class="lineno">16</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">snap</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">();</span>
+<span class="lineno">17</span>     <span class="n">UIGraphicsEndImageContext</span><span class="p">();</span>
+<span class="lineno">18</span>     <span class="k">return</span> <span class="n">snap</span><span class="p">;</span>
+<span class="lineno">19</span> <span class="p">}</span>
+<span class="lineno">20</span> <span class="c1">//保存截图到相册</span>
+<span class="lineno">21</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">saveImageToPhotos:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span><span class="p">{</span>
+<span class="lineno">22</span>     <span class="n">UIImageWriteToSavedPhotosAlbum</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">image</span><span class="p">:</span><span class="nl">didFinishSavingWithError</span><span class="p">:</span><span class="nl">contextInfo</span><span class="p">:),</span> <span class="nb">nil</span><span class="p">);</span>
+<span class="lineno">23</span> <span class="p">}</span>
+<span class="lineno">24</span> <span class="c1">//状态回调</span>
+<span class="lineno">25</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">image:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="nf">didFinishSavingWithError:</span><span class="p">(</span><span class="bp">NSError</span> <span class="o">*</span><span class="p">)</span><span class="nv">error</span> <span class="nf">contextInfo:</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="nv">contextInfo</span><span class="p">{</span>
+<span class="lineno">26</span>     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">27</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;</span><span class="se">\n\n</span><span class="s">保存成功</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="lineno">28</span>     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="lineno">29</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;</span><span class="se">\n\n</span><span class="s">保存失败</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="lineno">30</span>     <span class="p">}</span>
+<span class="lineno">31</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="section-3">九、图片高斯模糊，毛玻璃效果</h3>
 
@@ -797,8 +826,6 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -832,6 +859,44 @@ ds.charset = 'UTF-8';
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

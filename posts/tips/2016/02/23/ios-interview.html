@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -516,17 +553,16 @@ ds.charset = 'UTF-8';
 
 <p>线程安全情况下的setter和getter：</p>
 
-<pre><code class="language-objc">- (NSString\*) value  {     
-        @synchronized(self) {         
-        return [[_value retain] autorelease];     
-}} 
-(void) setValue:(NSString*)aValue {     
-   @synchronized(self) {         
-   [aValue retain];         
-   [_value release];         
-   _value = aValue;     
-}  }
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span><span class="err">\</span><span class="o">*</span><span class="p">)</span> <span class="nf">value</span>  <span class="p">{</span>     
+<span class="lineno"> 2</span>         <span class="k">@synchronized</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">{</span>         
+<span class="lineno"> 3</span>         <span class="k">return</span> <span class="p">[[</span><span class="n">_value</span> <span class="k">retain</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>     
+<span class="lineno"> 4</span> <span class="p">}}</span> 
+<span class="lineno"> 5</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nv">setValue</span><span class="o">:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="n">aValue</span> <span class="p">{</span>     
+<span class="lineno"> 6</span>    <span class="k">@synchronized</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">{</span>         
+<span class="lineno"> 7</span>    <span class="p">[</span><span class="n">aValue</span> <span class="k">retain</span><span class="p">];</span>         
+<span class="lineno"> 8</span>    <span class="p">[</span><span class="n">_value</span> <span class="k">release</span><span class="p">];</span>         
+<span class="lineno"> 9</span>    <span class="n">_value</span> <span class="o">=</span> <span class="n">aValue</span><span class="p">;</span>     
+<span class="lineno">10</span> <span class="p">}</span>  <span class="p">}</span></code></pre></div>
 
 <h3 id="protected-privatepublicpackage">2.类变量的@protected ,@private,@public,@package，声明各有什么含义？</h3>
 <ul>
@@ -589,21 +625,20 @@ ds.charset = 'UTF-8';
 
 <h3 id="aabcadaabcd">6.假设有一个字符串aabcad，请写一段程序，去掉字符串中不相邻的重复字符串，即上述字符串处理之后的输出结果为：aabcd</h3>
 
-<pre><code class="language-objc">NSMutableString * str = [[NSMutableString alloc]initWithFormat;@“aabcad”];
-for (int i = 0 ,i &lt; str.length - 1 ;i++){
-    unsigned char a = [str characterAtIndex:i];
-    for (int j = i + 1 ,j &lt; str.length ,j++){
-        unsigned char b = [str characterAtIndex:j];
-        if (a == b ){
-            if (j == i + 1){
-                }else{
-                [str deleteCharactersInRange:NSMakeRange(j, 1)];
-                }
-            }
-        }
-    }
-NSLog(@“%@”,str);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="bp">NSMutableString</span> <span class="o">*</span> <span class="n">str</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSMutableString</span> <span class="n">alloc</span><span class="p">]</span><span class="n">initWithFormat</span><span class="p">;@</span><span class="err">“</span><span class="n">aabcad</span><span class="err">”</span><span class="p">];</span>
+<span class="lineno"> 2</span> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">,</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="lineno"> 3</span>     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">str</span> <span class="nl">characterAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
+<span class="lineno"> 4</span>     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">,</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span> <span class="p">,</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="lineno"> 5</span>         <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">str</span> <span class="nl">characterAtIndex</span><span class="p">:</span><span class="n">j</span><span class="p">];</span>
+<span class="lineno"> 6</span>         <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="p">){</span>
+<span class="lineno"> 7</span>             <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">){</span>
+<span class="lineno"> 8</span>                 <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno"> 9</span>                 <span class="p">[</span><span class="n">str</span> <span class="nl">deleteCharactersInRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">)];</span>
+<span class="lineno">10</span>                 <span class="p">}</span>
+<span class="lineno">11</span>             <span class="p">}</span>
+<span class="lineno">12</span>         <span class="p">}</span>
+<span class="lineno">13</span>     <span class="p">}</span>
+<span class="lineno">14</span> <span class="n">NSLog</span><span class="p">(@</span><span class="err">“</span><span class="o">%</span><span class="p">@</span><span class="err">”</span><span class="p">,</span><span class="n">str</span><span class="p">);</span></code></pre></div>
 
 <h3 id="section-2">7.获取一台设备唯一标识的方法有哪些？</h3>
 
@@ -650,41 +685,40 @@ NSLog(@“%@”,str);
 <h3 id="ios-4">11.写出方法获取iOS内存使用情况。</h3>
 <p><a href="http://blog.sina.com.cn/s/blog_698415f20100yjlo.html">http://blog.sina.com.cn/s/blog_698415f20100yjlo.html</a></p>
 
-<pre><code class="language-objc">// 获取当前设备可用内存及所占内存的头文件
-#import &lt;sys/sysctl.h&gt;
-#import &lt;mach/mach.h&gt;
-//
-// 获取当前设备可用内存(单位：MB）
-- (double)availableMemory
-{
-  vm_statistics_data_t vmStats;
-  mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
-  kern_return_t kernReturn = host_statistics(mach_host_self(), 
-                                             HOST_VM_INFO, 
-                                             (host_info_t)&amp;vmStats, 
-                                             &amp;infoCount);
-  if (kernReturn != KERN_SUCCESS) {
-    return NSNotFound;
-  }
-  return ((vm_page_size *vmStats.free_count) / 1024.0) / 1024.0;
-}
-//
-// 获取当前任务所占用的内存（单位：MB）
-- (double)usedMemory
-{
-  task_basic_info_data_t taskInfo;
-  mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
-  kern_return_t kernReturn = task_info(mach_task_self(), 
-                                       TASK_BASIC_INFO, 
-                                       (task_info_t)&amp;taskInfo, 
-                                       &amp;infoCount);
-  if (kernReturn != KERN_SUCCESS
-      ) {
-    return NSNotFound;
-  }
-  return taskInfo.resident_size / 1024.0 / 1024.0;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// 获取当前设备可用内存及所占内存的头文件</span>
+<span class="lineno"> 2</span> <span class="cp">#import &lt;sys/sysctl.h&gt;</span>
+<span class="lineno"> 3</span> <span class="cp">#import &lt;mach/mach.h&gt;</span>
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span> <span class="c1">// 获取当前设备可用内存(单位：MB）</span>
+<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nf">availableMemory</span>
+<span class="lineno"> 7</span> <span class="p">{</span>
+<span class="lineno"> 8</span>   <span class="kt">vm_statistics_data_t</span> <span class="n">vmStats</span><span class="p">;</span>
+<span class="lineno"> 9</span>   <span class="kt">mach_msg_type_number_t</span> <span class="n">infoCount</span> <span class="o">=</span> <span class="n">HOST_VM_INFO_COUNT</span><span class="p">;</span>
+<span class="lineno">10</span>   <span class="kt">kern_return_t</span> <span class="n">kernReturn</span> <span class="o">=</span> <span class="n">host_statistics</span><span class="p">(</span><span class="n">mach_host_self</span><span class="p">(),</span> 
+<span class="lineno">11</span>                                              <span class="n">HOST_VM_INFO</span><span class="p">,</span> 
+<span class="lineno">12</span>                                              <span class="p">(</span><span class="kt">host_info_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">vmStats</span><span class="p">,</span> 
+<span class="lineno">13</span>                                              <span class="o">&amp;</span><span class="n">infoCount</span><span class="p">);</span>
+<span class="lineno">14</span>   <span class="k">if</span> <span class="p">(</span><span class="n">kernReturn</span> <span class="o">!=</span> <span class="n">KERN_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">15</span>     <span class="k">return</span> <span class="n">NSNotFound</span><span class="p">;</span>
+<span class="lineno">16</span>   <span class="p">}</span>
+<span class="lineno">17</span>   <span class="k">return</span> <span class="p">((</span><span class="n">vm_page_size</span> <span class="o">*</span><span class="n">vmStats</span><span class="p">.</span><span class="n">free_count</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1024.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1024.0</span><span class="p">;</span>
+<span class="lineno">18</span> <span class="p">}</span>
+<span class="lineno">19</span> <span class="c1">//</span>
+<span class="lineno">20</span> <span class="c1">// 获取当前任务所占用的内存（单位：MB）</span>
+<span class="lineno">21</span> <span class="p">-</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nf">usedMemory</span>
+<span class="lineno">22</span> <span class="p">{</span>
+<span class="lineno">23</span>   <span class="kt">task_basic_info_data_t</span> <span class="n">taskInfo</span><span class="p">;</span>
+<span class="lineno">24</span>   <span class="kt">mach_msg_type_number_t</span> <span class="n">infoCount</span> <span class="o">=</span> <span class="n">TASK_BASIC_INFO_COUNT</span><span class="p">;</span>
+<span class="lineno">25</span>   <span class="kt">kern_return_t</span> <span class="n">kernReturn</span> <span class="o">=</span> <span class="n">task_info</span><span class="p">(</span><span class="n">mach_task_self</span><span class="p">(),</span> 
+<span class="lineno">26</span>                                        <span class="n">TASK_BASIC_INFO</span><span class="p">,</span> 
+<span class="lineno">27</span>                                        <span class="p">(</span><span class="kt">task_info_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">taskInfo</span><span class="p">,</span> 
+<span class="lineno">28</span>                                        <span class="o">&amp;</span><span class="n">infoCount</span><span class="p">);</span>
+<span class="lineno">29</span>   <span class="k">if</span> <span class="p">(</span><span class="n">kernReturn</span> <span class="o">!=</span> <span class="n">KERN_SUCCESS</span>
+<span class="lineno">30</span>       <span class="p">)</span> <span class="p">{</span>
+<span class="lineno">31</span>     <span class="k">return</span> <span class="n">NSNotFound</span><span class="p">;</span>
+<span class="lineno">32</span>   <span class="p">}</span>
+<span class="lineno">33</span>   <span class="k">return</span> <span class="n">taskInfo</span><span class="p">.</span><span class="n">resident_size</span> <span class="o">/</span> <span class="mf">1024.0</span> <span class="o">/</span> <span class="mf">1024.0</span><span class="p">;</span>
+<span class="lineno">34</span> <span class="p">}</span></code></pre></div>
 
 <blockquote>
   <p>问题扩展：如何利用Xcode观察内存使用情况</p>
@@ -725,8 +759,7 @@ NSLog(@“%@”,str);
 
 <h3 id="min">17.写一个标准宏MIN，这个宏输入两个参数并返回较小的一个？</h3>
 
-<pre><code class="language-objc">\#define MIN(X,Y)  ((X)&gt;(Y)?(Y):(X))
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="err">\#</span><span class="n">define</span> <span class="n">MIN</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>  <span class="p">((</span><span class="n">X</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">?</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="n">X</span><span class="p">))</span></code></pre></div>
 
 <blockquote>
   <p>扩展：在定义宏的时候需要注意哪些问题？<br />
@@ -745,15 +778,13 @@ NSLog(@“%@”,str);
 <p>自己可以写个demo来测试一下<br />
 进入后台时</p>
 
-<pre><code class="language-objc">-(void)applicationWillResignActive:(UIApplication *)application;
--(void)applicationDidEnterBackground:(UIApplication *)application;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationWillResignActive:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidEnterBackground:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span><span class="p">;</span></code></pre></div>
 
-<p>进入前台时<br />
-<code>objc
--(void)applicationDidEnterForeground:(UIApplication *)application;
--(void)applicationWillResignActive:(UIApplication *)application;
-</code></p>
+<p>进入前台时</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidEnterForeground:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationWillResignActive:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span><span class="p">;</span></code></pre></div>
 
 <h3 id="viewcontroller--allocloadview-viewdidloadviewwillappearviewdidunloaddeallocinitviewcontroller">20.ViewController 的 alloc，loadView, viewDidLoad,viewWillAppear,viewDidUnload,dealloc、init分别是在什么时候调用的？在自定义ViewController的时候这几个函数里面应该做什么工作？</h3>
 <p><a href="http://www.xuebuyuan.com/672935.html">http://www.xuebuyuan.com/672935.html</a><br />
@@ -782,20 +813,17 @@ NSLog(@“%@”,str);
 
 <h3 id="uitableview">23.使用UITableView时候必须要实现的几种方法？</h3>
 
-<pre><code class="language-objc">//
--(NSInteger)tableView:(UITableView *)tableView NumberOfRowsInSection:(NSInteger)section;
-``` 这个方法返回每个分段(section)的行数，不同分段返回不同的行数可以用switch来做，如果是单个列表就直接返回单个你想要的函数即可。
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//</span>
+<span class="lineno">2</span> <span class="p">-(</span><span class="bp">NSInteger</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="bp">UITableView</span> <span class="o">*</span><span class="p">)</span><span class="nv">tableView</span> <span class="nf">NumberOfRowsInSection:</span><span class="p">(</span><span class="bp">NSInteger</span><span class="p">)</span><span class="nv">section</span><span class="p">;</span></code></pre></div>
+<p> 这个方法返回每个分段(section)的行数，不同分段返回不同的行数可以用switch来做，如果是单个列表就直接返回单个你想要的函数即可。</p>
 
-```objc
-// - (UITableViewCell *)tableView:(UITableView *)tableView CellForRowAtIndexPath:(NSIndexPath)indexPath;
-``` 这个方法是返回我们调用的每一个单元格。通过我们索引的路径的section和row来确定
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// - (UITableViewCell *)tableView:(UITableView *)tableView CellForRowAtIndexPath:(NSIndexPath)indexPath;</span></code></pre></div>
+<p> 这个方法是返回我们调用的每一个单元格。通过我们索引的路径的section和row来确定</p>
 
+<h3 id="section-7">24.写一个便利构造器。</h3>
 
-### 24.写一个便利构造器。
-```objc
-//id代表任意类型指针，这里代表Student *,类方法
-+(id)studentWithName:(NSString *)newName  andAge:(int)newAge {     Student *stu=[[Student alloc]initName:newName andAge:newAge];     return [stu autorelease];//自动释放 }
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//id代表任意类型指针，这里代表Student *,类方法</span>
+<span class="lineno">2</span> <span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">studentWithName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">newName</span>  <span class="nf">andAge:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">newAge</span><span class="err"> </span><span class="p">{</span><span class="err"> </span>    <span class="n">Student</span> <span class="o">*</span><span class="n">stu</span><span class="o">=</span><span class="p">[[</span><span class="n">Student</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initName</span><span class="p">:</span><span class="n">newName</span> <span class="nl">andAge</span><span class="p">:</span><span class="n">newAge</span><span class="p">];</span><span class="err"> </span>    <span class="k">return</span> <span class="p">[</span><span class="n">stu</span> <span class="n">autorelease</span><span class="p">];</span><span class="c1">//自动释放 }</span></code></pre></div>
 
 <h3 id="uiimage">25.UIImage初始化一张图片有几种方法？简述各自的优缺点。</h3>
 <p><a href="http://blog.sina.com.cn/s/blog_a843a8850101flo3.html">http://blog.sina.com.cn/s/blog_a843a8850101flo3.html</a></p>
@@ -810,42 +838,39 @@ NSLog(@“%@”,str);
 
 <h3 id="personretaincount">26.回答person的retainCount值，并解释为什么</h3>
 
-<pre><code class="language-objc">Person * per = [[Person alloc] init];
-self.person = per;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">Person</span> <span class="o">*</span> <span class="n">per</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Person</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="nb">self</span><span class="p">.</span><span class="n">person</span> <span class="o">=</span> <span class="n">per</span><span class="p">;</span></code></pre></div>
 
-<h3 id="section-7">27.这段代码有什么问题吗:</h3>
+<h3 id="section-8">27.这段代码有什么问题吗:</h3>
 
-<pre><code class="language-objc">@implementation Person
-- (void)setAge:(int)newAge {
-	self.age = newAge;
-}
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@implementation</span> <span class="nc">Person</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setAge:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">newAge</span> <span class="p">{</span>
+<span class="lineno">3</span> 	<span class="nb">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">newAge</span><span class="p">;</span>
+<span class="lineno">4</span> <span class="p">}</span>
+<span class="lineno">5</span> <span class="k">@end</span></code></pre></div>
 
 <p>会造成死循环，正确写法：</p>
 
-<pre><code class="language-objc">- (void)setAge:(int)newAge {
-	if(_age){
-		[_age release];
-	}
-	_age = [newAge retain];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setAge:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">newAge</span> <span class="p">{</span>
+<span class="lineno">2</span> 	<span class="k">if</span><span class="p">(</span><span class="n">_age</span><span class="p">){</span>
+<span class="lineno">3</span> 		<span class="p">[</span><span class="n">_age</span> <span class="k">release</span><span class="p">];</span>
+<span class="lineno">4</span> 	<span class="p">}</span>
+<span class="lineno">5</span> 	<span class="n">_age</span> <span class="o">=</span> <span class="p">[</span><span class="n">newAge</span> <span class="k">retain</span><span class="p">];</span>
+<span class="lineno">6</span> <span class="p">}</span></code></pre></div>
 
 <blockquote>
   <p>扩展：知道如何正确写setter和getter方法</p>
 </blockquote>
 
-<h3 id="section-8">28.这段代码有什么问题,如何修改</h3>
+<h3 id="section-9">28.这段代码有什么问题,如何修改</h3>
 
-<pre><code class="language-objc">for (int i = 0; i &lt; someLargeNumber; i++) { 
-	NSString *string = @”Abc”;//常量区
-	string = [string lowercaseString];//新的堆区
-	string = [string stringByAppendingString:@"xyz"];//新的堆区
-	NSLog(@“%@”, string);
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">someLargeNumber</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+<span class="lineno">2</span> 	<span class="bp">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="p">@</span><span class="err">”</span><span class="n">Abc</span><span class="err">”</span><span class="p">;</span><span class="c1">//常量区</span>
+<span class="lineno">3</span> 	<span class="n">string</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="n">lowercaseString</span><span class="p">];</span><span class="c1">//新的堆区</span>
+<span class="lineno">4</span> 	<span class="n">string</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="nl">stringByAppendingString</span><span class="p">:</span><span class="s">@&quot;xyz&quot;</span><span class="p">];</span><span class="c1">//新的堆区</span>
+<span class="lineno">5</span> 	<span class="n">NSLog</span><span class="p">(@</span><span class="err">“</span><span class="o">%</span><span class="p">@</span><span class="err">”</span><span class="p">,</span> <span class="n">string</span><span class="p">);</span>
+<span class="lineno">6</span> <span class="p">}</span></code></pre></div>
+
 <p>在for循环里添加自动释放池<br />
 &gt; 扩展：常量区的retaincount是怎么个情况</p>
 
@@ -853,31 +878,29 @@ self.person = per;
 
 <p>使用方法<code>componentsSeparatedByString:</code>，示例如下：</p>
 
-<pre><code>NSString * str = @“20 | http://www.baidu.com”;
-for(NSString*s in [str componentsSeparatedByString:"|"]){
-NSLog(@“%@“,s);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span> <span class="n">str</span> <span class="o">=</span> <span class="p">@</span><span class="err">“</span><span class="mi">20</span> <span class="o">|</span> <span class="nl">http</span><span class="p">:</span><span class="c1">//www.baidu.com”;</span>
+<span class="lineno">2</span> <span class="k">for</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="n">s</span> <span class="k">in</span> <span class="p">[</span><span class="n">str</span> <span class="nl">componentsSeparatedByString</span><span class="p">:</span><span class="s">&quot;|&quot;</span><span class="p">]){</span>
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(@</span><span class="err">“</span><span class="o">%</span><span class="p">@</span><span class="err">“</span><span class="p">,</span><span class="n">s</span><span class="p">);</span></code></pre></div>
 
 <h3 id="obj-c">30.用obj-c写一个冒泡排序</h3>
 
-<pre><code class="language-objc">for（int i = 0, i &lt; arr.count - 1,i++){
-	for (int j = 0,j &lt; arr.count - 1 - i;j++){
-		int a = [[arr objectAtIndex:j]intValue];
-		int b=[[arr objectAtIndex:j+1]intValue];
-		if(a &lt; b){
-			[arr replaceObjectAtIndex:j withObject:[NSString stringWithFormat:@“%d”,b]];
-			[arr replaceObjectAtIndex:j+1 withObject:[NSString stringWithFormat:@“%d”,a];
-		}
-	}
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">for</span><span class="err">（</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="lineno"> 2</span> 	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="lineno"> 3</span> 		<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="n">arr</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">j</span><span class="p">]</span><span class="n">intValue</span><span class="p">];</span>
+<span class="lineno"> 4</span> 		<span class="kt">int</span> <span class="n">b</span><span class="o">=</span><span class="p">[[</span><span class="n">arr</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="n">intValue</span><span class="p">];</span>
+<span class="lineno"> 5</span> 		<span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">){</span>
+<span class="lineno"> 6</span> 			<span class="p">[</span><span class="n">arr</span> <span class="nl">replaceObjectAtIndex</span><span class="p">:</span><span class="n">j</span> <span class="nl">withObject</span><span class="p">:[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:@</span><span class="err">“</span><span class="o">%</span><span class="n">d</span><span class="err">”</span><span class="p">,</span><span class="n">b</span><span class="p">]];</span>
+<span class="lineno"> 7</span> 			<span class="p">[</span><span class="n">arr</span> <span class="nl">replaceObjectAtIndex</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span> <span class="nl">withObject</span><span class="p">:[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:@</span><span class="err">“</span><span class="o">%</span><span class="n">d</span><span class="err">”</span><span class="p">,</span><span class="n">a</span><span class="p">];</span>
+<span class="lineno"> 8</span> 		<span class="p">}</span>
+<span class="lineno"> 9</span> 	<span class="p">}</span>
+<span class="lineno">10</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="uiviewuiwindowcalayer">31.简述你对UIView、UIWindow和CALayer的理解</h3>
 
 <p><a href="http://blog.csdn.net/kuqideyupian/article/details/7731942">http://blog.csdn.net/kuqideyupian/article/details/7731942</a><br />
 <a href="http://o0o0o0o.iteye.com/blog/1728599">http://o0o0o0o.iteye.com/blog/1728599</a></p>
 
-<h3 id="section-9">32.写一个完整的代理，包括声明，实现</h3>
+<h3 id="section-10">32.写一个完整的代理，包括声明，实现</h3>
 
 <blockquote>
   <p>注意手写的准确性</p>
@@ -892,7 +915,7 @@ NSLog(@“%@“,s);
 
 <p><a href="http://blog.sina.com.cn/s/blog_68661bd80101nn6p.html">http://blog.sina.com.cn/s/blog_68661bd80101nn6p.html</a></p>
 
-<h3 id="section-10">35.面向对象的三大特征，并作简单的介绍</h3>
+<h3 id="section-11">35.面向对象的三大特征，并作简单的介绍</h3>
 
 <p><strong>封装、继承、多态</strong></p>
 
@@ -901,64 +924,62 @@ NSLog(@“%@“,s);
 OC的多态体现是：重写，没有重载这种表现形式</li>
 </ul>
 
-<p>举例说明：<br />
-<code>objc Parent类
-@interface Parent : NSObject    //父类
-- (void)simpleCall;
-@end 
-</code><br />
-<code>objc Child_A类
-@interface Child_A : Parent   //子类  Child_A
-@end 
-@implementation Child_A
-- (void)simpleCall
-{
-    NSLog(@"我是Child_A的simpleCall方法");
-}
-@end
-</code><br />
-<code>objc Child_B类
-@interface Child_B : Parent     //子类Child_B
-@end
-- (void)simpleCall
-{
-     NSLog(@"我是Child_的simpleCall方法");
-}
-@end
-</code><br />
-然后，我们就可以看到多态所展示的特性了：</p>
+<p>举例说明：</p>
 
-<pre><code class="language-objc">Parent * pa=[[Child_A alloc] init];// 父类指针指向子类Child_A对象
-Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
-[pa simpleCall];// 显然是调用Child_A的方法
-[pb simpleCall];// 显然是调用Child_B的方法
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// Parent类</span>
+<span class="lineno">2</span> <span class="k">@interface</span> <span class="nc">Parent</span> : <span class="bp">NSObject</span>    <span class="c1">//父类</span>
+<span class="lineno">3</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">simpleCall</span><span class="p">;</span>
+<span class="lineno">4</span> <span class="k">@end</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// Child_A类</span>
+<span class="lineno">2</span> <span class="k">@interface</span> <span class="nc">Child_A</span> : <span class="nc">Parent</span>   <span class="c1">//子类  Child_A</span>
+<span class="lineno">3</span> <span class="k">@end</span> 
+<span class="lineno">4</span> <span class="k">@implementation</span> <span class="nc">Child_A</span>
+<span class="lineno">5</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">simpleCall</span>
+<span class="lineno">6</span> <span class="p">{</span>
+<span class="lineno">7</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;我是Child_A的simpleCall方法&quot;</span><span class="p">);</span>
+<span class="lineno">8</span> <span class="p">}</span>
+<span class="lineno">9</span> <span class="k">@end</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// Child_B类</span>
+<span class="lineno">2</span> <span class="k">@interface</span> <span class="nc">Child_B</span> : <span class="nc">Parent</span>     <span class="c1">//子类Child_B</span>
+<span class="lineno">3</span> <span class="k">@end</span>
+<span class="lineno">4</span> <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">simpleCall</span>
+<span class="lineno">5</span> <span class="p">{</span>
+<span class="lineno">6</span>      <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;我是Child_的simpleCall方法&quot;</span><span class="p">);</span>
+<span class="lineno">7</span> <span class="p">}</span>
+<span class="lineno">8</span> <span class="k">@end</span></code></pre></div>
+
+<p>然后，我们就可以看到多态所展示的特性了：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">Parent</span> <span class="o">*</span> <span class="n">pa</span><span class="o">=</span><span class="p">[[</span><span class="n">Child_A</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span><span class="c1">// 父类指针指向子类Child_A对象</span>
+<span class="lineno">2</span> <span class="n">Parent</span> <span class="o">*</span> <span class="n">pb</span><span class="o">=</span><span class="p">[[</span><span class="n">Child_B</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span> <span class="c1">//父类指针指向子类Child_B对象</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">pa</span> <span class="n">simpleCall</span><span class="p">];</span><span class="c1">// 显然是调用Child_A的方法</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">pb</span> <span class="n">simpleCall</span><span class="p">];</span><span class="c1">// 显然是调用Child_B的方法</span></code></pre></div>
 
 <p>在OC中常看见的多态体现：</p>
 
-<pre><code class="language-objc">//
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  
- {  
-     static NSString *CellWithIdentifier = @"Cell";  
-      UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];  
-      return cell;  
-  }
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UITableViewCell</span> <span class="o">*</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="bp">UITableView</span> <span class="o">*</span><span class="p">)</span><span class="nv">tableView</span> <span class="nf">cellForRowAtIndexPath:</span><span class="p">(</span><span class="bp">NSIndexPath</span> <span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span>  
+<span class="lineno">3</span>  <span class="p">{</span>  
+<span class="lineno">4</span>      <span class="k">static</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">CellWithIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>  
+<span class="lineno">5</span>       <span class="bp">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier</span><span class="p">:</span><span class="n">CellWithIdentifier</span><span class="p">];</span>  
+<span class="lineno">6</span>       <span class="k">return</span> <span class="n">cell</span><span class="p">;</span>  
+<span class="lineno">7</span>   <span class="p">}</span></code></pre></div>
 
 <p>(UITableViewCell *)指向cell子类对象</p>
 
 <h3 id="nsstringretainnamesettergetter">36.重写一个NSString类型的，retain方式声明name属性的setter和getter方法</h3>
 
-<pre><code class="language-objc">-(void)settetName:(NSString *)name{
-	if(_name){
-		[_name release];
-	}
- 	_name = [name retain];
-}
--(NSString *)getterName{
-	return [[_name retain]autorelease];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">settetName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">{</span>
+<span class="lineno">2</span> 	<span class="k">if</span><span class="p">(</span><span class="n">_name</span><span class="p">){</span>
+<span class="lineno">3</span> 		<span class="p">[</span><span class="n">_name</span> <span class="k">release</span><span class="p">];</span>
+<span class="lineno">4</span> 	<span class="p">}</span>
+<span class="lineno">5</span>  	<span class="n">_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">retain</span><span class="p">];</span>
+<span class="lineno">6</span> <span class="p">}</span>
+<span class="lineno">7</span> <span class="p">-(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">getterName</span><span class="p">{</span>
+<span class="lineno">8</span> 	<span class="k">return</span> <span class="p">[[</span><span class="n">_name</span> <span class="k">retain</span><span class="p">]</span><span class="n">autorelease</span><span class="p">];</span>
+<span class="lineno">9</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="notificationcenterkvckvodelegate">37.简述NotificationCenter、KVC、KVO、Delegate？并说明它们之间的区别？</h3>
 
@@ -999,11 +1020,11 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 
 <p>mvc - model view controller ，避免了view与model 的强耦合 使代码更灵活 更容易维护 可复用 可扩展   OC其他设计模式有Notification 。target；action.  singleton delegate</p>
 
-<h3 id="section-11">44.如监测系统键盘的弹出</h3>
+<h3 id="section-12">44.如监测系统键盘的弹出</h3>
 
-<pre><code>//监听通知
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector( ) name:UIKeyboardWillShowNotification object:nil];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//监听通知</span>
+<span class="lineno">2</span> <span class="p">[[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span> <span class="nl">addObserver</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span> <span class="p">)</span> <span class="nl">name</span><span class="p">:</span><span class="n">UIKeyboardWillShowNotification</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
+
 <blockquote>
   <p>扩展：ios 弹出键盘挡住UITextView的解决方式</p>
 </blockquote>
@@ -1012,40 +1033,38 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 
 <p>AFWorking / WebKit / SQLite / Core Data / Address Book</p>
 
-<h3 id="section-12">46.如何将产品进行多语言发布？</h3>
+<h3 id="section-13">46.如何将产品进行多语言发布？</h3>
 
 <p><a href="http://fengmm521.blog.163.com/blog/static/25091358201291645852889/">http://fengmm521.blog.163.com/blog/static/25091358201291645852889/</a></p>
 
-<h3 id="section-13">47.如何将敏感字变成**</h3>
+<h3 id="section-14">47.如何将敏感字变成**</h3>
 
-<pre><code>	search = @"某某某";
-    replace = @"***";
-    range = [mstr rangeOfString:search];
-    [mstr replaceCharactersInRange:range withString:replace]；    
-    NSLog(@"%@",mstr);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">search</span> <span class="o">=</span> <span class="s">@&quot;某某某&quot;</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="n">replace</span> <span class="o">=</span> <span class="s">@&quot;***&quot;</span><span class="p">;</span>
+<span class="lineno">3</span>     <span class="n">range</span> <span class="o">=</span> <span class="p">[</span><span class="n">mstr</span> <span class="nl">rangeOfString</span><span class="p">:</span><span class="n">search</span><span class="p">];</span>
+<span class="lineno">4</span>     <span class="p">[</span><span class="n">mstr</span> <span class="nl">replaceCharactersInRange</span><span class="p">:</span><span class="n">range</span> <span class="nl">withString</span><span class="p">:</span><span class="n">replace</span><span class="p">]</span><span class="err">；</span>    
+<span class="lineno">5</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">mstr</span><span class="p">);</span></code></pre></div>
 
 <h3 id="objc">48.objc中的减号与加号代表什么？</h3>
 
 <p>-表示实例方法<br />
 +表示类方法</p>
 
-<h3 id="section-14">49.单例目的是什么，并写出一个？</h3>
+<h3 id="section-15">49.单例目的是什么，并写出一个？</h3>
 
-<p>避免重复创建  节省内存空间<br />
-<code>
-static Model * model;
-+(id)singleton{
-	if(!model){
-	 @synchronized(self){
-		model = [[Model alloc]init];
-		}
-	}
-	return model;
-}
-</code></p>
+<p>避免重复创建  节省内存空间</p>
 
-<h3 id="section-15">50.说说响应链</h3>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">static</span> <span class="n">Model</span> <span class="o">*</span> <span class="n">model</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">singleton</span><span class="p">{</span>
+<span class="lineno">3</span> 	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">model</span><span class="p">){</span>
+<span class="lineno">4</span> 	 <span class="k">@synchronized</span><span class="p">(</span><span class="nb">self</span><span class="p">){</span>
+<span class="lineno">5</span> 		<span class="n">model</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Model</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno">6</span> 		<span class="p">}</span>
+<span class="lineno">7</span> 	<span class="p">}</span>
+<span class="lineno">8</span> 	<span class="k">return</span> <span class="n">model</span><span class="p">;</span>
+<span class="lineno">9</span> <span class="p">}</span></code></pre></div>
+
+<h3 id="section-16">50.说说响应链</h3>
 
 <p><a href="http://www.tuicool.com/articles/6jmUje">http://www.tuicool.com/articles/6jmUje</a></p>
 
@@ -1204,8 +1223,6 @@ static Model * model;
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -1239,6 +1256,44 @@ static Model * model;
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

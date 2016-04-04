@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -510,57 +547,52 @@ ds.charset = 'UTF-8';
 
 <h3 id="uiapplication-1">一、获得UIApplication对象</h3>
 
-<pre><code class="language-objc">[UIApplication sharedApplication]
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span></code></pre></div>
 
 <h3 id="uiapplicationdelegate">二、获得UIApplicationDelegate对象</h3>
 
-<pre><code class="language-objc">[[UIApplication sharedApplication] delegate]
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">delegate</span><span class="p">]</span></code></pre></div>
 
 <h3 id="uiwindow">三、获得UIWindow对象</h3>
 
-<pre><code class="language-objc">//UIWindow数组
-[[UIApplication sharedApplication] windows];   
-//UIWindow数组中最后调用makeKeyAndVisible方法的UIWindow对象
-[[UIApplication sharedApplication] keyWindow]; 
-</code></pre>
-<p>### 四、常用属性</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//UIWindow数组</span>
+<span class="lineno">2</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">windows</span><span class="p">];</span>   
+<span class="lineno">3</span> <span class="c1">//UIWindow数组中最后调用makeKeyAndVisible方法的UIWindow对象</span>
+<span class="lineno">4</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">keyWindow</span><span class="p">];</span></code></pre></div>
 
-<h5 id="section">1. 设置应用程序图标右上角的红色提醒数字</h5>
+<h3 id="section">四、常用属性</h3>
 
-<pre><code class="language-objc">@property(nonatomic) NSInteger applicationIconBadgeNumber;
-</code></pre>
+<h5 id="section-1">1. 设置应用程序图标右上角的红色提醒数字</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">nonatomic</span><span class="p">)</span> <span class="bp">NSInteger</span> <span class="n">applicationIconBadgeNumber</span><span class="p">;</span></code></pre></div>
+
 <p>示例代码如下：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad {
-    [super viewDidLoad];
-    //1.获得UIApplication
-    UIApplication *app = [UIApplication sharedApplication];
-    //2.更改应用图标的前提是需要先注册
-    //注册
-    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
-    [app registerUserNotificationSettings:setting];
-    //3.设置应用的图标的10
-    app.applicationIconBadgeNumber = 10;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 3</span>     <span class="c1">//1.获得UIApplication</span>
+<span class="lineno"> 4</span>     <span class="bp">UIApplication</span> <span class="o">*</span><span class="n">app</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">];</span>
+<span class="lineno"> 5</span>     <span class="c1">//2.更改应用图标的前提是需要先注册</span>
+<span class="lineno"> 6</span>     <span class="c1">//注册</span>
+<span class="lineno"> 7</span>     <span class="n">UIUserNotificationSettings</span> <span class="o">*</span><span class="n">setting</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIUserNotificationSettings</span> <span class="nl">settingsForTypes</span><span class="p">:</span><span class="n">UIUserNotificationTypeBadge</span> <span class="nl">categories</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno"> 8</span>     <span class="p">[</span><span class="n">app</span> <span class="nl">registerUserNotificationSettings</span><span class="p">:</span><span class="n">setting</span><span class="p">];</span>
+<span class="lineno"> 9</span>     <span class="c1">//3.设置应用的图标的10</span>
+<span class="lineno">10</span>     <span class="n">app</span><span class="p">.</span><span class="n">applicationIconBadgeNumber</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span></code></pre></div>
 
-<h5 id="section-1">2. 设置联网指示器的可见性</h5>
+<h5 id="section-2">2. 设置联网指示器的可见性</h5>
 
-<pre><code class="language-objc">@property(nonatomic,getter=isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span><span class="k">getter</span><span class="o">=</span><span class="n">isNetworkActivityIndicatorVisible</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">networkActivityIndicatorVisible</span><span class="p">;</span></code></pre></div>
 
 <p>联网指示器是显示在手机状态栏的，当我们在使用网络时，就会在状态栏显示一个动态的小圆圈（菊花）指示正在使用互联网</p>
 
 <p>示例代码如下：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad {
-    [super viewDidLoad];
-    //1.获得UIApplication
-    UIApplication *app = [UIApplication sharedApplication];
-	//2.设置是否显示 联网指示器
-    app.networkActivityIndicatorVisible = YES;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno">2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno">3</span>     <span class="c1">//1.获得UIApplication</span>
+<span class="lineno">4</span>     <span class="bp">UIApplication</span> <span class="o">*</span><span class="n">app</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">];</span>
+<span class="lineno">5</span> 	<span class="c1">//2.设置是否显示 联网指示器</span>
+<span class="lineno">6</span>     <span class="n">app</span><span class="p">.</span><span class="n">networkActivityIndicatorVisible</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span></code></pre></div>
 
 <h5 id="openurl">3. openURL:</h5>
 
@@ -568,27 +600,26 @@ ds.charset = 'UTF-8';
   <li>UIApplication有个功能十分强大的openURL:方法</li>
 </ul>
 
-<pre><code class="language-objc">- (BOOL)openURL:(NSURL*)url;
-//
-// openURL:方法的部分功能有
-// 打电话
-UIApplication *app = [UIApplication sharedApplication];
-[app openURL:[NSURL URLWithString:@"tel://10086”]];
-//
-// 发短信
-[app openURL:[NSURL URLWithString:@"sms://10086"]];
-//
-// 发邮件
-[app openURL:[NSURL URLWithString:@"mailto://12345@qq.com"]];
-//
-// 打开一个网页资源
-[app openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-//
-//打开URL资源: 打开设置界面配置通知设置
-[app openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">openURL:</span><span class="p">(</span><span class="bp">NSURL</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="c1">//</span>
+<span class="lineno"> 3</span> <span class="c1">// openURL:方法的部分功能有</span>
+<span class="lineno"> 4</span> <span class="c1">// 打电话</span>
+<span class="lineno"> 5</span> <span class="bp">UIApplication</span> <span class="o">*</span><span class="n">app</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">];</span>
+<span class="lineno"> 6</span> <span class="p">[</span><span class="n">app</span> <span class="nl">openURL</span><span class="p">:[</span><span class="bp">NSURL</span> <span class="nl">URLWithString</span><span class="p">:</span><span class="s">@&quot;tel://10086”]];</span>
+<span class="lineno"> 7</span> <span class="c1">//</span>
+<span class="lineno"> 8</span> <span class="c1">// 发短信</span>
+<span class="lineno"> 9</span> <span class="p">[</span><span class="n">app</span> <span class="nl">openURL</span><span class="p">:[</span><span class="bp">NSURL</span> <span class="nl">URLWithString</span><span class="p">:</span><span class="s">@&quot;sms://10086&quot;</span><span class="p">]];</span>
+<span class="lineno">10</span> <span class="c1">//</span>
+<span class="lineno">11</span> <span class="c1">// 发邮件</span>
+<span class="lineno">12</span> <span class="p">[</span><span class="n">app</span> <span class="nl">openURL</span><span class="p">:[</span><span class="bp">NSURL</span> <span class="nl">URLWithString</span><span class="p">:</span><span class="s">@&quot;mailto://12345@qq.com&quot;</span><span class="p">]];</span>
+<span class="lineno">13</span> <span class="c1">//</span>
+<span class="lineno">14</span> <span class="c1">// 打开一个网页资源</span>
+<span class="lineno">15</span> <span class="p">[</span><span class="n">app</span> <span class="nl">openURL</span><span class="p">:[</span><span class="bp">NSURL</span> <span class="nl">URLWithString</span><span class="p">:</span><span class="s">@&quot;http://www.baidu.com&quot;</span><span class="p">]];</span>
+<span class="lineno">16</span> <span class="c1">//</span>
+<span class="lineno">17</span> <span class="c1">//打开URL资源: 打开设置界面配置通知设置</span>
+<span class="lineno">18</span> <span class="p">[</span><span class="n">app</span> <span class="nl">openURL</span><span class="p">:[</span><span class="bp">NSURL</span> <span class="nl">URLWithString</span><span class="p">:</span><span class="n">UIApplicationOpenSettingsURLString</span><span class="p">]];</span></code></pre></div>
 
-<h5 id="section-2">4. 管理状态栏</h5>
+<h5 id="section-3">4. 管理状态栏</h5>
 <ul>
   <li>从iOS7开始，系统提供了2种管理状态栏的方式
     <ul>
@@ -602,11 +633,10 @@ UIApplication *app = [UIApplication sharedApplication];
   <li>UIViewController实现下列方法就可以轻松管理状态栏的可见性和样式</li>
 </ul>
 
-<pre><code class="language-objc">// 状态栏的样式
-- (UIStatusBarStyle)preferredStatusBarStyle; 
-// 状态栏的可见性
-(BOOL)prefersStatusBarHidden;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 状态栏的样式</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="n">UIStatusBarStyle</span><span class="p">)</span><span class="nf">preferredStatusBarStyle</span><span class="p">;</span> 
+<span class="lineno">3</span> <span class="c1">// 状态栏的可见性</span>
+<span class="lineno">4</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">prefersStatusBarHidden</span><span class="p">;</span></code></pre></div>
 
 <ul>
   <li>
@@ -621,200 +651,192 @@ UIApplication *app = [UIApplication sharedApplication];
 
 <p><img src="/images/2015/12/UIApplicationManageState.png" alt="利用UIApplication来管理状态栏" title="修改Info.plist" /></p>
 
-<pre><code class="language-objc">[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">setStatusBarStyle</span><span class="p">:</span><span class="n">UIStatusBarStyleLightContent</span><span class="p">];</span></code></pre></div>
 
 <h3 id="uievent">五、控制和处理UIEvent</h3>
 
-<pre><code class="language-objc">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	//分发一个event到另外一个对象去处理
-	[[UIApplication sharedApplication] sendAction:@selector(action: forEvent:) to:[CustomHandler sharedCustomHandler] from:self forEvent:event];
-}
-//
-//开始忽略Event
-[[UIApplication sharedApplication] beginIgnoringInteractionEvents]; 
-//
-//...中间调用动画等操作
-//
-//结束忽略Event
-[[UIApplication sharedApplication] endIgnoringInteractionEvents];   
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan:</span><span class="p">(</span><span class="bp">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent:</span><span class="p">(</span><span class="bp">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span>
+<span class="lineno"> 2</span> <span class="p">{</span>
+<span class="lineno"> 3</span> 	<span class="c1">//分发一个event到另外一个对象去处理</span>
+<span class="lineno"> 4</span> 	<span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">sendAction</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">action</span><span class="p">:</span> <span class="nl">forEvent</span><span class="p">:)</span> <span class="nl">to</span><span class="p">:[</span><span class="n">CustomHandler</span> <span class="n">sharedCustomHandler</span><span class="p">]</span> <span class="nl">from</span><span class="p">:</span><span class="nb">self</span> <span class="nl">forEvent</span><span class="p">:</span><span class="n">event</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="p">}</span>
+<span class="lineno"> 6</span> <span class="c1">//</span>
+<span class="lineno"> 7</span> <span class="c1">//开始忽略Event</span>
+<span class="lineno"> 8</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">beginIgnoringInteractionEvents</span><span class="p">];</span> 
+<span class="lineno"> 9</span> <span class="c1">//</span>
+<span class="lineno">10</span> <span class="c1">//...中间调用动画等操作</span>
+<span class="lineno">11</span> <span class="c1">//</span>
+<span class="lineno">12</span> <span class="c1">//结束忽略Event</span>
+<span class="lineno">13</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">endIgnoringInteractionEvents</span><span class="p">];</span></code></pre></div>
 
-<h3 id="section-3">六、晃动是否有撤销或者重做动作</h3>
+<h3 id="section-4">六、晃动是否有撤销或者重做动作</h3>
 
-<pre><code class="language-objc">[UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;  
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">applicationSupportsShakeToEdit</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span></code></pre></div>
 
-<h3 id="section-4">七、配置通知设置</h3>
+<h3 id="section-5">七、配置通知设置</h3>
 
-<pre><code class="language-objc">//注册远程推送通知
-UIUserNotificationType  types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-UIUserNotificationSettings  *mySettings  = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-[[UIApplication sharedApplication] registerUserNotificationSettings:mySettings]; 
-//
-//注册
-[[UIApplication sharedApplication] registerForRemoteNotifications];
-//注销
-[[UIApplication sharedApplication] unregisterForRemoteNotifications];
-//
-NSDate *date = [NSDate dateWithTimeIntervalSinceNow:10];
-UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-localNotif.fireDate = date;  //时间
-localNotif.timeZone = [NSTimeZone localTimeZone]; //时区
-localNotif.repeatInterval = NSCalendarUnitMinute; //间隔
-localNotif.soundName = UILocalNotificationDefaultSoundName; //声音
-localNotif.alertBody = @"Local Test";   //通知内容
-localNotif.applicationIconBadgeNumber = 1;  //数字标示
-localNotif.userInfo = @{@"key":@"test"};    //info
-//注册通知
-[[UIApplication sharedApplication] scheduleLocalNotification:localNotif]; 
-//立即通知
-[[UIApplication sharedApplication] presentLocalNotificationNow:localNotif]; 
-//取消所有通知
-[[UIApplication sharedApplication] cancelAllLocalNotifications]; 
-//取消特定的通知
-[[UIApplication sharedApplication] cancelLocalNotification:localNotif];
-//所有的通知
-NSArray *arr = [[UIApplication sharedApplication] scheduledLocalNotifications];  
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//注册远程推送通知</span>
+<span class="lineno"> 2</span> <span class="n">UIUserNotificationType</span>  <span class="n">types</span> <span class="o">=</span> <span class="n">UIUserNotificationTypeBadge</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeSound</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeAlert</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="n">UIUserNotificationSettings</span>  <span class="o">*</span><span class="n">mySettings</span>  <span class="o">=</span> <span class="p">[</span><span class="n">UIUserNotificationSettings</span> <span class="nl">settingsForTypes</span><span class="p">:</span><span class="n">types</span> <span class="nl">categories</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno"> 4</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">registerUserNotificationSettings</span><span class="p">:</span><span class="n">mySettings</span><span class="p">];</span> 
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="c1">//注册</span>
+<span class="lineno"> 7</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">registerForRemoteNotifications</span><span class="p">];</span>
+<span class="lineno"> 8</span> <span class="c1">//注销</span>
+<span class="lineno"> 9</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">unregisterForRemoteNotifications</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="c1">//</span>
+<span class="lineno">11</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="nl">dateWithTimeIntervalSinceNow</span><span class="p">:</span><span class="mi">10</span><span class="p">];</span>
+<span class="lineno">12</span> <span class="bp">UILocalNotification</span> <span class="o">*</span><span class="n">localNotif</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UILocalNotification</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">13</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">fireDate</span> <span class="o">=</span> <span class="n">date</span><span class="p">;</span>  <span class="c1">//时间</span>
+<span class="lineno">14</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">timeZone</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimeZone</span> <span class="n">localTimeZone</span><span class="p">];</span> <span class="c1">//时区</span>
+<span class="lineno">15</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">repeatInterval</span> <span class="o">=</span> <span class="n">NSCalendarUnitMinute</span><span class="p">;</span> <span class="c1">//间隔</span>
+<span class="lineno">16</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">soundName</span> <span class="o">=</span> <span class="n">UILocalNotificationDefaultSoundName</span><span class="p">;</span> <span class="c1">//声音</span>
+<span class="lineno">17</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">alertBody</span> <span class="o">=</span> <span class="s">@&quot;Local Test&quot;</span><span class="p">;</span>   <span class="c1">//通知内容</span>
+<span class="lineno">18</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">applicationIconBadgeNumber</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">//数字标示</span>
+<span class="lineno">19</span> <span class="n">localNotif</span><span class="p">.</span><span class="n">userInfo</span> <span class="o">=</span> <span class="l">@{</span><span class="s">@&quot;key&quot;</span><span class="o">:</span><span class="s">@&quot;test&quot;</span><span class="l">}</span><span class="p">;</span>    <span class="c1">//info</span>
+<span class="lineno">20</span> <span class="c1">//注册通知</span>
+<span class="lineno">21</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">scheduleLocalNotification</span><span class="p">:</span><span class="n">localNotif</span><span class="p">];</span> 
+<span class="lineno">22</span> <span class="c1">//立即通知</span>
+<span class="lineno">23</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">presentLocalNotificationNow</span><span class="p">:</span><span class="n">localNotif</span><span class="p">];</span> 
+<span class="lineno">24</span> <span class="c1">//取消所有通知</span>
+<span class="lineno">25</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">cancelAllLocalNotifications</span><span class="p">];</span> 
+<span class="lineno">26</span> <span class="c1">//取消特定的通知</span>
+<span class="lineno">27</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">cancelLocalNotification</span><span class="p">:</span><span class="n">localNotif</span><span class="p">];</span>
+<span class="lineno">28</span> <span class="c1">//所有的通知</span>
+<span class="lineno">29</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">scheduledLocalNotifications</span><span class="p">];</span></code></pre></div>
 
 <h3 id="app">八、APP后台运行相关</h3>
 
-<pre><code class="language-objc">//app状态 
-[[UIApplication sharedApplication] applicationState]; 
-//设置后台运行时间
-[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:3600]; 
-//app后台运行的时间
-NSTimeInterval remainTime = [[UIApplication sharedApplication] backgroundTimeRemaining]; 
-NSLog(@"remainTIme = %f",remainTime);
-//后台刷新的状态
-int state = [[UIApplication sharedApplication] backgroundRefreshStatus]; 
-NSLog(@"state = %d",state);
-[[UIApplication sharedApplication] beginBackgroundTaskWithName:@"taskOne" expirationHandler:^{
-}];
-[[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-}];
-[[UIApplication sharedApplication] endBackgroundTask:1];
-//远程的控制相关
-[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-[[UIApplication sharedApplication] endReceivingRemoteControlEvents];
-//系统的Idle Timer
-[UIApplication sharedApplication].idleTimerDisabled = YES; //不让手机休眠
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//app状态 </span>
+<span class="lineno"> 2</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">applicationState</span><span class="p">];</span> 
+<span class="lineno"> 3</span> <span class="c1">//设置后台运行时间</span>
+<span class="lineno"> 4</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">setMinimumBackgroundFetchInterval</span><span class="p">:</span><span class="mi">3600</span><span class="p">];</span> 
+<span class="lineno"> 5</span> <span class="c1">//app后台运行的时间</span>
+<span class="lineno"> 6</span> <span class="n">NSTimeInterval</span> <span class="n">remainTime</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">backgroundTimeRemaining</span><span class="p">];</span> 
+<span class="lineno"> 7</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;remainTIme = %f&quot;</span><span class="p">,</span><span class="n">remainTime</span><span class="p">);</span>
+<span class="lineno"> 8</span> <span class="c1">//后台刷新的状态</span>
+<span class="lineno"> 9</span> <span class="kt">int</span> <span class="n">state</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">backgroundRefreshStatus</span><span class="p">];</span> 
+<span class="lineno">10</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;state = %d&quot;</span><span class="p">,</span><span class="n">state</span><span class="p">);</span>
+<span class="lineno">11</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">beginBackgroundTaskWithName</span><span class="p">:</span><span class="s">@&quot;taskOne&quot;</span> <span class="nl">expirationHandler</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno">12</span> <span class="p">}];</span>
+<span class="lineno">13</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">beginBackgroundTaskWithExpirationHandler</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno">14</span> <span class="p">}];</span>
+<span class="lineno">15</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">endBackgroundTask</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>
+<span class="lineno">16</span> <span class="c1">//远程的控制相关</span>
+<span class="lineno">17</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">beginReceivingRemoteControlEvents</span><span class="p">];</span>
+<span class="lineno">18</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">endReceivingRemoteControlEvents</span><span class="p">];</span>
+<span class="lineno">19</span> <span class="c1">//系统的Idle Timer</span>
+<span class="lineno">20</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">idleTimerDisabled</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span> <span class="c1">//不让手机休眠</span></code></pre></div>
 
 <h3 id="app-1">九、APP样式</h3>
 
-<pre><code class="language-objc">//隐藏状态条
-[[UIApplication sharedApplication] setStatusBarHidden:YES];
-[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-//设置状态条的样式
-[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-[[UIApplication sharedApplication] statusBarStyle];
-//状态条的Frame
-[[UIApplication sharedApplication] statusBarFrame];
-//网络是否可见
-[[UIApplication sharedApplication] isNetworkActivityIndicatorVisible];
-//badge数字
-[UIApplication sharedApplication].applicationIconBadgeNumber = 2;
-//屏幕的方向
-[[UIApplication sharedApplication] userInterfaceLayoutDirection];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//隐藏状态条</span>
+<span class="lineno"> 2</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">setStatusBarHidden</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">setStatusBarHidden</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">withAnimation</span><span class="p">:</span><span class="n">UIStatusBarAnimationSlide</span><span class="p">];</span>
+<span class="lineno"> 4</span> <span class="c1">//设置状态条的样式</span>
+<span class="lineno"> 5</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">setStatusBarStyle</span><span class="p">:</span><span class="n">UIStatusBarStyleDefault</span><span class="p">];</span>
+<span class="lineno"> 6</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">statusBarStyle</span><span class="p">];</span>
+<span class="lineno"> 7</span> <span class="c1">//状态条的Frame</span>
+<span class="lineno"> 8</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">statusBarFrame</span><span class="p">];</span>
+<span class="lineno"> 9</span> <span class="c1">//网络是否可见</span>
+<span class="lineno">10</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">isNetworkActivityIndicatorVisible</span><span class="p">];</span>
+<span class="lineno">11</span> <span class="c1">//badge数字</span>
+<span class="lineno">12</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">applicationIconBadgeNumber</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="lineno">13</span> <span class="c1">//屏幕的方向</span>
+<span class="lineno">14</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">userInterfaceLayoutDirection</span><span class="p">];</span></code></pre></div>
 
-<h3 id="section-5">十、设置状态条的方向</h3>
+<h3 id="section-6">十、设置状态条的方向</h3>
 
-<pre><code class="language-objc">[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">setStatusBarOrientation</span><span class="p">:</span><span class="n">UIInterfaceOrientationLandscapeLeft</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span></code></pre></div>
 
-<h3 id="section-6">十一、数据类型</h3>
+<h3 id="section-7">十一、数据类型</h3>
 
-<pre><code class="language-objc">UIBackgroundTaskIdentifier : Int
-typedef enum : NSUInteger {
-   UIRemoteNotificationTypeNone    = 0,
-   UIRemoteNotificationTypeBadge   = 1 &lt;&lt; 0,
-   UIRemoteNotificationTypeSound   = 1 &lt;&lt; 1,
-   UIRemoteNotificationTypeAlert   = 1 &lt;&lt; 2,
-   UIRemoteNotificationTypeNewsstandContentAvailability = 1 &lt;&lt; 3
-} UIRemoteNotificationType;
-typedef enum : NSInteger {
-   UIStatusBarStyleDefault,
-   UIStatusBarStyleLightContent,
-   UIStatusBarStyleBlackTranslucent,
-   UIStatusBarStyleBlackOpaque
-} UIStatusBarStyle;
-typedef enum : NSInteger {
-   UIStatusBarAnimationNone,
-   UIStatusBarAnimationFade,
-   UIStatusBarAnimationSlide,
-} UIStatusBarAnimation;
-typedef enum : NSInteger  {
-   UIApplicationStateActive ,
-   UIApplicationStateInactive ,
-   UIApplicationStateBackground 
-} UIApplicationState;
-const UIBackgroundTaskIdentifier  UIBackgroundTaskInvalid ;
-const NSTimeInterval  UIMinimumKeepAliveTimeout;
-typedef enum : NSUInteger  {
-   UIBackgroundFetchResultNewData ,
-   UIBackgroundFetchResultNoData ,
-   UIBackgroundFetchResultFailed 
-} UIBackgroundFetchResult;
-const NSTimeInterval  UIApplicationBackgroundFetchIntervalMinimum ;
-const NSTimeInterval  UIApplicationBackgroundFetchIntervalNever;
-typedef enum : NSUInteger  {
-   UIBackgroundRefreshStatusRestricted ,
-   UIBackgroundRefreshStatusDenied ,
-   UIBackgroundRefreshStatusAvailable 
-} UIBackgroundRefreshStatus;
-typedef enum : NSInteger  {
-   UIInterfaceOrientationUnknown             = UIDeviceOrientationUnknown ,
-   UIInterfaceOrientationPortrait            = UIDeviceOrientationPortrait ,
-   UIInterfaceOrientationPortraitUpsideDown  = UIDeviceOrientationPortraitUpsideDown ,
-   UIInterfaceOrientationLandscapeLeft       = UIDeviceOrientationLandscapeRight ,
-   UIInterfaceOrientationLandscapeRight      = UIDeviceOrientationLandscapeLeft 
-} UIInterfaceOrientation;
-typedef enum : NSInteger  {
-   UIUserInterfaceLayoutDirectionLeftToRight ,
-   UIUserInterfaceLayoutDirectionRightToLeft ,
-} UIUserInterfaceLayoutDirection;
-NSString *const  UIApplicationOpenSettingsURLString;
-NSString *const  UIApplicationStatusBarOrientationUserInfoKey ;
-NSString *const  UIApplicationStatusBarFrameUserInfoKey;
-NSString *const  UIContentSizeCategoryExtraSmall ;
-NSString *const  UIContentSizeCategorySmall ;
-NSString *const  UIContentSizeCategoryMedium ;
-NSString *const  UIContentSizeCategoryLarge ;
-NSString *const  UIContentSizeCategoryExtraLarge ;
-NSString *const  UIContentSizeCategoryExtraExtraLarge ;
-NSString *const  UIContentSizeCategoryExtraExtraExtraLarge;
-NSString *const  UIContentSizeCategoryAccessibilityMedium ;
-NSString *const  UIContentSizeCategoryAccessibilityLarge ;
-NSString *const  UIContentSizeCategoryAccessibilityExtraLarge ;
-NSString *const  UIContentSizeCategoryAccessibilityExtraExtraLarge ;
-NSString *const  UIContentSizeCategoryAccessibilityExtraExtraExtraLarge;
-NSString *const  UIApplicationInvalidInterfaceOrientationException;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="nl">UIBackgroundTaskIdentifier</span> <span class="p">:</span> <span class="n">Int</span>
+<span class="lineno"> 2</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSUInteger</span> <span class="p">{</span>
+<span class="lineno"> 3</span>    <span class="n">UIRemoteNotificationTypeNone</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="lineno"> 4</span>    <span class="n">UIRemoteNotificationTypeBadge</span>   <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span>
+<span class="lineno"> 5</span>    <span class="n">UIRemoteNotificationTypeSound</span>   <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span>
+<span class="lineno"> 6</span>    <span class="n">UIRemoteNotificationTypeAlert</span>   <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">,</span>
+<span class="lineno"> 7</span>    <span class="n">UIRemoteNotificationTypeNewsstandContentAvailability</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span>
+<span class="lineno"> 8</span> <span class="p">}</span> <span class="n">UIRemoteNotificationType</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSInteger</span> <span class="p">{</span>
+<span class="lineno">10</span>    <span class="n">UIStatusBarStyleDefault</span><span class="p">,</span>
+<span class="lineno">11</span>    <span class="n">UIStatusBarStyleLightContent</span><span class="p">,</span>
+<span class="lineno">12</span>    <span class="n">UIStatusBarStyleBlackTranslucent</span><span class="p">,</span>
+<span class="lineno">13</span>    <span class="n">UIStatusBarStyleBlackOpaque</span>
+<span class="lineno">14</span> <span class="p">}</span> <span class="n">UIStatusBarStyle</span><span class="p">;</span>
+<span class="lineno">15</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSInteger</span> <span class="p">{</span>
+<span class="lineno">16</span>    <span class="n">UIStatusBarAnimationNone</span><span class="p">,</span>
+<span class="lineno">17</span>    <span class="n">UIStatusBarAnimationFade</span><span class="p">,</span>
+<span class="lineno">18</span>    <span class="n">UIStatusBarAnimationSlide</span><span class="p">,</span>
+<span class="lineno">19</span> <span class="p">}</span> <span class="n">UIStatusBarAnimation</span><span class="p">;</span>
+<span class="lineno">20</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSInteger</span>  <span class="p">{</span>
+<span class="lineno">21</span>    <span class="n">UIApplicationStateActive</span> <span class="p">,</span>
+<span class="lineno">22</span>    <span class="n">UIApplicationStateInactive</span> <span class="p">,</span>
+<span class="lineno">23</span>    <span class="n">UIApplicationStateBackground</span> 
+<span class="lineno">24</span> <span class="p">}</span> <span class="n">UIApplicationState</span><span class="p">;</span>
+<span class="lineno">25</span> <span class="k">const</span> <span class="n">UIBackgroundTaskIdentifier</span>  <span class="n">UIBackgroundTaskInvalid</span> <span class="p">;</span>
+<span class="lineno">26</span> <span class="k">const</span> <span class="n">NSTimeInterval</span>  <span class="n">UIMinimumKeepAliveTimeout</span><span class="p">;</span>
+<span class="lineno">27</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSUInteger</span>  <span class="p">{</span>
+<span class="lineno">28</span>    <span class="n">UIBackgroundFetchResultNewData</span> <span class="p">,</span>
+<span class="lineno">29</span>    <span class="n">UIBackgroundFetchResultNoData</span> <span class="p">,</span>
+<span class="lineno">30</span>    <span class="n">UIBackgroundFetchResultFailed</span> 
+<span class="lineno">31</span> <span class="p">}</span> <span class="n">UIBackgroundFetchResult</span><span class="p">;</span>
+<span class="lineno">32</span> <span class="k">const</span> <span class="n">NSTimeInterval</span>  <span class="n">UIApplicationBackgroundFetchIntervalMinimum</span> <span class="p">;</span>
+<span class="lineno">33</span> <span class="k">const</span> <span class="n">NSTimeInterval</span>  <span class="n">UIApplicationBackgroundFetchIntervalNever</span><span class="p">;</span>
+<span class="lineno">34</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSUInteger</span>  <span class="p">{</span>
+<span class="lineno">35</span>    <span class="n">UIBackgroundRefreshStatusRestricted</span> <span class="p">,</span>
+<span class="lineno">36</span>    <span class="n">UIBackgroundRefreshStatusDenied</span> <span class="p">,</span>
+<span class="lineno">37</span>    <span class="n">UIBackgroundRefreshStatusAvailable</span> 
+<span class="lineno">38</span> <span class="p">}</span> <span class="n">UIBackgroundRefreshStatus</span><span class="p">;</span>
+<span class="lineno">39</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSInteger</span>  <span class="p">{</span>
+<span class="lineno">40</span>    <span class="n">UIInterfaceOrientationUnknown</span>             <span class="o">=</span> <span class="n">UIDeviceOrientationUnknown</span> <span class="p">,</span>
+<span class="lineno">41</span>    <span class="n">UIInterfaceOrientationPortrait</span>            <span class="o">=</span> <span class="n">UIDeviceOrientationPortrait</span> <span class="p">,</span>
+<span class="lineno">42</span>    <span class="n">UIInterfaceOrientationPortraitUpsideDown</span>  <span class="o">=</span> <span class="n">UIDeviceOrientationPortraitUpsideDown</span> <span class="p">,</span>
+<span class="lineno">43</span>    <span class="n">UIInterfaceOrientationLandscapeLeft</span>       <span class="o">=</span> <span class="n">UIDeviceOrientationLandscapeRight</span> <span class="p">,</span>
+<span class="lineno">44</span>    <span class="n">UIInterfaceOrientationLandscapeRight</span>      <span class="o">=</span> <span class="n">UIDeviceOrientationLandscapeLeft</span> 
+<span class="lineno">45</span> <span class="p">}</span> <span class="n">UIInterfaceOrientation</span><span class="p">;</span>
+<span class="lineno">46</span> <span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="bp">NSInteger</span>  <span class="p">{</span>
+<span class="lineno">47</span>    <span class="n">UIUserInterfaceLayoutDirectionLeftToRight</span> <span class="p">,</span>
+<span class="lineno">48</span>    <span class="n">UIUserInterfaceLayoutDirectionRightToLeft</span> <span class="p">,</span>
+<span class="lineno">49</span> <span class="p">}</span> <span class="n">UIUserInterfaceLayoutDirection</span><span class="p">;</span>
+<span class="lineno">50</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIApplicationOpenSettingsURLString</span><span class="p">;</span>
+<span class="lineno">51</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIApplicationStatusBarOrientationUserInfoKey</span> <span class="p">;</span>
+<span class="lineno">52</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIApplicationStatusBarFrameUserInfoKey</span><span class="p">;</span>
+<span class="lineno">53</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryExtraSmall</span> <span class="p">;</span>
+<span class="lineno">54</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategorySmall</span> <span class="p">;</span>
+<span class="lineno">55</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryMedium</span> <span class="p">;</span>
+<span class="lineno">56</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryLarge</span> <span class="p">;</span>
+<span class="lineno">57</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryExtraLarge</span> <span class="p">;</span>
+<span class="lineno">58</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryExtraExtraLarge</span> <span class="p">;</span>
+<span class="lineno">59</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryExtraExtraExtraLarge</span><span class="p">;</span>
+<span class="lineno">60</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryAccessibilityMedium</span> <span class="p">;</span>
+<span class="lineno">61</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryAccessibilityLarge</span> <span class="p">;</span>
+<span class="lineno">62</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryAccessibilityExtraLarge</span> <span class="p">;</span>
+<span class="lineno">63</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryAccessibilityExtraExtraLarge</span> <span class="p">;</span>
+<span class="lineno">64</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIContentSizeCategoryAccessibilityExtraExtraExtraLarge</span><span class="p">;</span>
+<span class="lineno">65</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span>  <span class="n">UIApplicationInvalidInterfaceOrientationException</span><span class="p">;</span></code></pre></div>
 
-<h3 id="section-7">十二、通知</h3>
+<h3 id="section-8">十二、通知</h3>
 
-<pre><code class="language-objc">UIApplicationBackgroundRefreshStatusDidChangeNotification
-UIApplicationDidBecomeActiveNotification
-UIApplicationDidChangeStatusBarFrameNotification
-UIApplicationDidChangeStatusBarOrientationNotification
-UIApplicationDidEnterBackgroundNotification
-UIApplicationDidFinishLaunchingNotification
-UIApplicationDidReceiveMemoryWarningNotification
-UIApplicationProtectedDataDidBecomeAvailable
-UIApplicationProtectedDataWillBecomeUnavailable
-UIApplicationSignificantTimeChangeNotification
-UIApplicationUserDidTakeScreenshotNotification
-UIApplicationWillChangeStatusBarOrientationNotification
-UIApplicationWillChangeStatusBarFrameNotification
-UIApplicationWillEnterForegroundNotification
-UIApplicationWillResignActiveNotification
-UIApplicationWillTerminateNotification
-UIContentSizeCategoryDidChangeNotification
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="n">UIApplicationBackgroundRefreshStatusDidChangeNotification</span>
+<span class="lineno"> 2</span> <span class="n">UIApplicationDidBecomeActiveNotification</span>
+<span class="lineno"> 3</span> <span class="n">UIApplicationDidChangeStatusBarFrameNotification</span>
+<span class="lineno"> 4</span> <span class="n">UIApplicationDidChangeStatusBarOrientationNotification</span>
+<span class="lineno"> 5</span> <span class="n">UIApplicationDidEnterBackgroundNotification</span>
+<span class="lineno"> 6</span> <span class="n">UIApplicationDidFinishLaunchingNotification</span>
+<span class="lineno"> 7</span> <span class="n">UIApplicationDidReceiveMemoryWarningNotification</span>
+<span class="lineno"> 8</span> <span class="n">UIApplicationProtectedDataDidBecomeAvailable</span>
+<span class="lineno"> 9</span> <span class="n">UIApplicationProtectedDataWillBecomeUnavailable</span>
+<span class="lineno">10</span> <span class="n">UIApplicationSignificantTimeChangeNotification</span>
+<span class="lineno">11</span> <span class="n">UIApplicationUserDidTakeScreenshotNotification</span>
+<span class="lineno">12</span> <span class="n">UIApplicationWillChangeStatusBarOrientationNotification</span>
+<span class="lineno">13</span> <span class="n">UIApplicationWillChangeStatusBarFrameNotification</span>
+<span class="lineno">14</span> <span class="n">UIApplicationWillEnterForegroundNotification</span>
+<span class="lineno">15</span> <span class="n">UIApplicationWillResignActiveNotification</span>
+<span class="lineno">16</span> <span class="n">UIApplicationWillTerminateNotification</span>
+<span class="lineno">17</span> <span class="n">UIContentSizeCategoryDidChangeNotification</span></code></pre></div>
+
 
                 </div><!-- End entry content -->
                 <div class="bottom_wrapper"><!-- bottom tags and categories -->
@@ -966,8 +988,6 @@ UIContentSizeCategoryDidChangeNotification
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -1001,6 +1021,44 @@ UIContentSizeCategoryDidChangeNotification
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

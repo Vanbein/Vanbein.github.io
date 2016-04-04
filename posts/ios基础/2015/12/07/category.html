@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -536,17 +573,16 @@ ds.charset = 'UTF-8';
 <p>就category和extension的区别来看，我们可以推导出一个明显的事实，<strong>extension可以添加实例变量，而category是无法添加实例变量的</strong>（因为在运行期，对象的内存布局已经确定，如果添加实例变量就会破坏类的内部布局，这对编译型语言来说是灾难性的）。</p>
 
 <h3 id="category-2">三、category真面目</h3>
-<p>我们知道，所有的OC类和对象，在runtime层都是用struct表示的，category也不例外，在runtime层，category用结构体<code>category_t</code>（在<code>objc-runtime-new.h</code>中可以找到此定义）表示，如下：</p>
+<p>我们知道，所有的OC类和对象，在runtime层都是用struct表示的，category也不例外，在runtime层，category用结构体 <code>category_t</code>（在 <code>objc-runtime-new.h</code>中可以找到此定义）表示，如下：</p>
 
-<pre><code class="language-objc">typedef struct category_t {
-    const char *name;
-    classref_t cls;
-    struct method_list_t *instanceMethods;
-    struct method_list_t *classMethods;
-    struct protocol_list_t *protocols;
-    struct property_list_t *instanceProperties;
-} category_t;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">typedef</span> <span class="k">struct</span> <span class="kt">category_t</span> <span class="p">{</span>
+<span class="lineno">2</span>     <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="lineno">3</span>     <span class="kt">classref_t</span> <span class="n">cls</span><span class="p">;</span>
+<span class="lineno">4</span>     <span class="k">struct</span> <span class="kt">method_list_t</span> <span class="o">*</span><span class="n">instanceMethods</span><span class="p">;</span>
+<span class="lineno">5</span>     <span class="k">struct</span> <span class="kt">method_list_t</span> <span class="o">*</span><span class="n">classMethods</span><span class="p">;</span>
+<span class="lineno">6</span>     <span class="k">struct</span> <span class="kt">protocol_list_t</span> <span class="o">*</span><span class="n">protocols</span><span class="p">;</span>
+<span class="lineno">7</span>     <span class="k">struct</span> <span class="kt">property_list_t</span> <span class="o">*</span><span class="n">instanceProperties</span><span class="p">;</span>
+<span class="lineno">8</span> <span class="p">}</span> <span class="kt">category_t</span><span class="p">;</span></code></pre></div>
 
 <p>可以看出它包含了</p>
 
@@ -567,7 +603,7 @@ ds.charset = 'UTF-8';
     <p>category实现的所有协议的列表（protocols）</p>
   </li>
   <li>
-    <p>category中添加的所有属性（instanceProperties），这也是category里面可以定义属性的原因，不过这个property不会@synthesize实例变量，一般有需求添加实例变量属性时会采用<code>objc_setAssociatedObject</code>和<code>objc_getAssociatedObject</code>方法绑定方法绑定，不过这种方法生成的与一个普通的实例变量完全是两码事。</p>
+    <p>category中添加的所有属性（instanceProperties），这也是category里面可以定义属性的原因，不过这个property不会@synthesize实例变量，一般有需求添加实例变量属性时会采用 <code>objc_setAssociatedObject</code>和 <code>objc_getAssociatedObject</code>方法绑定方法绑定，不过这种方法生成的与一个普通的实例变量完全是两码事。</p>
   </li>
 </ol>
 
@@ -577,20 +613,19 @@ ds.charset = 'UTF-8';
 <h5 id="section-1">示例：</h5>
 <p>我们通过一个例子来具体说明：首先在category中 按照正常方式，声明一个属性(这里是block)。</p>
 
-<pre><code class="language-objc">- (void)setBlock:(handler)block
-{
-    objc_setAssociatedObject(self, &amp;key, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    if (block) {
-        self.delegate = self;
-    }else{
-        self.delegate = nil;
-    }
-}    
-- (handler)block
-{
-    return objc_getAssociatedObject(self, &amp;key);
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setBlock:</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span><span class="nv">block</span>
+<span class="lineno"> 2</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="n">objc_setAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">OBJC_ASSOCIATION_COPY_NONATOMIC</span><span class="p">);</span>
+<span class="lineno"> 4</span>     <span class="k">if</span> <span class="p">(</span><span class="n">block</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 5</span>         <span class="nb">self</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno"> 6</span>     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno"> 7</span>         <span class="nb">self</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 8</span>     <span class="p">}</span>
+<span class="lineno"> 9</span> <span class="p">}</span>    
+<span class="lineno">10</span> <span class="p">-</span> <span class="p">(</span><span class="n">handler</span><span class="p">)</span><span class="nf">block</span>
+<span class="lineno">11</span> <span class="p">{</span>
+<span class="lineno">12</span>     <span class="k">return</span> <span class="n">objc_getAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">);</span>
+<span class="lineno">13</span> <span class="p">}</span></code></pre></div>
 
 <p>其中key 是声明的一个变量<code>static int key</code>;<br />
 <code>objc_setAssociatedObject(id object, const void key, id value, objc_AssociationPolicy policy)</code> 给一个对象关联一个键值对。id object就是这个对象，const void key 就是这个key，value 就是key 对应的value，最后这个参数是关联的策略，就像你在声明属性时候用的strong，copy等。其中key是一个常量，所以取了一个static的变量地址，这个一般不会冲突的。</p>
@@ -611,8 +646,7 @@ ds.charset = 'UTF-8';
   </li>
 </ol>
 
-<pre><code>typedef id (*IMP)(id, SEL, ...);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">typedef</span> <span class="nf">id</span> <span class="p">(</span><span class="o">*</span><span class="kt">IMP</span><span class="p">)(</span><span class="kt">id</span><span class="p">,</span> <span class="kt">SEL</span><span class="p">,</span> <span class="p">...);</span></code></pre></div>
 
 <p>可以看到 IMP本质就是函数指针，id 就是self，sel就是_cmd…之后才是我们传进的参数。<br />
 关于消息转发，可以参考这篇文章<a href="http://blog.csdn.net/kesalin/article/details/6689226">深入浅出Cocoa消息</a>.</p>
@@ -626,40 +660,33 @@ ds.charset = 'UTF-8';
 <p>现在来创建一个Category来为NSString添加扩展方法。点击<code> File -&gt; New -&gt; File </code>然后选择 <code>Cocoa Touch Objective-C category</code>. 这里我们命名为 RemoveNum。记得要从 Category on 下拉框选择 NSString，最后点击Create按钮旁的Next按钮。声明Category扩展的方法。<br />
 选择 <code>NSString+RemoveNums.h</code>文件。添加以下代码:</p>
 
-<p><code>objc NSString+RemoveNums.h
-@interface  NSString (RemoveNums)//分类名放在圆括号中，为`RomoveNums`
-- (NSString *)removeNumbersFromString:(NSString *)string;
-@end
-</code><br />
-实现Category扩展的方法。<br />
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@interface</span>  <span class="bp">NSString</span> <span class="nl">(RemoveNums)</span><span class="c1">//分类名放在圆括号中，为`RomoveNums`</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">removeNumbersFromString:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="k">@end</span></code></pre></div>
+
+<p>实现Category扩展的方法。<br />
 接着来到<code>NSString+RemoveNums.m</code>文件。添加以下代码,可以看到这个方法实际做的事情就是从整个NSString去除掉所有的数字字符。</p>
 
-<p><code>objc NSString+RemoveNums.m
-- (NSString *)removeNumbersFromString:(NSString *)string
-{
-    NSString *trimmedString = nil;
-    NSCharacterSet *numbersSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-    trimmedString = [string stringByTrimmingCharactersInSet:numbersSet];
-    return trimmedString;
-}
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">removeNumbersFromString:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span>
+<span class="lineno">2</span> <span class="p">{</span>
+<span class="lineno">3</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">trimmedString</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno">4</span>     <span class="bp">NSCharacterSet</span> <span class="o">*</span><span class="n">numbersSet</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSCharacterSet</span> <span class="nl">characterSetWithCharactersInString</span><span class="p">:</span><span class="s">@&quot;0123456789&quot;</span><span class="p">];</span>
+<span class="lineno">5</span>     <span class="n">trimmedString</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="nl">stringByTrimmingCharactersInSet</span><span class="p">:</span><span class="n">numbersSet</span><span class="p">];</span>
+<span class="lineno">6</span>     <span class="k">return</span> <span class="n">trimmedString</span><span class="p">;</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
 
 <h5 id="step3-category">Step3. 导入Category</h5>
 <p>在<code>ViewController.h</code>文件头部添加以下代码来导入Category</p>
 
-<p><code>objc ViewController.h
-#import "NSString+RemoveNums.h"
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="cp">#import &quot;NSString+RemoveNums.h&quot;</span></code></pre></div>
 
 <h5 id="step4-category">Step4. 测试Category</h5>
 <p>在<code>ViewController.h</code>文件的viewDidLoad方法中添加以下代码。</p>
 
-<p><code>objc ViewController.h
-NSString *stringWithNums = @"ABC 123";
-NSLog(@"stringWithNums         --&gt; %@",stringWithNums);
-stringWithNums = [stringWithNums removeNumbersFromString:stringWithNums];
-NSLog(@"trimmed stringWithNums --&gt; %@",stringWithNums);
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">stringWithNums</span> <span class="o">=</span> <span class="s">@&quot;ABC 123&quot;</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;stringWithNums         --&gt; %@&quot;</span><span class="p">,</span><span class="n">stringWithNums</span><span class="p">);</span>
+<span class="lineno">3</span> <span class="n">stringWithNums</span> <span class="o">=</span> <span class="p">[</span><span class="n">stringWithNums</span> <span class="nl">removeNumbersFromString</span><span class="p">:</span><span class="n">stringWithNums</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;trimmed stringWithNums --&gt; %@&quot;</span><span class="p">,</span><span class="n">stringWithNums</span><span class="p">);</span></code></pre></div>
 
 <h5 id="step5-category">Step5. 使用Category的方法</h5>
 <p>在Xcode的菜单栏点击 Product -&gt; Run，测试过程中，请注意控制台 首先输出的ABC 123，然后被方法去除数字后输出的ABC。</p>
@@ -837,8 +864,6 @@ NSLog(@"trimmed stringWithNums --&gt; %@",stringWithNums);
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -872,6 +897,44 @@ NSLog(@"trimmed stringWithNums --&gt; %@",stringWithNums);
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

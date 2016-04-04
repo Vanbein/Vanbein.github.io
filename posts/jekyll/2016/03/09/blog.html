@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -509,36 +546,32 @@ ds.charset = 'UTF-8';
 
 <p>如果没有 Jekyll ，可以执行下面的命令进行安装：</p>
 
-<pre><code class="language-ruby">$ gem install jekyll
-</code></pre>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="err">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span></code></pre></div>
 
 <p>由于我是直接使用了<a href="http://www.flinhong.com/">林宏Frank lin</a> 提供的主题，所以只需要把主题文件 Clone 下来就行，</p>
 
-<pre><code class="language-ruby">$ git clone https://gitcafe.com/linhong/linhong.git
-</code></pre>
-<p>，clone 下来后非常重要的就是去看这个主题的源代码并做一些个人的修改，特别是 _config.yml 文件，之后把自己博客的markdown文件全部移到 <code>_posts</code> 目录下基本上就完成了所有的迁移工作，以后我们新增 blog 也是放在这个文件夹下。</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="err">$</span> <span class="n">git</span> <span class="nb">clone</span> <span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">gitcafe</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linhong</span><span class="o">/</span><span class="n">linhong</span><span class="o">.</span><span class="n">git</span></code></pre></div>
+
+<p>clone 下来后非常重要的就是去看这个主题的源代码并做一些个人的修改，特别是 _config.yml 文件，之后把自己博客的markdown文件全部移到 <code>_posts</code> 目录下基本上就完成了所有的迁移工作，以后我们新增 blog 也是放在这个文件夹下。</p>
 
 <p>再执行下面的命令，浏览器打开 http://localhost:4000 便可以看到新的主题</p>
 
-<pre><code class="language-ruby">$ jekyll build 
-$ jekyll serve
-</code></pre>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="err">$</span> <span class="n">jekyll</span> <span class="n">build</span> 
+<span class="lineno">2</span> <span class="err">$</span> <span class="n">jekyll</span> <span class="n">serve</span></code></pre></div>
 
 <p>注意，如果你是用了 bundle ,那么请使用下面的命令</p>
 
-<pre><code class="language-ruby">$ bundle exec jekyll build 
-$ bundle exec jekyll serve
-</code></pre>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">jekyll</span> <span class="n">build</span> 
+<span class="lineno">2</span> <span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">jekyll</span> <span class="n">serve</span></code></pre></div>
 
 <h3 id="github-pages">三、发布网站到 Github Pages</h3>
 
 <p>继续执行下面的命令，即可将我们的博客网站发布到 Github 上</p>
 
-<pre><code>$ git remote add origin https://github.com/username/username.github.io
-$ git add .
-$ git commit -m"commit message"
-$ git push origin master
-</code></pre>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="err">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>
+<span class="lineno">2</span> <span class="err">$</span> <span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="lineno">3</span> <span class="err">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span><span class="s2">&quot;commit message&quot;</span>
+<span class="lineno">4</span> <span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span></code></pre></div>
 
 <p>上传成功之后，稍等一下下，访问 http://username.github.io 就可以看到 Blog 网站已经生成了（将 username 换成你的 github 用户名）。</p>
 
@@ -558,27 +591,35 @@ $ git push origin master
 
 <p>以我的域名 vanbein.github.io 为例，输入以下命令：</p>
 
-<pre><code>$ dig vanbein.github.io
-</code></pre>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="err">$</span> <span class="n">dig</span> <span class="n">vanbein</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span></code></pre></div>
 
 <p>在输出内容中找到 <strong>ANSWER SECTION</strong> 一项，比如我的：</p>
 
-<pre><code>;; ANSWER SECTION:
-vanbein.github.io.	1668	IN	CNAME	github.map.fastly.net.
-github.map.fastly.net.	151	IN	A	185.31.17.133
-</code></pre>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="p">;;</span> <span class="no">ANSWER</span> <span class="ss">SECTION</span><span class="p">:</span>
+<span class="lineno">2</span> <span class="n">vanbein</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">.</span>	<span class="mi">1668</span>	<span class="no">IN</span>	<span class="no">CNAME</span>	<span class="n">github</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">fastly</span><span class="o">.</span><span class="n">net</span><span class="o">.</span>
+<span class="lineno">3</span> <span class="n">github</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">fastly</span><span class="o">.</span><span class="n">net</span><span class="o">.</span>	<span class="mi">151</span>	<span class="no">IN</span>	<span class="n">A</span>	<span class="mi">185</span><span class="o">.</span><span class="mi">31</span><span class="o">.</span><span class="mi">17</span><span class="o">.</span><span class="mi">133</span></code></pre></div>
+
 <p>可以看到我的 IP 是 <code>185.31.17.133</code> 。</p>
 
 <ul>
-  <li>添加A记录<br />
-得到IP以后，需要到你的域名解析服务商处添加一个A记录，将你的域名解析成对应的IP。</li>
+  <li>
+    <p>添加A记录<br />
+得到IP以后，需要到你的域名解析服务商处添加一个A记录，将你的域名解析成对应的IP。</p>
+  </li>
+  <li>
+    <p>在源码根目录新建一个 <code>CNAME</code> 文件，里面写上你的域名地址，比如我的: vanbein.com</p>
+  </li>
 </ul>
 
 <p>经过以上步骤，访问 vanbein.github.io 的地址就会自动跳转到自己的域名了。不过可能需要等一段时间才能生效。</p>
 
-<h3 id="section-1">遇到的一些困难</h3>
+<h4 id="section-1">建议</h4>
 
-<p><strong>首先真的非常感谢<a href="http://www.flinhong.com/">林宏</a>的帮助</strong></p>
+<p>我们可以把 <code>CNAME</code> 里面的域名添加上 <code>www</code> 前缀，改成 www.vanbein.com 形式，再去域名服务商 将 www解析到你的仓库名，即 <code>username.github.io</code>，然后就可以启用 github 的 <code>CDN</code> 加速了</p>
+
+<h3 id="section-2">遇到的一些困难</h3>
+
+<p>首先非常感谢下 <a href="http://www.flinhong.com/">林宏</a> 的热心帮助**</p>
 
 <h4 id="gitcafe-clone--jekyll-30-">1. 从 gitcafe clone 下来的源码不适用于 jekyll 3.0 以上版本</h4>
 
@@ -779,8 +820,6 @@ github.map.fastly.net.	151	IN	A	185.31.17.133
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -814,6 +853,44 @@ github.map.fastly.net.	151	IN	A	185.31.17.133
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

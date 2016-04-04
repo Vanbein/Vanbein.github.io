@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -601,11 +638,10 @@ ds.charset = 'UTF-8';
   </li>
 </ul>
 
-<pre><code class="language-objc">// 添加toView到父视图
-[fromView.superview addSubview:toView]; 
-// 把fromView从父视图中移除
-[fromView.superview removeFromSuperview];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 添加toView到父视图</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">fromView</span><span class="p">.</span><span class="n">superview</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">toView</span><span class="p">];</span> 
+<span class="lineno">3</span> <span class="c1">// 把fromView从父视图中移除</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">fromView</span><span class="p">.</span><span class="n">superview</span> <span class="n">removeFromSuperview</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>参数解析:
@@ -619,74 +655,73 @@ ds.charset = 'UTF-8';
 
 <p>比如想要实现一个图片的移动动画：将图片移动到点击的位置；可通过下面的代码实现，下面的代码演示了通过<strong>block</strong>和<strong>静态方法</strong>实现动画控制的过程：</p>
 
-<pre><code class="language-objc">@interface KCMainViewController (){
-    UIImageView *_imageView;
-}
-@end
-@implementation KCMainViewController
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    //
-	//设置背景
-    self.view.backgroundColor=[UIColor whiteColor];
-    //
-    //创建图像显示控件
-    _imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon"]];
-    _imageView.frame = CGRectMake(0, 0, 40, 40);
-    _imageView.layer.cornerRadius = 5;
-    _imageView.center=CGPointMake(50, 150);
-    [self.view addSubview:_imageView];
-}
-//
-#pragma mark 点击事件
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch *touch=touches.anyObject;
-    CGPoint location= [touch locationInView:self.view];
-    //方法1：block方式
-    // 开始动画，UIView的动画方法执行完后动画会停留在重点位置，而不需要进行任何特殊处理
-    //duration:执行时间
-    // delay:延迟时间
-    // options:动画设置，例如自动恢复、匀速运动等
-    // completion:动画完成回调方法
-    //
-//    [UIView animateWithDuration:5.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-//        _imageView.center=location;
-//    } completion:^(BOOL finished) {
-//        NSLog(@"Animation end.");
-//    }];
-    // 
-    //方法2：静态方法
-    //开始动画
-    [UIView beginAnimations:@"KCBasicAnimation" context:nil];
-    [UIView setAnimationDuration:5.0];
-    //改变UIView的属性
-    _imageView.center=location;
-    //开始动画
-    [UIView commitAnimations];
-}
-</code></pre>
-<p>#### 补充1 – 弹簧动画效果</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@interface</span> <span class="nc">KCMainViewController</span> <span class="p">(){</span>
+<span class="lineno"> 2</span>     <span class="bp">UIImageView</span> <span class="o">*</span><span class="n">_imageView</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="p">}</span>
+<span class="lineno"> 4</span> <span class="k">@end</span>
+<span class="lineno"> 5</span> <span class="k">@implementation</span> <span class="nc">KCMainViewController</span>
+<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 7</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 8</span>     <span class="c1">//</span>
+<span class="lineno"> 9</span> 	<span class="c1">//设置背景</span>
+<span class="lineno">10</span>     <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span><span class="o">=</span><span class="p">[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">];</span>
+<span class="lineno">11</span>     <span class="c1">//</span>
+<span class="lineno">12</span>     <span class="c1">//创建图像显示控件</span>
+<span class="lineno">13</span>     <span class="n">_imageView</span><span class="o">=</span><span class="p">[[</span><span class="bp">UIImageView</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithImage</span><span class="p">:[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;icon&quot;</span><span class="p">]];</span>
+<span class="lineno">14</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+<span class="lineno">15</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="lineno">16</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">center</span><span class="o">=</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span>
+<span class="lineno">17</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">_imageView</span><span class="p">];</span>
+<span class="lineno">18</span> <span class="p">}</span>
+<span class="lineno">19</span> <span class="c1">//</span>
+<span class="lineno">20</span> <span class="cp">#pragma mark 点击事件</span>
+<span class="lineno">21</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan:</span><span class="p">(</span><span class="bp">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent:</span><span class="p">(</span><span class="bp">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span><span class="p">{</span>
+<span class="lineno">22</span>     <span class="bp">UITouch</span> <span class="o">*</span><span class="n">touch</span><span class="o">=</span><span class="n">touches</span><span class="p">.</span><span class="n">anyObject</span><span class="p">;</span>
+<span class="lineno">23</span>     <span class="bp">CGPoint</span> <span class="n">location</span><span class="o">=</span> <span class="p">[</span><span class="n">touch</span> <span class="nl">locationInView</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno">24</span>     <span class="c1">//方法1：block方式</span>
+<span class="lineno">25</span>     <span class="c1">// 开始动画，UIView的动画方法执行完后动画会停留在重点位置，而不需要进行任何特殊处理</span>
+<span class="lineno">26</span>     <span class="c1">//duration:执行时间</span>
+<span class="lineno">27</span>     <span class="c1">// delay:延迟时间</span>
+<span class="lineno">28</span>     <span class="c1">// options:动画设置，例如自动恢复、匀速运动等</span>
+<span class="lineno">29</span>     <span class="c1">// completion:动画完成回调方法</span>
+<span class="lineno">30</span>     <span class="c1">//</span>
+<span class="lineno">31</span> <span class="c1">//    [UIView animateWithDuration:5.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{</span>
+<span class="lineno">32</span> <span class="c1">//        _imageView.center=location;</span>
+<span class="lineno">33</span> <span class="c1">//    } completion:^(BOOL finished) {</span>
+<span class="lineno">34</span> <span class="c1">//        NSLog(@&quot;Animation end.&quot;);</span>
+<span class="lineno">35</span> <span class="c1">//    }];</span>
+<span class="lineno">36</span>     <span class="c1">// </span>
+<span class="lineno">37</span>     <span class="c1">//方法2：静态方法</span>
+<span class="lineno">38</span>     <span class="c1">//开始动画</span>
+<span class="lineno">39</span>     <span class="p">[</span><span class="bp">UIView</span> <span class="nl">beginAnimations</span><span class="p">:</span><span class="s">@&quot;KCBasicAnimation&quot;</span> <span class="nl">context</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">40</span>     <span class="p">[</span><span class="bp">UIView</span> <span class="nl">setAnimationDuration</span><span class="p">:</span><span class="mf">5.0</span><span class="p">];</span>
+<span class="lineno">41</span>     <span class="c1">//改变UIView的属性</span>
+<span class="lineno">42</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">center</span><span class="o">=</span><span class="n">location</span><span class="p">;</span>
+<span class="lineno">43</span>     <span class="c1">//开始动画</span>
+<span class="lineno">44</span>     <span class="p">[</span><span class="bp">UIView</span> <span class="n">commitAnimations</span><span class="p">];</span>
+<span class="lineno">45</span> <span class="p">}</span></code></pre></div>
+
+<h4 id="section-4">补充1 – 弹簧动画效果</h4>
 
 <p>由于在iOS开发中弹性动画使用很普遍，所以在iOS7苹果官方直接提供了一个方法用于弹性动画开发，下面简单的演示一下：</p>
 
-<pre><code class="language-objc">#pragma mark 点击事件
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch *touch=touches.anyObject;
-    CGPoint location= [touch locationInView:self.view];
-    //创建弹性动画
-    // damping:阻尼，范围0-1，阻尼越接近于0，弹性效果越明显
-    // velocity:弹性复位的速度
-    [UIView animateWithDuration:5.0 delay:0 usingSpringWithDamping:0.1 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        _imageView.center=location; //CGPointMake(160, 284);
-    } completion:nil];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="cp">#pragma mark 点击事件</span>
+<span class="lineno"> 2</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan:</span><span class="p">(</span><span class="bp">NSSet</span><span class="err"> </span><span class="o">*</span><span class="p">)</span><span class="nv">touches</span><span class="err"> </span><span class="nl">withEvent</span><span class="p">:(</span><span class="bp">UIEvent</span><span class="err"> </span><span class="o">*</span><span class="p">)</span><span class="n">event</span><span class="p">{</span>
+<span class="lineno"> 3</span> <span class="err">    </span><span class="bp">UITouch</span><span class="err"> </span><span class="o">*</span><span class="n">touch</span><span class="o">=</span><span class="n">touches</span><span class="p">.</span><span class="n">anyObject</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="err">    </span><span class="bp">CGPoint</span><span class="err"> </span><span class="n">location</span><span class="o">=</span><span class="err"> </span><span class="p">[</span><span class="n">touch</span><span class="err"> </span><span class="nl">locationInView</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="err">    </span><span class="c1">//创建弹性动画</span>
+<span class="lineno"> 6</span> <span class="err">    </span><span class="c1">// damping:阻尼，范围0-1，阻尼越接近于0，弹性效果越明显</span>
+<span class="lineno"> 7</span> <span class="err">    </span><span class="c1">// velocity:弹性复位的速度</span>
+<span class="lineno"> 8</span> <span class="err">    </span><span class="p">[</span><span class="bp">UIView</span><span class="err"> </span><span class="nl">animateWithDuration</span><span class="p">:</span><span class="mf">5.0</span><span class="err"> </span><span class="nl">delay</span><span class="p">:</span><span class="mi">0</span><span class="err"> </span><span class="nl">usingSpringWithDamping</span><span class="p">:</span><span class="mf">0.1</span><span class="err"> </span><span class="nl">initialSpringVelocity</span><span class="p">:</span><span class="mf">1.0</span><span class="err"> </span><span class="nl">options</span><span class="p">:</span><span class="n">UIViewAnimationOptionCurveLinear</span><span class="err"> </span><span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno"> 9</span> <span class="err">        </span><span class="n">_imageView</span><span class="p">.</span><span class="n">center</span><span class="o">=</span><span class="n">location</span><span class="p">;</span><span class="err"> </span><span class="c1">//CGPointMake(160, 284);</span>
+<span class="lineno">10</span> <span class="err">    </span><span class="p">}</span><span class="err"> </span><span class="nl">completion</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">11</span> <span class="p">}</span></code></pre></div>
 
-<h4 id="section-4">补充2 – 动画设置参数</h4>
+<h4 id="section-5">补充2 – 动画设置参数</h4>
 
 <p>在动画方法中有一个option参数，UIViewAnimationOptions类型，它是一个枚举类型，动画参数分为三类，可以组合使用：</p>
 
-<h5 id="section-5">1.常规动画属性设置（可以同时选择多个进行设置）</h5>
+<h5 id="section-6">1.常规动画属性设置（可以同时选择多个进行设置）</h5>
 
 <ul>
   <li>UIViewAnimationOptionLayoutSubviews：动画过程中保证子视图跟随运动。</li>
@@ -701,7 +736,7 @@ ds.charset = 'UTF-8';
   <li>UIViewAnimationOptionOverrideInheritedOptions ：不继承父动画设置或动画类型。</li>
 </ul>
 
-<h5 id="section-6">2.动画速度控制（可从其中选择一个设置）</h5>
+<h5 id="section-7">2.动画速度控制（可从其中选择一个设置）</h5>
 
 <ul>
   <li>UIViewAnimationOptionCurveEaseInOut：动画先缓慢，然后逐渐加速。</li>
@@ -710,7 +745,7 @@ ds.charset = 'UTF-8';
   <li>UIViewAnimationOptionCurveLinear ：动画匀速执行，默认值。</li>
 </ul>
 
-<h5 id="section-7">3.转场类型（仅适用于转场动画设置，可以从中选择一个进行设置，基本动画、关键帧动画不需要设置）</h5>
+<h5 id="section-8">3.转场类型（仅适用于转场动画设置，可以从中选择一个进行设置，基本动画、关键帧动画不需要设置）</h5>
 
 <ul>
   <li>UIViewAnimationOptionTransitionNone：没有转场动画效果。</li>
@@ -723,39 +758,38 @@ ds.charset = 'UTF-8';
   <li>UIViewAnimationOptionTransitionFlipFromBottom：从底部翻转效果。</li>
 </ul>
 
-<h3 id="section-8">关键帧动画</h3>
+<h3 id="section-9">关键帧动画</h3>
 
 <p>从iOS7开始UIView动画中封装了关键帧动画，下面就来看一下如何使用UIView封装方法进行关键帧动画控制，这里实现前面关键帧动画部分对于落叶动画的控制。</p>
 
-<pre><code class="language-objc">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //UITouch *touch=touches.anyObject;
-    //CGPoint location= [touch locationInView:self.view];
-    // 关键帧动画
-    // options:
-    [UIView animateKeyframesWithDuration:5.0 delay:0 options: UIViewAnimationOptionCurveLinear| UIViewAnimationOptionCurveLinear animations:^{
-        //第二个关键帧（准确的说第一个关键帧是开始位置）:从0秒开始持续50%的时间，也就是5.0*0.5=2.5秒
-        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
-            _imageView.center=CGPointMake(80.0, 220.0);
-        }];
-        //第三个关键帧，从0.5*5.0秒开始，持续5.0*0.25=1.25秒
-        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.25 animations:^{
-            _imageView.center=CGPointMake(45.0, 300.0);
-        }];
-        //第四个关键帧：从0.75*5.0秒开始，持所需5.0*0.25=1.25秒
-        [UIView addKeyframeWithRelativeStartTime:0.75 relativeDuration:0.25 animations:^{
-            _imageView.center=CGPointMake(55.0, 400.0);
-        }];
-    } completion:^(BOOL finished) {
-        NSLog(@"Animation end.");
-    }];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan:</span><span class="p">(</span><span class="bp">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent:</span><span class="p">(</span><span class="bp">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span><span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="c1">//UITouch *touch=touches.anyObject;</span>
+<span class="lineno"> 3</span>     <span class="c1">//CGPoint location= [touch locationInView:self.view];</span>
+<span class="lineno"> 4</span>     <span class="c1">// 关键帧动画</span>
+<span class="lineno"> 5</span>     <span class="c1">// options:</span>
+<span class="lineno"> 6</span>     <span class="p">[</span><span class="bp">UIView</span> <span class="nl">animateKeyframesWithDuration</span><span class="p">:</span><span class="mf">5.0</span> <span class="nl">delay</span><span class="p">:</span><span class="mi">0</span> <span class="nl">options</span><span class="p">:</span> <span class="n">UIViewAnimationOptionCurveLinear</span><span class="o">|</span> <span class="n">UIViewAnimationOptionCurveLinear</span> <span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno"> 7</span>         <span class="c1">//第二个关键帧（准确的说第一个关键帧是开始位置）:从0秒开始持续50%的时间，也就是5.0*0.5=2.5秒</span>
+<span class="lineno"> 8</span>         <span class="p">[</span><span class="bp">UIView</span> <span class="nl">addKeyframeWithRelativeStartTime</span><span class="p">:</span><span class="mf">0.0</span> <span class="nl">relativeDuration</span><span class="p">:</span><span class="mf">0.5</span> <span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno"> 9</span>             <span class="n">_imageView</span><span class="p">.</span><span class="n">center</span><span class="o">=</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">80.0</span><span class="p">,</span> <span class="mf">220.0</span><span class="p">);</span>
+<span class="lineno">10</span>         <span class="p">}];</span>
+<span class="lineno">11</span>         <span class="c1">//第三个关键帧，从0.5*5.0秒开始，持续5.0*0.25=1.25秒</span>
+<span class="lineno">12</span>         <span class="p">[</span><span class="bp">UIView</span> <span class="nl">addKeyframeWithRelativeStartTime</span><span class="p">:</span><span class="mf">0.5</span> <span class="nl">relativeDuration</span><span class="p">:</span><span class="mf">0.25</span> <span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno">13</span>             <span class="n">_imageView</span><span class="p">.</span><span class="n">center</span><span class="o">=</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">45.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">);</span>
+<span class="lineno">14</span>         <span class="p">}];</span>
+<span class="lineno">15</span>         <span class="c1">//第四个关键帧：从0.75*5.0秒开始，持所需5.0*0.25=1.25秒</span>
+<span class="lineno">16</span>         <span class="p">[</span><span class="bp">UIView</span> <span class="nl">addKeyframeWithRelativeStartTime</span><span class="p">:</span><span class="mf">0.75</span> <span class="nl">relativeDuration</span><span class="p">:</span><span class="mf">0.25</span> <span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno">17</span>             <span class="n">_imageView</span><span class="p">.</span><span class="n">center</span><span class="o">=</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">55.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">);</span>
+<span class="lineno">18</span>         <span class="p">}];</span>
+<span class="lineno">19</span>     <span class="p">}</span> <span class="nl">completion</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">20</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Animation end.&quot;</span><span class="p">);</span>
+<span class="lineno">21</span>     <span class="p">}];</span>
+<span class="lineno">22</span> <span class="p">}</span></code></pre></div>
 
-<h4 id="section-9">补充 – 动画设置参数</h4>
+<h4 id="section-10">补充 – 动画设置参数</h4>
 
 <p>对于关键帧动画也有一些动画参数设置<code>options</code>，<code>UIViewKeyframeAnimationOptions</code>类型，和上面基本动画参数设置有些差别，关键帧动画设置参数分为两类，可以组合使用：</p>
 
-<h5 id="section-10">1.常规动画属性设置（可以同时选择多个进行设置）</h5>
+<h5 id="section-11">1.常规动画属性设置（可以同时选择多个进行设置）</h5>
 
 <ul>
   <li>UIViewAnimationOptionLayoutSubviews：动画过程中保证子视图跟随运动。</li>
@@ -767,7 +801,7 @@ ds.charset = 'UTF-8';
   <li>UIViewAnimationOptionOverrideInheritedOptions ：不继承父动画设置或动画类型。</li>
 </ul>
 
-<h5 id="section-11">2.动画模式设置（同前面关键帧动画动画模式一一对应，可以从其中选择一个进行设置）</h5>
+<h5 id="section-12">2.动画模式设置（同前面关键帧动画动画模式一一对应，可以从其中选择一个进行设置）</h5>
 
 <ul>
   <li>UIViewKeyframeAnimationOptionCalculationModeLinear：连续运算模式。</li>
@@ -781,70 +815,68 @@ ds.charset = 'UTF-8';
   <p>注意：核心动画里提过关键帧动画有两种形式，上面演示的是<strong>属性值关键帧动画</strong>，路径关键帧动画目前UIView还不支持。</p>
 </blockquote>
 
-<h3 id="section-12">转场动画</h3>
+<h3 id="section-13">转场动画</h3>
 
 <p>从iOS4.0开始，UIView直接封装了转场动画，使用起来同样很简单。下面举一个图片浏览时的转场动画加以说明：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad {
-    [super viewDidLoad];
-    //
-    //定义图片控件
-    _imageView=[[UIImageView alloc]init];
-    _imageView.frame=[UIScreen mainScreen].applicationFrame;
-    _imageView.contentMode=UIViewContentModeScaleAspectFit;
-    _imageView.image=[UIImage imageNamed:@"0.jpg"];//默认图片
-    [self.view addSubview:_imageView];
-    //添加手势
-    //左滑
-    UISwipeGestureRecognizer *leftSwipeGesture=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipe:)];
-    leftSwipeGesture.direction=UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:leftSwipeGesture];
-    //右滑
-    UISwipeGestureRecognizer *rightSwipeGesture=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipe:)];
-    rightSwipeGesture.direction=UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:rightSwipeGesture];
-}
-//
-#pragma mark 向左滑动浏览下一张图片
--(void)leftSwipe:(UISwipeGestureRecognizer *)gesture{
-    [self transitionAnimation:YES];
-}
-//
-#pragma mark 向右滑动浏览上一张图片
--(void)rightSwipe:(UISwipeGestureRecognizer *)gesture{
-    [self transitionAnimation:NO];
-}
-// 
-#pragma mark 转场动画
--(void)transitionAnimation:(BOOL)isNext{
-    UIViewAnimationOptions option;
-    if (isNext) {
-        option=UIViewAnimationOptionCurveLinear|UIViewAnimationOptionTransitionFlipFromRight;
-    }else{
-        option=UIViewAnimationOptionCurveLinear|UIViewAnimationOptionTransitionFlipFromLeft;
-    }
-    //
-    [UIView transitionWithView:_imageView duration:1.0 options:option animations:^{
-        _imageView.image=[self getImage:isNext];
-    } completion:nil];
-}
-//
-#pragma mark 取得当前图片
--(UIImage *)getImage:(BOOL)isNext{
-    if (isNext) {
-        _currentIndex=(_currentIndex+1)%IMAGE_COUNT;
-    }else{
-        _currentIndex=(_currentIndex-1+IMAGE_COUNT)%IMAGE_COUNT;
-    }
-    NSString *imageName=[NSString stringWithFormat:@"%i.jpg",_currentIndex];
-    return [UIImage imageNamed:imageName];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 3</span>     <span class="c1">//</span>
+<span class="lineno"> 4</span>     <span class="c1">//定义图片控件</span>
+<span class="lineno"> 5</span>     <span class="n">_imageView</span><span class="o">=</span><span class="p">[[</span><span class="bp">UIImageView</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno"> 6</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="bp">UIScreen</span> <span class="n">mainScreen</span><span class="p">].</span><span class="n">applicationFrame</span><span class="p">;</span>
+<span class="lineno"> 7</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">contentMode</span><span class="o">=</span><span class="n">UIViewContentModeScaleAspectFit</span><span class="p">;</span>
+<span class="lineno"> 8</span>     <span class="n">_imageView</span><span class="p">.</span><span class="n">image</span><span class="o">=</span><span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;0.jpg&quot;</span><span class="p">];</span><span class="c1">//默认图片</span>
+<span class="lineno"> 9</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">_imageView</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="c1">//添加手势</span>
+<span class="lineno">11</span>     <span class="c1">//左滑</span>
+<span class="lineno">12</span>     <span class="bp">UISwipeGestureRecognizer</span> <span class="o">*</span><span class="n">leftSwipeGesture</span><span class="o">=</span><span class="p">[[</span><span class="bp">UISwipeGestureRecognizer</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">leftSwipe</span><span class="p">:)];</span>
+<span class="lineno">13</span>     <span class="n">leftSwipeGesture</span><span class="p">.</span><span class="n">direction</span><span class="o">=</span><span class="n">UISwipeGestureRecognizerDirectionLeft</span><span class="p">;</span>
+<span class="lineno">14</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addGestureRecognizer</span><span class="p">:</span><span class="n">leftSwipeGesture</span><span class="p">];</span>
+<span class="lineno">15</span>     <span class="c1">//右滑</span>
+<span class="lineno">16</span>     <span class="bp">UISwipeGestureRecognizer</span> <span class="o">*</span><span class="n">rightSwipeGesture</span><span class="o">=</span><span class="p">[[</span><span class="bp">UISwipeGestureRecognizer</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">rightSwipe</span><span class="p">:)];</span>
+<span class="lineno">17</span>     <span class="n">rightSwipeGesture</span><span class="p">.</span><span class="n">direction</span><span class="o">=</span><span class="n">UISwipeGestureRecognizerDirectionRight</span><span class="p">;</span>
+<span class="lineno">18</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addGestureRecognizer</span><span class="p">:</span><span class="n">rightSwipeGesture</span><span class="p">];</span>
+<span class="lineno">19</span> <span class="p">}</span>
+<span class="lineno">20</span> <span class="c1">//</span>
+<span class="lineno">21</span> <span class="cp">#pragma mark 向左滑动浏览下一张图片</span>
+<span class="lineno">22</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">leftSwipe:</span><span class="p">(</span><span class="bp">UISwipeGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">gesture</span><span class="p">{</span>
+<span class="lineno">23</span>     <span class="p">[</span><span class="nb">self</span> <span class="nl">transitionAnimation</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+<span class="lineno">24</span> <span class="p">}</span>
+<span class="lineno">25</span> <span class="c1">//</span>
+<span class="lineno">26</span> <span class="cp">#pragma mark 向右滑动浏览上一张图片</span>
+<span class="lineno">27</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">rightSwipe:</span><span class="p">(</span><span class="bp">UISwipeGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">gesture</span><span class="p">{</span>
+<span class="lineno">28</span>     <span class="p">[</span><span class="nb">self</span> <span class="nl">transitionAnimation</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span>
+<span class="lineno">29</span> <span class="p">}</span>
+<span class="lineno">30</span> <span class="c1">// </span>
+<span class="lineno">31</span> <span class="cp">#pragma mark 转场动画</span>
+<span class="lineno">32</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">transitionAnimation:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isNext</span><span class="p">{</span>
+<span class="lineno">33</span>     <span class="n">UIViewAnimationOptions</span> <span class="n">option</span><span class="p">;</span>
+<span class="lineno">34</span>     <span class="k">if</span> <span class="p">(</span><span class="n">isNext</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">35</span>         <span class="n">option</span><span class="o">=</span><span class="n">UIViewAnimationOptionCurveLinear</span><span class="o">|</span><span class="n">UIViewAnimationOptionTransitionFlipFromRight</span><span class="p">;</span>
+<span class="lineno">36</span>     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno">37</span>         <span class="n">option</span><span class="o">=</span><span class="n">UIViewAnimationOptionCurveLinear</span><span class="o">|</span><span class="n">UIViewAnimationOptionTransitionFlipFromLeft</span><span class="p">;</span>
+<span class="lineno">38</span>     <span class="p">}</span>
+<span class="lineno">39</span>     <span class="c1">//</span>
+<span class="lineno">40</span>     <span class="p">[</span><span class="bp">UIView</span> <span class="nl">transitionWithView</span><span class="p">:</span><span class="n">_imageView</span> <span class="nl">duration</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">options</span><span class="p">:</span><span class="n">option</span> <span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+<span class="lineno">41</span>         <span class="n">_imageView</span><span class="p">.</span><span class="n">image</span><span class="o">=</span><span class="p">[</span><span class="nb">self</span> <span class="nl">getImage</span><span class="p">:</span><span class="n">isNext</span><span class="p">];</span>
+<span class="lineno">42</span>     <span class="p">}</span> <span class="nl">completion</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">43</span> <span class="p">}</span>
+<span class="lineno">44</span> <span class="c1">//</span>
+<span class="lineno">45</span> <span class="cp">#pragma mark 取得当前图片</span>
+<span class="lineno">46</span> <span class="p">-(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">getImage:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isNext</span><span class="p">{</span>
+<span class="lineno">47</span>     <span class="k">if</span> <span class="p">(</span><span class="n">isNext</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">48</span>         <span class="n">_currentIndex</span><span class="o">=</span><span class="p">(</span><span class="n">_currentIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">IMAGE_COUNT</span><span class="p">;</span>
+<span class="lineno">49</span>     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno">50</span>         <span class="n">_currentIndex</span><span class="o">=</span><span class="p">(</span><span class="n">_currentIndex</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">IMAGE_COUNT</span><span class="p">)</span><span class="o">%</span><span class="n">IMAGE_COUNT</span><span class="p">;</span>
+<span class="lineno">51</span>     <span class="p">}</span>
+<span class="lineno">52</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">imageName</span><span class="o">=</span><span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;%i.jpg&quot;</span><span class="p">,</span><span class="n">_currentIndex</span><span class="p">];</span>
+<span class="lineno">53</span>     <span class="k">return</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="n">imageName</span><span class="p">];</span>
+<span class="lineno">54</span> <span class="p">}</span></code></pre></div>
 
 <p>上面的转场动画演示中，其实仅仅有一个视图UIImageView做转场动画，每次转场通过切换UIImageView的内容而已。如果有两个完全不同的视图，并且每个视图布局都很复杂，此时要在这两个视图之间进行转场可以使用下面的方法进行两个视图间的转场</p>
 
-<pre><code class="language-objc">+ (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion NS_AVAILABLE_IOS(4_0)
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">transitionFromView:</span><span class="p">(</span><span class="bp">UIView</span> <span class="o">*</span><span class="p">)</span><span class="nv">fromView</span> <span class="nf">toView:</span><span class="p">(</span><span class="bp">UIView</span> <span class="o">*</span><span class="p">)</span><span class="nv">toView</span> <span class="nf">duration:</span><span class="p">(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">duration</span> <span class="nf">options:</span><span class="p">(</span><span class="n">UIViewAnimationOptions</span><span class="p">)</span><span class="nv">options</span> <span class="nf">completion:</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">))</span><span class="nv">completion</span> <span class="n">NS_AVAILABLE_IOS</span><span class="p">(</span><span class="mi">4</span><span class="n">_0</span><span class="p">)</span></code></pre></div>
 
 <p>需要注意的是默认情况下转出的视图会从父视图移除，转入后重新添加，可以通过<code>UIViewAnimationOptionShowHideTransitionViews</code>参数设置，设置此参数后转出的视图会隐藏（不会移除）转入后再显示。</p>
 
@@ -1018,8 +1050,6 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -1053,6 +1083,44 @@ ds.charset = 'UTF-8';
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

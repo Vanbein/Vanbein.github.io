@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -493,43 +530,43 @@ ds.charset = 'UTF-8';
                   <h1 class="entry_title">UIApplication、UIView生命周期相关</h1><!-- End Entry title -->
                   <h2 id="uiapplication">UIApplication</h2>
 
-<p>1、- (void)applicationWillResignActive:(UIApplication *)application</p>
+<p>1、- (void)<strong>applicationWillResignActive</strong>:(UIApplication *)application</p>
 
 <p>说明：当应用程序将要入非活动状态执行，在此期间，应用程序不接收消息或事件，比如来电话了</p>
 
-<p>2、- (void)applicationDidBecomeActive:(UIApplication *)application</p>
+<p>2、- (void)<strong>applicationDidBecomeActive</strong>:(UIApplication *)application</p>
 
 <p>说明：当应用程序入活动状态执行，这个刚好跟上面那个方法相反</p>
 
-<p>3、- (void)applicationDidEnterBackground:(UIApplication *)application</p>
+<p>3、- (void)<strong>applicationDidEnterBackground</strong>:(UIApplication *)application</p>
 
 <p>说明：当程序被推送到后台的时候调用。所以要设置后台继续运行，则在这个函数里面设置即可</p>
 
-<p>4、- (void)applicationWillEnterForeground:(UIApplication *)application</p>
+<p>4、- (void)<strong>applicationWillEnterForeground</strong>:(UIApplication *)application</p>
 
 <p>说明：当程序从后台将要重新回到前台时候调用，这个刚好跟上面的那个方法相反。</p>
 
-<p>5、- (void)applicationWillTerminate:(UIApplication *)application</p>
+<p>5、- (void)<strong>applicationWillTerminate</strong>:(UIApplication *)application</p>
 
 <p>说明：当程序将要退出是被调用，通常是用来保存数据和一些退出前的清理工作。这个需要要设置UIApplicationExitsOnSuspend的键值。</p>
 
-<p>6、- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application</p>
+<p>6、- (void)<strong>applicationDidReceiveMemoryWarning</strong>:(UIApplication *)application</p>
 
 <p>说明：iPhone设备只有有限的内存，如果为应用程序分配了太多内存操作系统会终止应用程序的运行，在终止前会执行这个方法，通常可以在这里进行内存清理工作防止程序被终止</p>
 
-<p>7、- (void)applicationSignificantTimeChange:(UIApplication*)application</p>
+<p>7、- (void)<strong>applicationSignificantTimeChange</strong>:(UIApplication*)application</p>
 
 <p>说明：当系统时间发生改变时执行</p>
 
-<p>8、- (void)applicationDidFinishLaunching:(UIApplication*)application</p>
+<p>8、- (void)<strong>applicationDidFinishLaunching</strong>:(UIApplication*)application</p>
 
 <p>说明：当程序载入后执行</p>
 
-<p>9、- (void)application:(UIApplication)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame</p>
+<p>9、- (void)<strong>application</strong>:(UIApplication)application <strong>willChangeStatusBarFrame</strong>:(CGRect)newStatusBarFrame</p>
 
 <p>说明：当StatusBar框将要变化时执行</p>
 
-<p>10、- (void)application:(UIApplication*)application willChangeStatusBarOrientation:</p>
+<p>10、- (void)<strong>application</strong>:(UIApplication*)application <strong>willChangeStatusBarOrientation</strong>:</p>
 
 <p>(UIInterfaceOrientation)newStatusBarOrientation</p>
 
@@ -537,15 +574,15 @@ ds.charset = 'UTF-8';
 
 <p>说明：当StatusBar框方向将要变化时执行</p>
 
-<p>11、- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url</p>
+<p>11、- (BOOL)<strong>application</strong>:(UIApplication *)application <strong>handleOpenURL</strong>:(NSURL *)url</p>
 
 <p>说明：当通过url执行</p>
 
-<p>12、- (void)application:(UIApplication*)application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation</p>
+<p>12、- (void)<strong>application</strong>:(UIApplication*)application <strong>didChangeStatusBarOrientation</strong>:(UIInterfaceOrientation)oldStatusBarOrientation</p>
 
 <p>说明：当StatusBar框方向变化完成后执行</p>
 
-<p>13、- (void)application:(UIApplication*)application didChangeSetStatusBarFrame:(CGRect)oldStatusBarFrame</p>
+<p>13、- (void)<strong>application</strong>:(UIApplication*)application <strong>didChangeSetStatusBarFrame</strong>:(CGRect)oldStatusBarFrame</p>
 
 <p>说明：当StatusBar框变化完成后执行</p>
 
@@ -755,8 +792,6 @@ function:[applicationDidEnterBackground], state:[Background]</p>
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -790,6 +825,44 @@ function:[applicationDidEnterBackground], state:[Background]</p>
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

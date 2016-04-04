@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -548,13 +585,12 @@ ds.charset = 'UTF-8';
 
 <p>iOS的系统中有很多地方用的都是单例:</p>
 
-<pre><code class="language-objc">[UIApplication sharedApplication];
-[NSNotificationCenter defaultCenter];
-[NSFileManager defaultManager];
-[NSUserDefaults standardUserDefaults];
-[NSURLCache sharedURLCache];
-[NSHTTPCookieStorage sharedHTTPCookieStorage];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="bp">NSFileManager</span> <span class="n">defaultManager</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno">5</span> <span class="p">[</span><span class="bp">NSURLCache</span> <span class="n">sharedURLCache</span><span class="p">];</span>
+<span class="lineno">6</span> <span class="p">[</span><span class="bp">NSHTTPCookieStorage</span> <span class="n">sharedHTTPCookieStorage</span><span class="p">];</span></code></pre></div>
 
 <h2 id="section-3">二、单例的创建</h2>
 
@@ -566,28 +602,27 @@ ds.charset = 'UTF-8';
 其实现分为两步：<br />
 1、 获取单例对象的方法</p>
 
-<pre><code class="language-objc">// 创建单例对象的方法。类方法 
-// 命名规则： default/standard/shared + 类名
-+ (DataHandle *)sharedDataHandle; 
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 创建单例对象的方法。类方法 </span>
+<span class="lineno">2</span> <span class="c1">// 命名规则： default/standard/shared + 类名</span>
+<span class="lineno">3</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">;</span></code></pre></div>
+
 <p>2、 方法的实现，实现可有下面的三种方式<br />
 #### （1）单线程单例</p>
 
 <p>我们知道对于单例类，我们必须留出一个接口来返回生成的单例，由于一个类中只能有一个实例，所以我们在第一次访问这个实例的时候创建，之后访问直接取已经创建好的实例</p>
 
-<pre><code class="language-objc">@implementation DataHandle
-//
-// 因为实例是全局的 因此要定义为全局变量，且需要存储在静态区，不释放。不能存储在栈区。
-static DataHandle *handle = nil;
-//
-+ (DataHandle *)sharedDataHandle{
-	if(!handle) {
-		handle = [[DataHandle alloc] init];
-		    }
-	return handle;
-}
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
+<span class="lineno"> 2</span> <span class="c1">//</span>
+<span class="lineno"> 3</span> <span class="c1">// 因为实例是全局的 因此要定义为全局变量，且需要存储在静态区，不释放。不能存储在栈区。</span>
+<span class="lineno"> 4</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
+<span class="lineno"> 7</span> 	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">handle</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 8</span> 		<span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DataHandle</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno"> 9</span> 		    <span class="p">}</span>
+<span class="lineno">10</span> 	<span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
+<span class="lineno">11</span> <span class="p">}</span>
+<span class="lineno">12</span> <span class="k">@end</span></code></pre></div>
 
 <blockquote>
   <p>备注：严格意义上来说，我们还需要将<code>alloc</code>方法封住，因为严格的单例是不允许再创建其他实例的，而<code>alloc</code>方法可以在外部任意生成实例。但是考虑到<code>alloc</code>属于<code>NSObject</code>，iOS中无法将<code>alloc</code>变成私有方法，最多只能覆盖<code>alloc</code>让其返回空，不过这样做也可能会让使用接口的人误解，造成其他问题。所以我们一般情况下对<code>alloc</code>不做特殊处理。系统的单例也未对<code>alloc</code>做任何处理。理论上对<code>alloc</code>进行处理的单例才算真正意义上完整的单例，下面会有说明的。</p>
@@ -597,21 +632,20 @@ static DataHandle *handle = nil;
 
 <p>对于一个实例，我们一般并不能保证他一定会在单线程模式下使用，所以我们得适配多线程情况。在多线程情况下，上面的单例创建方式可能会出现问题。如果两个线程同时调用<code>sharedDataHandle</code>,可能会创建出2个 handle 来。所以对于多线程情况下，我们需要使用<code>@synchronized</code>来加锁。</p>
 
-<pre><code class="language-objc">@implementation DataHandle
-//
-static DataHandle *handle = nil;
-//
-+ (DataHandle *)sharedDataHandle{
-//
-	@synchronized(self){
-		if(!handle) {
-            handle = [[DataHandle alloc] init];
-         }
-    }
-    return handle;
-}
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
+<span class="lineno"> 2</span> <span class="c1">//</span>
+<span class="lineno"> 3</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
+<span class="lineno"> 6</span> <span class="c1">//</span>
+<span class="lineno"> 7</span> 	<span class="k">@synchronized</span><span class="p">(</span><span class="nb">self</span><span class="p">){</span>
+<span class="lineno"> 8</span> 		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">handle</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 9</span>             <span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DataHandle</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">10</span>          <span class="p">}</span>
+<span class="lineno">11</span>     <span class="p">}</span>
+<span class="lineno">12</span>     <span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
+<span class="lineno">13</span> <span class="p">}</span>
+<span class="lineno">14</span> <span class="k">@end</span></code></pre></div>
 
 <p>这样的话，当多个线程同时调用<code>sharedDataHandle</code>时，由于<code>@synchronized</code>已经加锁，所以只能有一个线程进入创建 handle。这样就解决了多线程下调用单例的问题</p>
 
@@ -621,22 +655,21 @@ static DataHandle *handle = nil;
 
 <p>这个方法就是GCD中的<code>dispatch_once</code></p>
 
-<pre><code>@implementation DataHandle
-//
-static DataHandle *handle = nil;
-//
-+ (DataHandle *)sharedDataHandle{
-//
-	staticdispatch_once_tonceToken;//①onceToken = 0;
-	dispatch_once(&amp;onceToken, ^{			
-		NSLog(@"%ld",onceToken);//②onceToken = 140734731430192
-		handle = [[DataHandle alloc] init];		
-	    });
-	NSLog(@"%ld",onceToken); //③onceToken = -1;
-	return handle;
-}
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
+<span class="lineno"> 2</span> <span class="c1">//</span>
+<span class="lineno"> 3</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
+<span class="lineno"> 6</span> <span class="c1">//</span>
+<span class="lineno"> 7</span> 	<span class="n">staticdispatch_once_tonceToken</span><span class="p">;</span><span class="c1">//①onceToken = 0;</span>
+<span class="lineno"> 8</span> 	<span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>			
+<span class="lineno"> 9</span> 		<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">onceToken</span><span class="p">);</span><span class="c1">//②onceToken = 140734731430192</span>
+<span class="lineno">10</span> 		<span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DataHandle</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>		
+<span class="lineno">11</span> 	    <span class="p">});</span>
+<span class="lineno">12</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">onceToken</span><span class="p">);</span> <span class="c1">//③onceToken = -1;</span>
+<span class="lineno">13</span> 	<span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
+<span class="lineno">14</span> <span class="p">}</span>
+<span class="lineno">15</span> <span class="k">@end</span></code></pre></div>
 
 <p><code>dispatch_once</code>为什么能做到既解决同步多线程问题又不影响性能呢？</p>
 
@@ -675,66 +708,63 @@ static DataHandle *handle = nil;
 
 <p>注意： 此处完整的单例在进行方法实现时，略有不同 目的是为了避免死循环，如果 在单例类里面重写了 <code>allocWithZone</code> 方法 ， 在创建单例对象时 使用 <code>[[DataHandle alloc] init]</code> 创建，会死循环，具体如下：</p>
 
-<pre><code>@implementation DataHandle
-//
-static DataHandle *handle = nil;
-//
-+ (DataHandle *)sharedDataHandle{
-	staticdispatch_once_tonceToken;
-	dispatch_once(&amp;onceToken, ^{			
-           handle = [[super allocWithZone:nil] init]; // 避免死循环
-	    });
-	return handle;
-}
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
+<span class="lineno"> 2</span> <span class="c1">//</span>
+<span class="lineno"> 3</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
+<span class="lineno"> 6</span> 	<span class="n">staticdispatch_once_tonceToken</span><span class="p">;</span>
+<span class="lineno"> 7</span> 	<span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>			
+<span class="lineno"> 8</span>            <span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="nb">nil</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span> <span class="c1">// 避免死循环</span>
+<span class="lineno"> 9</span> 	    <span class="p">});</span>
+<span class="lineno">10</span> 	<span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
+<span class="lineno">11</span> <span class="p">}</span>
+<span class="lineno">12</span> <span class="k">@end</span></code></pre></div>
 
 <p>除了alloc 方法还需要考虑 copy 和 mutableCopy，这两个不需要使用到 alloc 就能得到一个实例，因此也需要重写这两个实例。（需要遵守各自的协议才能实现方法）</p>
 
-<pre><code class="language-objc">- (id)copy
-{
-    return self;
-}
-//
-- (id)mutableCopy
-{
-    return self;
-}
-//
-+ (instancetype)allocWithZone:(struct _NSZone *)zone
-{
-    return [DataHandle sharedDataHandle];
-}
-//
-+ (id)copyWithZone:(struct _NSZone *)zone
-{
-    return self;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">copy</span>
+<span class="lineno"> 2</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="p">}</span>
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">mutableCopy</span>
+<span class="lineno"> 7</span> <span class="p">{</span>
+<span class="lineno"> 8</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="p">}</span>
+<span class="lineno">10</span> <span class="c1">//</span>
+<span class="lineno">11</span> <span class="p">+</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">allocWithZone:</span><span class="p">(</span><span class="k">struct</span> <span class="bp">_NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span>
+<span class="lineno">12</span> <span class="p">{</span>
+<span class="lineno">13</span>     <span class="k">return</span> <span class="p">[</span><span class="n">DataHandle</span> <span class="n">sharedDataHandle</span><span class="p">];</span>
+<span class="lineno">14</span> <span class="p">}</span>
+<span class="lineno">15</span> <span class="c1">//</span>
+<span class="lineno">16</span> <span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">copyWithZone:</span><span class="p">(</span><span class="k">struct</span> <span class="bp">_NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span>
+<span class="lineno">17</span> <span class="p">{</span>
+<span class="lineno">18</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">19</span> <span class="p">}</span></code></pre></div>
 
 <p>如果是 ARC，单例设计就已经完成，但在 MRC 环境下的时候，还需要做一些额外的事情,因为单例会在应用程序运行时一直存在,因此不需要 retain和 release 操作,而且在 release 之后,如果单例对象被释放掉，由于生成实例的方法只会运行一遍，释放掉之后再运行，返回的实例会是空的，这个并不是预期结果,因此 retain 和 release 方法也都需要重写，另外新需要将 retainCount 方法也重写，以提示这是个特殊的对象。</p>
 
-<pre><code class="language-objc">+ (instancetype)alloc{
-    return [DataHandle sharedDataHandle];
-}
-//
--(oneway void)release{
-	//nothing
-	//  因为只有一个实例， 一直不释放，所以不增加引用计数。增加无意义。
- }
-//
-- (instancetype)retain{	 
-    return self;
-}
-//
-- (instancetype)autorelease{
-   		return self;
-}
-//
-- (NSUInteger)retainCount{	    
-    return NSUIntegerMax;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">alloc</span><span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="k">return</span> <span class="p">[</span><span class="n">DataHandle</span> <span class="n">sharedDataHandle</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="p">}</span>
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span> <span class="p">-(</span><span class="n">oneway</span> <span class="kt">void</span><span class="p">)</span><span class="nf">release</span><span class="p">{</span>
+<span class="lineno"> 6</span> 	<span class="c1">//nothing</span>
+<span class="lineno"> 7</span> 	<span class="c1">//  因为只有一个实例， 一直不释放，所以不增加引用计数。增加无意义。</span>
+<span class="lineno"> 8</span>  <span class="p">}</span>
+<span class="lineno"> 9</span> <span class="c1">//</span>
+<span class="lineno">10</span> <span class="p">-</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">retain</span><span class="p">{</span>	 
+<span class="lineno">11</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">12</span> <span class="p">}</span>
+<span class="lineno">13</span> <span class="c1">//</span>
+<span class="lineno">14</span> <span class="p">-</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">autorelease</span><span class="p">{</span>
+<span class="lineno">15</span>    		<span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">16</span> <span class="p">}</span>
+<span class="lineno">17</span> <span class="c1">//</span>
+<span class="lineno">18</span> <span class="p">-</span> <span class="p">(</span><span class="bp">NSUInteger</span><span class="p">)</span><span class="nf">retainCount</span><span class="p">{</span>	    
+<span class="lineno">19</span>     <span class="k">return</span> <span class="n">NSUIntegerMax</span><span class="p">;</span>
+<span class="lineno">20</span> <span class="p">}</span></code></pre></div>
 
 <blockquote>
   <p><strong>注意</strong>:</p>
@@ -915,8 +945,6 @@ static DataHandle *handle = nil;
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -950,6 +978,44 @@ static DataHandle *handle = nil;
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

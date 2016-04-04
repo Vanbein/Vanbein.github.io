@@ -162,12 +162,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -198,7 +199,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -395,8 +396,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -430,6 +429,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -496,18 +533,17 @@ ds.charset = 'UTF-8';
 
 <h3 id="buttonlabel">1. 将图片设置为圆形，或给button，label等设置圆角</h3>
 
-<pre><code class="language-objc">UIImageView *testImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)] ;
-// 设置圆角半径，一般要求图片是正方形，
-// 若不是则需要将半径设置为宽和高比较大的值的一半即可
-testImageView.layer.cornerRadius = self.testImageView.frame.size.width / 2 ;
-testImageView.layer.masksToBounds = YES ; // 边界是否允许截取
-//
-// button label等设置圆角都是同样的方法
-UIButton *testButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-testButton.frame = CGRectMake(50, 80, 80, 40);
-testButton.layer.cornerRadius = 5; 
-testButton.layer.masksToBounds = YES;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="bp">UIImageView</span> <span class="o">*</span><span class="n">testImageView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImageView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)]</span> <span class="p">;</span>
+<span class="lineno"> 2</span> <span class="c1">// 设置圆角半径，一般要求图片是正方形，</span>
+<span class="lineno"> 3</span> <span class="c1">// 若不是则需要将半径设置为宽和高比较大的值的一半即可</span>
+<span class="lineno"> 4</span> <span class="n">testImageView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">testImageView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">;</span>
+<span class="lineno"> 5</span> <span class="n">testImageView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">YES</span> <span class="p">;</span> <span class="c1">// 边界是否允许截取</span>
+<span class="lineno"> 6</span> <span class="c1">//</span>
+<span class="lineno"> 7</span> <span class="c1">// button label等设置圆角都是同样的方法</span>
+<span class="lineno"> 8</span> <span class="bp">UIButton</span> <span class="o">*</span><span class="n">testButton</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIButton</span> <span class="nl">buttonWithType</span><span class="p">:</span><span class="n">UIButtonTypeRoundedRect</span><span class="p">];</span>
+<span class="lineno"> 9</span> <span class="n">testButton</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+<span class="lineno">10</span> <span class="n">testButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> 
+<span class="lineno">11</span> <span class="n">testButton</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span></code></pre></div>
 
 <p>如果控件是在 stroyBoard 中，可以 <code>User Defined Runtime Attributes
 </code>中按照下面一样设置即可</p>
@@ -531,31 +567,28 @@ testButton.layer.masksToBounds = YES;
   </li>
 </ul>
 
-<pre><code class="language-objc">//例子
-NSString *contentString = @"String! String!" ; //目标字符串
-CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:15]} context:nil] ;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//例子</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">contentString</span> <span class="o">=</span> <span class="s">@&quot;String! String!&quot;</span> <span class="p">;</span> <span class="c1">//目标字符串</span>
+<span class="lineno">3</span> <span class="bp">CGRect</span> <span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="n">contentString</span> <span class="nl">boundingRectWithSize</span><span class="p">:</span><span class="n">CGSizeMake</span><span class="p">(</span><span class="n">tableView</span><span class="p">.</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">MAXFLOAT</span><span class="p">)</span> <span class="nl">options</span><span class="p">:</span><span class="n">NSStringDrawingUsesLineFragmentOrigin</span> <span class="o">|</span> <span class="n">NSStringDrawingUsesFontLeading</span> <span class="nl">attributes</span><span class="p">:</span><span class="l">@{</span><span class="nl">NSFontAttributeName</span> <span class="p">:[</span><span class="bp">UIFont</span> <span class="nl">systemFontOfSize</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span><span class="l">}</span> <span class="nl">context</span><span class="p">:</span><span class="nb">nil</span><span class="p">]</span> <span class="p">;</span></code></pre></div>
 
 <h3 id="section-1">3. 隐藏状态栏 修改状态栏风格</h3>
 
-<pre><code class="language-objc">-(UIStatusBarStyle)preferredStatusBarStyle 
-{ 
-    return UIStatusBarStyleLightContent;  // 暗背景色时使用
-} 
-// 是否隐藏状态栏
-- (BOOL)prefersStatusBarHidden 
-{ 
-    return YES; 
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="n">UIStatusBarStyle</span><span class="p">)</span><span class="nf">preferredStatusBarStyle</span> 
+<span class="lineno">2</span> <span class="p">{</span> 
+<span class="lineno">3</span>     <span class="k">return</span> <span class="n">UIStatusBarStyleLightContent</span><span class="p">;</span>  <span class="c1">// 暗背景色时使用</span>
+<span class="lineno">4</span> <span class="p">}</span> 
+<span class="lineno">5</span> <span class="c1">// 是否隐藏状态栏</span>
+<span class="lineno">6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">prefersStatusBarHidden</span> 
+<span class="lineno">7</span> <span class="p">{</span> 
+<span class="lineno">8</span>     <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span> 
+<span class="lineno">9</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="section-2">4. 当有多个导航控制器时,一次设置多个导航控制器</h3>
 
-<pre><code>UINavigationBar *navBar = [UINavigationBar appearance] ;
-// 所有导航条颜色都会改变 -- 一键设置
-//navBar.barTintColor = [UIColor yellowColor] ;
-[navBar setBackgroundImage:[UIImage imageNamed:@"bg_nav.png"] forBarMetrics:UIBarMetricsDefault] ;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">UINavigationBar</span> <span class="o">*</span><span class="n">navBar</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UINavigationBar</span> <span class="n">appearance</span><span class="p">]</span> <span class="p">;</span>
+<span class="lineno">2</span> <span class="c1">// 所有导航条颜色都会改变 -- 一键设置</span>
+<span class="lineno">3</span> <span class="c1">//navBar.barTintColor = [UIColor yellowColor] ;</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">navBar</span> <span class="nl">setBackgroundImage</span><span class="p">:[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;bg_nav.png&quot;</span><span class="p">]</span> <span class="nl">forBarMetrics</span><span class="p">:</span><span class="n">UIBarMetricsDefault</span><span class="p">]</span> <span class="p">;</span></code></pre></div>
 
 <h3 id="objective-c">5. Objective-C语法简写</h3>
 
@@ -564,146 +597,135 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
   <li>@() 代表NSNumber类型</li>
 </ul>
 
-<pre><code class="language-objc">@1; 等价于 [NSNumber numberWithInt:1];   
-@('c'); 等价于 [NSNumber numberWithChar:'c']; 
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="mi">@1</span><span class="p">;</span> <span class="err">等价于</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithInt</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>   
+<span class="lineno">2</span> <span class="l">@(</span><span class="sc">&#39;c&#39;</span><span class="l">)</span><span class="p">;</span> <span class="err">等价于</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithChar</span><span class="p">:</span><span class="sc">&#39;c&#39;</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>@[] 代表数组NSArray类型</li>
 </ul>
 
-<pre><code class="language-objc">@[@"1",@"2",@"3"]; //等价于 
-[NSArray arrayWithObjects:@"1",@"2",@"3", nil];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="l">@[</span><span class="s">@&quot;1&quot;</span><span class="p">,</span><span class="s">@&quot;2&quot;</span><span class="p">,</span><span class="s">@&quot;3&quot;</span><span class="l">]</span><span class="p">;</span> <span class="c1">//等价于 </span>
+<span class="lineno">2</span> <span class="p">[</span><span class="bp">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="s">@&quot;1&quot;</span><span class="p">,</span><span class="s">@&quot;2&quot;</span><span class="p">,</span><span class="s">@&quot;3&quot;</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>@{}代表字典NSDictionary类型</li>
 </ul>
 
-<pre><code class="language-objc">@{@"456":@"123"}; //等价于 
-[NSDictionary dictionaryWithObject:@"123" forKey:@"456"];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="l">@{</span><span class="s">@&quot;456&quot;</span><span class="o">:</span><span class="s">@&quot;123&quot;</span><span class="l">}</span><span class="p">;</span> <span class="c1">//等价于 </span>
+<span class="lineno">2</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:</span><span class="s">@&quot;123&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;456&quot;</span><span class="p">];</span></code></pre></div>
 
 <h4 id="section-4">(2).方法声明</h4>
 <ul>
   <li>返回值如果不写括号，编译器默认是id类型:</li>
 </ul>
 
-<pre><code>-sendMessage;  //等价于
--(id)sendMessage;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span><span class="nf">sendMessage</span><span class="p">;</span>  <span class="c1">//等价于</span>
+<span class="lineno">2</span> <span class="p">-(</span><span class="kt">id</span><span class="p">)</span><span class="nf">sendMessage</span><span class="p">;</span></code></pre></div>
 
 <ul>
   <li>参数如果不写类型默认也是id类型</li>
 </ul>
 
-<pre><code>-(void)sendMessage:msg; //等价于
--(void)sendMessage:(id)msg;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendMessage:</span><span class="n">msg</span><span class="p">;</span> <span class="c1">//等价于</span>
+<span class="lineno">2</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendMessage:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">msg</span><span class="p">;</span></code></pre></div>
 
 <ul>
   <li>有多参数时方法名和参数提示语可以为空</li>
 </ul>
 
-<pre><code>-(void):msg1 :msg2; // 不建议这样简写，代码可读性降低
--(void)sendMessage:(id)msg1 message2:(id)msg2; 
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="o">:</span><span class="nl">msg1</span> <span class="p">:</span><span class="n">msg2</span><span class="p">;</span> <span class="c1">// 不建议这样简写，代码可读性降低</span>
+<span class="lineno">2</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendMessage:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">msg1</span> <span class="nf">message2:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">msg2</span><span class="p">;</span></code></pre></div>
 
 <h4 id="section-5">(3).结构体</h4>
 
-<pre><code>CGRect rect = {1, 2};  //等价于
-CGRect rect = {1, 2, 0, 0};
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">CGRect</span> <span class="n">rect</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span>  <span class="c1">//等价于</span>
+<span class="lineno">2</span> <span class="bp">CGRect</span> <span class="n">rect</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span></code></pre></div>
 
 <h4 id="section-6">(4).三元条件表达式（针对字符串）</h4>
 
-<pre><code>NSString *string = inputString ?: @"default"; // 等价于
-NSString *string = inputString ? inputString : @"default"; 
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="n">inputString</span> <span class="o">?:</span> <span class="s">@&quot;default&quot;</span><span class="p">;</span> <span class="c1">// 等价于</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="n">inputString</span> <span class="o">?</span> <span class="nl">inputString</span> <span class="p">:</span> <span class="s">@&quot;default&quot;</span><span class="p">;</span></code></pre></div>
 
 <h4 id="section-7">(5).小括号内联复合表达式</h4>
 
-<pre><code>RETURN_VALUE_RECEIVER = {( 
-// Do whatever you want
- RETURN_VALUE;  // 返回值
-)};
-//
-//so 我们可以引申为以下这种写法：
-UIView *view = ({
-        UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
-        view.backgroundColor = [UIColor redColor];
-        view.alpha = 0.8f;
-        view;
-    });
-    [self.view addSubview:view];
-//这样使得代码量增大时层次仍然能比较明确。
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="n">RETURN_VALUE_RECEIVER</span> <span class="o">=</span> <span class="p">{(</span> 
+<span class="lineno"> 2</span> <span class="c1">// Do whatever you want</span>
+<span class="lineno"> 3</span>  <span class="n">RETURN_VALUE</span><span class="p">;</span>  <span class="c1">// 返回值</span>
+<span class="lineno"> 4</span> <span class="p">)};</span>
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="c1">//so 我们可以引申为以下这种写法：</span>
+<span class="lineno"> 7</span> <span class="bp">UIView</span> <span class="o">*</span><span class="n">view</span> <span class="o">=</span> <span class="p">({</span>
+<span class="lineno"> 8</span>         <span class="bp">UIView</span> <span class="o">*</span><span class="n">view</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">];</span>
+<span class="lineno"> 9</span>         <span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">];</span>
+<span class="lineno">10</span>         <span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.8f</span><span class="p">;</span>
+<span class="lineno">11</span>         <span class="n">view</span><span class="p">;</span>
+<span class="lineno">12</span>     <span class="p">});</span>
+<span class="lineno">13</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno">14</span> <span class="c1">//这样使得代码量增大时层次仍然能比较明确。</span></code></pre></div>
 
 <h3 id="uiimage">6. UIImage与字符串互转</h3>
 
-<pre><code>//图片转字符串  
--(NSString *)UIImageToBase64Str:(UIImage *) image  
-{  
-    NSData *data = UIImageJPEGRepresentation(image, 1.0f);  
-    NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];  
-    return encodedImageStr;  
-}
-//
-//字符串转图片  
--(UIImage *)Base64StrToUIImage:(NSString *)_encodedImageStr  
-{  
-    NSData *_decodedImageData   = [[NSData alloc] initWithBase64Encoding:_encodedImageStr];  
-    UIImage *_decodedImage      = [UIImage imageWithData:_decodedImageData];  
-    return _decodedImage;  
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//图片转字符串  </span>
+<span class="lineno"> 2</span> <span class="p">-(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">UIImageToBase64Str:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span> <span class="nv">image</span>  
+<span class="lineno"> 3</span> <span class="p">{</span>  
+<span class="lineno"> 4</span>     <span class="bp">NSData</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">UIImageJPEGRepresentation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>  
+<span class="lineno"> 5</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">encodedImageStr</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span> <span class="nl">base64EncodedStringWithOptions</span><span class="p">:</span><span class="n">NSDataBase64Encoding64CharacterLineLength</span><span class="p">];</span>  
+<span class="lineno"> 6</span>     <span class="k">return</span> <span class="n">encodedImageStr</span><span class="p">;</span>  
+<span class="lineno"> 7</span> <span class="p">}</span>
+<span class="lineno"> 8</span> <span class="c1">//</span>
+<span class="lineno"> 9</span> <span class="c1">//字符串转图片  </span>
+<span class="lineno">10</span> <span class="p">-(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">Base64StrToUIImage:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">_encodedImageStr</span>  
+<span class="lineno">11</span> <span class="p">{</span>  
+<span class="lineno">12</span>     <span class="bp">NSData</span> <span class="o">*</span><span class="n">_decodedImageData</span>   <span class="o">=</span> <span class="p">[[</span><span class="bp">NSData</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBase64Encoding</span><span class="p">:</span><span class="n">_encodedImageStr</span><span class="p">];</span>  
+<span class="lineno">13</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">_decodedImage</span>      <span class="o">=</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageWithData</span><span class="p">:</span><span class="n">_decodedImageData</span><span class="p">];</span>  
+<span class="lineno">14</span>     <span class="k">return</span> <span class="n">_decodedImage</span><span class="p">;</span>  
+<span class="lineno">15</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="section-8">7. 根据汉字字符串 获取该字符串的拼音 然后取得首字母</h3>
 
-<pre><code class="language-objc">//第一种方法：先将汉字转换为 拼音 再获取首字母
-//获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
-/*
-- (NSString *)firstCharactor:(NSString *)aString
-{
-    //转成了可变字符串
-    NSMutableString *str = [NSMutableString stringWithString:aString];
-    //先转换为带声调的拼音
-    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
-    //再转换为不带声调的拼音
-    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
-    //转化为大写拼音 
-    NSString *pinYin = [str capitalizedString];
-    //获取并返回首字母
-    return [pinYin substringToIndex:1];
-}
-//
-//第二种方法：
-NSString *string = @"简书" ;
-if ([string length])
-{
-    NSMutableString *mutableString = [NSMutableString stringWithString:string] ;
-    /**
-     *  由于此方法是在coreFoundation框架下,
-     *  而我们平时所使用的类型都是Foundation框架下的,所以需要转换类型.
-     *
-     *  @param string#&gt;    string 所需要转换的原字符#&gt;
-     *  @param range#&gt;     range 所需要转换字符的范围.
-     *      如果为0或者是NULL意思是所有字符都转换#&gt;
-     *  @param transform#&gt; transform 转换方式#&gt;
-     *  @param reverse#&gt;   reverse 如果为YES,返回原字符串;
-     *      如果为NO,返回转换之后的字符串#&gt;
-     *
-     *  @return return value description
-     */
-    // 将所有非英文的字符转换为拉丁字母,并且带声调和重音标识
-    // __bridge :只改变当前对象的类型,但是不改变对象内存的管理权限
-    CFStringTransform((__bridge CFMutableStringRef)mutableString , 0,kCFStringTransformToLatin , NO) ;
-    // 去掉声调
-    CFStringTransform((__bridge CFMutableStringRef)mutableString , 0,kCFStringTransformStripDiacritics , NO) ;
-    // 每个单词的首字母大写 后再截取字符串
-    NSString *str = [[mutableString capitalizedString] substringToIndex:1];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//第一种方法：先将汉字转换为 拼音 再获取首字母</span>
+<span class="lineno"> 2</span> <span class="c1">//获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)</span>
+<span class="lineno"> 3</span> <span class="cm">/*</span>
+<span class="lineno"> 4</span> <span class="cm">- (NSString *)firstCharactor:(NSString *)aString</span>
+<span class="lineno"> 5</span> <span class="cm">{</span>
+<span class="lineno"> 6</span> <span class="cm">    //转成了可变字符串</span>
+<span class="lineno"> 7</span> <span class="cm">    NSMutableString *str = [NSMutableString stringWithString:aString];</span>
+<span class="lineno"> 8</span> <span class="cm">    //先转换为带声调的拼音</span>
+<span class="lineno"> 9</span> <span class="cm">    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);</span>
+<span class="lineno">10</span> <span class="cm">    //再转换为不带声调的拼音</span>
+<span class="lineno">11</span> <span class="cm">    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);</span>
+<span class="lineno">12</span> <span class="cm">    //转化为大写拼音 </span>
+<span class="lineno">13</span> <span class="cm">    NSString *pinYin = [str capitalizedString];</span>
+<span class="lineno">14</span> <span class="cm">    //获取并返回首字母</span>
+<span class="lineno">15</span> <span class="cm">    return [pinYin substringToIndex:1];</span>
+<span class="lineno">16</span> <span class="cm">}</span>
+<span class="lineno">17</span> <span class="cm">//</span>
+<span class="lineno">18</span> <span class="cm">//第二种方法：</span>
+<span class="lineno">19</span> <span class="cm">NSString *string = @&quot;简书&quot; ;</span>
+<span class="lineno">20</span> <span class="cm">if ([string length])</span>
+<span class="lineno">21</span> <span class="cm">{</span>
+<span class="lineno">22</span> <span class="cm">    NSMutableString *mutableString = [NSMutableString stringWithString:string] ;</span>
+<span class="lineno">23</span> <span class="cm">    /**</span>
+<span class="lineno">24</span> <span class="cm">     *  由于此方法是在coreFoundation框架下,</span>
+<span class="lineno">25</span> <span class="cm">     *  而我们平时所使用的类型都是Foundation框架下的,所以需要转换类型.</span>
+<span class="lineno">26</span> <span class="cm">     *</span>
+<span class="lineno">27</span> <span class="cm">     *  @param string#&gt;    string 所需要转换的原字符#&gt;</span>
+<span class="lineno">28</span> <span class="cm">     *  @param range#&gt;     range 所需要转换字符的范围.</span>
+<span class="lineno">29</span> <span class="cm">     *      如果为0或者是NULL意思是所有字符都转换#&gt;</span>
+<span class="lineno">30</span> <span class="cm">     *  @param transform#&gt; transform 转换方式#&gt;</span>
+<span class="lineno">31</span> <span class="cm">     *  @param reverse#&gt;   reverse 如果为YES,返回原字符串;</span>
+<span class="lineno">32</span> <span class="cm">     *      如果为NO,返回转换之后的字符串#&gt;</span>
+<span class="lineno">33</span> <span class="cm">     *</span>
+<span class="lineno">34</span> <span class="cm">     *  @return return value description</span>
+<span class="lineno">35</span> <span class="cm">     */</span>
+<span class="lineno">36</span>     <span class="c1">// 将所有非英文的字符转换为拉丁字母,并且带声调和重音标识</span>
+<span class="lineno">37</span>     <span class="c1">// __bridge :只改变当前对象的类型,但是不改变对象内存的管理权限</span>
+<span class="lineno">38</span>     <span class="n">CFStringTransform</span><span class="p">((</span><span class="k">__bridge</span> <span class="n">CFMutableStringRef</span><span class="p">)</span><span class="n">mutableString</span> <span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="n">kCFStringTransformToLatin</span> <span class="p">,</span> <span class="nb">NO</span><span class="p">)</span> <span class="p">;</span>
+<span class="lineno">39</span>     <span class="c1">// 去掉声调</span>
+<span class="lineno">40</span>     <span class="n">CFStringTransform</span><span class="p">((</span><span class="k">__bridge</span> <span class="n">CFMutableStringRef</span><span class="p">)</span><span class="n">mutableString</span> <span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="n">kCFStringTransformStripDiacritics</span> <span class="p">,</span> <span class="nb">NO</span><span class="p">)</span> <span class="p">;</span>
+<span class="lineno">41</span>     <span class="c1">// 每个单词的首字母大写 后再截取字符串</span>
+<span class="lineno">42</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mutableString</span> <span class="n">capitalizedString</span><span class="p">]</span> <span class="nl">substringToIndex</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>
+<span class="lineno">43</span> <span class="p">}</span></code></pre></div>
 
 <p>若需要得到汉字字符串的首字母缩写，只需对上述方法稍作修改即可。</p>
 
@@ -859,8 +881,6 @@ if ([string length])
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -894,6 +914,44 @@ if ([string length])
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

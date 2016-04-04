@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -495,38 +532,36 @@ ds.charset = 'UTF-8';
 
 <h3 id="section">一、获取数组里的,最大、最小、平均、求和</h3>
 
-<pre><code class="language-objc">NSArray *array = @[@"11", @"9", @"2", @"20", @"8"]; 
-NSNumber *sum = [array valueForKeyPath:@"@sum.floatValue"]; 
-NSNumber *avg = [array valueForKeyPath:@"@avg.floatValue"]; 
-NSNumber *max = [array valueForKeyPath:@"@max.floatValue"]; 
-NSNumber *min = [array valueForKeyPath:@"@min.floatValue"];  
-NSLog(@"sum:%@",sum); 
-NSLog(@"avg:%@",avg);
-NSLog(@"max:%@",max); 
-NSLog(@"min:%@",min);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;11&quot;</span><span class="p">,</span> <span class="s">@&quot;9&quot;</span><span class="p">,</span> <span class="s">@&quot;2&quot;</span><span class="p">,</span> <span class="s">@&quot;20&quot;</span><span class="p">,</span> <span class="s">@&quot;8&quot;</span><span class="l">]</span><span class="p">;</span> 
+<span class="lineno">2</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">sum</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;@sum.floatValue&quot;</span><span class="p">];</span> 
+<span class="lineno">3</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">avg</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;@avg.floatValue&quot;</span><span class="p">];</span> 
+<span class="lineno">4</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">max</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;@max.floatValue&quot;</span><span class="p">];</span> 
+<span class="lineno">5</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">min</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;@min.floatValue&quot;</span><span class="p">];</span>  
+<span class="lineno">6</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;sum:%@&quot;</span><span class="p">,</span><span class="n">sum</span><span class="p">);</span> 
+<span class="lineno">7</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;avg:%@&quot;</span><span class="p">,</span><span class="n">avg</span><span class="p">);</span>
+<span class="lineno">8</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;max:%@&quot;</span><span class="p">,</span><span class="n">max</span><span class="p">);</span> 
+<span class="lineno">9</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;min:%@&quot;</span><span class="p">,</span><span class="n">min</span><span class="p">);</span></code></pre></div>
 
 <h3 id="section-1">二、删除重复数据</h3>
 
-<pre><code class="language-objc">NSArray *array = @[@"a", @"b", @"c", @"a", @"d"]; //返回的是一个新的数组
-NSArray *newArray = [array valueForKeyPath:@"@distinctUnionOfObjects.self"]; 
-NSLog(@"%@", newArray);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;a&quot;</span><span class="p">,</span> <span class="s">@&quot;b&quot;</span><span class="p">,</span> <span class="s">@&quot;c&quot;</span><span class="p">,</span> <span class="s">@&quot;a&quot;</span><span class="p">,</span> <span class="s">@&quot;d&quot;</span><span class="l">]</span><span class="p">;</span> <span class="c1">//返回的是一个新的数组</span>
+<span class="lineno">2</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;@distinctUnionOfObjects.self&quot;</span><span class="p">];</span> 
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span> <span class="n">newArray</span><span class="p">);</span></code></pre></div>
 
 <h3 id="name">同样可以嵌套使用，先剔除name对应值的重复数据再取值</h3>
-<pre><code>NSArray *array = @[ @{@"title":@"zxp",@"name":@"zhangxiaoping"}, @{@"title":@"zxp2",@"name":@"zhangxiaoping2"}, @{@"title":@"zxp",@"name":@"zhangxiaoping3"}, @{@"title":@"zxp",@"name":@"zhangxiaoping"}];
-//根据name字段，来进行重复删除。
-NSArray *newArray = [array valueForKeyPath:@"@distinctUnionOfObjects.name"];
-//如果要根据title字段来删除重名的写法为`@distinctUnionOfObjects.title` 
-NSLog(@"%@", newArray);
-// print:( zhangxiaoping3, zhangxiaoping2, zhangxiaoping)是一个字符串数组
-</code></pre>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="l">@[</span> <span class="l">@{</span><span class="s">@&quot;title&quot;</span><span class="o">:</span><span class="s">@&quot;zxp&quot;</span><span class="p">,</span><span class="s">@&quot;name&quot;</span><span class="o">:</span><span class="s">@&quot;zhangxiaoping&quot;</span><span class="l">}</span><span class="p">,</span> <span class="l">@{</span><span class="s">@&quot;title&quot;</span><span class="o">:</span><span class="s">@&quot;zxp2&quot;</span><span class="p">,</span><span class="s">@&quot;name&quot;</span><span class="o">:</span><span class="s">@&quot;zhangxiaoping2&quot;</span><span class="l">}</span><span class="p">,</span> <span class="l">@{</span><span class="s">@&quot;title&quot;</span><span class="o">:</span><span class="s">@&quot;zxp&quot;</span><span class="p">,</span><span class="s">@&quot;name&quot;</span><span class="o">:</span><span class="s">@&quot;zhangxiaoping3&quot;</span><span class="l">}</span><span class="p">,</span> <span class="l">@{</span><span class="s">@&quot;title&quot;</span><span class="o">:</span><span class="s">@&quot;zxp&quot;</span><span class="p">,</span><span class="s">@&quot;name&quot;</span><span class="o">:</span><span class="s">@&quot;zhangxiaoping&quot;</span><span class="l">}]</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="c1">//根据name字段，来进行重复删除。</span>
+<span class="lineno">3</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;@distinctUnionOfObjects.name&quot;</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="c1">//如果要根据title字段来删除重名的写法为`@distinctUnionOfObjects.title` </span>
+<span class="lineno">5</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span> <span class="n">newArray</span><span class="p">);</span>
+<span class="lineno">6</span> <span class="c1">// print:( zhangxiaoping3, zhangxiaoping2, zhangxiaoping)是一个字符串数组</span></code></pre></div>
 
 <h3 id="section-2">四、进行实例方法的调用</h3>
 
-<pre><code class="language-objc">NSArray *array = @[@"name", @"w", @"aa", @"ZXPing"]; 
-NSLog(@"%@", [array valueForKeyPath:@"uppercaseString"]);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;name&quot;</span><span class="p">,</span> <span class="s">@&quot;w&quot;</span><span class="p">,</span> <span class="s">@&quot;aa&quot;</span><span class="p">,</span> <span class="s">@&quot;ZXPing&quot;</span><span class="l">]</span><span class="p">;</span> 
+<span class="lineno">2</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">array</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;uppercaseString&quot;</span><span class="p">]);</span></code></pre></div>
+
 <p>相当于数组中的每个成员执行了<code>uppercaseString</code>方法，然后把返回的对象组成一个新数组返回。既然可以用<code>uppercaseString</code>方法，那么NSString的其他方法也可以，比如<code>[array valueForKeyPath:@"length"]</code>。当然，其他对象的实例方法也可以以此类推来进行调用！</p>
 
 <blockquote>
@@ -688,8 +723,6 @@ NSLog(@"%@", [array valueForKeyPath:@"uppercaseString"]);
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -723,6 +756,44 @@ NSLog(@"%@", [array valueForKeyPath:@"uppercaseString"]);
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

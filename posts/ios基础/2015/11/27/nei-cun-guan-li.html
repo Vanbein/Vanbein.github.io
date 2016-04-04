@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -508,7 +545,7 @@ ds.charset = 'UTF-8';
 <p>在Xcode4.2及之后的版本中由于引入了ARC（Automatic Reference Counting）机制,程序编译时Xcode可以自动给你的代码添加内存释放代码，如果编写手动释放代码Xcode会报错，因此在今天的内容中如果你使用的是Xcode4.2之后的版本（相信现在大部分朋友用的版本都比这个要高），必须手动关闭ARC，这样才有助于你理解ObjC的内存回收机制。</p>
 
 <blockquote>
-  <p>ObjC中的内存管理机制跟C语言中指针的内容是同样重要的，要开发一个程序并不难，但是优秀的程序则更测重于内存管理，它们往往占用内存更少，运行更加流畅。虽然在新版Xcode引入了ARC，但是很多时候它并不能完全解决你的问题。在Xcode中关闭ARC：项目属性 — <code>Build Settings</code> –搜索<code>garbage</code>找到<code>Objective-C Automatic Reference Counting</code>设置为<strong>No</strong>即可。</p>
+  <p>ObjC中的内存管理机制跟C语言中指针的内容是同样重要的，要开发一个程序并不难，但是优秀的程序则更测重于内存管理，它们往往占用内存更少，运行更加流畅。虽然在新版Xcode引入了ARC，但是很多时候它并不能完全解决你的问题。在Xcode中关闭ARC：项目属性 —  <code>Build Settings</code> –搜索 <code>garbage</code> 找到 <code>Objective-C Automatic Reference Counting</code>设置为<strong>No</strong>即可。</p>
 </blockquote>
 
 <h3 id="section-2">内存管理原理</h3>
@@ -517,7 +554,7 @@ ds.charset = 'UTF-8';
 <p>如果一个对象被释放之后，那么最后引用它的变量我们手动设置为nil，否则可能造成野指针错误，而且需要注意在ObjC中给空对象发送消息是不会引起错误的。</p>
 
 <blockquote>
-  <p>野指针错误形式在Xcode中通常表现为：<code>Thread 1：EXC_BAD_ACCESS(code=EXC_I386_GPFLT)</code>错误, 因为你访问了一块已经不属于你的内存。</p>
+  <p>野指针错误形式在Xcode中通常表现为： <code>Thread 1：EXC_BAD_ACCESS(code=EXC_I386_GPFLT)</code> 错误, 因为你访问了一块已经不属于你的内存。</p>
 </blockquote>
 
 <h3 id="section-3">内存释放的原则</h3>
@@ -525,7 +562,8 @@ ds.charset = 'UTF-8';
 <p>手动管理内存有时候并不容易，因为对象的引用有时候是错综复杂的，对象之间可能互相交叉引用，此时需要遵循一个法则：<strong>谁创建，谁释放</strong>。</p>
 
 <h2 id="section-4">属性参数</h2>
-<p><code>@property</code>的参数分为三类，也就是说参数最多可以有三个，中间用逗号分隔，每类参数可以从上表三类参数中人选一个。如果不进行设置或者只设置其中一类参数，程序会使用三类中的各个默认参数，默认参数：(<code>atomic</code>,<code>readwrite</code>,<code>assign</code>)</p>
+
+<p><code>@property</code> 的参数分为三类，也就是说参数最多可以有三个，中间用逗号分隔，每类参数可以从上表三类参数中人选一个。如果不进行设置或者只设置其中一类参数，程序会使用三类中的各个默认参数，默认参数：(<code>atomic</code>,<code>readwrite</code>,<code>assign</code>)</p>
 
 <ol>
   <li>原子性
@@ -555,29 +593,27 @@ ds.charset = 'UTF-8';
 
 <p><code>assign</code>，用于基本数据类型</p>
 
-<pre><code class="language-objc">-(void)setA:(int)a{
-    _a=a;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setA:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">a</span><span class="p">{</span>
+<span class="lineno">2</span>     <span class="n">_a</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
+
 <p><code>retain</code>，通常用于非字符串对象</p>
 
-<pre><code>-(void)setA:(Car *)a{
-    if(_a!=a){
-        [_a release];
-        _a=[a retain];
-    }
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setA:</span><span class="p">(</span><span class="n">Car</span> <span class="o">*</span><span class="p">)</span><span class="nv">a</span><span class="p">{</span>
+<span class="lineno">2</span>     <span class="k">if</span><span class="p">(</span><span class="n">_a</span><span class="o">!=</span><span class="n">a</span><span class="p">){</span>
+<span class="lineno">3</span>         <span class="p">[</span><span class="n">_a</span> <span class="k">release</span><span class="p">];</span>
+<span class="lineno">4</span>         <span class="n">_a</span><span class="o">=</span><span class="p">[</span><span class="n">a</span> <span class="k">retain</span><span class="p">];</span>
+<span class="lineno">5</span>     <span class="p">}</span>
+<span class="lineno">6</span> <span class="p">}</span></code></pre></div>
 
 <p><code>copy</code>，通常用于字符串对象、<code>block</code>、<code>NSArray</code>、<code>NSDictionary</code></p>
 
-<pre><code>-(void)setA:(NSString *)a{
-    if(_a!=a){
-        [_a release];
-        _a=[a copy];
-    }
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setA:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">a</span><span class="p">{</span>
+<span class="lineno">2</span>     <span class="k">if</span><span class="p">(</span><span class="n">_a</span><span class="o">!=</span><span class="n">a</span><span class="p">){</span>
+<span class="lineno">3</span>         <span class="p">[</span><span class="n">_a</span> <span class="k">release</span><span class="p">];</span>
+<span class="lineno">4</span>         <span class="n">_a</span><span class="o">=</span><span class="p">[</span><span class="n">a</span> <span class="k">copy</span><span class="p">];</span>
+<span class="lineno">5</span>     <span class="p">}</span>
+<span class="lineno">6</span> <span class="p">}</span></code></pre></div>
 
 <blockquote>
   <p>备注：本文基于MRC进行介绍，ARC下的情况不同，请参阅其他文章，例如ARC下基本数据类型默认的属性参数为(atomic,readwrite,assign)，对象类型默认的属性参数为(atomic,readwrite,strong)</p>
@@ -617,64 +653,59 @@ ds.charset = 'UTF-8';
 </ol>
 
 <blockquote>
-  <p>注：简单的赋值不会拥有某个对象。比如：<br />
-…<br />
-NSString *name = person.fullName;<br />
-…<br />
-上面这个赋值操作不会拥有这个对象（这仅仅是个指针赋值操作）；这和C++语言里的某些基于引用计数的类的行为是有区别的。想拥有一个objective-C对象，必须发送“创建”或者retain消息给该对象。</p>
+  <p>注：简单的赋值不会拥有某个对象。比如：</p>
 </blockquote>
 
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="n">fullName</span><span class="p">;</span></code></pre></div>
+
+<p>上面这个赋值操作不会拥有这个对象（这仅仅是个指针赋值操作）；这和C++语言里的某些基于引用计数的类的行为是有区别的。想拥有一个objective-C对象，必须发送“创建”或者retain消息给该对象。</p>
+
 <h5 id="dealloc">dealloc方法</h5>
+
 <p>dealloc方法用来释放这个对象所占的内存(包括成员变量)和其它资源。<br />
 不要使用dealloc方法来管理稀缺资源，比如文件，网络链接等。因为由于bug或者程序意外退出，dealloc方法不能保证一定会被调用。</p>
 
 <h5 id="accessor-methods">Accessor Methods和内存管理</h5>
-<p><code>Accessor Method</code>s，也就是对象的<code>property</code>（属性）的getter和setter方法。显然，如果getter返回的对象已经被运行环境回收了，那么这个getter的返回值是毫无意义的。这就需要在setter方法里“拥有”相应的property。<br />
+
+<p><code>Accessor Methods</code>，也就是对象的 <code>property</code>（属性）的getter和setter方法。显然，如果getter返回的对象已经被运行环境回收了，那么这个getter的返回值是毫无意义的。这就需要在setter方法里“拥有”相应的property。<br />
 比如：</p>
 
-<pre><code>@interface Counter : NSObject
-@property (nonatomic, retain) NSNumber *count;
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@interface</span> <span class="nc">Counter</span> : <span class="bp">NSObject</span>
+<span class="lineno">2</span> <span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">retain</span><span class="p">)</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">count</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="k">@end</span></code></pre></div>
 
 <p>getter方法仅仅返回成员变量就可以：</p>
 
-<pre><code>-(NSNumber *)count {
-    return _count;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="bp">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nf">count</span> <span class="p">{</span>
+<span class="lineno">2</span>     <span class="k">return</span> <span class="n">_count</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
+
 <p>setter方法需要保证对这个成员变量的“拥有”：</p>
 
-<pre><code>-(void)setCount:(NSNumber *)newCount {
-    [newCount retain];          //拥有新值
-    [_count release];             //放弃老值
-    _count = newCount;       //简单赋值
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setCount:</span><span class="p">(</span><span class="bp">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">newCount</span> <span class="p">{</span>
+<span class="lineno">2</span>     <span class="p">[</span><span class="n">newCount</span> <span class="k">retain</span><span class="p">];</span>          <span class="c1">//拥有新值</span>
+<span class="lineno">3</span>     <span class="p">[</span><span class="n">_count</span> <span class="k">release</span><span class="p">];</span>             <span class="c1">//放弃老值</span>
+<span class="lineno">4</span>     <span class="n">_count</span> <span class="o">=</span> <span class="n">newCount</span><span class="p">;</span>       <span class="c1">//简单赋值</span>
+<span class="lineno">5</span> <span class="p">}</span></code></pre></div>
 
 <p>使用Accessor Methods<br />
 以下是一种使用方式：</p>
 
-<pre><code>...
-NSNumber *zero = ［NSNumber alloc] initWithInteger:0];
-[self setCount:zero];
-[zero release];
-...
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">zero</span> <span class="o">=</span> <span class="err">［</span><span class="bp">NSNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithInteger</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">setCount</span><span class="p">:</span><span class="n">zero</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">zero</span> <span class="k">release</span><span class="p">];</span></code></pre></div>
+
 <p>以下是一种可能引发错误的，偷懒的使用方式：</p>
 
-<pre><code>...
-NSNumber *zero = ［NSNumber alloc] initWithInteger:0];
-[_count release];
-_count = zero;  
-//这个代码做了不合理的假设－_count对象“拥有”了某个内存。当修饰count属性的
-//attribute发声变化时，这个假设就不一定正确了。
-...
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">zero</span> <span class="o">=</span> <span class="err">［</span><span class="bp">NSNumber</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithInteger</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">_count</span> <span class="k">release</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="n">_count</span> <span class="o">=</span> <span class="n">zero</span><span class="p">;</span>  
+<span class="lineno">4</span> <span class="c1">//这个代码做了不合理的假设－_count对象“拥有”了某个内存。当修饰count属性的</span>
+<span class="lineno">5</span> <span class="c1">//attribute发声变化时，这个假设就不一定正确了。</span></code></pre></div>
 
 <ul>
   <li>
-    <p>不要在初始化方法（<code>Initializer</code>）和<code>dealloc</code>方法里使用<code>Accessor Methods</code></p>
+    <p>不要在初始化方法（ <code>Initializer</code> ）和 <code>dealloc</code> 方法里使用 <code>Accessor Methods</code></p>
   </li>
   <li>
     <p>不要在初始化方法里使用accessor methods的原因可能是（原文档中没有说明）：在初始化方法里，成员变量处于最初的状态，并没有任何值。考虑到一个成员变量的setter方法一般会对成员变量的旧值发送release消息。这种行为在初始化方法里没有意义。</p>
@@ -703,7 +734,7 @@ _count = zero;
 
 <ol>
   <li>
-    <p>autorelease pool是一个<code>NSAutoreleasePool</code>对象。</p>
+    <p>autorelease pool是一个 <code>NSAutoreleasePool</code> 对象。</p>
   </li>
   <li>
     <p>程序里的所有autorelease pool是以桟（stack）的形式组织的。新创建的pool位于桟的最顶端。当发送autorelease消息给一个对象时，这个对象被加到栈顶的那个pool中。发送drain给一个pool时，这个pool里所有对象都会受到release消息，而且如果这个pool不是位于栈顶，那么位于这个pool“上端”的所有pool也会受到drain消息。</p>
@@ -711,11 +742,11 @@ _count = zero;
   <li>
     <p>一个对象被加到一个pool很多次，只要多次发送autorelease消息给这个对象就可以；同时，当这个pool被回收时，这个对象也会收到同样多次release消息。简单地可以认为接收autorelease消息等同于：接收一个retain消息，同时加入到一个pool里；这个pool用来存放这些暂缓回收的对象；一旦这个pool被回收（drain），那么pool里面的对象会收到同样次数的release消息。</p>
   </li>
-  <li>UIKit框架已经帮你自动创建一个autorelease pool。大部分时候，你可以直接使用这个pool，不必自己创建；所以你给一个对象发送autorelease消息，那么这个对象会加到这个UIKit自动创建的pool里。某些时候，可能需要创建一个pool：
+  <li>UIKit框架已经帮你自动创建一个 <code>autorelease pool</code> 。大部分时候，你可以直接使用这个pool，不必自己创建；所以你给一个对象发送autorelease消息，那么这个对象会加到这个UIKit自动创建的pool里。某些时候，可能需要创建一个pool：
     <ol>
-      <li>没有使用UIKit框架或者其它内含autorelease pool的框架，那么要使用pool，就要自己创建。</li>
-      <li>如果一个循环体要创建大量的临时变量，那么创建自己的pool可以减少程序占用的内存峰值。（如果使用UIKit的pool，那么这些临时变量可能一直在这个pool里，只要这个pool受到drain消息；完全不使用autorelease pool应该也是可以的，可能只是要发一些release消息给这些临时变量，所以使用autorelease pool还是方便一些）</li>
-      <li>创建线程时必须创建这个线程自己的autorelease pool。</li>
+      <li>没有使用UIKit框架或者其它内含 <code>autorelease pool</code>的框架，那么要使用pool，就要自己创建。</li>
+      <li>如果一个循环体要创建大量的临时变量，那么创建自己的pool可以减少程序占用的内存峰值。（如果使用UIKit的pool，那么这些临时变量可能一直在这个pool里，只要这个pool受到drain消息；完全不使用 <code>autorelease pool</code> 应该也是可以的，可能只是要发一些release消息给这些临时变量，所以使用 <code>autorelease pool</code> 还是方便一些）</li>
+      <li>创建线程时必须创建这个线程自己的 <code>autorelease pool</code>。</li>
     </ol>
   </li>
   <li>使用alloc和init消息来创建pool，发送drain消息则表示这个pool不再使用。pool的创建和drain要在同一上下文中，比如循环体内。</li>
@@ -874,8 +905,6 @@ _count = zero;
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -909,6 +938,44 @@ _count = zero;
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

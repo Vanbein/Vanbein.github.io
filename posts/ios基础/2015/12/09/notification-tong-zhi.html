@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -516,17 +553,15 @@ ds.charset = 'UTF-8';
 
 <p>通知<code>NSNotification</code>结构中主要包括：</p>
 
-<pre><code class="language-objc">@property (readonly, copy) NSString *name;  // 通知的标识名称(一般为常量字符串)
-@property (readonly, retain) id object;  // 任意想要携带的对象，通常为发送者自己
-@property (readonly, copy) NSDictionary *userInfo; // 关于通知的附加信息
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span> <span class="p">(</span><span class="k">readonly</span><span class="p">,</span> <span class="k">copy</span><span class="p">)</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>  <span class="c1">// 通知的标识名称(一般为常量字符串)</span>
+<span class="lineno">2</span> <span class="k">@property</span> <span class="p">(</span><span class="k">readonly</span><span class="p">,</span> <span class="k">retain</span><span class="p">)</span> <span class="kt">id</span> <span class="n">object</span><span class="p">;</span>  <span class="c1">// 任意想要携带的对象，通常为发送者自己</span>
+<span class="lineno">3</span> <span class="k">@property</span> <span class="p">(</span><span class="k">readonly</span><span class="p">,</span> <span class="k">copy</span><span class="p">)</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">userInfo</span><span class="p">;</span> <span class="c1">// 关于通知的附加信息</span></code></pre></div>
 
 <h2 id="section-1">三、通知中心</h2>
 <p>Cocoa框架中包括两种通知中心：</p>
 
-<pre><code>NSNotificationCenter 单进程通知管理
-NSDistributedNotificationCenter 一台机器中多个进程的通知管理
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSNotificationCenter</span> <span class="err">单进程通知管理</span>
+<span class="lineno">2</span> <span class="n">NSDistributedNotificationCenter</span> <span class="err">一台机器中多个进程的通知管理</span></code></pre></div>
 
 <h3 id="nsnotificationcenter">NSNotificationCenter</h3>
 <p>每个进程都包含一个默认的通知中心，通过［NSNotificationCenter defaultCenter］获取，需要注意的是：</p>
@@ -538,23 +573,20 @@ NSDistributedNotificationCenter 一台机器中多个进程的通知管理
 
 <p><strong>发送通知方法：</strong></p>
 
-<pre><code class="language-objc">- (void)postNotification:(NSNotification *)notification;
-- (void)postNotificationName:(NSString *)aName object:(nullable id)anObject;
-- (void)postNotificationName:(NSString *)aName object:(nullable id)anObject userInfo:(nullable NSDictionary *)aUserInfo;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">postNotification:</span><span class="p">(</span><span class="bp">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">postNotificationName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">postNotificationName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">anObject</span> <span class="nf">userInfo:</span><span class="p">(</span><span class="n">nullable</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">aUserInfo</span><span class="p">;</span></code></pre></div>
 
 <p><strong>注册通知方法:</strong></p>
 
-<pre><code class="language-objc">- (void)addObserver:(id)observer selector:(SEL)aSelector name:(nullable NSString *)aName object:(nullable id)anObject;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addObserver:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">observer</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">aSelector</span> <span class="nf">name:</span><span class="p">(</span><span class="n">nullable</span> <span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span></code></pre></div>
 
 <p>注意到<code>addObserver:selector:name:object:</code>不仅指定一个观察者，指定通知中心发送给观察者的消息，还有接收通知的名字，以及指定的对象。一般来说需要指定name和object，但如果仅仅指定了一个object，观察者将收到该对象的所有通知。例如代码中name为nil,那么观察者将接收到object对象的所有消息，但是确定不了接收这些消息的顺序。如果指定了一个通知名称，观察者将只收到它每次发出的通知。例如，上面的代码中object为nil，那么客户对象（self）将收到任何对象发出的通知。如果既没有指定指定object，也没有指定name，那么该观察者将收到所有对象的所有消息。</p>
 
 <p><strong>移除通知方法</strong></p>
 
-<pre><code class="language-objc">- (void)removeObserver:(id)observer;
-- (void)removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeObserver:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">observer</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeObserver:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">observer</span> <span class="nf">name:</span><span class="p">(</span><span class="n">nullable</span> <span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span></code></pre></div>
 
 <p>其中，<code>removeObserver:</code>是删除通知中心保存的调度表一个观察者的所有入口，而<code>removeObserver:name:object:</code>是删除匹配了通知中心保存的调度表中观察者的一个入口。</p>
 
@@ -713,8 +745,6 @@ NSDistributedNotificationCenter 一台机器中多个进程的通知管理
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -748,6 +778,44 @@ NSDistributedNotificationCenter 一台机器中多个进程的通知管理
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

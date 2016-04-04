@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -526,99 +563,96 @@ ds.charset = 'UTF-8';
 &gt; * <code>closePath</code>方法不仅结束一个shape的subpath表述，它也在最后一个点和第一个点之间画一条线段，如果我们画多边形的话，这个一个便利的方法我们不需要去画最后一条线。<br />
 &gt; * 注：这个五边形类要继承自UIView。</p>
 
-<pre><code class="language-objc">- (void)drawRect:(CGRect)rect  
-{  
-    UIColor *color = [UIColor redColor];  
-    [color set]; //设置线条颜色  
-    //  
-    UIBezierPath* aPath = [UIBezierPath bezierPath];  
-    aPath.lineWidth = 5.0;  
-    // 
-    aPath.lineCapStyle = kCGLineCapRound; //线条拐角  
-    aPath.lineJoinStyle = kCGLineCapRound; //终点处理  
-    // 
-    // Set the starting point of the shape.  
-    [aPath moveToPoint:CGPointMake(100.0, 0.0)];  
-    //
-    // Draw the lines  
-    [aPath addLineToPoint:CGPointMake(200.0, 40.0)];  
-    [aPath addLineToPoint:CGPointMake(160, 140)];  
-    [aPath addLineToPoint:CGPointMake(40.0, 140)];  
-    [aPath addLineToPoint:CGPointMake(0.0, 40.0)];  
-    [aPath closePath];//第五条线通过调用closePath方法得到的  
-  	//
-    [aPath stroke];//Draws line 根据坐标点连线 
-    //[aPath fill]; //填充 
-}   
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">drawRect:</span><span class="p">(</span><span class="bp">CGRect</span><span class="p">)</span><span class="nv">rect</span>  
+<span class="lineno"> 2</span> <span class="p">{</span>  
+<span class="lineno"> 3</span>     <span class="bp">UIColor</span> <span class="o">*</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">];</span>  
+<span class="lineno"> 4</span>     <span class="p">[</span><span class="n">color</span> <span class="n">set</span><span class="p">];</span> <span class="c1">//设置线条颜色  </span>
+<span class="lineno"> 5</span>     <span class="c1">//  </span>
+<span class="lineno"> 6</span>     <span class="bp">UIBezierPath</span><span class="o">*</span> <span class="n">aPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIBezierPath</span> <span class="n">bezierPath</span><span class="p">];</span>  
+<span class="lineno"> 7</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>  
+<span class="lineno"> 8</span>     <span class="c1">// </span>
+<span class="lineno"> 9</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineCapStyle</span> <span class="o">=</span> <span class="n">kCGLineCapRound</span><span class="p">;</span> <span class="c1">//线条拐角  </span>
+<span class="lineno">10</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineJoinStyle</span> <span class="o">=</span> <span class="n">kCGLineCapRound</span><span class="p">;</span> <span class="c1">//终点处理  </span>
+<span class="lineno">11</span>     <span class="c1">// </span>
+<span class="lineno">12</span>     <span class="c1">// Set the starting point of the shape.  </span>
+<span class="lineno">13</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">moveToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)];</span>  
+<span class="lineno">14</span>     <span class="c1">//</span>
+<span class="lineno">15</span>     <span class="c1">// Draw the lines  </span>
+<span class="lineno">16</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">addLineToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">200.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">)];</span>  
+<span class="lineno">17</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">addLineToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">140</span><span class="p">)];</span>  
+<span class="lineno">18</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">addLineToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="mi">140</span><span class="p">)];</span>  
+<span class="lineno">19</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">addLineToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">)];</span>  
+<span class="lineno">20</span>     <span class="p">[</span><span class="n">aPath</span> <span class="n">closePath</span><span class="p">];</span><span class="c1">//第五条线通过调用closePath方法得到的  </span>
+<span class="lineno">21</span>   	<span class="c1">//</span>
+<span class="lineno">22</span>     <span class="p">[</span><span class="n">aPath</span> <span class="n">stroke</span><span class="p">];</span><span class="c1">//Draws line 根据坐标点连线 </span>
+<span class="lineno">23</span>     <span class="c1">//[aPath fill]; //填充 </span>
+<span class="lineno">24</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="uibezierpath">三、使用UIBezierPath创建图形</h3>
 
 <p>如果是绘制矩形或者椭圆之类的特殊图形，可以不用像上面一样，<code>UIBezierPath</code>包含了几个特殊形状的类方法，我们可以直接使用：</p>
 
-<pre><code class="language-objc">// 创建矩形
-+ (UIBezierPath *)bezierPathWithRect:(CGRect)rect
-//
-// 创建圆角矩形
-+ (UIBezierPath *)bezierPathWithRoundedRect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius
-//
-// 创建矩形内切圆
-+ (UIBezierPath *)bezierPathWithOvalInRect:(CGRect)rect
-//
-// 创建弧形
-//其中的参数分别指定：这段圆弧的中心，半径，开始角度，结束角度，是否顺时针方向。
-+ (UIBezierPath *)bezierPathWithArcCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise
-//
-//下面举个例子,绘制矩形
-- (void)drawRect:(CGRect)rect  
-{  
-    UIColor *color = [UIColor redColor];  
-    [color set]; //设置线条颜色  
-    // 
-    UIBezierPath* aPath = [UIBezierPath bezierPathWithRect:CGRectMake(20, 20, 100, 50)];  
-    //
-    aPath.lineWidth = 5.0;  
-    aPath.lineCapStyle = kCGLineCapRound; //线条拐角  
-    aPath.lineJoinStyle = kCGLineCapRound; //终点处理  
-    //
-    [aPath stroke];  
-}  
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// 创建矩形</span>
+<span class="lineno"> 2</span> <span class="p">+</span> <span class="p">(</span><span class="bp">UIBezierPath</span> <span class="o">*</span><span class="p">)</span><span class="nf">bezierPathWithRect:</span><span class="p">(</span><span class="bp">CGRect</span><span class="p">)</span><span class="nv">rect</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span> <span class="c1">// 创建圆角矩形</span>
+<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="bp">UIBezierPath</span> <span class="o">*</span><span class="p">)</span><span class="nf">bezierPathWithRoundedRect:</span><span class="p">(</span><span class="bp">CGRect</span><span class="p">)</span><span class="nv">rect</span> <span class="nf">cornerRadius:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">cornerRadius</span>
+<span class="lineno"> 6</span> <span class="c1">//</span>
+<span class="lineno"> 7</span> <span class="c1">// 创建矩形内切圆</span>
+<span class="lineno"> 8</span> <span class="p">+</span> <span class="p">(</span><span class="bp">UIBezierPath</span> <span class="o">*</span><span class="p">)</span><span class="nf">bezierPathWithOvalInRect:</span><span class="p">(</span><span class="bp">CGRect</span><span class="p">)</span><span class="nv">rect</span>
+<span class="lineno"> 9</span> <span class="c1">//</span>
+<span class="lineno">10</span> <span class="c1">// 创建弧形</span>
+<span class="lineno">11</span> <span class="c1">//其中的参数分别指定：这段圆弧的中心，半径，开始角度，结束角度，是否顺时针方向。</span>
+<span class="lineno">12</span> <span class="p">+</span> <span class="p">(</span><span class="bp">UIBezierPath</span> <span class="o">*</span><span class="p">)</span><span class="nf">bezierPathWithArcCenter:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">center</span> <span class="nf">radius:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">radius</span> <span class="nf">startAngle:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">startAngle</span> <span class="nf">endAngle:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">endAngle</span> <span class="nf">clockwise:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">clockwise</span>
+<span class="lineno">13</span> <span class="c1">//</span>
+<span class="lineno">14</span> <span class="c1">//下面举个例子,绘制矩形</span>
+<span class="lineno">15</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">drawRect:</span><span class="p">(</span><span class="bp">CGRect</span><span class="p">)</span><span class="nv">rect</span>  
+<span class="lineno">16</span> <span class="p">{</span>  
+<span class="lineno">17</span>     <span class="bp">UIColor</span> <span class="o">*</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">];</span>  
+<span class="lineno">18</span>     <span class="p">[</span><span class="n">color</span> <span class="n">set</span><span class="p">];</span> <span class="c1">//设置线条颜色  </span>
+<span class="lineno">19</span>     <span class="c1">// </span>
+<span class="lineno">20</span>     <span class="bp">UIBezierPath</span><span class="o">*</span> <span class="n">aPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIBezierPath</span> <span class="nl">bezierPathWithRect</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)];</span>  
+<span class="lineno">21</span>     <span class="c1">//</span>
+<span class="lineno">22</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>  
+<span class="lineno">23</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineCapStyle</span> <span class="o">=</span> <span class="n">kCGLineCapRound</span><span class="p">;</span> <span class="c1">//线条拐角  </span>
+<span class="lineno">24</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineJoinStyle</span> <span class="o">=</span> <span class="n">kCGLineCapRound</span><span class="p">;</span> <span class="c1">//终点处理  </span>
+<span class="lineno">25</span>     <span class="c1">//</span>
+<span class="lineno">26</span>     <span class="p">[</span><span class="n">aPath</span> <span class="n">stroke</span><span class="p">];</span>  
+<span class="lineno">27</span> <span class="p">}</span></code></pre></div>
 
 <p><strong>除了这些闭合的特殊路径，也有一些方法用来添加子路径。</strong></p>
 
-<pre><code class="language-objc">// 添加直线
-- (void)addLineToPoint:(CGPoint)point
-//
-// 添加弧形线段
-- (void)addArcWithCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise
-//
-// 添加二阶贝塞尔曲线
-- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint
-//
-// 添加三阶贝塞尔曲线
-- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2
-//
-//一个二阶贝塞尔曲线例子
-- (void)drawRect:(CGRect)rect  
-{  
-    UIColor *color = [UIColor redColor];  
-    [color set]; //设置线条颜色  
-    //
-    UIBezierPath* aPath = [UIBezierPath bezierPath];  
-    aPath.lineWidth = 5.0;  
-    aPath.lineCapStyle = kCGLineCapRound; //线条拐角  
-    aPath.lineJoinStyle = kCGLineCapRound; //终点处理  
-    //
-    [aPath moveToPoint:CGPointMake(20, 100)];  
-    //
-    [aPath addQuadCurveToPoint:CGPointMake(120, 100) controlPoint:CGPointMake(70, 0)];  
-    //三阶
-    //[aPath addCurveToPoint:CGPointMake(200, 50) controlPoint1:CGPointMake(110, 0) controlPoint2:CGPointMake(110, 100)];  
-   	//   
-    [aPath stroke];  
-} 
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// 添加直线</span>
+<span class="lineno"> 2</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addLineToPoint:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">point</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span> <span class="c1">// 添加弧形线段</span>
+<span class="lineno"> 5</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addArcWithCenter:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">center</span> <span class="nf">radius:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">radius</span> <span class="nf">startAngle:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">startAngle</span> <span class="nf">endAngle:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">endAngle</span> <span class="nf">clockwise:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">clockwise</span>
+<span class="lineno"> 6</span> <span class="c1">//</span>
+<span class="lineno"> 7</span> <span class="c1">// 添加二阶贝塞尔曲线</span>
+<span class="lineno"> 8</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addQuadCurveToPoint:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">endPoint</span> <span class="nf">controlPoint:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">controlPoint</span>
+<span class="lineno"> 9</span> <span class="c1">//</span>
+<span class="lineno">10</span> <span class="c1">// 添加三阶贝塞尔曲线</span>
+<span class="lineno">11</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addCurveToPoint:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">endPoint</span> <span class="nf">controlPoint1:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">controlPoint1</span> <span class="nf">controlPoint2:</span><span class="p">(</span><span class="bp">CGPoint</span><span class="p">)</span><span class="nv">controlPoint2</span>
+<span class="lineno">12</span> <span class="c1">//</span>
+<span class="lineno">13</span> <span class="c1">//一个二阶贝塞尔曲线例子</span>
+<span class="lineno">14</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">drawRect:</span><span class="p">(</span><span class="bp">CGRect</span><span class="p">)</span><span class="nv">rect</span>  
+<span class="lineno">15</span> <span class="p">{</span>  
+<span class="lineno">16</span>     <span class="bp">UIColor</span> <span class="o">*</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">];</span>  
+<span class="lineno">17</span>     <span class="p">[</span><span class="n">color</span> <span class="n">set</span><span class="p">];</span> <span class="c1">//设置线条颜色  </span>
+<span class="lineno">18</span>     <span class="c1">//</span>
+<span class="lineno">19</span>     <span class="bp">UIBezierPath</span><span class="o">*</span> <span class="n">aPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIBezierPath</span> <span class="n">bezierPath</span><span class="p">];</span>  
+<span class="lineno">20</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>  
+<span class="lineno">21</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineCapStyle</span> <span class="o">=</span> <span class="n">kCGLineCapRound</span><span class="p">;</span> <span class="c1">//线条拐角  </span>
+<span class="lineno">22</span>     <span class="n">aPath</span><span class="p">.</span><span class="n">lineJoinStyle</span> <span class="o">=</span> <span class="n">kCGLineCapRound</span><span class="p">;</span> <span class="c1">//终点处理  </span>
+<span class="lineno">23</span>     <span class="c1">//</span>
+<span class="lineno">24</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">moveToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)];</span>  
+<span class="lineno">25</span>     <span class="c1">//</span>
+<span class="lineno">26</span>     <span class="p">[</span><span class="n">aPath</span> <span class="nl">addQuadCurveToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="nl">controlPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">0</span><span class="p">)];</span>  
+<span class="lineno">27</span>     <span class="c1">//三阶</span>
+<span class="lineno">28</span>     <span class="c1">//[aPath addCurveToPoint:CGPointMake(200, 50) controlPoint1:CGPointMake(110, 0) controlPoint2:CGPointMake(110, 100)];  </span>
+<span class="lineno">29</span>    	<span class="c1">//   </span>
+<span class="lineno">30</span>     <span class="p">[</span><span class="n">aPath</span> <span class="n">stroke</span><span class="p">];</span>  
+<span class="lineno">31</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="core-graphicspath">四、使用Core Graphics函数去修改path</h3>
 
@@ -637,70 +671,67 @@ ds.charset = 'UTF-8';
 
 <p>下面的代码就是赋值一个新的CGPathRef给UIBezierPath对象。</p>
 
-<pre><code class="language-objc">// Create the path data
-CGMutablePathRef cgPath = CGPathCreateMutable();
-CGPathAddEllipseInRect(cgPath, NULL, CGRectMake(0, 0, 300, 300));
-CGPathAddEllipseInRect(cgPath, NULL, CGRectMake(50, 50, 200, 200));
-// 
-// Now create the UIBezierPath object
-UIBezierPath* aPath = [UIBezierPath bezierPath];
-aPath.CGPath = cgPath;
-aPath.usesEvenOddFillRule = YES;
-//
-// After assigning it to the UIBezierPath object, you can release
-// your CGPathRef data type safely.
-CGPathRelease(cgPath);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// Create the path data</span>
+<span class="lineno"> 2</span> <span class="n">CGMutablePathRef</span> <span class="n">cgPath</span> <span class="o">=</span> <span class="n">CGPathCreateMutable</span><span class="p">();</span>
+<span class="lineno"> 3</span> <span class="n">CGPathAddEllipseInRect</span><span class="p">(</span><span class="n">cgPath</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">));</span>
+<span class="lineno"> 4</span> <span class="n">CGPathAddEllipseInRect</span><span class="p">(</span><span class="n">cgPath</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">));</span>
+<span class="lineno"> 5</span> <span class="c1">// </span>
+<span class="lineno"> 6</span> <span class="c1">// Now create the UIBezierPath object</span>
+<span class="lineno"> 7</span> <span class="bp">UIBezierPath</span><span class="o">*</span> <span class="n">aPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIBezierPath</span> <span class="n">bezierPath</span><span class="p">];</span>
+<span class="lineno"> 8</span> <span class="n">aPath</span><span class="p">.</span><span class="bp">CGPath</span> <span class="o">=</span> <span class="n">cgPath</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="n">aPath</span><span class="p">.</span><span class="n">usesEvenOddFillRule</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">10</span> <span class="c1">//</span>
+<span class="lineno">11</span> <span class="c1">// After assigning it to the UIBezierPath object, you can release</span>
+<span class="lineno">12</span> <span class="c1">// your CGPathRef data type safely.</span>
+<span class="lineno">13</span> <span class="n">CGPathRelease</span><span class="p">(</span><span class="n">cgPath</span><span class="p">);</span></code></pre></div>
 
 <p>如果我们使用<code>Core Graphics</code>函数和<code>UIBezierPath</code>函数混合方法，我们必须小心的移动path 信息在两者之间。因为<code>UIBezierPath</code>类拥有自己底层的<code>CGPathRef data type</code>，我们不能简单的检索该类型并直接的修改它。相反，我们应该生成一个副本，然后修改此副本，然后赋值此副本给CGPath属性，如下代码：</p>
 
-<pre><code class="language-objc">UIBezierPath*    aPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 300, 300)];
-// 
-// Get the CGPathRef and create a mutable version.
-CGPathRef cgPath = aPath.CGPath;
-CGMutablePathRef  mutablePath = CGPathCreateMutableCopy(cgPath);
-// 
-// Modify the path and assign it back to the UIBezierPath object
-CGPathAddEllipseInRect(mutablePath, NULL, CGRectMake(50, 50, 200, 200));
-aPath.CGPath = mutablePath;
-// 
-// Release both the mutable copy of the path.
-CGPathRelease(mutablePath);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="bp">UIBezierPath</span><span class="o">*</span>    <span class="n">aPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIBezierPath</span> <span class="nl">bezierPathWithOvalInRect</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)];</span>
+<span class="lineno"> 2</span> <span class="c1">// </span>
+<span class="lineno"> 3</span> <span class="c1">// Get the CGPathRef and create a mutable version.</span>
+<span class="lineno"> 4</span> <span class="n">CGPathRef</span> <span class="n">cgPath</span> <span class="o">=</span> <span class="n">aPath</span><span class="p">.</span><span class="bp">CGPath</span><span class="p">;</span>
+<span class="lineno"> 5</span> <span class="n">CGMutablePathRef</span>  <span class="n">mutablePath</span> <span class="o">=</span> <span class="n">CGPathCreateMutableCopy</span><span class="p">(</span><span class="n">cgPath</span><span class="p">);</span>
+<span class="lineno"> 6</span> <span class="c1">// </span>
+<span class="lineno"> 7</span> <span class="c1">// Modify the path and assign it back to the UIBezierPath object</span>
+<span class="lineno"> 8</span> <span class="n">CGPathAddEllipseInRect</span><span class="p">(</span><span class="n">mutablePath</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">));</span>
+<span class="lineno"> 9</span> <span class="n">aPath</span><span class="p">.</span><span class="bp">CGPath</span> <span class="o">=</span> <span class="n">mutablePath</span><span class="p">;</span>
+<span class="lineno">10</span> <span class="c1">// </span>
+<span class="lineno">11</span> <span class="c1">// Release both the mutable copy of the path.</span>
+<span class="lineno">12</span> <span class="n">CGPathRelease</span><span class="p">(</span><span class="n">mutablePath</span><span class="p">);</span></code></pre></div>
 
 <h3 id="uibezierpathkeyframeanimation">五、UIBezierPath与keyframeAnimation</h3>
 
 <p>我们可以使用贝塞尔曲线绘制一条路径，然后通过keyframe动画让动画沿着所设置的路径执行，下面举个例子说明：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad{
-	[super viewDidLoad];
-	//路径动画
-    UIView *view8 = [[UIView alloc]initWithFrame:CGRectMake(100, 460, 30, 30)];
-    [view8 setBackgroundColor:[UIColor purpleColor]];
-    view8.layer.cornerRadius = 15;
-    //创建路径
-    UIBezierPath *movePath = [UIBezierPath bezierPath];
-    [movePath moveToPoint:CGPointMake(100.0, 460.0)];
-//    [movePath addQuadCurveToPoint:CGPointMake(200, 200) controlPoint:CGPointMake(300, 350)];
-    [movePath addCurveToPoint:CGPointMake(300, 460) controlPoint1:CGPointMake(170, 360) controlPoint2:CGPointMake(240, 550)];
-    CGPathRef cgPath = movePath.CGPath;
-    CGMutablePathRef path = CGPathCreateMutableCopy(cgPath);
-	//添加动画
-    [view8.layer addAnimation:[self animationKeyframeWithPath:path duration:2.0 repeatTimes:MAXFLOAT] forKey:nil];
-    [self.view addSubview:view8];
-}
-- (CAKeyframeAnimation *)animationKeyframeWithPath:(CGMutablePathRef)path duration:(float)duration repeatTimes:(float)repeatTimes{
-    CAKeyframeAnimation *animation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
-    animation.path = path;
-    animation.removedOnCompletion = NO;
-    animation.fillMode = kCAFillModeForwards;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    animation.autoreverses = NO;
-    animation.duration = duration;
-    animation.repeatCount = repeatTimes;   
-    return animation;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span><span class="p">{</span>
+<span class="lineno"> 2</span> 	<span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 3</span> 	<span class="c1">//路径动画</span>
+<span class="lineno"> 4</span>     <span class="bp">UIView</span> <span class="o">*</span><span class="n">view8</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIView</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">460</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)];</span>
+<span class="lineno"> 5</span>     <span class="p">[</span><span class="n">view8</span> <span class="nl">setBackgroundColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">purpleColor</span><span class="p">]];</span>
+<span class="lineno"> 6</span>     <span class="n">view8</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="lineno"> 7</span>     <span class="c1">//创建路径</span>
+<span class="lineno"> 8</span>     <span class="bp">UIBezierPath</span> <span class="o">*</span><span class="n">movePath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIBezierPath</span> <span class="n">bezierPath</span><span class="p">];</span>
+<span class="lineno"> 9</span>     <span class="p">[</span><span class="n">movePath</span> <span class="nl">moveToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">460.0</span><span class="p">)];</span>
+<span class="lineno">10</span> <span class="c1">//    [movePath addQuadCurveToPoint:CGPointMake(200, 200) controlPoint:CGPointMake(300, 350)];</span>
+<span class="lineno">11</span>     <span class="p">[</span><span class="n">movePath</span> <span class="nl">addCurveToPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">460</span><span class="p">)</span> <span class="nl">controlPoint1</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span> <span class="nl">controlPoint2</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">550</span><span class="p">)];</span>
+<span class="lineno">12</span>     <span class="n">CGPathRef</span> <span class="n">cgPath</span> <span class="o">=</span> <span class="n">movePath</span><span class="p">.</span><span class="bp">CGPath</span><span class="p">;</span>
+<span class="lineno">13</span>     <span class="n">CGMutablePathRef</span> <span class="n">path</span> <span class="o">=</span> <span class="n">CGPathCreateMutableCopy</span><span class="p">(</span><span class="n">cgPath</span><span class="p">);</span>
+<span class="lineno">14</span> 	<span class="c1">//添加动画</span>
+<span class="lineno">15</span>     <span class="p">[</span><span class="n">view8</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addAnimation</span><span class="p">:[</span><span class="nb">self</span> <span class="nl">animationKeyframeWithPath</span><span class="p">:</span><span class="n">path</span> <span class="nl">duration</span><span class="p">:</span><span class="mf">2.0</span> <span class="nl">repeatTimes</span><span class="p">:</span><span class="n">MAXFLOAT</span><span class="p">]</span> <span class="nl">forKey</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">16</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">view8</span><span class="p">];</span>
+<span class="lineno">17</span> <span class="p">}</span>
+<span class="lineno">18</span> <span class="p">-</span> <span class="p">(</span><span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nf">animationKeyframeWithPath:</span><span class="p">(</span><span class="n">CGMutablePathRef</span><span class="p">)</span><span class="nv">path</span> <span class="nf">duration:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">duration</span> <span class="nf">repeatTimes:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">repeatTimes</span><span class="p">{</span>
+<span class="lineno">19</span>     <span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">animation</span><span class="o">=</span><span class="p">[</span><span class="bp">CAKeyframeAnimation</span> <span class="nl">animationWithKeyPath</span><span class="p">:</span><span class="s">@&quot;position&quot;</span><span class="p">];</span>
+<span class="lineno">20</span>     <span class="n">animation</span><span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="p">;</span>
+<span class="lineno">21</span>     <span class="n">animation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">22</span>     <span class="n">animation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+<span class="lineno">23</span>     <span class="n">animation</span><span class="p">.</span><span class="n">timingFunction</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CAMediaTimingFunction</span> <span class="nl">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseIn</span><span class="p">];</span>
+<span class="lineno">24</span>     <span class="n">animation</span><span class="p">.</span><span class="n">autoreverses</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">25</span>     <span class="n">animation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span><span class="p">;</span>
+<span class="lineno">26</span>     <span class="n">animation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">repeatTimes</span><span class="p">;</span>   
+<span class="lineno">27</span>     <span class="k">return</span> <span class="n">animation</span><span class="p">;</span>
+<span class="lineno">28</span> <span class="p">}</span></code></pre></div>
 
 <ul>
   <li>一个在线生成三阶贝塞尔曲线的网站很不错，可以做可视化调整：<a href="http://cubic-bezier.com/#.17,.74,.53,.43">网站传送门</a></li>
@@ -868,8 +899,6 @@ CGPathRelease(mutablePath);
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -903,6 +932,44 @@ CGPathRelease(mutablePath);
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

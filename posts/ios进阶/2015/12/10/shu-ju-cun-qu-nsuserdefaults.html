@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -493,15 +530,12 @@ ds.charset = 'UTF-8';
                   <h1 class="entry_title">NSUserDefaults--数据存取</h1><!-- End Entry title -->
                   <p>关于<code> NSUserDefaults </code>首先要看苹果官方的定义：<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSUserDefaults_Class/index.html">NSUserDefault官方文档</a></p>
 
-<!--more-->
-
 <h3 id="nsuserdefaults">一、NSUserDefaults简介</h3>
 <p>对于应用来说，每个用户都有自己的独特偏好设置，而好的应用会让用户根据喜好选择合适的使用方式，把这些偏好记录在应用包的plist文件中，通过 NSUserDefaults 类来访问，这是 NSUserDefaults 的常用姿势。如果有一些设置你希望用户即使升级后还可以继续使用，比如玩游戏时得过的最高分、喜好和通知设置、主题颜色甚至一个用户头像，那么你可以使用 NSUserDefaults 来存储这些信息，如果有更多需求，可以了解数据持久化相关的知识。</p>
 
 <p>具体来说 NSUserDefaults 是iOS系统提供的一个单例类(iOS提供了若干个单例类)，通过类方法<code>standardUserDefaults </code>可以获取 NSUserDefaults 单例。如：</p>
 
-<pre><code class="language-objc">NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">defaults</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span></code></pre></div>
 
 <p>NSUserDefaults单例以<code>key-value</code>的形式存储了一系列偏好设置，key是名称，value是相应的数据。存/取数据时可以使用方法<code>objectForKey:</code> 和 <code>setObject:forKey:</code>来把对象存储到相应的<strong>plist</strong> 文件中，或者读取，既然是plist文件，那么对象的类型则必须是plist文件可以存储的类型，正如官方文档中提到的——</p>
 
@@ -533,21 +567,19 @@ ds.charset = 'UTF-8';
 <h3 id="section">二、存数据</h3>
 <p>NSUserDefaults 保存数据的方法可根据不同类型的对象使用更简便方法，</p>
 
-<pre><code>- setBool:forKey:
-- setFloat:forKey:
-- setInteger:forKey:
-- setDouble:forKey:
-- setURL:forKey:
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="nf">setBool:forKey:</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="nf">setFloat:forKey:</span>
+<span class="lineno">3</span> <span class="p">-</span> <span class="nf">setInteger:forKey:</span>
+<span class="lineno">4</span> <span class="p">-</span> <span class="nf">setDouble:forKey:</span>
+<span class="lineno">5</span> <span class="p">-</span> <span class="nf">setURL:forKey:</span></code></pre></div>
 
 <p>比如保存一个整数、字符串、BOOL值。</p>
 
-<pre><code class="language-objc">NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-[defaults setObject:@”jack“ forKey:@"firstName"];
-[defaults setInteger:10 forKey:@"Age"];
-[defaults setBool:YES forKey:@"isMarried"];
-[defaults synchronize];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">defaults</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">setObject</span><span class="p">:@</span><span class="err">”</span><span class="n">jack</span><span class="err">“</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;firstName&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">setInteger</span><span class="p">:</span><span class="mi">10</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;Age&quot;</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">setBool</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;isMarried&quot;</span><span class="p">];</span>
+<span class="lineno">5</span> <span class="p">[</span><span class="n">defaults</span> <span class="n">synchronize</span><span class="p">];</span></code></pre></div>
 
 <blockquote>
   <p><strong>注意</strong>：方法 <code>synchronise</code> 是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的。<strong>但是如果程序运行占用比较大的内存的时候不加这行代码，可能会造成无法写入plist文件中</strong>，</p>
@@ -557,48 +589,43 @@ ds.charset = 'UTF-8';
   <li>保存<strong>自定义的对象</strong>时，可先转换为NSDate，再保存，比如保存一张图片</li>
 </ul>
 
-<pre><code class="language-objc">UIImage *image =[UIImage imageNamed:@"somename"];
-NSData *imageData = UIImageJPEGRepresentation(image, 100);//把image归档为NSData
-NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-[defaults setObject:imageData forKey:@"image"];
-[defaults synchronize];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">UIImage</span> <span class="o">*</span><span class="n">image</span> <span class="o">=</span><span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;somename&quot;</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="bp">NSData</span> <span class="o">*</span><span class="n">imageData</span> <span class="o">=</span> <span class="n">UIImageJPEGRepresentation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span><span class="c1">//把image归档为NSData</span>
+<span class="lineno">3</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">defaults</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">setObject</span><span class="p">:</span><span class="n">imageData</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;image&quot;</span><span class="p">];</span>
+<span class="lineno">5</span> <span class="p">[</span><span class="n">defaults</span> <span class="n">synchronize</span><span class="p">];</span></code></pre></div>
 
 <h3 id="section-1">三、读数据</h3>
 <p>数据读取和数据保存一样，不同的对象可用不同的方法，比如读取上面保存的几个对象：</p>
 
-<pre><code class="language-objc">NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-NSString *firstName = [defaults objectForKey:@"firstName"]
-NSInteger age = [defaults integerForKey:@"Age"];
-BOOL isMarried = [defaults boolForKey:@"isMarried"];
-//读取自定义对象
-NSData *imageData = [defaults dataForKey:@"image"];
-UIImage *image = [UIImage imageWithData:imageData];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">defaults</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">firstName</span> <span class="o">=</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&quot;firstName&quot;</span><span class="p">]</span>
+<span class="lineno">3</span> <span class="bp">NSInteger</span> <span class="n">age</span> <span class="o">=</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">integerForKey</span><span class="p">:</span><span class="s">@&quot;Age&quot;</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="kt">BOOL</span> <span class="n">isMarried</span> <span class="o">=</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">boolForKey</span><span class="p">:</span><span class="s">@&quot;isMarried&quot;</span><span class="p">];</span>
+<span class="lineno">5</span> <span class="c1">//读取自定义对象</span>
+<span class="lineno">6</span> <span class="bp">NSData</span> <span class="o">*</span><span class="n">imageData</span> <span class="o">=</span> <span class="p">[</span><span class="n">defaults</span> <span class="nl">dataForKey</span><span class="p">:</span><span class="s">@&quot;image&quot;</span><span class="p">];</span>
+<span class="lineno">7</span> <span class="bp">UIImage</span> <span class="o">*</span><span class="n">image</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageWithData</span><span class="p">:</span><span class="n">imageData</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li><strong>注意</strong>保存到 NSUserDefaults 的对象一定是不可变的，因此读取出来也是不可变的，比如想要保存和读取一个可变数组mutableArray时，应该是这样的：</li>
 </ul>
 
-<pre><code class="language-objc">//保存：应该另存为转换为不可变数组再保存
-NSMutableArray *mutableArray = [NSMutableArray arrayWithObjects:@"123",@"234",@"345", nil];
-//
-NSArray * array = [NSArray arrayWithArray:mutableArray];
-NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-[user setObject:array forKey:@"myArray"];
-//...
-//读取，不可直接用 objectForKey: 读取，应该用 alloc 方法代替
-NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-//NSMutableArray *mutableArray = [user objectForKey:@"myArray"]; //这样读取出来是不可变数组
-NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:[user objectForKey:@"myArray"]];
-``
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//保存：应该另存为转换为不可变数组再保存</span>
+<span class="lineno"> 2</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mutableArray</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="s">@&quot;123&quot;</span><span class="p">,</span><span class="s">@&quot;234&quot;</span><span class="p">,</span><span class="s">@&quot;345&quot;</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span> <span class="bp">NSArray</span> <span class="o">*</span> <span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSArray</span> <span class="nl">arrayWithArray</span><span class="p">:</span><span class="n">mutableArray</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">user</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno"> 6</span> <span class="p">[</span><span class="n">user</span> <span class="nl">setObject</span><span class="p">:</span><span class="n">array</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;myArray&quot;</span><span class="p">];</span>
+<span class="lineno"> 7</span> <span class="c1">//...</span>
+<span class="lineno"> 8</span> <span class="c1">//读取，不可直接用 objectForKey: 读取，应该用 alloc 方法代替</span>
+<span class="lineno"> 9</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">user</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="c1">//NSMutableArray *mutableArray = [user objectForKey:@&quot;myArray&quot;]; //这样读取出来是不可变数组</span>
+<span class="lineno">11</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mutableArray</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithArray</span><span class="p">:[</span><span class="n">user</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&quot;myArray&quot;</span><span class="p">]];</span></code></pre></div>
 
-### 四、删除数据
-由于 NSUserDefaults 它是将信息写入到本地的一个plist文件里， 所以和删除plist里的某一项内容一样，直接用下面的方法就可以直接删除 NSUserDefaults 中的某一个特定的项的内容了，
+<h3 id="section-2">四、删除数据</h3>
+<p>由于 NSUserDefaults 它是将信息写入到本地的一个plist文件里， 所以和删除plist里的某一项内容一样，直接用下面的方法就可以直接删除 NSUserDefaults 中的某一个特定的项的内容了，</p>
 
-```objc
-[[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">]</span> <span class="nl">removeObjectForKey</span><span class="p">:</span><span class="n">key</span><span class="p">];</span></code></pre></div>
 
 <p>但是，如何把整个plist文件删除？<br />
 其实也不难，我们要知道删除整个plist文件实际上就是把plist文件中的所有item删除就行了，</p>
@@ -609,38 +636,35 @@ NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:[user objectForKey
 
 <p>代码如下：</p>
 
-<pre><code class="language-objc">- (void)removeAllNSUserDefaultsObject{
-//
-NSUserDefaults *userDefatluts = [NSUserDefaults standardUserDefaults];
-NSDictionary *dictionary = [userDefaults dictionaryRepresentation];
-//
-for(NSString* key in [dictionary allKeys]){
-//
-[userDefaults removeObjectForKey:key];
-[userDefaults synchronize];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeAllNSUserDefaultsObject</span><span class="p">{</span>
+<span class="lineno"> 2</span> <span class="c1">//</span>
+<span class="lineno"> 3</span> <span class="bp">NSUserDefaults</span> <span class="o">*</span><span class="n">userDefatluts</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
+<span class="lineno"> 4</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">dictionary</span> <span class="o">=</span> <span class="p">[</span><span class="n">userDefaults</span> <span class="n">dictionaryRepresentation</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="k">for</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span> <span class="n">key</span> <span class="k">in</span> <span class="p">[</span><span class="n">dictionary</span> <span class="n">allKeys</span><span class="p">]){</span>
+<span class="lineno"> 7</span> <span class="c1">//</span>
+<span class="lineno"> 8</span> <span class="p">[</span><span class="n">userDefaults</span> <span class="nl">removeObjectForKey</span><span class="p">:</span><span class="n">key</span><span class="p">];</span>
+<span class="lineno"> 9</span> <span class="p">[</span><span class="n">userDefaults</span> <span class="n">synchronize</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="nsuserdefaults-1">五、NSUserDefaults域</h3>
 <p>考虑这么一种情况：</p>
 
-<pre><code>BOOL showTutorialOnLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShowTutorial"];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="kt">BOOL</span> <span class="n">showTutorialOnLaunch</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">]</span> <span class="nl">boolForKey</span><span class="p">:</span><span class="s">@&quot;ShowTutorial&quot;</span><span class="p">];</span></code></pre></div>
 
 <p>这种情况下，当key值 <code>@“ShowTutorial”</code> 已设置后会运行正确。但如果默认数据库没有这个key的默认值时，将会返回NO，这或许就不一定是你需要的值了，因为无法区分 <strong>NO</strong> 和<strong>no value</strong>，前一段所提到的简便方法大多有这种问题。<br />
 解决方式：使用 <code>registerDefaults:</code>方法<br />
 首先创建一个包含用户偏好设置信息的<code>DefaultPreferences.plist</code>文件，添加到<code>target</code>中。在运行时，app就可以加载这个文件并且把内容传到 <code>registerDefaults :</code></p>
 
-<pre><code class="language-objc">NSURL *defaultPrefsFile = [[NSBundle mainBundle]
-URLForResource:@"DefaultPreferences" withExtension:@"plist"];
-NSDictionary *defaultPrefs = [NSDictionary dictionaryWithContentsOfURL:defaultPrefsFile];
-[[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSURL</span> <span class="o">*</span><span class="n">defaultPrefsFile</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span>
+<span class="lineno">2</span> <span class="nl">URLForResource</span><span class="p">:</span><span class="s">@&quot;DefaultPreferences&quot;</span> <span class="nl">withExtension</span><span class="p">:</span><span class="s">@&quot;plist&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">defaultPrefs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithContentsOfURL</span><span class="p">:</span><span class="n">defaultPrefsFile</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">[[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">]</span> <span class="nl">registerDefaults</span><span class="p">:</span><span class="n">defaultPrefs</span><span class="p">];</span></code></pre></div>
 
 <p>注意需要在每次启动app并且没有在<code>user defaules</code> 中读取数据的时候调用以上方法，因为<code>registerDefaults:</code> 不能把这些默认数据存储到硬盘上，所以<code>application:didFinishLaunchingWithOptions</code>是最合适的地方。<br />
 &gt; 这样做的原因是：默认情况下，应用域是空的，没见键也没有值。当应用第一次设置某项用户偏好设置的值时，相应的值会通过指定的键加入应用域。当通过 <code>NSUserDefaults</code> 获取某项用户偏好设置的值时，<code>NSUserDefaults</code> 会先在应用域中查找，如果找到了值，<code>NSUserDefaults</code>就会返回这个值。如果没有找到，<code>NSUserDefaults</code> 就会在注册域中查找并返回默认值。</p>
 
-<h4 id="section-2">域</h4>
+<h4 id="section-3">域</h4>
 <p><code>user defaults</code>数据库中其实是由多个层级的域组成的，当你读取一个键值的数据时，<code>NSUserDefaults</code>从上到下透过域的层级寻找正确的值，不同的域有不同的功能，有些域是可持久的，有些域则不行。</p>
 
 <ul>
@@ -816,8 +840,6 @@ NSDictionary *defaultPrefs = [NSDictionary dictionaryWithContentsOfURL:defaultPr
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -851,6 +873,44 @@ NSDictionary *defaultPrefs = [NSDictionary dictionaryWithContentsOfURL:defaultPr
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

@@ -9,7 +9,7 @@
 
   <!-- Post Propertites -->
   <link rel="canonical" href="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/block-block.html">
-  <meta name="description" content="本文主要来阐述下Block是什么？">
+  <meta name="description" content="本文主要来阐述下Block是个什么玩意">
   <meta name="author" content="Vanbein">
 
   <!-- Webmaster tools verification -->
@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -500,41 +537,37 @@ ds.charset = 'UTF-8';
 自动变量在Block中的具体表现就是截获自动变量，来看下面这一段代码：</li>
 </ul>
 
-<pre><code class="language-objc">int b = 0;
-void (^blo)() = ^{
-    NSLog(@"Input:b=%d",b);
-};
-b = 3;
-blo();
-//
-// 输出：  Input:b=0
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blo</span><span class="p">)()</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span>
+<span class="lineno">3</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Input:b=%d&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="p">};</span>
+<span class="lineno">5</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="lineno">6</span> <span class="n">blo</span><span class="p">();</span>
+<span class="lineno">7</span> <span class="c1">//</span>
+<span class="lineno">8</span> <span class="c1">// 输出：  Input:b=0</span></code></pre></div>
 
 <p>虽然我们在调用blo之前改变了b的值，但是输出的还是Block编译时候b的值，所以截获瞬间自动变量就是：<strong>在Block中会保存变量的值，而不会随变量的值的改变而改变。</strong></p>
 
 <p>我们再来看一段代码</p>
 
-<pre><code class="language-objc">int b = 0;
-    void (^blo)() = ^{
-        b = 3;
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blo</span><span class="p">)()</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span>
+<span class="lineno">3</span>         <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="lineno">4</span>     <span class="p">};</span></code></pre></div>
 
 <p>这段代码<strong>编译出错</strong>，编译器提示的大概就是不能在Block中改变变量的值。因为在Block中截获了变量的瞬间值以后就不能再改变变量的值，如果想要在Block中改变变量的值，那么我们只需要在变量声明的时候加上<code>__Block</code>修饰符，像这样</p>
 
-<pre><code class="language-objc">__block int b = 0;
-    void (^blo)() = ^{
-        b = 3;
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">__block</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blo</span><span class="p">)()</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span>
+<span class="lineno">3</span>         <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="lineno">4</span>     <span class="p">};</span></code></pre></div>
 
 <p>然而这样的情况又是允许的：</p>
 
-<pre><code class="language-objc"> NSMutableArray *array = [[NSMutableArray alloc]init];
-    void (^blo)() = ^{
-        [array addObject:@"Obj"];
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSMutableArray</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno">2</span>     <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blo</span><span class="p">)()</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span>
+<span class="lineno">3</span>         <span class="p">[</span><span class="n">array</span> <span class="nl">addObject</span><span class="p">:</span><span class="s">@&quot;Obj&quot;</span><span class="p">];</span>
+<span class="lineno">4</span>     <span class="p">};</span></code></pre></div>
 
 <p>为什么呢，因为我们只是对截获的变量进行了操作，而没有进行赋值，所以对于截获变量，可以进行操作而不可以进行赋值。</p>
 
@@ -548,10 +581,9 @@ blo();
 
 <p>我们来具体看一下Block语法的书写，我们首先来看一个完整的Block：</p>
 
-<pre><code class="language-objc"> ^ NSString *(NSString *a,NSString *b){
-        return a;
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="o">^</span> <span class="bp">NSString</span> <span class="o">*</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>
+<span class="lineno">2</span>         <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="lineno">3</span>     <span class="p">};</span></code></pre></div>
 
 <p>我们来分别解释下每一个部分都是什么东西：</p>
 
@@ -565,29 +597,25 @@ blo();
 
 <p>其实我们可以省略Block的返回值，像这样写：</p>
 
-<pre><code class="language-objc">^ (NSString *a,NSString *b){
-        return a;
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="o">^</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>
+<span class="lineno">2</span>         <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="lineno">3</span>     <span class="p">};</span></code></pre></div>
 
 <p>这样写和上面那种写法是一模一样的，其实如果没有参数列表我们甚至可以省略参数列表，像这样：</p>
 
-<pre><code class="language-objc">^ {
-        NSLog(@"我没有参数列表");
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="o">^</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;我没有参数列表&quot;</span><span class="p">);</span>
+<span class="lineno">3</span>     <span class="p">};</span></code></pre></div>
 
 <p>如果把这段代码写完整，那么就是这样的：</p>
 
-<pre><code class="language-objc">^void(void) {
-        NSLog(@"我没有参数列表");
-    };
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="o">^</span><span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;我没有参数列表&quot;</span><span class="p">);</span>
+<span class="lineno">3</span>     <span class="p">};</span></code></pre></div>
 
 <p>为什么需要Block变量？我们可以这样理解，我们通过这个Block变量来获取Block的指针，然后通过这个指针就可以来使用Block函数。我们先来看一下如何声明一个Block变量</p>
 
-<pre><code class="language-objc">int (^Blo)(NSString *s1,NSString *s2);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">Blo</span><span class="p">)(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s2</span><span class="p">);</span></code></pre></div>
 
 <p>对照前面的Block函数，我们可以比较容易的理解各个部分的含义：</p>
 
@@ -603,12 +631,11 @@ blo();
 
 <p>好的，然后我们用上面讲到的Block语法来对这个Block变量进行赋值：</p>
 
-<pre><code>int (^Blo)(NSString *s1,NSString *s2);
-//
-Blo = ^(NSString *s1,NSString *s2){
-    return 1;
-};
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">Blo</span><span class="p">)(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s2</span><span class="p">);</span>
+<span class="lineno">2</span> <span class="c1">//</span>
+<span class="lineno">3</span> <span class="n">Blo</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s2</span><span class="p">){</span>
+<span class="lineno">4</span>     <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">5</span> <span class="p">};</span></code></pre></div>
 
 <p>然后我们就可以将这个Block变量当作C语言函数来使用了。</p>
 
@@ -616,23 +643,20 @@ Blo = ^(NSString *s1,NSString *s2){
 
 <p>Block能够当作函数参数，首先我们声明一个Block类型变量 ，并加上typedef修饰符，像这样：</p>
 
-<pre><code>typedef void(^Blo)(NSString *s1,UIColor *c);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">typedef</span> <span class="nf">void</span><span class="p">(</span><span class="o">^</span><span class="n">Blo</span><span class="p">)(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="bp">UIColor</span> <span class="o">*</span><span class="n">c</span><span class="p">);</span></code></pre></div>
 
 <p>这样我们就可以使用Blo来表示这个Block，然后我就可以将Blo加入到函数参数中，我们来声明一个函数：</p>
 
-<pre><code>-(void)func:(Blo)BlockPra
-    BlockPra(@"Str",[UIColor redColor]);
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">func:</span><span class="p">(</span><span class="n">Blo</span><span class="p">)</span><span class="nv">BlockPra</span>
+<span class="lineno">2</span>     <span class="n">BlockPra</span><span class="p">(</span><span class="s">@&quot;Str&quot;</span><span class="p">,[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">]);</span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
 
 <p>然后我们可以这样使用这个函数：</p>
 
-<pre><code>[self func:^(NSString *s1, UIColor *c) {
-        NSLog(@"%@",s1);
-        self.view.backgroundColor = c;
-    }];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">func</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="bp">UIColor</span> <span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">);</span>
+<span class="lineno">3</span>         <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+<span class="lineno">4</span>     <span class="p">}];</span></code></pre></div>
 
 <p>是不是觉得十分眼熟，平时使用的许多回调当中大多都是这样的形式，可能其中其较多的就是网络回调了，我们只需要调用方法，然后在回调当中就可以对结果进行操作，很多苹果自己写的API都是使用了这样的方法，这样做的好处就是形式上十份简洁，当然像这种地方你使用delegate肯定也是可以的，但是表现上就没有Block那么简洁，使用起来也没有Block那么方便。</p>
 
@@ -641,27 +665,23 @@ Blo = ^(NSString *s1,NSString *s2){
 
 <p>页面B的.h文件中定义了这样一个Block指针，然后声明了一个变量，像这样：</p>
 
-<p><code>objc B.h
-typedef void(^Blo)(NSString *s1,UIColor *c);
-@property (nonatomic, copy) Blo block;
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">typedef</span> <span class="nf">void</span><span class="p">(</span><span class="o">^</span><span class="n">Blo</span><span class="p">)(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="bp">UIColor</span> <span class="o">*</span><span class="n">c</span><span class="p">);</span>
+<span class="lineno">2</span> <span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">copy</span><span class="p">)</span> <span class="n">Blo</span> <span class="n">block</span><span class="p">;</span></code></pre></div>
 
 <p>然后我们在页面A当中有这么一段代码：</p>
 
-<p><code>objc A.m
-ViewController *b = [[ViewController alloc]init];
-//
-__weak  ViewController *wself = self;
-b.block = ^(NSString *s1,UIColor *c){
-    NSLog(@"%@",s1);
-    wself.view.backgroundColor = c;
-};
-[self.navigationController pushViewController:b animated:true];
-</code><br />
-然后在页面B的任意地方我们调用block变量，像这样：</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">ViewController</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ViewController</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="c1">//</span>
+<span class="lineno">3</span> <span class="k">__weak</span>  <span class="n">ViewController</span> <span class="o">*</span><span class="n">wself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">4</span> <span class="n">b</span><span class="p">.</span><span class="n">block</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span><span class="bp">UIColor</span> <span class="o">*</span><span class="n">c</span><span class="p">){</span>
+<span class="lineno">5</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">);</span>
+<span class="lineno">6</span>     <span class="n">wself</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+<span class="lineno">7</span> <span class="p">};</span>
+<span class="lineno">8</span> <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">navigationController</span> <span class="nl">pushViewController</span><span class="p">:</span><span class="n">b</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span></code></pre></div>
 
-<pre><code>self.block(@"str",[UIColor redColor]);
-</code></pre>
+<p>然后在页面B的任意地方我们调用block变量，像这样：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="nb">self</span><span class="p">.</span><span class="n">block</span><span class="p">(</span><span class="s">@&quot;str&quot;</span><span class="p">,[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">]);</span></code></pre></div>
 
 <p>都会在A页面中调用B页面传过来的参数，在A页面进行操作，对控制器A进行改变，这样的做法通常用做 控制器 <strong>反向传值</strong>。</p>
 
@@ -669,8 +689,7 @@ b.block = ^(NSString *s1,UIColor *c){
   <li>在这里有一点需要注意就是Block的使用引起的循环引用。如果在Block中使用附有<code>__strong</code>修饰符的对象类型自动变量，那么当Block从栈复制到堆时，改对象为Block所有。这样容易引起循环引用，从而发生内存泄漏，然而我们只需要保证当前控制器也就是self在需要释放的时候正确释放就可以，所以我们再来看上面那段代码：</li>
 </ul>
 
-<pre><code>__weak  ViewController *wself = self;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">__weak</span>  <span class="n">ViewController</span> <span class="o">*</span><span class="n">wself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span></code></pre></div>
 
 <p>我们定义一个<code>wself</code>变量并加上<code>__weak</code>修饰符，在Block代码块中，所有需要self的地方都用wself来替代。这样就不会增加引用计数，所以Block持有self对象也就不会造成循环引用，从而造成内存泄漏。<br />
 不管是将Block当作函数参数，还是用来反向传值，其实都是对Block的本质，也就是“带有自动变量的匿名函数”的两个修饰，“带有自动变量”、“匿名函数”这两个特性 的应用。</p>
@@ -727,7 +746,7 @@ b.block = ^(NSString *s1,UIColor *c){
 <div class="widget_title"><h3>Share this post</h3></div>
 <div class="tb_widget_weibo clearfix">
   <!-- Duoshuo Share Buttons -->
-  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/block-block" data-title="关于Block代码块" data-images="/images/head-800x400/-48.png" data-content="本文主要来阐述下Block是什么？" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/block-block.html">
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/block-block" data-title="关于Block代码块" data-images="/images/head-800x400/-48.png" data-content="本文主要来阐述下Block是个什么玩意" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/block-block.html">
       <div class="ds-share-inline alignleft">
         <ul  class="ds-share-icons-16">
 
@@ -762,7 +781,7 @@ b.block = ^(NSString *s1,UIColor *c){
   	window._bd_share_config = {
   		common : {
   			bdText : '关于Block代码块',
-  			bdDesc : '本文主要来阐述下Block是什么？',
+  			bdDesc : '本文主要来阐述下Block是个什么玩意',
   			bdUrl : 'http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/block-block.html',
   			bdPic : '/images/head-800x400/-48.png'
   		},
@@ -852,8 +871,6 @@ b.block = ^(NSString *s1,UIColor *c){
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -887,6 +904,44 @@ b.block = ^(NSString *s1,UIColor *c){
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

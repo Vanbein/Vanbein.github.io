@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -484,7 +521,7 @@ ds.charset = 'UTF-8';
                   <span class="meta_date">Dec 17, 2015</span>
                   <span class="meta_author">Vanbein</span>
                   
-                  <span class="meta_tags"> <u>iOS</u> <u>delegate、block、NSNotification</u> 
+                  <span class="meta_tags"> <u>iOS</u> <u>delegate</u> <u>block</u> <u>NSNotification</u> 
                   
                 </div><!-- End Full meta -->
                 <!-- Entry content -->
@@ -513,19 +550,18 @@ ds.charset = 'UTF-8';
 
 <p>ARC下这样防止：</p>
 
-<pre><code class="language-objc">__weak typeof(self) weakSelf = self;
-  [yourBlock:^(NSArray *repeatedArray, NSArray *incompleteArray) {
-       [weakSelf doSomething];
-    }];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">__weak</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">weakSelf</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">2</span>   <span class="p">[</span><span class="nl">yourBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">repeatedArray</span><span class="p">,</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">incompleteArray</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>        <span class="p">[</span><span class="n">weakSelf</span> <span class="n">doSomething</span><span class="p">];</span>
+<span class="lineno">4</span>     <span class="p">}];</span></code></pre></div>
 
 <p>非ARC</p>
 
-<pre><code class="language-objc">__block typeof(self) weakSelf = self;
-  [yourBlock:^(NSArray *repeatedArray, NSArray *incompleteArray) {
-       [weakSelf doSomething];
-    }];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">weakSelf</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">2</span>   <span class="p">[</span><span class="nl">yourBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">repeatedArray</span><span class="p">,</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">incompleteArray</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>        <span class="p">[</span><span class="n">weakSelf</span> <span class="n">doSomething</span><span class="p">];</span>
+<span class="lineno">4</span>     <span class="p">}];</span></code></pre></div>
+
 
                 </div><!-- End entry content -->
                 <div class="bottom_wrapper"><!-- bottom tags and categories -->
@@ -536,7 +572,11 @@ ds.charset = 'UTF-8';
                     
                     <a href="/tags/#iOS">iOS</a>
                     
-                    <a href="/tags/#delegate、block、NSNotification">delegate、block、NSNotification</a>
+                    <a href="/tags/#delegate">delegate</a>
+                    
+                    <a href="/tags/#block">block</a>
+                    
+                    <a href="/tags/#NSNotification">NSNotification</a>
                     
                     
                   </div><!-- End Entry tags -->
@@ -679,8 +719,6 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -714,6 +752,44 @@ ds.charset = 'UTF-8';
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

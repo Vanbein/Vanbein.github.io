@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -515,27 +552,24 @@ ds.charset = 'UTF-8';
 
 <p>线程一启动，就会在线程thread中执行self的run方法</p>
 
-<pre><code class="language-objc">// 1.创建线程
-NSThread *thread = [[NSThread alloc] initWithTarget:selfselector:@selector(run) object:nil];
-// 2.设置线程的优先级(0.0 - 1.0，1.0最高级)  
-thread.threadPriority = 1; 
-// 3.启动线程  
-[thread start];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 1.创建线程</span>
+<span class="lineno">2</span> <span class="bp">NSThread</span> <span class="o">*</span><span class="kr">thread</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSThread</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithTarget</span><span class="p">:</span><span class="nl">selfselector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">// 2.设置线程的优先级(0.0 - 1.0，1.0最高级)  </span>
+<span class="lineno">4</span> <span class="kr">thread</span><span class="p">.</span><span class="n">threadPriority</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+<span class="lineno">5</span> <span class="c1">// 3.启动线程  </span>
+<span class="lineno">6</span> <span class="p">[</span><span class="kr">thread</span> <span class="n">start</span><span class="p">];</span></code></pre></div>
 
 <p><strong>2. 自动开启线程</strong></p>
 
 <p><code>detachNewThreadSelector:</code> 不用手动调用start方法, 系统会自动启动  没有返回值, 不能对线程进行更多的设置</p>
 
-<pre><code class="language-objc">[NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="bp">NSThread</span> <span class="nl">detachNewThreadSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="nl">toTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
 
 <p><strong>3. 隐式创建并启动线程</strong></p>
 
 <p>系统会自动创建一个子线程, 并且在子线程中自动执行self的@selector方法</p>
 
-<pre><code class="language-objc">[self performSelectorInBackground:@selector(run) withObject:nil];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelectorInBackground</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
 
 <h3 id="nsthread-1">NSThread用法</h3>
 
@@ -543,26 +577,23 @@ thread.threadPriority = 1;
   <li>主线程相关用法</li>
 </ul>
 
-<pre><code class="language-objc">+ (NSThread *)mainThread; // 获得主线程
-- (BOOL)isMainThread; // 是否为主线程
-+ (BOOL)isMainThread; // 是否为主线程
-NSThread *main = [NSThread mainThread];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">+</span> <span class="p">(</span><span class="bp">NSThread</span> <span class="o">*</span><span class="p">)</span><span class="nf">mainThread</span><span class="p">;</span> <span class="c1">// 获得主线程</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isMainThread</span><span class="p">;</span> <span class="c1">// 是否为主线程</span>
+<span class="lineno">3</span> <span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isMainThread</span><span class="p">;</span> <span class="c1">// 是否为主线程</span>
+<span class="lineno">4</span> <span class="bp">NSThread</span> <span class="o">*</span><span class="n">main</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSThread</span> <span class="n">mainThread</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>获得当前线程</li>
 </ul>
 
-<pre><code class="language-objc">NSThread *current = [NSThread currentThread];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSThread</span> <span class="o">*</span><span class="n">current</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSThread</span> <span class="n">currentThread</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>获取线程的名字</li>
 </ul>
 
-<pre><code class="language-objc">- (void)setName:(NSString *)name;
-- (NSString *)name;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">name</span><span class="p">;</span></code></pre></div>
 
 <h2 id="section-1">三、线程的状态</h2>
 
@@ -576,27 +607,24 @@ NSThread *main = [NSThread mainThread];
 
 <h4 id="section-2">启动线程</h4>
 
-<pre><code class="language-objc">- (void)start; 
-// 进入就绪状态 -&gt; 运行状态。当线程任务执行完毕，自动进入死亡状态
-阻塞（暂停）线程
-// sleep方法是一个类方法, 所以说明在哪个线程中调用, 就会给哪个线程设置暂时
-+ (void)sleepUntilDate:(NSDate *)date;
-+ (void)sleepForTimeInterval:(NSTimeInterval)time;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">start</span><span class="p">;</span> 
+<span class="lineno">2</span> <span class="c1">// 进入就绪状态 -&gt; 运行状态。当线程任务执行完毕，自动进入死亡状态</span>
+<span class="lineno">3</span> <span class="err">阻塞（暂停）线程</span>
+<span class="lineno">4</span> <span class="c1">// sleep方法是一个类方法, 所以说明在哪个线程中调用, 就会给哪个线程设置暂时</span>
+<span class="lineno">5</span> <span class="o">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">sleepUntilDate</span><span class="p">:(</span><span class="bp">NSDate</span> <span class="o">*</span><span class="p">)</span><span class="n">date</span><span class="p">;</span>
+<span class="lineno">6</span> <span class="p">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sleepForTimeInterval:</span><span class="p">(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">time</span><span class="p">;</span></code></pre></div>
 
 <h4 id="section-3">阻塞（暂停）线程</h4>
 
-<pre><code class="language-objc">// 暂停1s  
-[NSThread sleepForTimeInterval:1]; 
-[NSThread sleepUntilDate:[NSDate dateWithTimeInterval:1 sinceDate:[NSDate date]]];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 暂停1s  </span>
+<span class="lineno">2</span> <span class="p">[</span><span class="bp">NSThread</span> <span class="nl">sleepForTimeInterval</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span> 
+<span class="lineno">3</span> <span class="p">[</span><span class="bp">NSThread</span> <span class="nl">sleepUntilDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="nl">dateWithTimeInterval</span><span class="p">:</span><span class="mi">1</span> <span class="nl">sinceDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]]];</span></code></pre></div>
 
 <h4 id="section-4">强制停止线程</h4>
 <p>注意：一旦线程停止（死亡）了，就不能再次开启任务</p>
 
-<pre><code class="language-objc">// 进入死亡状态
-+ (void)exit;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 进入死亡状态</span>
+<span class="lineno">2</span> <span class="p">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">exit</span><span class="p">;</span></code></pre></div>
 
 <h2 id="section-5">多线程的安全隐患及解决措施</h2>
 
@@ -622,12 +650,11 @@ NSThread *main = [NSThread mainThread];
   </li>
 </ul>
 
-<pre><code class="language-objc">// (锁对象self)
-@synchronized
-{ 
-  // 需要锁定的代码      
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// (锁对象self)</span>
+<span class="lineno">2</span> <span class="k">@synchronized</span>
+<span class="lineno">3</span> <span class="p">{</span> 
+<span class="lineno">4</span>   <span class="c1">// 需要锁定的代码      </span>
+<span class="lineno">5</span> <span class="p">}</span></code></pre></div>
 
 <p>只要被 <code>@synchronized</code>的{}包裹起来的代码, 同一时刻就只能被一个线程执行</p>
 
@@ -725,22 +752,20 @@ NSThread *main = [NSThread mainThread];
   </li>
 </ul>
 
-<pre><code class="language-objc">[self performSelector:@selector(run) withObject:nil];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>在主线程</li>
 </ul>
 
-<pre><code class="language-objc">[self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:YES];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelectorOnMainThread</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">waitUntilDone</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span></code></pre></div>
 
 <ul>
   <li>在指定线程</li>
 </ul>
 
-<pre><code class="language-objc">[self performSelector:@selector(run) onThread:thread withObject:nil waitUntilDone:YES];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="nl">onThread</span><span class="p">:</span><span class="kr">thread</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">waitUntilDone</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span></code></pre></div>
+
 <blockquote>
   <p>waitUntilDone的含义: <br />
 如果传入的是YES: 那么会等到主线程中的方法执行完毕, 才会继续执行下面其他行的代码 <br />
@@ -904,8 +929,6 @@ NSThread *main = [NSThread mainThread];
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -939,6 +962,44 @@ NSThread *main = [NSThread mainThread];
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

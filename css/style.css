@@ -6,7 +6,8 @@
 3. Forms
 4. Wrapper
 5. Columns
-6. Wide slider
+6. Wid/
+e slider
 7. Content slider
 8. Panel title
 9. Page title
@@ -178,6 +179,18 @@ code {
   padding-left: 0px;
   padding-right: 0px;
 }
+p code {
+  /* 行间代码 */
+  padding-left: 2px;
+  padding-right: 2px;
+  /*padding-top: 8px;*/
+  /*padding-bottom: 1px;*/
+  /*background-color: #d9d9d9;
+  color: #a6412b;*/
+  background-color: #f3f3f3;
+  color: #f05656;
+}
+
 pre {
     overflow: auto;
     display: block;
@@ -190,9 +203,14 @@ pre {
     word-wrap: break-word;
     background-color: #f0f0f0;
 
-    border-style:dotted dotted dotted solid;
+/*    border-style:dotted dotted dotted solid;
     border-width:0px 0px 0px 3px;
-    border-color:#f8a450;
+    border-color:#f8a450;*/
+    /* 代码块虚线框 */
+    border-style:dotted dotted dotted dotted;
+    /*border-width:1px 1px 1px 1px;*/
+    border-color:#50554e;
+    border-width:0px 0px 0px 0px;
 }
 code,
 kbd,
@@ -258,11 +276,17 @@ blockquote footer {
     font-style: italic
 }*/
 blockquote{
-  background: #fbfbfb;
-  padding: 0px 0px 0px 1em;
+  /* 引用块 */
+  background: #f0f0f0;
+  /*overflow: auto;
+  display: block;
+  /* padding - 引用块内边距 */
+  padding: 0.5em 0em 0.5em 1em;
+  line-height: 1.8em;
+  /* margin - 引用块外边距 */
   margin: 1em 0em 1em 0em;
   border-style:dotted dotted dotted solid;
-  border-width:0px 0px 0px 5px;
+  border-width:0px 0px 0px 3px;
   border-color:#f85050;
 }
 figure {

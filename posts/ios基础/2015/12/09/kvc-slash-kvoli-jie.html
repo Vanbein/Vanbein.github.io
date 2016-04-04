@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -491,8 +528,7 @@ ds.charset = 'UTF-8';
                 <div class="entry_content">
                   <!-- Entry title -->
                   <h1 class="entry_title">KVC/KVO理解</h1><!-- End Entry title -->
-                  <p>KVC 与 KVO 是 Objective C 的关键概念，是必须要理解的东西<br />
-<!--more--></p>
+                  <p>KVC 与 KVO 是 Objective C 的关键概念，是必须要理解的东西</p>
 
 <p>下面是实例讲解。</p>
 
@@ -509,83 +545,78 @@ ds.charset = 'UTF-8';
 
 <p>如下面的例子：</p>
 
-<p><code>objc Person.h
-#import &lt;Foundation/Foundation.h&gt;
-//
-@interface Person : NSObject
-//
-@property(nonatomic, strong)NSString *name;
-@property(nonatomic, strong)NSString *address;
-@property(nonatomic, strong)Person *spouse;
-//
-@end
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// Person.h</span>
+<span class="lineno"> 2</span> <span class="cp">#import &lt;Foundation/Foundation.h&gt;</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span> <span class="k">@interface</span> <span class="nc">Person</span> : <span class="bp">NSObject</span>
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="k">@property</span><span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="k">@property</span><span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">address</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="k">@property</span><span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span><span class="n">Person</span> <span class="o">*</span><span class="n">spouse</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="c1">//</span>
+<span class="lineno">10</span> <span class="k">@end</span></code></pre></div>
 
-<p><code>objc ViewController.m
-- (void)viewDidLoad {
-    [super viewDidLoad];
-//
-    Person *person = [[Person alloc] init];
-    person.name = @"Jack";
-    person.address = @"chengdu";
-//    
-    [self changePerson:person Name:@"Kevin"];
-}
-//
-- (void)changePerson:(Person *)person Name:(NSString *)newName{
-	// using the KVC accessor (getter) method
-    NSString *originalName = [person valueForKey: @"name"];
-//
-	// using the KVC  accessor (setter) method.    
-    [person setValue:newName forKey:@"name"];
-//   
-    NSLog(@"changed %@`s name to: %@", originalName, person.name);
-//输出：changed Jack`s name to: Kevin    
-}
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// ViewController.m</span>
+<span class="lineno"> 2</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span>     <span class="n">Person</span> <span class="o">*</span><span class="n">person</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Person</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno"> 6</span>     <span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">@&quot;Jack&quot;</span><span class="p">;</span>
+<span class="lineno"> 7</span>     <span class="n">person</span><span class="p">.</span><span class="n">address</span> <span class="o">=</span> <span class="s">@&quot;chengdu&quot;</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="c1">//    </span>
+<span class="lineno"> 9</span>     <span class="p">[</span><span class="nb">self</span> <span class="nl">changePerson</span><span class="p">:</span><span class="n">person</span> <span class="nl">Name</span><span class="p">:</span><span class="s">@&quot;Kevin&quot;</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="p">}</span>
+<span class="lineno">11</span> <span class="c1">//</span>
+<span class="lineno">12</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">changePerson:</span><span class="p">(</span><span class="n">Person</span> <span class="o">*</span><span class="p">)</span><span class="nv">person</span> <span class="nf">Name:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">newName</span><span class="p">{</span>
+<span class="lineno">13</span> 	<span class="c1">// using the KVC accessor (getter) method</span>
+<span class="lineno">14</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">originalName</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span> <span class="nl">valueForKey</span><span class="p">:</span> <span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno">15</span> <span class="c1">//</span>
+<span class="lineno">16</span> 	<span class="c1">// using the KVC  accessor (setter) method.    </span>
+<span class="lineno">17</span>     <span class="p">[</span><span class="n">person</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">newName</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno">18</span> <span class="c1">//   </span>
+<span class="lineno">19</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;changed %@`s name to: %@&quot;</span><span class="p">,</span> <span class="n">originalName</span><span class="p">,</span> <span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+<span class="lineno">20</span> <span class="c1">//输出：changed Jack`s name to: Kevin    </span>
+<span class="lineno">21</span> <span class="p">}</span></code></pre></div>
 
 <p>现在，如果 Person 有另外一个 key 配偶（spouse），spouse 的 key 值是另一个 Person 对象，用 KVC 可以这样写：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad {
-    [super viewDidLoad];
-//
-    Person *person = [[Person alloc] init];
-    person.name = @"Jack";
-    person.address = @"chengdu";
-//    
-    [self changePerson:person Name:@"Kevin"];
-//
-    Person *spouse = [[Person alloc] init];
-    spouse.name = @"Rose";
-    spouse.address = @"chengdu";
-//    
-    person.spouse = spouse;
-//    
-    [self logMarriage:person];
-}
-//
-- (void) logMarriage:(Person *)person{
-    // just using the accessor again, same as example above
-    NSString *personName = [person valueForKey:@"name"];  
-//
-	// this line is different, because it is using 
-	// a "key path" instead of a normal "key"
-    NSString *spouseName = [person valueForKeyPath:@"spouse.name"];
-//    
-    NSLog(@"%@ is happliy married to %@", personName, spouseName);
-	//
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span>     <span class="n">Person</span> <span class="o">*</span><span class="n">person</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Person</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno"> 5</span>     <span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">@&quot;Jack&quot;</span><span class="p">;</span>
+<span class="lineno"> 6</span>     <span class="n">person</span><span class="p">.</span><span class="n">address</span> <span class="o">=</span> <span class="s">@&quot;chengdu&quot;</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="c1">//    </span>
+<span class="lineno"> 8</span>     <span class="p">[</span><span class="nb">self</span> <span class="nl">changePerson</span><span class="p">:</span><span class="n">person</span> <span class="nl">Name</span><span class="p">:</span><span class="s">@&quot;Kevin&quot;</span><span class="p">];</span>
+<span class="lineno"> 9</span> <span class="c1">//</span>
+<span class="lineno">10</span>     <span class="n">Person</span> <span class="o">*</span><span class="n">spouse</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Person</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">11</span>     <span class="n">spouse</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">@&quot;Rose&quot;</span><span class="p">;</span>
+<span class="lineno">12</span>     <span class="n">spouse</span><span class="p">.</span><span class="n">address</span> <span class="o">=</span> <span class="s">@&quot;chengdu&quot;</span><span class="p">;</span>
+<span class="lineno">13</span> <span class="c1">//    </span>
+<span class="lineno">14</span>     <span class="n">person</span><span class="p">.</span><span class="n">spouse</span> <span class="o">=</span> <span class="n">spouse</span><span class="p">;</span>
+<span class="lineno">15</span> <span class="c1">//    </span>
+<span class="lineno">16</span>     <span class="p">[</span><span class="nb">self</span> <span class="nl">logMarriage</span><span class="p">:</span><span class="n">person</span><span class="p">];</span>
+<span class="lineno">17</span> <span class="p">}</span>
+<span class="lineno">18</span> <span class="c1">//</span>
+<span class="lineno">19</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">logMarriage:</span><span class="p">(</span><span class="n">Person</span> <span class="o">*</span><span class="p">)</span><span class="nv">person</span><span class="p">{</span>
+<span class="lineno">20</span>     <span class="c1">// just using the accessor again, same as example above</span>
+<span class="lineno">21</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">personName</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>  
+<span class="lineno">22</span> <span class="c1">//</span>
+<span class="lineno">23</span> 	<span class="c1">// this line is different, because it is using </span>
+<span class="lineno">24</span> 	<span class="c1">// a &quot;key path&quot; instead of a normal &quot;key&quot;</span>
+<span class="lineno">25</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">spouseName</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;spouse.name&quot;</span><span class="p">];</span>
+<span class="lineno">26</span> <span class="c1">//    </span>
+<span class="lineno">27</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@ is happliy married to %@&quot;</span><span class="p">,</span> <span class="n">personName</span><span class="p">,</span> <span class="n">spouseName</span><span class="p">);</span>
+<span class="lineno">28</span> 	<span class="c1">//</span>
+<span class="lineno">29</span> <span class="p">}</span></code></pre></div>
 
 <p><code>key</code> 与 <code>key path</code> 要区分开来，<code>key</code> 可以从一个对象中获取值，而 <code>key path</code> 可以将多个 key 用点号 “.” 分割连接起来，比如上面例子中的：</p>
 
-<pre><code>[p valueForKeyPath:@"spouse.name"];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">p</span> <span class="nl">valueForKeyPath</span><span class="p">:</span><span class="s">@&quot;spouse.name&quot;</span><span class="p">];</span></code></pre></div>
 
 <p>相当于这样……</p>
 
-<pre><code>[[p valueForKey:@"spouse"] valueForKey:@"name"];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[[</span><span class="n">p</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="s">@&quot;spouse&quot;</span><span class="p">]</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span></code></pre></div>
 
 <p>好了，以上是 KVC 的基本知识，接着看看 KVO。</p>
 
@@ -607,43 +638,43 @@ ds.charset = 'UTF-8';
 
 <p>举个例子如下：</p>
 
-<pre><code class="language-objc">static NSString *const KVO_CONTEXT_ADDRESS_CHANGED = @"KVO_CONTEXT_ADDRESS_CHANGED";
-// 
-@implementation ViewController
-// 
-- (void)watchPersonForChangeOfAddress:(Person *)person
-{
-    // this begins the observing
-    [person addObserver:self
-        forKeyPath:@"address"
-           options:0
-           context:(__bridge void * _Nullable)(KVO_CONTEXT_ADDRESS_CHANGED)];
-    //
-    // keep a record of all the people being observed,
-    // because we need to stop observing them in dealloc
-    [m_observedPeople addObject:person];
-}
-//
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSString *,id&gt; *)change context:(void *)context{
-//    
-    if(context == (__bridge void * _Nullable)(KVO_CONTEXT_ADDRESS_CHANGED)) {
-        NSString *name = [object valueForKey:@"name"];
-        NSString *address = [object valueForKey:@"address"];
-        NSLog(@"%@ has a new address: %@", name, address);
-    }
-}
-//
-- (void)dealloc{
-//    
-    // must stop observing everything before this object is
-    // deallocated, otherwise it will cause crashes
-    for(Person *person in m_observedPeople){
-        [person removeObserver:self forKeyPath:@"address"];
-    }
-    m_observedPeople = nil;
-}
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">static</span> <span class="bp">NSString</span> <span class="o">*</span><span class="k">const</span> <span class="n">KVO_CONTEXT_ADDRESS_CHANGED</span> <span class="o">=</span> <span class="s">@&quot;KVO_CONTEXT_ADDRESS_CHANGED&quot;</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="c1">// </span>
+<span class="lineno"> 3</span> <span class="k">@implementation</span> <span class="nc">ViewController</span>
+<span class="lineno"> 4</span> <span class="c1">// </span>
+<span class="lineno"> 5</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">watchPersonForChangeOfAddress:</span><span class="p">(</span><span class="n">Person</span> <span class="o">*</span><span class="p">)</span><span class="nv">person</span>
+<span class="lineno"> 6</span> <span class="p">{</span>
+<span class="lineno"> 7</span>     <span class="c1">// this begins the observing</span>
+<span class="lineno"> 8</span>     <span class="p">[</span><span class="n">person</span> <span class="nl">addObserver</span><span class="p">:</span><span class="nb">self</span>
+<span class="lineno"> 9</span>         <span class="nl">forKeyPath</span><span class="p">:</span><span class="s">@&quot;address&quot;</span>
+<span class="lineno">10</span>            <span class="nl">options</span><span class="p">:</span><span class="mi">0</span>
+<span class="lineno">11</span>            <span class="nl">context</span><span class="p">:(</span><span class="k">__bridge</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">_Nullable</span><span class="p">)(</span><span class="n">KVO_CONTEXT_ADDRESS_CHANGED</span><span class="p">)];</span>
+<span class="lineno">12</span>     <span class="c1">//</span>
+<span class="lineno">13</span>     <span class="c1">// keep a record of all the people being observed,</span>
+<span class="lineno">14</span>     <span class="c1">// because we need to stop observing them in dealloc</span>
+<span class="lineno">15</span>     <span class="p">[</span><span class="n">m_observedPeople</span> <span class="nl">addObject</span><span class="p">:</span><span class="n">person</span><span class="p">];</span>
+<span class="lineno">16</span> <span class="p">}</span>
+<span class="lineno">17</span> <span class="c1">//</span>
+<span class="lineno">18</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">observeValueForKeyPath:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">keyPath</span> <span class="nf">ofObject:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">object</span> <span class="nf">change:</span><span class="p">(</span><span class="bp">NSDictionary</span><span class="o">&lt;</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">,</span><span class="kt">id</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">change</span> <span class="nf">context:</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="nv">context</span><span class="p">{</span>
+<span class="lineno">19</span> <span class="c1">//    </span>
+<span class="lineno">20</span>     <span class="k">if</span><span class="p">(</span><span class="n">context</span> <span class="o">==</span> <span class="p">(</span><span class="k">__bridge</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">_Nullable</span><span class="p">)(</span><span class="n">KVO_CONTEXT_ADDRESS_CHANGED</span><span class="p">))</span> <span class="p">{</span>
+<span class="lineno">21</span>         <span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">object</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno">22</span>         <span class="bp">NSString</span> <span class="o">*</span><span class="n">address</span> <span class="o">=</span> <span class="p">[</span><span class="n">object</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="s">@&quot;address&quot;</span><span class="p">];</span>
+<span class="lineno">23</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@ has a new address: %@&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+<span class="lineno">24</span>     <span class="p">}</span>
+<span class="lineno">25</span> <span class="p">}</span>
+<span class="lineno">26</span> <span class="c1">//</span>
+<span class="lineno">27</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">dealloc</span><span class="p">{</span>
+<span class="lineno">28</span> <span class="c1">//    </span>
+<span class="lineno">29</span>     <span class="c1">// must stop observing everything before this object is</span>
+<span class="lineno">30</span>     <span class="c1">// deallocated, otherwise it will cause crashes</span>
+<span class="lineno">31</span>     <span class="k">for</span><span class="p">(</span><span class="n">Person</span> <span class="o">*</span><span class="n">person</span> <span class="k">in</span> <span class="n">m_observedPeople</span><span class="p">){</span>
+<span class="lineno">32</span>         <span class="p">[</span><span class="n">person</span> <span class="nl">removeObserver</span><span class="p">:</span><span class="nb">self</span> <span class="nl">forKeyPath</span><span class="p">:</span><span class="s">@&quot;address&quot;</span><span class="p">];</span>
+<span class="lineno">33</span>     <span class="p">}</span>
+<span class="lineno">34</span>     <span class="n">m_observedPeople</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno">35</span> <span class="p">}</span>
+<span class="lineno">36</span> <span class="k">@end</span></code></pre></div>
+
 <p>在这个例子中，当 person 的 aaddress 一旦发生改变，就会 <code>NSLog(@"%@ has a new address: %@", name, address);</code>，这就是 KVO 的作用，它通过 <code>key path</code> 观察对象的值，当值发生变化的时候会收到通知。</p>
 
 <p>附上本文代码的github链接：<a href="https://github.com/XcodeTalk/KVC-KVO">KVC/KVO理解</a></p>
@@ -805,8 +836,6 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -840,6 +869,44 @@ ds.charset = 'UTF-8';
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

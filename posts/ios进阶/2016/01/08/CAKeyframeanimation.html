@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -522,93 +559,92 @@ ds.charset = 'UTF-8';
 
 <h3 id="section-2">二、几个简单的例子</h3>
 
-<pre><code class="language-objc">//矩形轨迹动画
-- (CAKeyframeAnimation *)rectAnimation{ 
-    //1. 创建核心动画
-    CAKeyframeAnimation *rectAnimation = [CAKeyframeAnimation animation];  
-    //平移
-    rectAnimation.keyPath = @"position";
-    //2. 要执行什么动画
-    NSValue *value1 = [NSValue valueWithCGPoint:CGPointMake(50, 50)];
-    NSValue *value2 = [NSValue valueWithCGPoint:CGPointMake(50, 120)];
-    NSValue *value3 = [NSValue valueWithCGPoint:CGPointMake(250, 120)];
-    NSValue *value4 = [NSValue valueWithCGPoint:CGPointMake(250, 50)];
-    NSValue *value5 = [NSValue valueWithCGPoint:CGPointMake(50, 50)];
-    rectAnimation.values = @[value1, value2, value3, value4, value5];
-    //2.1 设置动画执行完毕后不删除动画
-    rectAnimation.removedOnCompletion = NO;
-    //2.2 设置保存动画的最新状态
-    rectAnimation.fillMode = kCAFillModeForwards;
-    //2.3 设置动画执行时间
-    rectAnimation.duration = 2.0;
-    //2.4 设置动画节奏
-    rectAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-//    rectAnimation.keyTimes = @[@0.0, @0.1, @0.8, @0.9, @1.0];
-    rectAnimation.repeatCount = MAXFLOAT;
-    //2.5. 设置代理
-    rectAnimation.delegate = self;    
-    return rectAnimation;
-}
-//
-//圆周动画，
-- (CAKeyframeAnimation *)roundAnimation{
-    //1. 创建核心动画
-    CAKeyframeAnimation *roundAnimation = [CAKeyframeAnimation animation];
-    //平移
-    roundAnimation.keyPath = @"position";
-    //2. 要执行什么动画
-    //2.1 创建一条路径path
-    CGMutablePathRef path = CGPathCreateMutable();
-    //2.2 设置一个圆的路径
-    CGPathAddEllipseInRect(path, NULL, CGRectMake(50, 200, 100, 100));
-    roundAnimation.path=path;
-    //2.3 有creat 就一定要release
-    CGPathRelease(path);
-    //3.1 设置动画执行完毕后不删除动画
-    roundAnimation.removedOnCompletion = NO;
-//    roundAnimation.autoreverses = NO;
-    //3.2 设置保存动画的最新状态
-    roundAnimation.fillMode = kCAFillModeForwards;
-    //3.3 设置动画执行时间
-    roundAnimation.duration = 3.0;
-    roundAnimation.repeatCount = MAXFLOAT;
-    //3.4 设置动画节奏
-//    roundAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    //    rectAnimation.keyTimes = @[@0.0, @0.1, @0.8, @0.9, @1.0];
-    //3.5. 设置代理
-    roundAnimation.delegate = self;
-    return roundAnimation;
-}
-//
-//抖动动画
-- (CAKeyframeAnimation *)shakeAnimation{
-    //1. 创建核心动画
-    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
-    shakeAnimation.keyPath = @"transform.rotation";//transform.rotation
-    //设置动画时间
-    shakeAnimation.duration = 0.2;
-    //设置图标抖动弧度
-    //把度数转换为弧度  度数/180*M_PI
-    //#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
-    shakeAnimation.values = @[@(-DEGREES_TO_RADIANS(4)),@(DEGREES_TO_RADIANS(4)),@(-DEGREES_TO_RADIANS(4))];
-    //设置动画的重复次数(设置为最大值)
-    shakeAnimation.repeatCount = MAXFLOAT;
-    shakeAnimation.fillMode = kCAFillModeForwards;
-    shakeAnimation.removedOnCompletion = NO;
-    shakeAnimation.delegate = self;
-    return shakeAnimation;
-}
-//
-//点击屏幕添加动画
-- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event{
-	//矩形动画
-    [self.view1.layer addAnimation:[self rectAnimation] forKey:@"rect"];
- 	//圆周
-    [self.view2.layer addAnimation:[self roundAnimation] forKey:@"round"];
-	//抖动
-    [self.view3.layer addAnimation:[self shakeAnimation] forKey:@"shake"];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//矩形轨迹动画</span>
+<span class="lineno"> 2</span> <span class="p">-</span> <span class="p">(</span><span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nf">rectAnimation</span><span class="p">{</span> 
+<span class="lineno"> 3</span>     <span class="c1">//1. 创建核心动画</span>
+<span class="lineno"> 4</span>     <span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">rectAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CAKeyframeAnimation</span> <span class="n">animation</span><span class="p">];</span>  
+<span class="lineno"> 5</span>     <span class="c1">//平移</span>
+<span class="lineno"> 6</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">keyPath</span> <span class="o">=</span> <span class="s">@&quot;position&quot;</span><span class="p">;</span>
+<span class="lineno"> 7</span>     <span class="c1">//2. 要执行什么动画</span>
+<span class="lineno"> 8</span>     <span class="bp">NSValue</span> <span class="o">*</span><span class="n">value1</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSValue</span> <span class="nl">valueWithCGPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)];</span>
+<span class="lineno"> 9</span>     <span class="bp">NSValue</span> <span class="o">*</span><span class="n">value2</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSValue</span> <span class="nl">valueWithCGPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">120</span><span class="p">)];</span>
+<span class="lineno">10</span>     <span class="bp">NSValue</span> <span class="o">*</span><span class="n">value3</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSValue</span> <span class="nl">valueWithCGPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">120</span><span class="p">)];</span>
+<span class="lineno">11</span>     <span class="bp">NSValue</span> <span class="o">*</span><span class="n">value4</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSValue</span> <span class="nl">valueWithCGPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">50</span><span class="p">)];</span>
+<span class="lineno">12</span>     <span class="bp">NSValue</span> <span class="o">*</span><span class="n">value5</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSValue</span> <span class="nl">valueWithCGPoint</span><span class="p">:</span><span class="n">CGPointMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)];</span>
+<span class="lineno">13</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="l">@[</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="n">value3</span><span class="p">,</span> <span class="n">value4</span><span class="p">,</span> <span class="n">value5</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno">14</span>     <span class="c1">//2.1 设置动画执行完毕后不删除动画</span>
+<span class="lineno">15</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">16</span>     <span class="c1">//2.2 设置保存动画的最新状态</span>
+<span class="lineno">17</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+<span class="lineno">18</span>     <span class="c1">//2.3 设置动画执行时间</span>
+<span class="lineno">19</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="lineno">20</span>     <span class="c1">//2.4 设置动画节奏</span>
+<span class="lineno">21</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">timingFunction</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CAMediaTimingFunction</span> <span class="nl">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseIn</span><span class="p">];</span>
+<span class="lineno">22</span> <span class="c1">//    rectAnimation.keyTimes = @[@0.0, @0.1, @0.8, @0.9, @1.0];</span>
+<span class="lineno">23</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">MAXFLOAT</span><span class="p">;</span>
+<span class="lineno">24</span>     <span class="c1">//2.5. 设置代理</span>
+<span class="lineno">25</span>     <span class="n">rectAnimation</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>    
+<span class="lineno">26</span>     <span class="k">return</span> <span class="n">rectAnimation</span><span class="p">;</span>
+<span class="lineno">27</span> <span class="p">}</span>
+<span class="lineno">28</span> <span class="c1">//</span>
+<span class="lineno">29</span> <span class="c1">//圆周动画，</span>
+<span class="lineno">30</span> <span class="p">-</span> <span class="p">(</span><span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nf">roundAnimation</span><span class="p">{</span>
+<span class="lineno">31</span>     <span class="c1">//1. 创建核心动画</span>
+<span class="lineno">32</span>     <span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">roundAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CAKeyframeAnimation</span> <span class="n">animation</span><span class="p">];</span>
+<span class="lineno">33</span>     <span class="c1">//平移</span>
+<span class="lineno">34</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">keyPath</span> <span class="o">=</span> <span class="s">@&quot;position&quot;</span><span class="p">;</span>
+<span class="lineno">35</span>     <span class="c1">//2. 要执行什么动画</span>
+<span class="lineno">36</span>     <span class="c1">//2.1 创建一条路径path</span>
+<span class="lineno">37</span>     <span class="n">CGMutablePathRef</span> <span class="n">path</span> <span class="o">=</span> <span class="n">CGPathCreateMutable</span><span class="p">();</span>
+<span class="lineno">38</span>     <span class="c1">//2.2 设置一个圆的路径</span>
+<span class="lineno">39</span>     <span class="n">CGPathAddEllipseInRect</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
+<span class="lineno">40</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">;</span>
+<span class="lineno">41</span>     <span class="c1">//2.3 有creat 就一定要release</span>
+<span class="lineno">42</span>     <span class="n">CGPathRelease</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="lineno">43</span>     <span class="c1">//3.1 设置动画执行完毕后不删除动画</span>
+<span class="lineno">44</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">45</span> <span class="c1">//    roundAnimation.autoreverses = NO;</span>
+<span class="lineno">46</span>     <span class="c1">//3.2 设置保存动画的最新状态</span>
+<span class="lineno">47</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+<span class="lineno">48</span>     <span class="c1">//3.3 设置动画执行时间</span>
+<span class="lineno">49</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+<span class="lineno">50</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">MAXFLOAT</span><span class="p">;</span>
+<span class="lineno">51</span>     <span class="c1">//3.4 设置动画节奏</span>
+<span class="lineno">52</span> <span class="c1">//    roundAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];</span>
+<span class="lineno">53</span>     <span class="c1">//    rectAnimation.keyTimes = @[@0.0, @0.1, @0.8, @0.9, @1.0];</span>
+<span class="lineno">54</span>     <span class="c1">//3.5. 设置代理</span>
+<span class="lineno">55</span>     <span class="n">roundAnimation</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">56</span>     <span class="k">return</span> <span class="n">roundAnimation</span><span class="p">;</span>
+<span class="lineno">57</span> <span class="p">}</span>
+<span class="lineno">58</span> <span class="c1">//</span>
+<span class="lineno">59</span> <span class="c1">//抖动动画</span>
+<span class="lineno">60</span> <span class="p">-</span> <span class="p">(</span><span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nf">shakeAnimation</span><span class="p">{</span>
+<span class="lineno">61</span>     <span class="c1">//1. 创建核心动画</span>
+<span class="lineno">62</span>     <span class="bp">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">shakeAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CAKeyframeAnimation</span> <span class="n">animation</span><span class="p">];</span>
+<span class="lineno">63</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">keyPath</span> <span class="o">=</span> <span class="s">@&quot;transform.rotation&quot;</span><span class="p">;</span><span class="c1">//transform.rotation</span>
+<span class="lineno">64</span>     <span class="c1">//设置动画时间</span>
+<span class="lineno">65</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
+<span class="lineno">66</span>     <span class="c1">//设置图标抖动弧度</span>
+<span class="lineno">67</span>     <span class="c1">//把度数转换为弧度  度数/180*M_PI</span>
+<span class="lineno">68</span>     <span class="c1">//#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)</span>
+<span class="lineno">69</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="l">@[@(</span><span class="o">-</span><span class="n">DEGREES_TO_RADIANS</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="l">)</span><span class="p">,</span><span class="l">@(</span><span class="n">DEGREES_TO_RADIANS</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="l">)</span><span class="p">,</span><span class="l">@(</span><span class="o">-</span><span class="n">DEGREES_TO_RADIANS</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="l">)]</span><span class="p">;</span>
+<span class="lineno">70</span>     <span class="c1">//设置动画的重复次数(设置为最大值)</span>
+<span class="lineno">71</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">MAXFLOAT</span><span class="p">;</span>
+<span class="lineno">72</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+<span class="lineno">73</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">74</span>     <span class="n">shakeAnimation</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">75</span>     <span class="k">return</span> <span class="n">shakeAnimation</span><span class="p">;</span>
+<span class="lineno">76</span> <span class="p">}</span>
+<span class="lineno">77</span> <span class="c1">//</span>
+<span class="lineno">78</span> <span class="c1">//点击屏幕添加动画</span>
+<span class="lineno">79</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan:</span><span class="p">(</span><span class="bp">NSSet</span><span class="o">&lt;</span><span class="bp">UITouch</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent:</span><span class="p">(</span><span class="bp">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span><span class="p">{</span>
+<span class="lineno">80</span> 	<span class="c1">//矩形动画</span>
+<span class="lineno">81</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view1</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addAnimation</span><span class="p">:[</span><span class="nb">self</span> <span class="n">rectAnimation</span><span class="p">]</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;rect&quot;</span><span class="p">];</span>
+<span class="lineno">82</span>  	<span class="c1">//圆周</span>
+<span class="lineno">83</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view2</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addAnimation</span><span class="p">:[</span><span class="nb">self</span> <span class="n">roundAnimation</span><span class="p">]</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;round&quot;</span><span class="p">];</span>
+<span class="lineno">84</span> 	<span class="c1">//抖动</span>
+<span class="lineno">85</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view3</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addAnimation</span><span class="p">:[</span><span class="nb">self</span> <span class="n">shakeAnimation</span><span class="p">]</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;shake&quot;</span><span class="p">];</span>
+<span class="lineno">86</span> <span class="p">}</span></code></pre></div>
 
 <blockquote>
   <p>附本文代码github地址<a href="https://github.com/XcodeTalk/CAKeyframeAnimation">CAKeyframeAnimation</a></p>
@@ -775,8 +811,6 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -810,6 +844,44 @@ ds.charset = 'UTF-8';
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

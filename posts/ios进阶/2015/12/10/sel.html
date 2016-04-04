@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -496,37 +533,36 @@ ds.charset = 'UTF-8';
 <h3 id="section">定义</h3>
 <p>下面是method相关的定义</p>
 
-<pre><code class="language-objc">typedef struct objc_method \*Method;
-//编译器依据类中定义的方法为该类产生一个或更多这种这种结构.
-//一个类的实现可以分散在一个文件中不同部分,同时类别可以分散在不同的模块中.
-//为了处理这个问题,使用一个单独的方法链表 
-struct objc_method {
-    SEL method_name;
-    char \*method_types;
-    IMP method_imp;
-} 
-//
-struct objc_method_list {
-      struct objc_method_list \*obsolete         OBJC2_UNAVAILABLE;
-      int method_count                          OBJC2_UNAVAILABLE;
-  #ifdef \_\_LP64__
-      int space                                 OBJC2_UNAVAILABLE;
-  #endif
-      /* variable length structure \*/
-      struct objc_method method_list[1]         OBJC2_UNAVAILABLE;
- } 
- //
-struct objc_method_description {
-      SEL name;               /* &lt; The name of the method \*/
-      char \*types;            /* &lt; The types of the method arguments */
-
-};
-//
-struct objc_method_description_list {
-      int count;
-      struct objc_method_description list[1];
-};
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">typedef</span> <span class="k">struct</span> <span class="n">objc_method</span> <span class="err">\</span><span class="o">*</span><span class="n">Method</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="c1">//编译器依据类中定义的方法为该类产生一个或更多这种这种结构.</span>
+<span class="lineno"> 3</span> <span class="c1">//一个类的实现可以分散在一个文件中不同部分,同时类别可以分散在不同的模块中.</span>
+<span class="lineno"> 4</span> <span class="c1">//为了处理这个问题,使用一个单独的方法链表 </span>
+<span class="lineno"> 5</span> <span class="k">struct</span> <span class="n">objc_method</span> <span class="p">{</span>
+<span class="lineno"> 6</span>     <span class="kt">SEL</span> <span class="n">method_name</span><span class="p">;</span>
+<span class="lineno"> 7</span>     <span class="kt">char</span> <span class="err">\</span><span class="o">*</span><span class="n">method_types</span><span class="p">;</span>
+<span class="lineno"> 8</span>     <span class="kt">IMP</span> <span class="n">method_imp</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="p">}</span> 
+<span class="lineno">10</span> <span class="c1">//</span>
+<span class="lineno">11</span> <span class="k">struct</span> <span class="n">objc_method_list</span> <span class="p">{</span>
+<span class="lineno">12</span>       <span class="k">struct</span> <span class="n">objc_method_list</span> <span class="err">\</span><span class="o">*</span><span class="n">obsolete</span>         <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+<span class="lineno">13</span>       <span class="kt">int</span> <span class="n">method_count</span>                          <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+<span class="lineno">14</span>   <span class="cp">#ifdef \_\_LP64__</span>
+<span class="lineno">15</span>       <span class="kt">int</span> <span class="n">space</span>                                 <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+<span class="lineno">16</span>   <span class="cp">#endif</span>
+<span class="lineno">17</span>       <span class="cm">/* variable length structure \*/</span>
+<span class="lineno">18</span>       <span class="k">struct</span> <span class="n">objc_method</span> <span class="n">method_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>         <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+<span class="lineno">19</span>  <span class="p">}</span> 
+<span class="lineno">20</span>  <span class="c1">//</span>
+<span class="lineno">21</span> <span class="k">struct</span> <span class="n">objc_method_description</span> <span class="p">{</span>
+<span class="lineno">22</span>       <span class="kt">SEL</span> <span class="n">name</span><span class="p">;</span>               <span class="cm">/* &lt; The name of the method \*/</span>
+<span class="lineno">23</span>       <span class="kt">char</span> <span class="err">\</span><span class="o">*</span><span class="n">types</span><span class="p">;</span>            <span class="cm">/* &lt; The types of the method arguments */</span>
+<span class="lineno">24</span> 
+<span class="lineno">25</span> <span class="p">};</span>
+<span class="lineno">26</span> <span class="c1">//</span>
+<span class="lineno">27</span> <span class="k">struct</span> <span class="n">objc_method_description_list</span> <span class="p">{</span>
+<span class="lineno">28</span>       <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+<span class="lineno">29</span>       <span class="k">struct</span> <span class="n">objc_method_description</span> <span class="n">list</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="lineno">30</span> <span class="p">};</span></code></pre></div>
 
 <p>根据结构体<code>objc_method</code>可以看出，每个方法有3个属性</p>
 
@@ -538,28 +574,25 @@ struct objc_method_description_list {
 
 <p>IMP 和 SEL 的结构如下：</p>
 
-<p><strong>IMP</strong><br />
-<code>objc
-id (*IMP)(id, SEL, ...)
-</code></p>
+<p><strong>IMP</strong></p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="kt">id</span> <span class="p">(</span><span class="o">*</span><span class="kt">IMP</span><span class="p">)(</span><span class="kt">id</span><span class="p">,</span> <span class="kt">SEL</span><span class="p">,</span> <span class="p">...)</span></code></pre></div>
 
 <p><strong>SEL</strong></p>
 
-<pre><code class="language-objc">typedef struct objc_selector *SEL;
-struct objc_selector
-{
-  void *sel_id;
-  const char *sel_types;
-};
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">typedef</span> <span class="k">struct</span> <span class="n">objc_selector</span> <span class="o">*</span><span class="kt">SEL</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="k">struct</span> <span class="n">objc_selector</span>
+<span class="lineno">3</span> <span class="p">{</span>
+<span class="lineno">4</span>   <span class="kt">void</span> <span class="o">*</span><span class="n">sel_id</span><span class="p">;</span>
+<span class="lineno">5</span>   <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sel_types</span><span class="p">;</span>
+<span class="lineno">6</span> <span class="p">};</span></code></pre></div>
 
 <h3 id="section-1">发送消息</h3>
 <p>当一个receiver接收消息时，会触发<code> objc_msgSend(receiver, SEL op, ...); </code>，首先去runtime底层代码去查看，这些参数的来源，每一个receiver都是<code>objc_object</code>结构体的实例，</p>
 
-<pre><code>struct objc_objc {
-	Class isa  OBJC_ISA_AVAILABILITY;
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">struct</span> <span class="n">objc_objc</span> <span class="p">{</span>
+<span class="lineno">2</span> 	<span class="kt">Class</span> <span class="n">isa</span>  <span class="n">OBJC_ISA_AVAILABILITY</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
 
 <p>通过 isa 指针找到当前对象的 class，并在class的 method list中寻找发送的消息, 结构体<code>objc_method_list</code>，根据官方文档的说法，这是一个包含了多个<code> objc_method </code>的数组，`objc_method 这个结构体中包含了2个重要信息—SEL 和 IMP, receiver接收消息时传的参数是SEL类型，SEL主要用来标注方法的名称，IMP则是方法指针，因为每个方法都有自己的地址，这种方式直接找到方法的地址，效率最高。 这样就完成了消息的发送过程</p>
 
@@ -744,8 +777,6 @@ struct objc_selector
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -779,6 +810,44 @@ struct objc_selector
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

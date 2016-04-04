@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -510,13 +547,12 @@ OC中和Java类似，不支持多重继承，但OOP语言C++就支持多继承�
 
 <p>当类被加载时load就会别调用，load是类方法，可以直接被类调用</p>
 
-<pre><code class="language-objc">//重写NSObject中的load方法
-+(void) load
-{
-    NSLog(@"load方法被调用了！");
-}
-//运行结果： load方法被调用了！
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//重写NSObject中的load方法</span>
+<span class="lineno">2</span> <span class="p">+(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">load</span>
+<span class="lineno">3</span> <span class="p">{</span>
+<span class="lineno">4</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;load方法被调用了！&quot;</span><span class="p">);</span>
+<span class="lineno">5</span> <span class="p">}</span>
+<span class="lineno">6</span> <span class="c1">//运行结果： load方法被调用了！</span></code></pre></div>
 
 <h3 id="void-initialize">2. <code>+(void) initialize;</code></h3>
 
@@ -526,15 +562,14 @@ OC中和Java类似，不支持多重继承，但OOP语言C++就支持多继承�
 
 <p>测试：重写initalize方法，</p>
 
-<pre><code class="language-objc">//重写initialize方法，会在类第一次使用时调用
-+(void) initialize
-{
-    NSLog(@"initialize方法被调用了！");
-}
-//运行结果
-//load方法被调用了！
-//initialize方法被调用了！
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//重写initialize方法，会在类第一次使用时调用</span>
+<span class="lineno">2</span> <span class="p">+(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">initialize</span>
+<span class="lineno">3</span> <span class="p">{</span>
+<span class="lineno">4</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;initialize方法被调用了！&quot;</span><span class="p">);</span>
+<span class="lineno">5</span> <span class="p">}</span>
+<span class="lineno">6</span> <span class="c1">//运行结果</span>
+<span class="lineno">7</span> <span class="c1">//load方法被调用了！</span>
+<span class="lineno">8</span> <span class="c1">//initialize方法被调用了！</span></code></pre></div>
 
 <h3 id="id-alloc---id-init--new">3. <code>+(id) alloc:</code> 、 <code>-(id) init:</code> 和 <code>new</code></h3>
 
@@ -548,29 +583,28 @@ OC中和Java类似，不支持多重继承，但OOP语言C++就支持多继承�
 
 <p>举个例子</p>
 
-<pre><code class="language-objc">//重写alloc方法
-+(id) alloc
-{
-   NSLog(@"alloc函数被调用啦");
-    return [super alloc];
-}
-//重写init
--(id) init
-{
-    NSLog(@"init被调用了");
-    self = [super init];
-    return self;
-}
-//实例化类
-ObjectTest *o1 = [[ObjectTest alloc] init];
-// 
-ObjectTest *o2 = [ObjectTest new];
-//运行结果：
-//alloc函数被调用啦
-//init被调用了
-//alloc函数被调用啦
-//init被调用了
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//重写alloc方法</span>
+<span class="lineno"> 2</span> <span class="p">+(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">alloc</span>
+<span class="lineno"> 3</span> <span class="p">{</span>
+<span class="lineno"> 4</span>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;alloc函数被调用啦&quot;</span><span class="p">);</span>
+<span class="lineno"> 5</span>     <span class="k">return</span> <span class="p">[</span><span class="nb">super</span> <span class="n">alloc</span><span class="p">];</span>
+<span class="lineno"> 6</span> <span class="p">}</span>
+<span class="lineno"> 7</span> <span class="c1">//重写init</span>
+<span class="lineno"> 8</span> <span class="p">-(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span>
+<span class="lineno"> 9</span> <span class="p">{</span>
+<span class="lineno">10</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;init被调用了&quot;</span><span class="p">);</span>
+<span class="lineno">11</span>     <span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">12</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">13</span> <span class="p">}</span>
+<span class="lineno">14</span> <span class="c1">//实例化类</span>
+<span class="lineno">15</span> <span class="n">ObjectTest</span> <span class="o">*</span><span class="n">o1</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ObjectTest</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">16</span> <span class="c1">// </span>
+<span class="lineno">17</span> <span class="n">ObjectTest</span> <span class="o">*</span><span class="n">o2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ObjectTest</span> <span class="n">new</span><span class="p">];</span>
+<span class="lineno">18</span> <span class="c1">//运行结果：</span>
+<span class="lineno">19</span> <span class="c1">//alloc函数被调用啦</span>
+<span class="lineno">20</span> <span class="c1">//init被调用了</span>
+<span class="lineno">21</span> <span class="c1">//alloc函数被调用啦</span>
+<span class="lineno">22</span> <span class="c1">//init被调用了</span></code></pre></div>
 
 <h3 id="voiddealloc">4. <code>-(void)dealloc</code></h3>
 
@@ -585,14 +619,13 @@ ObjectTest *o2 = [ObjectTest new];
   <li>-(Class)superclass 或者 +(Class)superclass返回当前类的父类</li>
 </ul>
 
-<pre><code class="language-objc">//返回当前对象所对应的类
-NSString *className =(NSString *) [self class];
-NSLog(@"%@类的display方法", className);
-// 
-//返回当前对象所对应的父类
-NSString *superClassName = (NSString *) [self superclass];
-NSLog(@"%@类的父类是%@", className, superClassName);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//返回当前对象所对应的类</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">className</span> <span class="o">=</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="p">[</span><span class="nb">self</span> <span class="k">class</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@类的display方法&quot;</span><span class="p">,</span> <span class="n">className</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="c1">// </span>
+<span class="lineno">5</span> <span class="c1">//返回当前对象所对应的父类</span>
+<span class="lineno">6</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">superClassName</span> <span class="o">=</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="p">[</span><span class="nb">self</span> <span class="n">superclass</span><span class="p">];</span>
+<span class="lineno">7</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@类的父类是%@&quot;</span><span class="p">,</span> <span class="n">className</span><span class="p">,</span> <span class="n">superClassName</span><span class="p">);</span></code></pre></div>
 
 <h3 id="booliskindofclass--classaclass">6. <code>-(BOOL)isKindOfClass : (Class)aClass</code></h3>
 <ul>
@@ -601,61 +634,59 @@ NSLog(@"%@类的父类是%@", className, superClassName);
 
 <p>示例代码如下：</p>
 
-<pre><code class="language-objc">//isKindOfClass的用法
-BOOL b =  [objct isKindOfClass:[ObjectTest class]];
-if (b == YES) {
-    NSLog(@"objct是ObjectTest类的对象");
-}
-</code></pre>
-<p>### 7. -(BOOL)isMemberOfClass:(Class)aClass;  <br />
-* 这只能判断摸个实例是否属于某个类，不能判断是否属于某个父类；</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//isKindOfClass的用法</span>
+<span class="lineno">2</span> <span class="kt">BOOL</span> <span class="n">b</span> <span class="o">=</span>  <span class="p">[</span><span class="n">objct</span> <span class="nl">isKindOfClass</span><span class="p">:[</span><span class="n">ObjectTest</span> <span class="k">class</span><span class="p">]];</span>
+<span class="lineno">3</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="nb">YES</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">4</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;objct是ObjectTest类的对象&quot;</span><span class="p">);</span>
+<span class="lineno">5</span> <span class="p">}</span></code></pre></div>
 
-<pre><code class="language-objc">//isMemberOfClass
-BOOL result = [o2 isMemberOfClass:[NSObject class]];
-if (result == NO) {
-    NSLog(@"isMemberOfClass不能判断是否为NSObject子类的对象");
-}
-</code></pre>
+<h3 id="boolismemberofclassclassaclass">7. -(BOOL)isMemberOfClass:(Class)aClass;</h3>
+<ul>
+  <li>这只能判断摸个实例是否属于某个类，不能判断是否属于某个父类；</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//isMemberOfClass</span>
+<span class="lineno">2</span> <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">o2</span> <span class="nl">isMemberOfClass</span><span class="p">:[</span><span class="bp">NSObject</span> <span class="k">class</span><span class="p">]];</span>
+<span class="lineno">3</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">4</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;isMemberOfClass不能判断是否为NSObject子类的对象&quot;</span><span class="p">);</span>
+<span class="lineno">5</span> <span class="p">}</span></code></pre></div>
 
 <h3 id="nsstring--description">8. -(NSString *) description;</h3>
 <ul>
   <li>返回字符串形式对象的描述，方便调试</li>
 </ul>
 
-<pre><code class="language-objc">//description
-NSString *descript = [o2 description];
-NSLog(@"%@", descript);
-//输出结果： &lt;ObjectTest: 0×100206680&gt;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//description</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">descript</span> <span class="o">=</span> <span class="p">[</span><span class="n">o2</span> <span class="n">description</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span> <span class="n">descript</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="c1">//输出结果： &lt;ObjectTest: 0×100206680&gt;</span></code></pre></div>
 
 <h3 id="nsuinteger-hash">9. -(NSUInteger) hash;</h3>
 <ul>
   <li>返回对象的哈希值；</li>
 </ul>
 
-<pre><code class="language-objc">//hash的用法
-NSUInteger hash = [o2 hash];
-NSLog(@"%p", hash);
-//输出结果：2014-07-30 11:40:35.685 HelloOC[1130:303] 0x100107b70
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//hash的用法</span>
+<span class="lineno">2</span> <span class="bp">NSUInteger</span> <span class="n">hash</span> <span class="o">=</span> <span class="p">[</span><span class="n">o2</span> <span class="n">hash</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%p&quot;</span><span class="p">,</span> <span class="n">hash</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="c1">//输出结果：2014-07-30 11:40:35.685 HelloOC[1130:303] 0x100107b70</span></code></pre></div>
 
 <h3 id="bool-isequalidobject">10. -(BOOL) isEqual:(id)object;</h3>
 <ul>
   <li>比较两个对象是否相同，默认是使用地址进行比较的，且hash值一定要相同</li>
 </ul>
 
-<pre><code class="language-objc">//isEqual的用法
-NSString *str1 = @"111";
-NSString *str2 = str1;
-if ([str2 isEqual:str1] == YES)
-{
-    NSLog(@"str2 == str1");
-}
-else
-{
-    NSLog(@"str2 != str1");
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//isEqual的用法</span>
+<span class="lineno"> 2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str1</span> <span class="o">=</span> <span class="s">@&quot;111&quot;</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str2</span> <span class="o">=</span> <span class="n">str1</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="k">if</span> <span class="p">([</span><span class="n">str2</span> <span class="nl">isEqual</span><span class="p">:</span><span class="n">str1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">YES</span><span class="p">)</span>
+<span class="lineno"> 5</span> <span class="p">{</span>
+<span class="lineno"> 6</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;str2 == str1&quot;</span><span class="p">);</span>
+<span class="lineno"> 7</span> <span class="p">}</span>
+<span class="lineno"> 8</span> <span class="k">else</span>
+<span class="lineno"> 9</span> <span class="p">{</span>
+<span class="lineno">10</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;str2 != str1&quot;</span><span class="p">);</span>
+<span class="lineno">11</span> <span class="p">}</span></code></pre></div>
 
 <h2 id="objective-c">二、Objective-C中的继承</h2>
 
@@ -672,34 +703,33 @@ else
   </ol>
 </blockquote>
 
-<pre><code class="language-objc">@interface Richer : NSObject
-{
-    @protected
-    NSString *name;
-    int age;
-    NSString *gender;
-}
-// 
-//定义富人的姓名，年龄，性别，并为其提供getter和setter方法
-@property (copy, nonatomic) NSString *name;
-@property (assign, nonatomic) int age;
-@property (copy, nonatomic) NSString *gender;
-// 
-//定义便利初始化方法
--(id) initWithName : (NSString *)vName
-            AndAge : (int)vAge
-         AndGender : (NSString *)vGender;
-// 
-//定义便利构造器
-+(id) richerWithName : (NSString *)vName
-              AndAge : (int)vAge
-           AndGender : (NSString *)vGender;
-// 
-//定义刷卡方法
--(void) poss;
-//
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@interface</span> <span class="nc">Richer</span> : <span class="bp">NSObject</span>
+<span class="lineno"> 2</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="k">@protected</span>
+<span class="lineno"> 4</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="lineno"> 5</span>     <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="lineno"> 6</span>     <span class="bp">NSString</span> <span class="o">*</span><span class="n">gender</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="p">}</span>
+<span class="lineno"> 8</span> <span class="c1">// </span>
+<span class="lineno"> 9</span> <span class="c1">//定义富人的姓名，年龄，性别，并为其提供getter和setter方法</span>
+<span class="lineno">10</span> <span class="k">@property</span> <span class="p">(</span><span class="k">copy</span><span class="p">,</span> <span class="k">nonatomic</span><span class="p">)</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="lineno">11</span> <span class="k">@property</span> <span class="p">(</span><span class="k">assign</span><span class="p">,</span> <span class="k">nonatomic</span><span class="p">)</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="lineno">12</span> <span class="k">@property</span> <span class="p">(</span><span class="k">copy</span><span class="p">,</span> <span class="k">nonatomic</span><span class="p">)</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">gender</span><span class="p">;</span>
+<span class="lineno">13</span> <span class="c1">// </span>
+<span class="lineno">14</span> <span class="c1">//定义便利初始化方法</span>
+<span class="lineno">15</span> <span class="p">-(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">initWithName</span> <span class="o">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vName</span>
+<span class="lineno">16</span>             <span class="nl">AndAge</span> <span class="p">:</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">vAge</span>
+<span class="lineno">17</span>          <span class="nl">AndGender</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vGender</span><span class="p">;</span>
+<span class="lineno">18</span> <span class="c1">// </span>
+<span class="lineno">19</span> <span class="c1">//定义便利构造器</span>
+<span class="lineno">20</span> <span class="p">+(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">richerWithName</span> <span class="o">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vName</span>
+<span class="lineno">21</span>               <span class="nl">AndAge</span> <span class="p">:</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">vAge</span>
+<span class="lineno">22</span>            <span class="nl">AndGender</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vGender</span><span class="p">;</span>
+<span class="lineno">23</span> <span class="c1">// </span>
+<span class="lineno">24</span> <span class="c1">//定义刷卡方法</span>
+<span class="lineno">25</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">poss</span><span class="p">;</span>
+<span class="lineno">26</span> <span class="c1">//</span>
+<span class="lineno">27</span> <span class="k">@end</span></code></pre></div>
 
 <h4 id="section-2">2.为富人类编写实现代码</h4>
 
@@ -712,39 +742,38 @@ else
   </ol>
 </blockquote>
 
-<pre><code class="language-objc">#import "Richer.h"
-@implementation Richer
-//实现getter和setter方法
-@synthesize name, age, gender;
-//实现便利初始化函数
--(id) initWithName : (NSString *)vName
-            AndAge : (int)vAge
-         AndGender : (NSString *)vGender
-{
-    if (self = [super init])
-    {
-        self-&gt;name = vName;
-        self-&gt;age = vAge;
-        self-&gt;gender = vGender;
-    }
-    return self;
-}
-//实现便利构造器
-+(id) richerWithName:(NSString *)vName
-              AndAge:(int)vAge
-           AndGender:(NSString *)vGender
-{
-    Richer *richer = [[Richer alloc] initWithName:vName
-                                           AndAge:vAge
-                                        AndGender:vGender];
-    return richer;
-}
-//实现刷卡方法
--(void) poss
-{
-    NSLog(@"%@有钱你就刷吧", name);
-}@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="cp">#import &quot;Richer.h&quot;</span>
+<span class="lineno"> 2</span> <span class="k">@implementation</span> <span class="nc">Richer</span>
+<span class="lineno"> 3</span> <span class="c1">//实现getter和setter方法</span>
+<span class="lineno"> 4</span> <span class="k">@synthesize</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">;</span>
+<span class="lineno"> 5</span> <span class="c1">//实现便利初始化函数</span>
+<span class="lineno"> 6</span> <span class="p">-(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">initWithName</span> <span class="o">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vName</span>
+<span class="lineno"> 7</span>             <span class="nl">AndAge</span> <span class="p">:</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">vAge</span>
+<span class="lineno"> 8</span>          <span class="nl">AndGender</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vGender</span>
+<span class="lineno"> 9</span> <span class="p">{</span>
+<span class="lineno">10</span>     <span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span>
+<span class="lineno">11</span>     <span class="p">{</span>
+<span class="lineno">12</span>         <span class="nb">self</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="n">vName</span><span class="p">;</span>
+<span class="lineno">13</span>         <span class="nb">self</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="n">vAge</span><span class="p">;</span>
+<span class="lineno">14</span>         <span class="nb">self</span><span class="o">-&gt;</span><span class="n">gender</span> <span class="o">=</span> <span class="n">vGender</span><span class="p">;</span>
+<span class="lineno">15</span>     <span class="p">}</span>
+<span class="lineno">16</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">17</span> <span class="p">}</span>
+<span class="lineno">18</span> <span class="c1">//实现便利构造器</span>
+<span class="lineno">19</span> <span class="o">+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nl">richerWithName</span><span class="p">:(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vName</span>
+<span class="lineno">20</span>               <span class="nl">AndAge</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="n">vAge</span>
+<span class="lineno">21</span>            <span class="nl">AndGender</span><span class="p">:(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vGender</span>
+<span class="lineno">22</span> <span class="p">{</span>
+<span class="lineno">23</span>     <span class="n">Richer</span> <span class="o">*</span><span class="n">richer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Richer</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithName</span><span class="p">:</span><span class="n">vName</span>
+<span class="lineno">24</span>                                            <span class="nl">AndAge</span><span class="p">:</span><span class="n">vAge</span>
+<span class="lineno">25</span>                                         <span class="nl">AndGender</span><span class="p">:</span><span class="n">vGender</span><span class="p">];</span>
+<span class="lineno">26</span>     <span class="k">return</span> <span class="n">richer</span><span class="p">;</span>
+<span class="lineno">27</span> <span class="p">}</span>
+<span class="lineno">28</span> <span class="c1">//实现刷卡方法</span>
+<span class="lineno">29</span> <span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">poss</span>
+<span class="lineno">30</span> <span class="p">{</span>
+<span class="lineno">31</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@有钱你就刷吧&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+<span class="lineno">32</span> <span class="p">}</span><span class="k">@end</span></code></pre></div>
 
 <h4 id="section-4">3.编写富二代的类</h4>
 <p>富二代和富人有许多相似的属性和方法所以富二代继承于富人类，并添加相应的属性和方法，把需要重写的方法进行重写。</p>
@@ -757,29 +786,28 @@ else
   </ol>
 </blockquote>
 
-<pre><code class="language-objc">#import "Richer.h"
-// 
-@interface Richer2nd : Richer
-//Richer2nd继承啦Richer所有的方法
-// 
-//为富二代添加新的属性
-@property (copy, nonatomic) NSString *hobby;
-// 
-//便利初始化函数
--(id) initWithName : (NSString *) vName
-            AndAge : (int)vAge
-         AndGender : (NSString *) vGender
-          AndHobby : (NSString *)vHobby;
-//为Richer2nd编写便利构造器
-+(id)richer2ndWithName : (NSString *) vName
-                AndAge : (int)vAge
-             AndGender : (NSString *) vGender
-              AndHobby : (NSString *)vHobby; 
-//添加hobby方法
--(void) myHobby;
-// 
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="cp">#import &quot;Richer.h&quot;</span>
+<span class="lineno"> 2</span> <span class="c1">// </span>
+<span class="lineno"> 3</span> <span class="k">@interface</span> <span class="nc">Richer2nd</span> : <span class="nc">Richer</span>
+<span class="lineno"> 4</span> <span class="c1">//Richer2nd继承啦Richer所有的方法</span>
+<span class="lineno"> 5</span> <span class="c1">// </span>
+<span class="lineno"> 6</span> <span class="c1">//为富二代添加新的属性</span>
+<span class="lineno"> 7</span> <span class="k">@property</span> <span class="p">(</span><span class="k">copy</span><span class="p">,</span> <span class="k">nonatomic</span><span class="p">)</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">hobby</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="c1">// </span>
+<span class="lineno"> 9</span> <span class="c1">//便利初始化函数</span>
+<span class="lineno">10</span> <span class="p">-(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">initWithName</span> <span class="o">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="n">vName</span>
+<span class="lineno">11</span>             <span class="nl">AndAge</span> <span class="p">:</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">vAge</span>
+<span class="lineno">12</span>          <span class="nl">AndGender</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="n">vGender</span>
+<span class="lineno">13</span>           <span class="nl">AndHobby</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vHobby</span><span class="p">;</span>
+<span class="lineno">14</span> <span class="c1">//为Richer2nd编写便利构造器</span>
+<span class="lineno">15</span> <span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">richer2ndWithName</span> <span class="o">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="n">vName</span>
+<span class="lineno">16</span>                 <span class="nl">AndAge</span> <span class="p">:</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">vAge</span>
+<span class="lineno">17</span>              <span class="nl">AndGender</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span> <span class="n">vGender</span>
+<span class="lineno">18</span>               <span class="nl">AndHobby</span> <span class="p">:</span> <span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">vHobby</span><span class="p">;</span> 
+<span class="lineno">19</span> <span class="c1">//添加hobby方法</span>
+<span class="lineno">20</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">myHobby</span><span class="p">;</span>
+<span class="lineno">21</span> <span class="c1">// </span>
+<span class="lineno">22</span> <span class="k">@end</span></code></pre></div>
 
 <h4 id="section-6">4.各种方法的实现</h4>
 
@@ -791,88 +819,86 @@ else
   </ol>
 </blockquote>
 
-<pre><code class="language-objc">#import "Richer2nd.h"
-// 
-@implementation Richer2nd
-//实现属性的getter和setter方法
-@synthesize hobby;
-// 
-//编写便利初始化函数，复用父类的便利初始化方法
--(id)initWithName:(NSString *)vName
-           AndAge:(int)vAge
-        AndGender:(NSString *)vGender
-         AndHobby:(NSString *)vHobby
-{
-    if (self = [super initWithName:vName AndAge:vAge AndGender:vGender]) {
-        self-&gt;hobby = vHobby;
-    }
-    return self;
-}
-// 
-//编写便利构造函数
-+(id)richer2ndWithName:(NSString *)vName
-                AndAge:(int)vAge
-             AndGender:(NSString *)vGender
-              AndHobby:(NSString *)vHobby
-{
-    Richer2nd *richer = [[Richer2nd alloc] initWithName:vName AndAge:vAge AndGender:vGender AndHobby:vHobby];
-    return richer;
-}
-// 
-//重写刷卡方法
--(void)poss
-{
-    [super poss];
-    NSLog(@"我是富二代，我爸有钱，我就刷!");
-}
-// 
-//添加新的方法
--(void) myHobby
-{
-    NSLog(@"我是富二代%@,我超喜欢%@", name, hobby);
-}
-// 
-@end
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="cp">#import &quot;Richer2nd.h&quot;</span>
+<span class="lineno"> 2</span> <span class="c1">// </span>
+<span class="lineno"> 3</span> <span class="k">@implementation</span> <span class="nc">Richer2nd</span>
+<span class="lineno"> 4</span> <span class="c1">//实现属性的getter和setter方法</span>
+<span class="lineno"> 5</span> <span class="k">@synthesize</span> <span class="n">hobby</span><span class="p">;</span>
+<span class="lineno"> 6</span> <span class="c1">// </span>
+<span class="lineno"> 7</span> <span class="c1">//编写便利初始化函数，复用父类的便利初始化方法</span>
+<span class="lineno"> 8</span> <span class="p">-(</span><span class="kt">id</span><span class="p">)</span><span class="nf">initWithName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">vName</span>
+<span class="lineno"> 9</span>            <span class="nf">AndAge:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">vAge</span>
+<span class="lineno">10</span>         <span class="nf">AndGender:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">vGender</span>
+<span class="lineno">11</span>          <span class="nf">AndHobby:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">vHobby</span>
+<span class="lineno">12</span> <span class="p">{</span>
+<span class="lineno">13</span>     <span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">initWithName</span><span class="p">:</span><span class="n">vName</span> <span class="nl">AndAge</span><span class="p">:</span><span class="n">vAge</span> <span class="nl">AndGender</span><span class="p">:</span><span class="n">vGender</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno">14</span>         <span class="nb">self</span><span class="o">-&gt;</span><span class="n">hobby</span> <span class="o">=</span> <span class="n">vHobby</span><span class="p">;</span>
+<span class="lineno">15</span>     <span class="p">}</span>
+<span class="lineno">16</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">17</span> <span class="p">}</span>
+<span class="lineno">18</span> <span class="c1">// </span>
+<span class="lineno">19</span> <span class="c1">//编写便利构造函数</span>
+<span class="lineno">20</span> <span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">richer2ndWithName:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">vName</span>
+<span class="lineno">21</span>                 <span class="nf">AndAge:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">vAge</span>
+<span class="lineno">22</span>              <span class="nf">AndGender:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">vGender</span>
+<span class="lineno">23</span>               <span class="nf">AndHobby:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">vHobby</span>
+<span class="lineno">24</span> <span class="p">{</span>
+<span class="lineno">25</span>     <span class="n">Richer2nd</span> <span class="o">*</span><span class="n">richer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Richer2nd</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithName</span><span class="p">:</span><span class="n">vName</span> <span class="nl">AndAge</span><span class="p">:</span><span class="n">vAge</span> <span class="nl">AndGender</span><span class="p">:</span><span class="n">vGender</span> <span class="nl">AndHobby</span><span class="p">:</span><span class="n">vHobby</span><span class="p">];</span>
+<span class="lineno">26</span>     <span class="k">return</span> <span class="n">richer</span><span class="p">;</span>
+<span class="lineno">27</span> <span class="p">}</span>
+<span class="lineno">28</span> <span class="c1">// </span>
+<span class="lineno">29</span> <span class="c1">//重写刷卡方法</span>
+<span class="lineno">30</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">poss</span>
+<span class="lineno">31</span> <span class="p">{</span>
+<span class="lineno">32</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">poss</span><span class="p">];</span>
+<span class="lineno">33</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;我是富二代，我爸有钱，我就刷!&quot;</span><span class="p">);</span>
+<span class="lineno">34</span> <span class="p">}</span>
+<span class="lineno">35</span> <span class="c1">// </span>
+<span class="lineno">36</span> <span class="c1">//添加新的方法</span>
+<span class="lineno">37</span> <span class="p">-(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">myHobby</span>
+<span class="lineno">38</span> <span class="p">{</span>
+<span class="lineno">39</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;我是富二代%@,我超喜欢%@&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">hobby</span><span class="p">);</span>
+<span class="lineno">40</span> <span class="p">}</span>
+<span class="lineno">41</span> <span class="c1">// </span>
+<span class="lineno">42</span> <span class="k">@end</span></code></pre></div>
 
 <ol>
   <li>以下是上面代码的运行结果</li>
 </ol>
 
-<pre><code>Bill有钱你就刷吧
-BILL`s son有钱你就刷吧
+<blockquote>
+  <p>Bill有钱你就刷吧<br />
+BILL<code>s son有钱你就刷吧
 我是富二代，我爸有钱，我就刷!
-我是富二代BILL`s son,我超喜欢飙车
-</code></pre>
+我是富二代BILL</code>s son,我超喜欢飙车</p>
+</blockquote>
 
 <p>​## 三、Objective-C中的多态</p>
 
 <p>多态简单的说就是对于不同对象响应同一个方法时做出的不同反应。在 OC中动态类型id是实现多态的一种方式，id是一个独特的数据类型，可以转换为任何数据类型，上面的富人和富二代可以这样定义</p>
 
-<pre><code class="language-objc">id richer = nil;
-// 
-//测试富人类
-richer = [Richer richerWithName:@"Bill" AndAge:40 AndGender:@"Man"];
-[richer poss];
-// 
-//测试富二代的类
-richer = [Richer2nd richer2ndWithName:@"BILL`s son" AndAge:16 AndGender:@"男" AndHobby:@"飙车"];
-[richer poss];
-[richer myHobby];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="kt">id</span> <span class="n">richer</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="c1">// </span>
+<span class="lineno"> 3</span> <span class="c1">//测试富人类</span>
+<span class="lineno"> 4</span> <span class="n">richer</span> <span class="o">=</span> <span class="p">[</span><span class="n">Richer</span> <span class="nl">richerWithName</span><span class="p">:</span><span class="s">@&quot;Bill&quot;</span> <span class="nl">AndAge</span><span class="p">:</span><span class="mi">40</span> <span class="nl">AndGender</span><span class="p">:</span><span class="s">@&quot;Man&quot;</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="p">[</span><span class="n">richer</span> <span class="n">poss</span><span class="p">];</span>
+<span class="lineno"> 6</span> <span class="c1">// </span>
+<span class="lineno"> 7</span> <span class="c1">//测试富二代的类</span>
+<span class="lineno"> 8</span> <span class="n">richer</span> <span class="o">=</span> <span class="p">[</span><span class="n">Richer2nd</span> <span class="nl">richer2ndWithName</span><span class="p">:</span><span class="s">@&quot;BILL`s son&quot;</span> <span class="nl">AndAge</span><span class="p">:</span><span class="mi">16</span> <span class="nl">AndGender</span><span class="p">:</span><span class="s">@&quot;男&quot;</span> <span class="nl">AndHobby</span><span class="p">:</span><span class="s">@&quot;飙车&quot;</span><span class="p">];</span>
+<span class="lineno"> 9</span> <span class="p">[</span><span class="n">richer</span> <span class="n">poss</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="p">[</span><span class="n">richer</span> <span class="n">myHobby</span><span class="p">];</span></code></pre></div>
 
 <p>上面程序的输出结果和继承部分的结果是一致的；</p>
 
 <p>​多态的另一个例子: Animal是父类，子类有Cat 和 Dog,子分别重写了父类中的eat方法；实例化对象的时候可以用下面的方法：</p>
 
-<pre><code class="language-objc">Animal *animal = nil;
- //实例化猫的对象
-animal = [Cat new];
-[animal eat];
- //实例化狗的对象
-animal = [Dog new];
-[animal eat];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">Animal</span> <span class="o">*</span><span class="n">animal</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno">2</span>  <span class="c1">//实例化猫的对象</span>
+<span class="lineno">3</span> <span class="n">animal</span> <span class="o">=</span> <span class="p">[</span><span class="n">Cat</span> <span class="n">new</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">animal</span> <span class="n">eat</span><span class="p">];</span>
+<span class="lineno">5</span>  <span class="c1">//实例化狗的对象</span>
+<span class="lineno">6</span> <span class="n">animal</span> <span class="o">=</span> <span class="p">[</span><span class="n">Dog</span> <span class="n">new</span><span class="p">];</span>
+<span class="lineno">7</span> <span class="p">[</span><span class="n">animal</span> <span class="n">eat</span><span class="p">];</span></code></pre></div>
 
 <blockquote>
   <h5 id="ocplsp">面向对象编程中的OCP原则和LSP原则</h5>
@@ -1035,8 +1061,6 @@ animal = [Dog new];
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -1070,6 +1094,44 @@ animal = [Dog new];
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

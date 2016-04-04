@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -531,10 +568,9 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 
 <p><code>CABasicAnimation</code> 是<code>CAPropertyAnimation</code>的子类，自己只有三个property</p>
 
-<pre><code>@property(nullable, strong) id fromValue; //keyPath相应属性的初始值
-@property(nullable, strong) id toValue; //keyPath相应属性的结束值
-@property(nullable, strong) id byValue;
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="kt">id</span> <span class="n">fromValue</span><span class="p">;</span> <span class="c1">//keyPath相应属性的初始值</span>
+<span class="lineno">2</span> <span class="k">@property</span><span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="kt">id</span> <span class="n">toValue</span><span class="p">;</span> <span class="c1">//keyPath相应属性的结束值</span>
+<span class="lineno">3</span> <span class="k">@property</span><span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="kt">id</span> <span class="n">byValue</span><span class="p">;</span></code></pre></div>
 
 <p>当你创建一个<code>CABasicAnimation</code>时,你需要通过<code>-setFromValue</code> 和<code>-setToValue</code> 来指定一个开始值和结束值。 当你增加基础动画到层中的时候,它开始运行。当用属性做动画完成时,例如用位置属性做动画,层就会立刻返回到它的初始位置，</p>
 
@@ -578,45 +614,44 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 
 <p>比如我们想实现一个类似心跳的缩放动画可以这么做，分为演员初始化、设定剧本、电影开拍三个步骤：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self initScaleLayer];
-}
-- (void)initScaleLayer
-{
-    //演员初始化
-    CALayer *scaleLayer = [[CALayer alloc] init];
-    scaleLayer.backgroundColor = [UIColor blueColor].CGColor;
-    scaleLayer.frame = CGRectMake(60, 20, 50, 50);
-    scaleLayer.cornerRadius = 10;
-    [self.view.layer addSublayer:scaleLayer];
-    //
-    //设定剧本
-    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    scaleAnimation.toValue = [NSNumber numberWithFloat:1.5];
-    scaleAnimation.autoreverses = YES;
-    scaleAnimation.fillMode = kCAFillModeForwards;
-    scaleAnimation.repeatCount = MAXFLOAT;
-    scaleAnimation.duration = 0.8;
-    //
-    //设置代理: 设置动画的代理，可以监听动画的执行过程，这里设置控制器为代理。
-    scaleAnimation.delegate = self;
-    //
-    //开演
-    [scaleLayer addAnimation:scaleAnimation forKey:@"scaleAnimation"];
-}
-//
-//代理方法
-- (void)animationDidStart:(CAAnimation *)anim{
-    NSLog(@"开始执行动画");
-}
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-	//动画执行完毕，
-	NSLog(@"动画执行完毕");
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 3</span>     <span class="c1">// Do any additional setup after loading the view from its nib.</span>
+<span class="lineno"> 4</span>     <span class="p">[</span><span class="nb">self</span> <span class="n">initScaleLayer</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="p">}</span>
+<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initScaleLayer</span>
+<span class="lineno"> 7</span> <span class="p">{</span>
+<span class="lineno"> 8</span>     <span class="c1">//演员初始化</span>
+<span class="lineno"> 9</span>     <span class="bp">CALayer</span> <span class="o">*</span><span class="n">scaleLayer</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CALayer</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="n">scaleLayer</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">blueColor</span><span class="p">].</span><span class="bp">CGColor</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="n">scaleLayer</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="lineno">12</span>     <span class="n">scaleLayer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="lineno">13</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addSublayer</span><span class="p">:</span><span class="n">scaleLayer</span><span class="p">];</span>
+<span class="lineno">14</span>     <span class="c1">//</span>
+<span class="lineno">15</span>     <span class="c1">//设定剧本</span>
+<span class="lineno">16</span>     <span class="bp">CABasicAnimation</span> <span class="o">*</span><span class="n">scaleAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CABasicAnimation</span> <span class="nl">animationWithKeyPath</span><span class="p">:</span><span class="s">@&quot;transform.scale&quot;</span><span class="p">];</span>
+<span class="lineno">17</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">fromValue</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="mf">1.0</span><span class="p">];</span>
+<span class="lineno">18</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">toValue</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="mf">1.5</span><span class="p">];</span>
+<span class="lineno">19</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">autoreverses</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">20</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+<span class="lineno">21</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">MAXFLOAT</span><span class="p">;</span>
+<span class="lineno">22</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span>
+<span class="lineno">23</span>     <span class="c1">//</span>
+<span class="lineno">24</span>     <span class="c1">//设置代理: 设置动画的代理，可以监听动画的执行过程，这里设置控制器为代理。</span>
+<span class="lineno">25</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">26</span>     <span class="c1">//</span>
+<span class="lineno">27</span>     <span class="c1">//开演</span>
+<span class="lineno">28</span>     <span class="p">[</span><span class="n">scaleLayer</span> <span class="nl">addAnimation</span><span class="p">:</span><span class="n">scaleAnimation</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;scaleAnimation&quot;</span><span class="p">];</span>
+<span class="lineno">29</span> <span class="p">}</span>
+<span class="lineno">30</span> <span class="c1">//</span>
+<span class="lineno">31</span> <span class="c1">//代理方法</span>
+<span class="lineno">32</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStart:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">anim</span><span class="p">{</span>
+<span class="lineno">33</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;开始执行动画&quot;</span><span class="p">);</span>
+<span class="lineno">34</span> <span class="p">}</span>
+<span class="lineno">35</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStop:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">anim</span> <span class="nf">finished:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">flag</span><span class="p">{</span>
+<span class="lineno">36</span> 	<span class="c1">//动画执行完毕，</span>
+<span class="lineno">37</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;动画执行完毕&quot;</span><span class="p">);</span>
+<span class="lineno">38</span> <span class="p">}</span></code></pre></div>
 
 <p>其他效果可以依葫芦画瓢轻松实现。想要实现不同的效果，最关键的地方在于<code>CABasicAnimation</code>对象的初始化方式中<code>keyPath</code>的设定。</p>
 
@@ -821,8 +856,6 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -856,6 +889,44 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

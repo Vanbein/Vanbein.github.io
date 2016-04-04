@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -499,22 +536,25 @@ ds.charset = 'UTF-8';
   <p>简体中文版的看这:<a href="http://www.appinn.com/markdown/">markdown语法</a></p>
 </blockquote>
 
+<h3 id="markdown-">关于 markdown 编辑器</h3>
+
 <ul>
-  <li>在 Mac OS X 上，我强烈建议你用 <strong>Mou</strong> 这款免费且十分好用的 Markdown 编辑器，它支持实时预览，既左边是你编辑 Markdown 语言，右边会实时的生成预览效果。不仅如此，Mou 还有一些有趣的偏好设置（Preference），例如主题（Themes）与样式（CSS），它们可以配置出定制化的文本编辑效果与导出效果，如果你对自带的主题与样式不满意还可以到 GitHub 上搜索其它爱好者为 Mou 编写的更多主题样式，导入的方式可以在偏好设置的 Themes 或 CSS 选项中 选择 reload。如果你和我一样采用<code>octopress + github</code>写博客，我建议把 <strong>Mou</strong>的Preference 中CSS格式设置为<code>Github2</code>。</li>
+  <li>在 Mac OS X 上，我强烈建议你用 <strong>Mou</strong> 这款免费且十分好用的 Markdown 编辑器，它支持实时预览，既左边是你编辑 Markdown 语言，右边会实时的生成预览效果。不仅如此，Mou 还有一些有趣的偏好设置（Preference），例如主题（Themes）与样式（CSS），它们可以配置出定制化的文本编辑效果与导出效果，如果你对自带的主题与样式不满意还可以到 GitHub 上搜索其它爱好者为 Mou 编写的更多主题样式，导入的方式可以在偏好设置的 Themes 或 CSS 选项中 选择 reload。如果你和我一样采用 <code>octopress + github</code> 写博客，我建议把 <strong>Mou</strong> 的Preference 中CSS格式设置为 <code>Github2</code> 。</li>
 </ul>
 
-<p>##一、段落、标题、区块代码</p>
+<h2 id="section">一、段落、标题、区块代码</h2>
 
 <p>一个段落是由一个以上的连接的行句组成，而一个以上的空行则会划分出不同的段落（空行的定义是显示上看起来像是空行，就被视为空行，例如有一行只有空白和 tab，那该行也会被视为空行），一般的段落不需要用空白或换行缩进。</p>
 
-<p>Markdown 支持两种标题的语法，<code>Setext</code> 和 <code>atx</code> 形式。<code>Setext</code> 形式是用底线的形式，利用 <code>= </code>（最高阶标题）和 <code>-</code> （第二阶标题），<code>Atx</code> 形式在行首插入 1 到 6 个 <code>#</code> ，对应到标题 1 到 6 阶，记得在 # 后面留一个空格。</p>
+<p>Markdown 支持两种标题的语法，<code>Setext</code> 和 <code>atx</code> 形式。<code>Setext</code> 形式是用底线的形式，利用 <code>=</code>（最高阶标题）和 <code>-</code> （第二阶标题），<code>Atx</code> 形式在行首插入 1 到 6 个 <code>#</code> ，对应到标题 1 到 6 阶，记得在 # 后面留一个空格。</p>
 
-<p>区块引用则使用 email 形式的 <code>&gt;</code>角括号。</p>
+<p>区块引用则使用 email 形式的 <code>&gt;</code> 角括号。</p>
 
 <p>语法：</p>
 
 <pre><code>	A First Level Header
 	====================
+	
 	A Second Level Header
 	---------------------
 
@@ -524,8 +564,11 @@ ds.charset = 'UTF-8';
 	
 	The quick brown fox jumped over the lazy
 	dog's back.
+	
 	# Header1
+	
 	### Header 3
+	
 	###### hearder6
 
 	&gt; This is a blockquote.
@@ -538,17 +581,18 @@ ds.charset = 'UTF-8';
 <p>效果为：</p>
 
 <h1 id="a-first-level-header">A First Level Header</h1>
-<p>A Second Level Header<br />
-———————</p>
+
+<h2 id="a-second-level-header">A Second Level Header</h2>
 
 <p>Now is the time for all good men to come to<br />
 the aid of their country. This is just a<br />
 regular paragraph.</p>
 
 <p>The quick brown fox jumped over the lazy<br />
-dog’s back.<br />
-# Header1<br />
-### Header 3<br />
+dog’s back.</p>
+
+<h1 id="header1">Header1</h1>
+<p>### Header 3<br />
 ###### hearder6</p>
 
 <blockquote>
@@ -621,14 +665,14 @@ id sem consectetuer libero luctus adipiscing.</p>
 &gt; 2.   这是第二行列表项。
 &gt; 
 &gt; 给出一些例子代码：
-&gt; 
-&gt;     return shell_exec("echo $input | $markdown_script");
+&gt; 	
+&gt;     return shell_exec("echo $input | $markdown_script");	
 </code></pre>
 
 <p>显示效果：</p>
 
 <blockquote>
-  <h2 id="section">这是一个标题。</h2>
+  <h2 id="section-1">这是一个标题。</h2>
 
   <ol>
     <li>这是第一行列表项。</li>
@@ -641,20 +685,21 @@ id sem consectetuer libero luctus adipiscing.</p>
 </code></pre>
 </blockquote>
 
-<p>##二、修辞和强调</p>
+<h2 id="section-2">二、修辞和强调</h2>
 
 <ul>
   <li>Markdown 使用星号和底线来标记需要强调的区段。</li>
   <li>一个星号/底线便是斜体，两个表示加粗强调</li>
   <li>但是如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号。</li>
   <li>
-    <p>两个 ~~ 中间的文字表示删除<br />
+    <p>两个 ~~ 中间的文字表示删除，但是我目前的环境中貌似不支持<br />
 语法:</p>
 
     <pre><code>  Some of these words *are emphasized*.
   Some of these words _are emphasized also_.
   Use two asterisks for **strong emphasis**.
   Or, if you prefer, __use two underscores instead__.
+    
   ~~Strike through~~
 </code></pre>
   </li>
@@ -665,8 +710,9 @@ id sem consectetuer libero luctus adipiscing.</p>
 <p>Some of these words <em>are emphasized</em>.<br />
 Some of these words <em>are emphasized also</em>.<br />
 Use two asterisks for <strong>strong emphasis</strong>.<br />
-Or, if you prefer, <strong>use two underscores instead</strong>.<br />
-~~Use strike through~~</p>
+Or, if you prefer, <strong>use two underscores instead</strong>.</p>
+
+<p>~~Use strike through~~</p>
 
 <ul>
   <li>如果要在文字前后直接插入普通的星号或底线，你可以用反斜线：<br />
@@ -679,7 +725,7 @@ Or, if you prefer, <strong>use two underscores instead</strong>.<br />
 
 <p>*this text is surrounded by literal asterisks*</p>
 
-<h2 id="section-1">三、列表</h2>
+<h2 id="section-3">三、列表</h2>
 <p>#### 1.无序列表</p>
 
 <p>无序列表使用星号、加号和减号来做为列表的项目标记，这些符号是都可以使用的，</p>
@@ -713,7 +759,7 @@ Or, if you prefer, <strong>use two underscores instead</strong>.<br />
   <li>Booze.</li>
 </ul>
 
-<h4 id="section-2">2.有序列表</h4>
+<h4 id="section-4">2.有序列表</h4>
 
 <p>有序列表则是使用一般的数字接着一个英文句点作为项目标记：<br />
 语法：</p>
@@ -849,11 +895,11 @@ sit amet velit.</p>
 <pre><code>1986\. What a great season.
 </code></pre>
 
-<h2 id="section-3">四、链接</h2>
+<h2 id="section-5">四、链接</h2>
 
 <p>Markdown 支援两种形式的链接语法： <code>行内</code> 和 <code>参考</code> 两种形式，两种都是使用角括号来把文字转成连结。</p>
 
-<h4 id="section-4">行内形式</h4>
+<h4 id="section-6">行内形式</h4>
 
 <p>行内形式是直接在后面用括号直接接上链接：</p>
 
@@ -870,7 +916,7 @@ This is an [example link](http://example.com/ "With a Title").
 
 <p>This is an <a href="http://example.com/" title="With a Title">example link</a>.</p>
 
-<h4 id="section-5">参考形式</h4>
+<h4 id="section-7">参考形式</h4>
 
 <p>参考形式的链接让你可以为链接定一个名称，之后你可以在文件的其他<code>任意</code>地方定义该链接的内容：</p>
 
@@ -904,7 +950,7 @@ This is an [example link](http://example.com/ "With a Title").
 <p>I start my morning with a cup of coffee and<br />
 <a href="http://www.nytimes.com/">The New York Times</a>.</p>
 
-<h4 id="section-6">自动链接</h4>
+<h4 id="section-8">自动链接</h4>
 
 <p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：<br />
 示例语法:</p>
@@ -916,7 +962,7 @@ This is an [example link](http://example.com/ "With a Title").
 
 <p><a href="http://example.com/">http://example.com/</a></p>
 
-<h2 id="section-7">五、图片</h2>
+<h2 id="section-9">五、图片</h2>
 
 <p>图片的语法和链接很像。</p>
 
@@ -934,7 +980,7 @@ This is an [example link](http://example.com/ "With a Title").
   <li>接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上 选择性的 ‘title’ 文字。</li>
 </ul>
 
-<h4 id="section-8">2.参考形式：</h4>
+<h4 id="section-10">2.参考形式：</h4>
 
 <p>语法：</p>
 
@@ -945,7 +991,7 @@ This is an [example link](http://example.com/ "With a Title").
 
 <p>到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 <img /> 标签。</p>
 
-<h2 id="section-9">六、代码区块</h2>
+<h2 id="section-11">六、代码区块</h2>
 
 <p>如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：<br />
 语法示例：</p>
@@ -993,7 +1039,7 @@ instead of decimal-encoded entites like `&amp;#8212;`.
   <li>代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号，这表示你可以很容易地以 Markdown 语法撰写 Markdown 语法相关的文件。</li>
 </ul>
 
-<h5 id="section-10">代码区块还可以用三个`号包起来表示</h5>
+<h5 id="section-12">代码区块还可以用三个`号包起来表示</h5>
 
 <p>示例语法：</p>
 
@@ -1034,7 +1080,36 @@ class Fixnum
 end
 </code></p>
 
-<h2 id="section-11">七、分割线</h2>
+<p>但是目前我的环境，貌似不支持上述两种代码高亮形式，所以可以用下面这种：(使用时请去掉 % 前的 )</p>
+
+<pre><code>{\% highlight objc linenos \%}
+//这是一个代码区块 这种会显示代码行数
+NSString *string = @"Hello world!";
+NSLog(@"%@",string);
+{\% endhighlight \%}
+
+{\% highlight ruby linenos \%}
+class Fixnum
+  def prime?
+    ('1' * self) !~ /^1?$|^(11+?)\1+$/
+  end
+end
+{\% endhighlight \%}
+</code></pre>
+
+<p>显示效果为：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//这是一个代码区块 这种会显示代码行数</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="s">@&quot;Hello world!&quot;</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">);</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno">1</span> <span class="k">class</span> <span class="nc">Fixnum</span>
+<span class="lineno">2</span>   <span class="k">def</span> <span class="nf">prime?</span>
+<span class="lineno">3</span>     <span class="p">(</span><span class="s1">&#39;1&#39;</span> <span class="o">*</span> <span class="nb">self</span><span class="p">)</span> <span class="o">!~</span> <span class="sr">/^1?$|^(11+?)\1+$/</span>
+<span class="lineno">4</span>   <span class="k">end</span>
+<span class="lineno">5</span> <span class="k">end</span></code></pre></div>
+
+<h2 id="section-13">七、分割线</h2>
 
 <p>你可以在你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
 
@@ -1207,8 +1282,6 @@ end
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -1242,6 +1315,44 @@ end
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

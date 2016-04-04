@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -503,25 +540,24 @@ ds.charset = 'UTF-8';
   <li>和监听键盘弹出类似的，Apple提供了一个通知给我们，只要在合适的地方添加对这个通知的监听即可。</li>
 </ul>
 
-<pre><code class="language-objc">- (void)registeNotification{images
-    //1.注册监听系统音量变化，记得在适当的地方移除监听
-    [[NSNotificationCenter defaultCenter] addObserver:self
-    								selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
-    	//让 UIApplication 开始响应远程的控制，必须添加，不然没效果
-    	[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-}
-- (void)volumeChanged:(NSNotification *)notification{
-    //2.获取到当前音量
-    float volume = [[[notification userInfo] objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
-    //do something here
-}
-- (void) removeNotification{
-    //3.移除监听
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
-}
-	//结束远程的控制
-	[[UIApplication sharedApplication] endReceivingRemoteControlEvents];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">registeNotification</span><span class="p">{</span><span class="n">images</span>
+<span class="lineno"> 2</span>     <span class="c1">//1.注册监听系统音量变化，记得在适当的地方移除监听</span>
+<span class="lineno"> 3</span>     <span class="p">[[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span> <span class="nl">addObserver</span><span class="p">:</span><span class="nb">self</span>
+<span class="lineno"> 4</span>     								<span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">volumeChanged</span><span class="p">:)</span> <span class="nl">name</span><span class="p">:</span><span class="s">@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot;</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno"> 5</span>     	<span class="c1">//让 UIApplication 开始响应远程的控制，必须添加，不然没效果</span>
+<span class="lineno"> 6</span>     	<span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">beginReceivingRemoteControlEvents</span><span class="p">];</span>
+<span class="lineno"> 7</span> <span class="p">}</span>
+<span class="lineno"> 8</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">volumeChanged:</span><span class="p">(</span><span class="bp">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">{</span>
+<span class="lineno"> 9</span>     <span class="c1">//2.获取到当前音量</span>
+<span class="lineno">10</span>     <span class="kt">float</span> <span class="n">volume</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">notification</span> <span class="n">userInfo</span><span class="p">]</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;</span><span class="p">]</span> <span class="n">floatValue</span><span class="p">];</span>
+<span class="lineno">11</span>     <span class="c1">//do something here</span>
+<span class="lineno">12</span> <span class="p">}</span>
+<span class="lineno">13</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">removeNotification</span><span class="p">{</span>
+<span class="lineno">14</span>     <span class="c1">//3.移除监听</span>
+<span class="lineno">15</span>     <span class="p">[[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span> <span class="nl">removeObserver</span><span class="p">:</span><span class="nb">self</span> <span class="nl">name</span><span class="p">:</span><span class="s">@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot;</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">16</span> <span class="p">}</span>
+<span class="lineno">17</span> 	<span class="c1">//结束远程的控制</span>
+<span class="lineno">18</span> 	<span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">endReceivingRemoteControlEvents</span><span class="p">];</span></code></pre></div>
 
 <h3 id="section-1">虽然有效果，但是问题来了</h3>
 <p>#### 1.实体键按下的时候，会出现系统的”铃声”，而我想要显示”音量”</p>
@@ -530,9 +566,8 @@ ds.charset = 'UTF-8';
 
 <p>这个时候可以添加一句代码，即可让在这个页面时，按下音量实体键显示<strong>音量</strong>，而不是铃声</p>
 
-<pre><code class="language-objc">//使音量控制实体键响应“音量”而不是”铃声”
-[[AVAudioSession sharedInstance] setActive:YES error:NULL];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//使音量控制实体键响应“音量”而不是”铃声”</span>
+<span class="lineno">2</span> <span class="p">[[</span><span class="bp">AVAudioSession</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setActive</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">error</span><span class="p">:</span><span class="nb">NULL</span><span class="p">];</span></code></pre></div>
 
 <p><img src="/images/2015/12/systemVolumeVC.PNG" alt="出现系统铃声控制" title="按下音量实体键系统显示音量" /></p>
 
@@ -540,12 +575,11 @@ ds.charset = 'UTF-8';
 
 <p>这是因为程序进入后台后，上述一行代码 [AVAudioSession sharedInstance] 又不再是 Active 状态，所以需要在<code>AppDelegate.m</code>里面重新设置，这样即可一直响应“音量”了，比如：</p>
 
-<p><code>objc AppDelegate.m
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-      //使程序重新激活后，对音量实体键响应为“音量”而不是“铃声”
-      [[AVAudioSession sharedInstance] setActive:YES error:NULL];
-}
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">AppDelegate</span><span class="p">.</span><span class="n">m</span>
+<span class="lineno">2</span> <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">applicationWillEnterForeground</span><span class="p">:(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> <span class="p">{</span>
+<span class="lineno">3</span>       <span class="c1">//使程序重新激活后，对音量实体键响应为“音量”而不是“铃声”</span>
+<span class="lineno">4</span>       <span class="p">[[</span><span class="bp">AVAudioSession</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setActive</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">error</span><span class="p">:</span><span class="nb">NULL</span><span class="p">];</span>
+<span class="lineno">5</span> <span class="p">}</span></code></pre></div>
 
 <h4 id="section-2">3.我不想出现”音量”</h4>
 
@@ -575,12 +609,11 @@ ds.charset = 'UTF-8';
 
 <p>于是想要隐藏”音量提示框”就可以通过添加以下代码实现：</p>
 
-<pre><code class="language-objc">//隐藏"音量提示框"
-//注意使用之前需要添加`MediaPlayer.framework`
-MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-100, -100, 100, 100)];
-volumeView.hidden = NO;
-[self.view addSubview:volumeView];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//隐藏&quot;音量提示框&quot;</span>
+<span class="lineno">2</span> <span class="c1">//注意使用之前需要添加`MediaPlayer.framework`</span>
+<span class="lineno">3</span> <span class="bp">MPVolumeView</span> <span class="o">*</span><span class="n">volumeView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MPVolumeView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)];</span>
+<span class="lineno">4</span> <span class="n">volumeView</span><span class="p">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="lineno">5</span> <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">volumeView</span><span class="p">];</span></code></pre></div>
 
 <h2 id="section-3">代码实现调节系统音量，不通过实体按键</h2>
 
@@ -600,53 +633,52 @@ volumeView.hidden = NO;
 
 <p>具体的代码如下：</p>
 
-<pre><code class="language-objc">- (void)viewDidLoad {
-    [super viewDidLoad];
-	//不显示“铃声”，显示“音量”
-    [[AVAudioSession sharedInstance] setActive:YES error:NULL];
-    //1. 获得 MPVolumeView 实例，
-    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-100, -100, 100, 100)];
-    //volumeView.hidden = NO;
-    //[self.view addSubview:volumeView]; //添加后不显示“音量”
-    volumeViewSlider = nil;
-    //2. 遍历MPVolumeView的subViews得到MPVolumeSlider
-    for (UIView *view in [volumeView subviews]){
-        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-            volumeViewSlider = (UISlider*)view;
-            break;
-        }
-    }
-    //3.获取系统音量
-    float systemVolume = volumeViewSlider.value;
-    //4.添加一个全局的 slider，滑动时同步改变系统音量
-    VolSlider = [[UISlider alloc] initWithFrame:CGRectMake(30, 200, 300, 20)];
-    VolSlider.value = systemVolume;  //初始值
-    [VolSlider setMinimumValue:0.0]; //最小值
-    [VolSlider setMaximumValue:1.0]; //最大值
-    [VolSlider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged]; //添加事件
-    [self.view addSubview:VolSlider];
-    //注册监听实体键按下事件
-    [self registeNotification];
-}
-//
-//VolSlider滑动事件
-- (void)sliderValueChange:(UISlider *)slider{ 
-    //得到当前用户设置的value
-    float value = slider.value; 
-    //改变系统音量大小，默认音量大小从 0.0 - 1.0
-    [volumeViewSlider setValue:value animated:NO];
-    //使setValue立即生效，
-    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
-}
-//
-//监听音量实体键按下后，响应事件
-- (void)volumeChanged:(NSNotification *)notification{   
-    //获取到当前系统音量
-    float volume = [[[notification userInfo] objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
-    //同步设置自定义视图的值
-	[VolSlider setValue:volume animated:YES];
-}
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+<span class="lineno"> 3</span> 	<span class="c1">//不显示“铃声”，显示“音量”</span>
+<span class="lineno"> 4</span>     <span class="p">[[</span><span class="bp">AVAudioSession</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setActive</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">error</span><span class="p">:</span><span class="nb">NULL</span><span class="p">];</span>
+<span class="lineno"> 5</span>     <span class="c1">//1. 获得 MPVolumeView 实例，</span>
+<span class="lineno"> 6</span>     <span class="bp">MPVolumeView</span> <span class="o">*</span><span class="n">volumeView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MPVolumeView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)];</span>
+<span class="lineno"> 7</span>     <span class="c1">//volumeView.hidden = NO;</span>
+<span class="lineno"> 8</span>     <span class="c1">//[self.view addSubview:volumeView]; //添加后不显示“音量”</span>
+<span class="lineno"> 9</span>     <span class="n">volumeViewSlider</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno">10</span>     <span class="c1">//2. 遍历MPVolumeView的subViews得到MPVolumeSlider</span>
+<span class="lineno">11</span>     <span class="k">for</span> <span class="p">(</span><span class="bp">UIView</span> <span class="o">*</span><span class="n">view</span> <span class="k">in</span> <span class="p">[</span><span class="n">volumeView</span> <span class="n">subviews</span><span class="p">]){</span>
+<span class="lineno">12</span>         <span class="k">if</span> <span class="p">([</span><span class="n">view</span><span class="p">.</span><span class="k">class</span><span class="p">.</span><span class="n">description</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&quot;MPVolumeSlider&quot;</span><span class="p">]){</span>
+<span class="lineno">13</span>             <span class="n">volumeViewSlider</span> <span class="o">=</span> <span class="p">(</span><span class="bp">UISlider</span><span class="o">*</span><span class="p">)</span><span class="n">view</span><span class="p">;</span>
+<span class="lineno">14</span>             <span class="k">break</span><span class="p">;</span>
+<span class="lineno">15</span>         <span class="p">}</span>
+<span class="lineno">16</span>     <span class="p">}</span>
+<span class="lineno">17</span>     <span class="c1">//3.获取系统音量</span>
+<span class="lineno">18</span>     <span class="kt">float</span> <span class="n">systemVolume</span> <span class="o">=</span> <span class="n">volumeViewSlider</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+<span class="lineno">19</span>     <span class="c1">//4.添加一个全局的 slider，滑动时同步改变系统音量</span>
+<span class="lineno">20</span>     <span class="n">VolSlider</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UISlider</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">20</span><span class="p">)];</span>
+<span class="lineno">21</span>     <span class="n">VolSlider</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">systemVolume</span><span class="p">;</span>  <span class="c1">//初始值</span>
+<span class="lineno">22</span>     <span class="p">[</span><span class="n">VolSlider</span> <span class="nl">setMinimumValue</span><span class="p">:</span><span class="mf">0.0</span><span class="p">];</span> <span class="c1">//最小值</span>
+<span class="lineno">23</span>     <span class="p">[</span><span class="n">VolSlider</span> <span class="nl">setMaximumValue</span><span class="p">:</span><span class="mf">1.0</span><span class="p">];</span> <span class="c1">//最大值</span>
+<span class="lineno">24</span>     <span class="p">[</span><span class="n">VolSlider</span> <span class="nl">addTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">sliderValueChange</span><span class="p">:)</span> <span class="nl">forControlEvents</span><span class="p">:</span><span class="n">UIControlEventValueChanged</span><span class="p">];</span> <span class="c1">//添加事件</span>
+<span class="lineno">25</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">VolSlider</span><span class="p">];</span>
+<span class="lineno">26</span>     <span class="c1">//注册监听实体键按下事件</span>
+<span class="lineno">27</span>     <span class="p">[</span><span class="nb">self</span> <span class="n">registeNotification</span><span class="p">];</span>
+<span class="lineno">28</span> <span class="p">}</span>
+<span class="lineno">29</span> <span class="c1">//</span>
+<span class="lineno">30</span> <span class="c1">//VolSlider滑动事件</span>
+<span class="lineno">31</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sliderValueChange:</span><span class="p">(</span><span class="bp">UISlider</span> <span class="o">*</span><span class="p">)</span><span class="nv">slider</span><span class="p">{</span> 
+<span class="lineno">32</span>     <span class="c1">//得到当前用户设置的value</span>
+<span class="lineno">33</span>     <span class="kt">float</span> <span class="n">value</span> <span class="o">=</span> <span class="n">slider</span><span class="p">.</span><span class="n">value</span><span class="p">;</span> 
+<span class="lineno">34</span>     <span class="c1">//改变系统音量大小，默认音量大小从 0.0 - 1.0</span>
+<span class="lineno">35</span>     <span class="p">[</span><span class="n">volumeViewSlider</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">value</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span>
+<span class="lineno">36</span>     <span class="c1">//使setValue立即生效，</span>
+<span class="lineno">37</span>     <span class="p">[</span><span class="n">volumeViewSlider</span> <span class="nl">sendActionsForControlEvents</span><span class="p">:</span><span class="n">UIControlEventTouchUpInside</span><span class="p">];</span>
+<span class="lineno">38</span> <span class="p">}</span>
+<span class="lineno">39</span> <span class="c1">//</span>
+<span class="lineno">40</span> <span class="c1">//监听音量实体键按下后，响应事件</span>
+<span class="lineno">41</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">volumeChanged:</span><span class="p">(</span><span class="bp">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">{</span>   
+<span class="lineno">42</span>     <span class="c1">//获取到当前系统音量</span>
+<span class="lineno">43</span>     <span class="kt">float</span> <span class="n">volume</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">notification</span> <span class="n">userInfo</span><span class="p">]</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;</span><span class="p">]</span> <span class="n">floatValue</span><span class="p">];</span>
+<span class="lineno">44</span>     <span class="c1">//同步设置自定义视图的值</span>
+<span class="lineno">45</span> 	<span class="p">[</span><span class="n">VolSlider</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">volume</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+<span class="lineno">46</span> <span class="p">}</span></code></pre></div>
 
 <p>设置后即可使 VolSlider 与系统的音量提示框同步了，效果如下：</p>
 
@@ -807,8 +839,6 @@ volumeView.hidden = NO;
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -842,6 +872,44 @@ volumeView.hidden = NO;
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

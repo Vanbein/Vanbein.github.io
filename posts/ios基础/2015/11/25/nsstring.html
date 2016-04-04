@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -493,8 +530,6 @@ ds.charset = 'UTF-8';
                   <h1 class="entry_title">Foundation框架基础</h1><!-- End Entry title -->
                   <p>Foundation框架中一些常用的类</p>
 
-<!--more-->
-
 <ul>
   <li>
     <p>字符串型：<br />
@@ -520,116 +555,116 @@ ds.charset = 'UTF-8';
 	NSObject</p>
 
 <h3 id="nsstring">一、NSString</h3>
-<p>##### 1）初始化<br />
-<code>Objective-C
-NSString *str = @"Hello world!";//创建一个字符串常量
-//应尽量少使用以下方式通过使用 alloc 创建一个字符串对象，不推荐使用
-NSString *str2 = [[NSString alloc] initWithFormat:@"__%@__",str];
-//推荐使用 工厂方法 创建一个字符串，
-NSString *str3 = [NSString stringWithFormat:@"__%@__",str];
-</code><br />
-##### 2）截取子字符串</p>
+
+<h5 id="section">1）初始化</h5>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">@&quot;Hello world!&quot;</span><span class="p">;</span><span class="c1">//创建一个字符串常量</span>
+<span class="lineno">2</span> <span class="c1">//应尽量少使用以下方式通过使用 alloc 创建一个字符串对象，不推荐使用</span>
+<span class="lineno">3</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str2</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSString</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFormat</span><span class="p">:</span><span class="s">@&quot;__%@__&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="c1">//推荐使用 工厂方法 创建一个字符串，</span>
+<span class="lineno">5</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str3</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;__%@__&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-1">2）截取子字符串</h5>
 
 <p>获取子字符串,有3种方法</p>
 
-<pre><code>NSString *subStrTo = [@"HelloWorld" substringToIndex:6];  //从字符串开始到第六个字符        
-NSString *subStrFrom = [@"HelloWorld" substringFromIndex:6]; //从第6个字符开始到字符串结束
-NSRange range = NSMakeRange(3, 5);  //从第3个字符开始，截取5个字符
-NSString *subStrRange = [@"HelloWorld" substringWithRange:range];
-</code></pre>
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">subStrTo</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;HelloWorld&quot;</span> <span class="nl">substringToIndex</span><span class="p">:</span><span class="mi">6</span><span class="p">];</span>  <span class="c1">//从字符串开始到第六个字符        </span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">subStrFrom</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;HelloWorld&quot;</span> <span class="nl">substringFromIndex</span><span class="p">:</span><span class="mi">6</span><span class="p">];</span> <span class="c1">//从第6个字符开始到字符串结束</span>
+<span class="lineno">3</span> <span class="n">NSRange</span> <span class="n">range</span> <span class="o">=</span> <span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">//从第3个字符开始，截取5个字符</span>
+<span class="lineno">4</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">subStrRange</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;HelloWorld&quot;</span> <span class="nl">substringWithRange</span><span class="p">:</span><span class="n">range</span><span class="p">];</span></code></pre></div>
 
-<h5 id="section">3）分割字符串</h5>
+<h5 id="section-2">3）分割字符串</h5>
 
 <p>将字符串按照指定的字符进行分割</p>
 
-<pre><code>//这里以.为依据进行分割
-NSArray *array = [@"www.baidu.com" componentsSeparatedByString:@"."];
-//得到arrry = @[@"www",@"baidu",@"com"];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//这里以.为依据进行分割</span>
+<span class="lineno">2</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;www.baidu.com&quot;</span> <span class="nl">componentsSeparatedByString</span><span class="p">:</span><span class="s">@&quot;.&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">//得到arrry = @[@&quot;www&quot;,@&quot;baidu&quot;,@&quot;com&quot;];</span></code></pre></div>
 
-<h5 id="section-1">4）查找子字符串</h5>
+<h5 id="section-3">4）查找子字符串</h5>
 
-<pre><code>NSRange range = [@"12rasd124" rangeOfString:@"asd"];
-if (range.location != NSNotFound) {
-     NSString *str = [@"12rasd124" substringWithRange:range];
-}
-</code></pre>
-<p>##### 5）替换子字符串<br />
-<code>
-NSString *str = [@"asdasd" stringByReplacingOccurrencesOfString:@"asd" withString:@"ok"];
-</code><br />
-##### 6）路径相关<br />
-<code>
-[filepath lastPathComponent];                 //获得文件名
-[filepath pathExtension];                     //获得文件扩展名
-[filtpaht stringByDeletingLastPathComponent]; //获得文件的所在文件夹路径
-[filtpath stringByDeletingPathExtension];     //获得去除扩展名的文件路径
-</code><br />
-##### 7）判断字符串是否为空<br />
-<code>
-if (str.length &gt; 0) //不管str是不是nil都可以这么判断
-</code><br />
-##### 8）判断字符串相等</p>
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="n">NSRange</span> <span class="n">range</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;12rasd124&quot;</span> <span class="nl">rangeOfString</span><span class="p">:</span><span class="s">@&quot;asd&quot;</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="k">if</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">location</span> <span class="o">!=</span> <span class="n">NSNotFound</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>      <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;12rasd124&quot;</span> <span class="nl">substringWithRange</span><span class="p">:</span><span class="n">range</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">}</span></code></pre></div>
 
-<pre><code>if ([@"asd" isEqualToString:@"asd"]) {
-	//字符串相等   
-}
-</code></pre>
-<p>##### 9）判断字符串大小</p>
+<h5 id="section-4">5）替换子字符串</h5>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="s">@&quot;asdasd&quot;</span> <span class="nl">stringByReplacingOccurrencesOfString</span><span class="p">:</span><span class="s">@&quot;asd&quot;</span> <span class="nl">withString</span><span class="p">:</span><span class="s">@&quot;ok&quot;</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-5">6）路径相关</h5>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="p">[</span><span class="n">filepath</span> <span class="n">lastPathComponent</span><span class="p">];</span>                 <span class="c1">//获得文件名</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">filepath</span> <span class="n">pathExtension</span><span class="p">];</span>                     <span class="c1">//获得文件扩展名</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">filtpaht</span> <span class="n">stringByDeletingLastPathComponent</span><span class="p">];</span> <span class="c1">//获得文件的所在文件夹路径</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">filtpath</span> <span class="n">stringByDeletingPathExtension</span><span class="p">];</span>     <span class="c1">//获得去除扩展名的文件路径</span></code></pre></div>
+
+<h5 id="section-6">7）判断字符串是否为空</h5>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">//不管str是不是nil都可以这么判断</span></code></pre></div>
+
+<h5 id="section-7">8）判断字符串相等</h5>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="k">if</span> <span class="p">([</span><span class="s">@&quot;asd&quot;</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&quot;asd&quot;</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno">2</span> 	<span class="c1">//字符串相等   </span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
+
+<h5 id="section-8">9）判断字符串大小</h5>
 
 <p>比较字符串的大小，返回值 NSComparisonResult 是枚举类型，有三个值，NSOrderedAscending、NSOrderedSame、NSOrderedDescending，分别表示-1，0，1，对应小于、等于、大于</p>
 
-<pre><code>NSString *stra = @"asd";
-NSString *strb = @"dfs";
-NSComparisonResult compResult = [stra compare:strb];
-switch (compResult) {
-    case NSOrderedAscending:
-		//stra &lt; strb    
-        break;
-    case NSOrderedSame:
-		//stra = strb
-        break;
-    case NSOrderedDescending:
-		//stra &gt; strb
-        break;
-    default:
-        break;
-}
-</code></pre>
-<p>##### 10）将字符串类型的数据内容转换为相应的数据类型<br />
-<code>
-NSString *str4 = @"123";
-nt num = [str4 intValue];
-</code>      <br />
-##### 11）判断字符串前缀/后缀<br />
-<code>
-//判断字符串前缀
-if ([str3 hasPrefix:@"http://"]){
-    NSLog(@"is url");
-}else{
-	NSLog(@"is not url");
-}
-//判断字符串后缀
-if ([str3 hasSuffix:@".mp3"]){
-    NSLog(@"is music");
-}else{
-    NSLog(@"is not music");
-}
-</code><br />
-### 二、NSMutableString<br />
-* 不可变字符串immutable，不可以对字符串进行增加，删除，改变等操作，NSString 是不可变字符串<br />
-* 可变字符串mutable，可对字符串进行增加，删除，改变等操作，NSMutableString 是可变字符串</p>
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno"> 1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">stra</span> <span class="o">=</span> <span class="s">@&quot;asd&quot;</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">strb</span> <span class="o">=</span> <span class="s">@&quot;dfs&quot;</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="n">NSComparisonResult</span> <span class="n">compResult</span> <span class="o">=</span> <span class="p">[</span><span class="n">stra</span> <span class="nl">compare</span><span class="p">:</span><span class="n">strb</span><span class="p">];</span>
+<span class="lineno"> 4</span> <span class="k">switch</span> <span class="p">(</span><span class="n">compResult</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 5</span>     <span class="k">case</span> <span class="nl">NSOrderedAscending</span><span class="p">:</span>
+<span class="lineno"> 6</span> 		<span class="c1">//stra &lt; strb    </span>
+<span class="lineno"> 7</span>         <span class="k">break</span><span class="p">;</span>
+<span class="lineno"> 8</span>     <span class="k">case</span> <span class="nl">NSOrderedSame</span><span class="p">:</span>
+<span class="lineno"> 9</span> 		<span class="c1">//stra = strb</span>
+<span class="lineno">10</span>         <span class="k">break</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="k">case</span> <span class="nl">NSOrderedDescending</span><span class="p">:</span>
+<span class="lineno">12</span> 		<span class="c1">//stra &gt; strb</span>
+<span class="lineno">13</span>         <span class="k">break</span><span class="p">;</span>
+<span class="lineno">14</span>     <span class="k">default</span><span class="o">:</span>
+<span class="lineno">15</span>         <span class="k">break</span><span class="p">;</span>
+<span class="lineno">16</span> <span class="p">}</span></code></pre></div>
 
-<pre><code>NSMutableString *mutableString = [NSMutableString stringWithString:@"www.baidu.com"];
-//替换字符串
-[mutableString replaceCharactersInRange:NSMakeRange(4, 5) withString:@"changhong"];
-//插入字符串
-[mutableString insertString:@"http://" atIndex:0];
-//删除字符串
-[mutableString deleteCharactersInRange:NSMakeRange(0, 7)];
-//在字符串后面添加/写入字符串
-[mutableString appendString:@"/game"];
-</code></pre>
+<h5 id="section-9">10）将字符串类型的数据内容转换为相应的数据类型</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">str4</span> <span class="o">=</span> <span class="s">@&quot;123&quot;</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="n">nt</span> <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="n">str4</span> <span class="n">intValue</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-10">11）判断字符串前缀/后缀</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//判断字符串前缀</span>
+<span class="lineno"> 2</span> <span class="k">if</span> <span class="p">([</span><span class="n">str3</span> <span class="nl">hasPrefix</span><span class="p">:</span><span class="s">@&quot;http://&quot;</span><span class="p">]){</span>
+<span class="lineno"> 3</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;is url&quot;</span><span class="p">);</span>
+<span class="lineno"> 4</span> <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno"> 5</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;is not url&quot;</span><span class="p">);</span>
+<span class="lineno"> 6</span> <span class="p">}</span>
+<span class="lineno"> 7</span> <span class="c1">//判断字符串后缀</span>
+<span class="lineno"> 8</span> <span class="k">if</span> <span class="p">([</span><span class="n">str3</span> <span class="nl">hasSuffix</span><span class="p">:</span><span class="s">@&quot;.mp3&quot;</span><span class="p">]){</span>
+<span class="lineno"> 9</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;is music&quot;</span><span class="p">);</span>
+<span class="lineno">10</span> <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno">11</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;is not music&quot;</span><span class="p">);</span>
+<span class="lineno">12</span> <span class="p">}</span></code></pre></div>
+
+<h3 id="nsmutablestring">二、NSMutableString</h3>
+<ul>
+  <li>不可变字符串immutable，不可以对字符串进行增加，删除，改变等操作，NSString 是不可变字符串</li>
+  <li>可变字符串mutable，可对字符串进行增加，删除，改变等操作，NSMutableString 是可变字符串</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSMutableString</span> <span class="o">*</span><span class="n">mutableString</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableString</span> <span class="nl">stringWithString</span><span class="p">:</span><span class="s">@&quot;www.baidu.com&quot;</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="c1">//替换字符串</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">mutableString</span> <span class="nl">replaceCharactersInRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="nl">withString</span><span class="p">:</span><span class="s">@&quot;changhong&quot;</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="c1">//插入字符串</span>
+<span class="lineno">5</span> <span class="p">[</span><span class="n">mutableString</span> <span class="nl">insertString</span><span class="p">:</span><span class="s">@&quot;http://&quot;</span> <span class="nl">atIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="lineno">6</span> <span class="c1">//删除字符串</span>
+<span class="lineno">7</span> <span class="p">[</span><span class="n">mutableString</span> <span class="nl">deleteCharactersInRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)];</span>
+<span class="lineno">8</span> <span class="c1">//在字符串后面添加/写入字符串</span>
+<span class="lineno">9</span> <span class="p">[</span><span class="n">mutableString</span> <span class="nl">appendString</span><span class="p">:</span><span class="s">@&quot;/game&quot;</span><span class="p">];</span></code></pre></div>
 
 <hr />
 
@@ -641,219 +676,221 @@ if ([str3 hasSuffix:@".mp3"]){
   <li>数组赋值的时候以nil表示结束，所以数组里面不能存放nil的对象</li>
 </ul>
 
-<pre><code>null C语言类型的指针为空
-NSNULL 只有在数组中使用，表示一个空的对象
-nil  表示OC对象为空
-</code></pre>
+<blockquote>
+  <p>null C语言类型的指针为空<br />
+NSNULL 只有在数组中使用，表示一个空的对象<br />
+nil  表示OC对象为空</p>
+</blockquote>
 
-<h5 id="section-2">1）创建数组</h5>
+<h5 id="section-11">1）创建数组</h5>
 
-<pre><code>//以下是两种方法创建了一个数组
-NSArray *namesArray = @[@"abc",@"123",@"ncs"];
-NSArray *array2 = [NSArray arrayWithObjects:@"abc",@"123",@"ios",@"qwer",nil];
-</code></pre>
-<p>##### 2）获取数组的元素个数<br />
-<code>
-NSInteger num = array2.count;
-NSInteger num_2 = [array2 count];
-</code><br />
-##### 3）获取某一个元素<br />
-<code>
-NSString *temp = [array2 objectAtIndex:3]; //第4个元素
-NSString *temp2 = [array2 firstObject]; //第一个元素
-NSString *temp3 = [array2 lastObject]; //最后一个元素
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//以下是两种方法创建了一个数组</span>
+<span class="lineno">2</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">namesArray</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;abc&quot;</span><span class="p">,</span><span class="s">@&quot;123&quot;</span><span class="p">,</span><span class="s">@&quot;ncs&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array2</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="s">@&quot;abc&quot;</span><span class="p">,</span><span class="s">@&quot;123&quot;</span><span class="p">,</span><span class="s">@&quot;ios&quot;</span><span class="p">,</span><span class="s">@&quot;qwer&quot;</span><span class="p">,</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
 
-<h5 id="section-3">4）获取某个元素所对应的索引值/位置</h5>
-<pre><code>NSInteger index = [array2 indexOfObject:@"123"];
-</code></pre>
-<p><strong>注意：</strong><br />
-<code>
-NSArray *array = [NSArray arrayWithObjects:@"hello",@"123",@"ios",@"123",nil];
-NSInteger index = [array2 indexOfObject:@"123"];
-//index = 1;
-</code></p>
+<h5 id="section-12">2）获取数组的元素个数</h5>
 
-<h5 id="section-4">5）判断数组是否包含某一个对象</h5>
-<pre><code>if ([array2 containsObject:@"ncs"]){
-	NSLog(@"Contains!");
-}else{
-	NSLog(@"Not contains!");
-}
-</code></pre>
-<p>##### 6）将数组的所有字符串对象拼接成一个字符串<br />
-<code>
-NSArray *urlsArray = @[@"www",@"baidu",@"com"];
-NSString *url = [urlsArray componentsJoinedByString:@"."]; //用.拼接
-</code><br />
-### 四、NSMutableArray<br />
-##### 1）创建<br />
-创建一个array的方法有很多种：<br />
-<code>
-NSMutableArray *mArray1 = [NSMutableArray array];//创建并初始化，元素个数不定
-NSMutableArray *mArray2 = [NSMutableArray arrayWithCapacity:3];//预留3个元素空间
-NSMutableArray *mArray3 = [NSMutableArray arrayWithArray:mArray1];//从另外一个array创建
-NSMutableArray *mArray4 = [NSMutableArray arrayWithContentsOfFile:filePath];//从文件路径创建
-NSMutableArray *mArray5 = [NSMutableArray arrayWithContentsOfURL:NSURL];//从URL创建
-NSMutableArray *mArray6 = [NSMutableArray arrayWithObjects:@"HELLO", @"WORLD", nil];
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSInteger</span> <span class="n">num</span> <span class="o">=</span> <span class="n">array2</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="bp">NSInteger</span> <span class="n">num_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">array2</span> <span class="n">count</span><span class="p">];</span></code></pre></div>
 
-<h5 id="section-5">2）添加数据</h5>
-<pre><code>[mArray addObject:@"hello"];
-[mArray addObject:@"world"];
-[mArray addObject:@"iOS"];
-</code></pre>
+<h5 id="section-13">3）获取某一个元素</h5>
 
-<h5 id="section-6">3）插入数据，数组元素个数增加</h5>
-<pre><code>[mArray insertObject:@"Duang" atIndex:2];
-</code></pre>
-<p>##### 4）删除对象<br />
-<code>
-[mArray removeObject:@"Duang"];
-[mArray removeObjectAtIndex:2];//删除第3个元素
-[mArray removeLastObject];//删除最后一个元素
-[mArray removeAllObjects];//清空数组所有元素
-</code><br />
-##### 5）替换一个对象<br />
-<code>
-[mArray replaceObjectAtIndex:1 withObject:@"world"];
-</code><br />
-##### 6）遍历array</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">array2</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="mi">3</span><span class="p">];</span> <span class="c1">//第4个元素</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">temp2</span> <span class="o">=</span> <span class="p">[</span><span class="n">array2</span> <span class="n">firstObject</span><span class="p">];</span> <span class="c1">//第一个元素</span>
+<span class="lineno">3</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">temp3</span> <span class="o">=</span> <span class="p">[</span><span class="n">array2</span> <span class="n">lastObject</span><span class="p">];</span> <span class="c1">//最后一个元素</span></code></pre></div>
+
+<h5 id="section-14">4）获取某个元素所对应的索引值/位置</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSInteger</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">array2</span> <span class="nl">indexOfObject</span><span class="p">:</span><span class="s">@&quot;123&quot;</span><span class="p">];</span></code></pre></div>
+
+<p><strong>注意：</strong></p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="s">@&quot;hello&quot;</span><span class="p">,</span><span class="s">@&quot;123&quot;</span><span class="p">,</span><span class="s">@&quot;ios&quot;</span><span class="p">,</span><span class="s">@&quot;123&quot;</span><span class="p">,</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="bp">NSInteger</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">array2</span> <span class="nl">indexOfObject</span><span class="p">:</span><span class="s">@&quot;123&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">//index = 1;</span></code></pre></div>
+
+<h5 id="section-15">5）判断数组是否包含某一个对象</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">if</span> <span class="p">([</span><span class="n">array2</span> <span class="nl">containsObject</span><span class="p">:</span><span class="s">@&quot;ncs&quot;</span><span class="p">]){</span>
+<span class="lineno">2</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Contains!&quot;</span><span class="p">);</span>
+<span class="lineno">3</span> <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="lineno">4</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Not contains!&quot;</span><span class="p">);</span>
+<span class="lineno">5</span> <span class="p">}</span></code></pre></div>
+
+<h5 id="section-16">6）将数组的所有字符串对象拼接成一个字符串</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">urlsArray</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;www&quot;</span><span class="p">,</span><span class="s">@&quot;baidu&quot;</span><span class="p">,</span><span class="s">@&quot;com&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="n">urlsArray</span> <span class="nl">componentsJoinedByString</span><span class="p">:</span><span class="s">@&quot;.&quot;</span><span class="p">];</span> <span class="c1">//用.拼接</span></code></pre></div>
+
+<h3 id="nsmutablearray">四、NSMutableArray</h3>
+<p>##### 1）创建<br />
+创建一个array的方法有很多种：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mArray1</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="n">array</span><span class="p">];</span><span class="c1">//创建并初始化，元素个数不定</span>
+<span class="lineno">2</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mArray2</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithCapacity</span><span class="p">:</span><span class="mi">3</span><span class="p">];</span><span class="c1">//预留3个元素空间</span>
+<span class="lineno">3</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mArray3</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithArray</span><span class="p">:</span><span class="n">mArray1</span><span class="p">];</span><span class="c1">//从另外一个array创建</span>
+<span class="lineno">4</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mArray4</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithContentsOfFile</span><span class="p">:</span><span class="n">filePath</span><span class="p">];</span><span class="c1">//从文件路径创建</span>
+<span class="lineno">5</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mArray5</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithContentsOfURL</span><span class="p">:</span><span class="bp">NSURL</span><span class="p">];</span><span class="c1">//从URL创建</span>
+<span class="lineno">6</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">mArray6</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithObjects</span><span class="p">:</span><span class="s">@&quot;HELLO&quot;</span><span class="p">,</span> <span class="s">@&quot;WORLD&quot;</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-17">2）添加数据</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">addObject</span><span class="p">:</span><span class="s">@&quot;hello&quot;</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">addObject</span><span class="p">:</span><span class="s">@&quot;world&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">addObject</span><span class="p">:</span><span class="s">@&quot;iOS&quot;</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-18">3）插入数据，数组元素个数增加</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">insertObject</span><span class="p">:</span><span class="s">@&quot;Duang&quot;</span> <span class="nl">atIndex</span><span class="p">:</span><span class="mi">2</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-19">4）删除对象</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">removeObject</span><span class="p">:</span><span class="s">@&quot;Duang&quot;</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">removeObjectAtIndex</span><span class="p">:</span><span class="mi">2</span><span class="p">];</span><span class="c1">//删除第3个元素</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">mArray</span> <span class="n">removeLastObject</span><span class="p">];</span><span class="c1">//删除最后一个元素</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">mArray</span> <span class="n">removeAllObjects</span><span class="p">];</span><span class="c1">//清空数组所有元素</span></code></pre></div>
+
+<h5 id="section-20">5）替换一个对象</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">replaceObjectAtIndex</span><span class="p">:</span><span class="mi">1</span> <span class="nl">withObject</span><span class="p">:</span><span class="s">@&quot;world&quot;</span><span class="p">];</span></code></pre></div>
+
+<h5 id="array">6）遍历array</h5>
 
 <ul>
-  <li>for循环<br />
-<code>
-for(int i = 0; i &lt; mArray.count; i ++){
-  NSString *string = [mArray objectAtIndex:i];
-  NSLog(@"%@",string);
-  if([string isEqualToString:@"iOS"]){
-      break;//停止遍历
-  }
-}
-</code></li>
+  <li>for循环</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mArray</span><span class="p">.</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">){</span>
+<span class="lineno">2</span> 	<span class="bp">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="o">=</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
+<span class="lineno">3</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">);</span>
+<span class="lineno">4</span> 	<span class="k">if</span><span class="p">([</span><span class="n">string</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&quot;iOS&quot;</span><span class="p">]){</span>
+<span class="lineno">5</span> 		<span class="k">break</span><span class="p">;</span><span class="c1">//停止遍历</span>
+<span class="lineno">6</span> 	<span class="p">}</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
+
+<ul>
   <li>快速枚举</li>
 </ul>
 
-<pre><code> for(NSString *string in mArray){
-    NSLog(@"%@",string);
-    if([string isEqualToString:@"iOS"]){
-		break;//停止遍历 break只使用在两种场合，即switch和循环结构中。
-	}
- }
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">for</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="k">in</span> <span class="n">mArray</span><span class="p">){</span>
+<span class="lineno">2</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">);</span>
+<span class="lineno">3</span>     <span class="k">if</span><span class="p">([</span><span class="n">string</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&quot;iOS&quot;</span><span class="p">]){</span>
+<span class="lineno">4</span> 		<span class="k">break</span><span class="p">;</span><span class="c1">//停止遍历 break只使用在两种场合，即switch和循环结构中。</span>
+<span class="lineno">5</span> 	<span class="p">}</span>
+<span class="lineno">6</span>  <span class="p">}</span></code></pre></div>
+
 <ul>
-  <li>Block遍历<br />
-<code>
-// 每遍历到一个元素，就会调用一次block
-// 并且当前元素和索引位置当做参数传给block
-[mArray enumerateObjectsUsingBlock:^(id obj, NSInteger idx, BOOL *stop){
-  NSLog(@"%ld -- %@", idx, obj);
-  if(idx == 0){
-      *stop = YES; //停止遍历 stop参数用来停止遍历，其值若为YES，则停止。
-  }
-}]
-</code><br />
-——–<br />
-### 五、NSDictionary</li>
+  <li>Block遍历</li>
 </ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 每遍历到一个元素，就会调用一次block</span>
+<span class="lineno">2</span> <span class="c1">// 并且当前元素和索引位置当做参数传给block</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">mArray</span> <span class="nl">enumerateObjectsUsingBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">id</span> <span class="n">obj</span><span class="p">,</span> <span class="bp">NSInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">){</span>
+<span class="lineno">4</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld -- %@&quot;</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">obj</span><span class="p">);</span>
+<span class="lineno">5</span> 	<span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+<span class="lineno">6</span> 		<span class="o">*</span><span class="n">stop</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span> <span class="c1">//停止遍历 stop参数用来停止遍历，其值若为YES，则停止。</span>
+<span class="lineno">7</span> 	<span class="p">}</span>
+<span class="lineno">8</span> <span class="p">}]</span></code></pre></div>
+
+<hr />
+
+<h3 id="nsdictionary">五、NSDictionary</h3>
 
 <p>OC中的NSDictionary：根据key找到value。里面存储的东西都是键值对。</p>
 
-<h5 id="section-7">1）创建</h5>
-<pre><code>//1.
-NSDictionary *mydic = [NSDictionary dictionaryWithObject:@"10086" forKey:@"PhoneNumber"];
-//2.前面是值，后面是键
-NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"1",@"one",
-                             @"2",@"two",
-                             nil];
-//3.快速创建，前面是键，后面是值，
-//注意：快速创建字典是编译器特性，只适用于不可变字典
-NSDictionary *dic2 = @{
-                       @"age":@"22",
-                       @"address":@"chengdu",
-                       @"name":@"xiaoming",
-                       };
-//4.
-NSArray *objects = @[@"jack", @"tom", @"rose"];
-NSArray *keys = @[@"name1", @"name2", @"name3"];
-NSDictionary *newdic = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-</code></pre>
+<h5 id="section-21">1）创建</h5>
 
-<h5 id="section-8">2）访问</h5>
-<pre><code>//1. 获取字典所有的keys
-NSArray *allKeys = [dic allKeys];
-//2. 获取所有的values
-NSArray *allValues = [dic allValues];
-//3. 获取key对应的object
-NSString *value = [dic objectForKey:@"name"];
-//4. 获取当前字典中键值对的个数
-NSIntger count = dic.count;
-//5. 快速访问
-NSString *value = dic[@"name"];
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//1.</span>
+<span class="lineno"> 2</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">mydic</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:</span><span class="s">@&quot;10086&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;PhoneNumber&quot;</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//2.前面是值，后面是键</span>
+<span class="lineno"> 4</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">dic</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys</span><span class="p">:</span>
+<span class="lineno"> 5</span>                              <span class="s">@&quot;1&quot;</span><span class="p">,</span><span class="s">@&quot;one&quot;</span><span class="p">,</span>
+<span class="lineno"> 6</span>                              <span class="s">@&quot;2&quot;</span><span class="p">,</span><span class="s">@&quot;two&quot;</span><span class="p">,</span>
+<span class="lineno"> 7</span>                              <span class="nb">nil</span><span class="p">];</span>
+<span class="lineno"> 8</span> <span class="c1">//3.快速创建，前面是键，后面是值，</span>
+<span class="lineno"> 9</span> <span class="c1">//注意：快速创建字典是编译器特性，只适用于不可变字典</span>
+<span class="lineno">10</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">dic2</span> <span class="o">=</span> <span class="l">@{</span>
+<span class="lineno">11</span>                        <span class="s">@&quot;age&quot;</span><span class="o">:</span><span class="s">@&quot;22&quot;</span><span class="p">,</span>
+<span class="lineno">12</span>                        <span class="s">@&quot;address&quot;</span><span class="o">:</span><span class="s">@&quot;chengdu&quot;</span><span class="p">,</span>
+<span class="lineno">13</span>                        <span class="s">@&quot;name&quot;</span><span class="o">:</span><span class="s">@&quot;xiaoming&quot;</span><span class="p">,</span>
+<span class="lineno">14</span>                        <span class="l">}</span><span class="p">;</span>
+<span class="lineno">15</span> <span class="c1">//4.</span>
+<span class="lineno">16</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;jack&quot;</span><span class="p">,</span> <span class="s">@&quot;tom&quot;</span><span class="p">,</span> <span class="s">@&quot;rose&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno">17</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">keys</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;name1&quot;</span><span class="p">,</span> <span class="s">@&quot;name2&quot;</span><span class="p">,</span> <span class="s">@&quot;name3&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno">18</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">newdic</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObjects</span><span class="p">:</span><span class="n">objects</span> <span class="nl">forKeys</span><span class="p">:</span><span class="n">keys</span><span class="p">];</span></code></pre></div>
 
-<h5 id="section-9">3）遍历</h5>
+<h5 id="section-22">2）访问</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//1. 获取字典所有的keys</span>
+<span class="lineno"> 2</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">allKeys</span> <span class="o">=</span> <span class="p">[</span><span class="n">dic</span> <span class="n">allKeys</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//2. 获取所有的values</span>
+<span class="lineno"> 4</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">allValues</span> <span class="o">=</span> <span class="p">[</span><span class="n">dic</span> <span class="n">allValues</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="c1">//3. 获取key对应的object</span>
+<span class="lineno"> 6</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="n">dic</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno"> 7</span> <span class="c1">//4. 获取当前字典中键值对的个数</span>
+<span class="lineno"> 8</span> <span class="n">NSIntger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">dic</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="c1">//5. 快速访问</span>
+<span class="lineno">10</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">value</span> <span class="o">=</span> <span class="n">dic</span><span class="p">[</span><span class="s">@&quot;name&quot;</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-23">3）遍历</h5>
 <ul>
   <li>字典不允许有相同的key，但可以有相同的value（object）</li>
-  <li>字典是无序的<br />
-<code>
-//1. for循环
-NSArray *allKeys = [dic allKeys];
-for(int i = 0; i &lt; dic.count; i ++){
-  NSString *key = allKeys[i];
-  NSString *value = dic[key];
-  NSLog(@"%@ = %@",key, object);
-}
-//2. 使用block
-[dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-  NSLog(@"%ld -- %@", key, obj);
-  if(idx == 0){
-      *stop = YES; //停止遍历 stop参数用来停止遍历，其值若为YES，则停止。
-  }
-}]
-</code></li>
+  <li>字典是无序的</li>
 </ul>
 
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//1. for循环</span>
+<span class="lineno"> 2</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">allKeys</span> <span class="o">=</span> <span class="p">[</span><span class="n">dic</span> <span class="n">allKeys</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dic</span><span class="p">.</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">){</span>
+<span class="lineno"> 4</span> 	<span class="bp">NSString</span> <span class="o">*</span><span class="n">key</span> <span class="o">=</span> <span class="n">allKeys</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="lineno"> 5</span> 	<span class="bp">NSString</span> <span class="o">*</span><span class="n">value</span> <span class="o">=</span> <span class="n">dic</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
+<span class="lineno"> 6</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@ = %@&quot;</span><span class="p">,</span><span class="n">key</span><span class="p">,</span> <span class="n">object</span><span class="p">);</span>
+<span class="lineno"> 7</span> <span class="p">}</span>
+<span class="lineno"> 8</span> <span class="c1">//2. 使用block</span>
+<span class="lineno"> 9</span> <span class="p">[</span><span class="n">dic</span> <span class="nl">enumerateKeysAndObjectsUsingBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">id</span> <span class="n">key</span><span class="p">,</span> <span class="kt">id</span> <span class="n">obj</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">){</span>
+<span class="lineno">10</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld -- %@&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">obj</span><span class="p">);</span>
+<span class="lineno">11</span> 	<span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+<span class="lineno">12</span> 		<span class="o">*</span><span class="n">stop</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span> <span class="c1">//停止遍历 stop参数用来停止遍历，其值若为YES，则停止。</span>
+<span class="lineno">13</span> 	<span class="p">}</span>
+<span class="lineno">14</span> <span class="p">}]</span></code></pre></div>
+
 <h3 id="nsmutabledictionary">六、NSMutableDictionary</h3>
-<p>##### 1）创建<br />
-<code>
-NSMutableDictionary *mdic = [NSMutableDictionary dictionary]; //创建一个空的可变字典
-NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:0];
-//注意不可变字典的快速创建方式不适用于可变字典       
-</code><br />
-##### 2）添加键值对<br />
-<code>
-[mdic setObject:@"4" forKey:@"four"];
-[mdic setObject:@"3" forKey:@"three"];
-[mdic setObject:@"2" forKey:@"two"];
-[mdic setObject:@"1" forKey:@"one"];
-</code><br />
-##### 3）更改一个key对应的object<br />
-<code>
-[mdic setObject:@"two2" forKey:@"two"];
-</code><br />
-##### 4）删除<br />
-<code>
-//删除一个特定键值对
-[mdic removeObjectForKey:@"four"];
-//删除所有的键值对
-[mdic removeAllObjects];
-</code></p>
+<p>##### 1）创建</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSMutableDictionary</span> <span class="o">*</span><span class="n">mdic</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableDictionary</span> <span class="n">dictionary</span><span class="p">];</span> <span class="c1">//创建一个空的可变字典</span>
+<span class="lineno">2</span> <span class="bp">NSMutableDictionary</span> <span class="o">*</span><span class="n">mdic</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableDictionary</span> <span class="nl">dictionaryWithDictionary</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">//注意不可变字典的快速创建方式不适用于可变字典</span></code></pre></div>
+
+<h5 id="section-24">2）添加键值对</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">mdic</span> <span class="nl">setObject</span><span class="p">:</span><span class="s">@&quot;4&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;four&quot;</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">mdic</span> <span class="nl">setObject</span><span class="p">:</span><span class="s">@&quot;3&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;three&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">mdic</span> <span class="nl">setObject</span><span class="p">:</span><span class="s">@&quot;2&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;two&quot;</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">mdic</span> <span class="nl">setObject</span><span class="p">:</span><span class="s">@&quot;1&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;one&quot;</span><span class="p">];</span></code></pre></div>
+
+<h5 id="keyobject">3）更改一个key对应的object</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="n">mdic</span> <span class="nl">setObject</span><span class="p">:</span><span class="s">@&quot;two2&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;two&quot;</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-25">4）删除</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//删除一个特定键值对</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">mdic</span> <span class="nl">removeObjectForKey</span><span class="p">:</span><span class="s">@&quot;four&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">//删除所有的键值对</span>
+<span class="lineno">4</span> <span class="p">[</span><span class="n">mdic</span> <span class="n">removeAllObjects</span><span class="p">];</span></code></pre></div>
 
 <h3 id="nsnumber">七、NSNumber</h3>
 <ul>
   <li>NSNumber可以将基本数据类型包装起来，形成一个对象，这样就可以给其发送消息，装入NSArray中等等。</li>
 </ul>
 
-<pre><code>//封装
-NSNumber *intNumber=[NSNumber numberWithInt：100];
-NSNumber *floatNumber=[NSNUmber numberWithFloat:100.00];
-//取出
-int i = [intNumber intValue]; 
-//判断比较
-if([intNumber isEqualToNumber:floatNumber]) ....
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">//封装</span>
+<span class="lineno">2</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">intNumber</span><span class="o">=</span><span class="p">[</span><span class="bp">NSNumber</span> <span class="n">numberWithInt</span><span class="err">：</span><span class="mi">100</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">floatNumber</span><span class="o">=</span><span class="p">[</span><span class="n">NSNUmber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="mf">100.00</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="c1">//取出</span>
+<span class="lineno">5</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="n">intNumber</span> <span class="n">intValue</span><span class="p">];</span> 
+<span class="lineno">6</span> <span class="c1">//判断比较</span>
+<span class="lineno">7</span> <span class="k">if</span><span class="p">([</span><span class="n">intNumber</span> <span class="nl">isEqualToNumber</span><span class="p">:</span><span class="n">floatNumber</span><span class="p">])</span> <span class="p">....</span></code></pre></div>
+
 <ul>
   <li>NSNumber继承NSObject ，可以使用比较 compare： isEqual等消息</li>
 </ul>
@@ -866,34 +903,34 @@ if([intNumber isEqualToNumber:floatNumber]) ....
   <li>NSDate存储的是GMT时间，使用的时候会根据 当前应用 指定的 时区 进行时间上的增减，以供计算或显示。</li>
 </ol>
 
-<h5 id="section-10">1）获取当前的时间</h5>
-<pre><code>NSDate *nowDate = [NSDate date];
-</code></pre>
-<p>##### 2）设置日期格式<br />
-<code>
-NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-[formatter setDateFormat :@"yyyy-MM-dd aa:H-mm-ss"];
-NSString *dateString = [formatter stringFromDate:nowDate];
-//打印格式：2015-11-25 下午:13-32-09
-</code></p>
+<h5 id="section-26">1）获取当前的时间</h5>
 
-<h5 id="section-11">3）常用的方法</h5>
-<pre><code>NSDate *dateFromNow = [NSDate dateWithTimeIntervalSinceNow:60];
-NSDate *dateFromAnotherDate = [[NSDate alloc] initWithTimeInterval:60 sinceDate:dateFromNow];
-NSTimeInterval timeInterval1 = [now timeIntervalSinceDate:dateFromNow];
-NSTimeInterval timeInterval2 = [now timeIntervalSinceNow];
-NSDate *distantPast = [NSDate distantPast];   //  可以表示的最早的时间
-NSDate *distantFuture = [NSDate distantFuture];  //  可以表示的最远的未来时间
-//从String得到Date
-NSString *stringDate = @"12/31/9999";
-NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-[dateFormatter setDateFormat:@"MM/dd/yyyy"];
-NSDate *dateCheck = [dateFormatter dateFromString:stringDate];
-//NSLog(@"Date = %@", dateCheck);
-Output:
-Date = 1999-12-30 16:00:00 +0000
-*iOS中用NSDate表示的时间只能在distantPast和distantFuture之间！
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">nowDate</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">];</span></code></pre></div>
+
+<h5 id="section-27">2）设置日期格式</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">formatter</span> <span class="nl">setDateFormat</span> <span class="p">:</span><span class="s">@&quot;yyyy-MM-dd aa:H-mm-ss&quot;</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">dateString</span> <span class="o">=</span> <span class="p">[</span><span class="n">formatter</span> <span class="nl">stringFromDate</span><span class="p">:</span><span class="n">nowDate</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="c1">//打印格式：2015-11-25 下午:13-32-09</span></code></pre></div>
+
+<h5 id="section-28">3）常用的方法</h5>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">dateFromNow</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="nl">dateWithTimeIntervalSinceNow</span><span class="p">:</span><span class="mi">60</span><span class="p">];</span>
+<span class="lineno"> 2</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">dateFromAnotherDate</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDate</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithTimeInterval</span><span class="p">:</span><span class="mi">60</span> <span class="nl">sinceDate</span><span class="p">:</span><span class="n">dateFromNow</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="n">NSTimeInterval</span> <span class="n">timeInterval1</span> <span class="o">=</span> <span class="p">[</span><span class="n">now</span> <span class="nl">timeIntervalSinceDate</span><span class="p">:</span><span class="n">dateFromNow</span><span class="p">];</span>
+<span class="lineno"> 4</span> <span class="n">NSTimeInterval</span> <span class="n">timeInterval2</span> <span class="o">=</span> <span class="p">[</span><span class="n">now</span> <span class="n">timeIntervalSinceNow</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">distantPast</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">distantPast</span><span class="p">];</span>   <span class="c1">//  可以表示的最早的时间</span>
+<span class="lineno"> 6</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">distantFuture</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">distantFuture</span><span class="p">];</span>  <span class="c1">//  可以表示的最远的未来时间</span>
+<span class="lineno"> 7</span> <span class="c1">//从String得到Date</span>
+<span class="lineno"> 8</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">stringDate</span> <span class="o">=</span> <span class="s">@&quot;12/31/9999&quot;</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="bp">NSDateFormatter</span> <span class="o">*</span><span class="n">dateFormatter</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="p">[</span><span class="n">dateFormatter</span> <span class="nl">setDateFormat</span><span class="p">:</span><span class="s">@&quot;MM/dd/yyyy&quot;</span><span class="p">];</span>
+<span class="lineno">11</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">dateCheck</span> <span class="o">=</span> <span class="p">[</span><span class="n">dateFormatter</span> <span class="nl">dateFromString</span><span class="p">:</span><span class="n">stringDate</span><span class="p">];</span>
+<span class="lineno">12</span> <span class="c1">//NSLog(@&quot;Date = %@&quot;, dateCheck);</span>
+<span class="lineno">13</span> <span class="nl">Output</span><span class="p">:</span>
+<span class="lineno">14</span> <span class="n">Date</span> <span class="o">=</span> <span class="mi">1999</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">16</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span> <span class="o">+</span><span class="mo">0000</span>
+<span class="lineno">15</span> <span class="o">*</span><span class="n">iOS</span><span class="err">中用</span><span class="bp">NSDate</span><span class="err">表示的时间只能在</span><span class="n">distantPast</span><span class="err">和</span><span class="n">distantFuture</span><span class="err">之间！</span></code></pre></div>
 
 
                 </div><!-- End entry content -->
@@ -1050,8 +1087,6 @@ Date = 1999-12-30 16:00:00 +0000
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -1085,6 +1120,44 @@ Date = 1999-12-30 16:00:00 +0000
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>

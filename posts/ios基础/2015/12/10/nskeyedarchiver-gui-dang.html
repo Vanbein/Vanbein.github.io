@@ -161,12 +161,13 @@ $.get("http://ipinfo.io", function (response) {
             <span class="top_sub_menu_toggle"></span>
             <ul class="sub-menu">
                 <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
                 <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
-                <li><a href="/archieves/">Blog Archives</a></li>
                 <!--<li><a href="/douban/">我的豆瓣</a></li>-->
                  <!--<li><a href="/posts/">Blog Posts</a></li>-->
-                 <li><a href="/404.html">404 Page</a></li>
             </ul>
         </li>
         <li><a href="/shortcodes/">Shortcodes</a></li>
@@ -197,7 +198,7 @@ $.get("http://ipinfo.io", function (response) {
             <li><a href="/">Home</a></li>
             <li><a href="/blog/">Blog</a></li>
             <!--<li><a href="/categories/">Categories</a></li>-->
-            <li><a href="/archieves/">Archives</a></li>
+            <li><a href="/posts/">Archives</a></li>
             <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
   <span class="site_sub_menu_toggle"></span>
   <ul class="dt_mega_menu" jQuery>
@@ -394,8 +395,6 @@ $.get("http://ipinfo.io", function (response) {
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -429,6 +428,44 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
@@ -537,27 +574,26 @@ ds.charset = 'UTF-8';
 
 <p>NSKeyedArchiver 可对 Foundation 框架中的对象进行归档</p>
 
-<pre><code class="language-objc">//1.获取文档路径
-NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-NSString *filePath = [documentsPath stringByAppendingPathComponent:@"file.archive"];  
-//
-//2.归档（序列化）到指定路径
-NSArray *archiveAry = @[@"first",@"ios"];
-if ([NSKeyedArchiver archiveRootObject: archiveAry toFile:filePath]) {
-    NSLog(@"Archiver  success");
-}
-//
-//3. 解归档（反序列化）
-NSArray *unArchiveAry = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-NSLog(@"%@",unArchiveAry);
-//
-//4. 归档为NSData
-NSArray *archiveAry2 = @[@"second",@"ios"];
-NSData *data = [NSKeyedArchiver archivedDataWithRootObject:archiveAry2];
-//5. 从NSData解档
-NSArray *unarchiveArray2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-NSLog(@"%@",unarchiveArray2);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//1.获取文档路径</span>
+<span class="lineno"> 2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">documentsPath</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSDocumentDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">)</span> <span class="n">lastObject</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">filePath</span> <span class="o">=</span> <span class="p">[</span><span class="n">documentsPath</span> <span class="nl">stringByAppendingPathComponent</span><span class="p">:</span><span class="s">@&quot;file.archive&quot;</span><span class="p">];</span>  
+<span class="lineno"> 4</span> <span class="c1">//</span>
+<span class="lineno"> 5</span> <span class="c1">//2.归档（序列化）到指定路径</span>
+<span class="lineno"> 6</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">archiveAry</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;ios&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="k">if</span> <span class="p">([</span><span class="bp">NSKeyedArchiver</span> <span class="nl">archiveRootObject</span><span class="p">:</span> <span class="n">archiveAry</span> <span class="nl">toFile</span><span class="p">:</span><span class="n">filePath</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno"> 8</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Archiver  success&quot;</span><span class="p">);</span>
+<span class="lineno"> 9</span> <span class="p">}</span>
+<span class="lineno">10</span> <span class="c1">//</span>
+<span class="lineno">11</span> <span class="c1">//3. 解归档（反序列化）</span>
+<span class="lineno">12</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">unArchiveAry</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSKeyedUnarchiver</span> <span class="nl">unarchiveObjectWithFile</span><span class="p">:</span><span class="n">filePath</span><span class="p">];</span>
+<span class="lineno">13</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">unArchiveAry</span><span class="p">);</span>
+<span class="lineno">14</span> <span class="c1">//</span>
+<span class="lineno">15</span> <span class="c1">//4. 归档为NSData</span>
+<span class="lineno">16</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">archiveAry2</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;second&quot;</span><span class="p">,</span><span class="s">@&quot;ios&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno">17</span> <span class="bp">NSData</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSKeyedArchiver</span> <span class="nl">archivedDataWithRootObject</span><span class="p">:</span><span class="n">archiveAry2</span><span class="p">];</span>
+<span class="lineno">18</span> <span class="c1">//5. 从NSData解档</span>
+<span class="lineno">19</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">unarchiveArray2</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSKeyedUnarchiver</span> <span class="nl">unarchiveObjectWithData</span><span class="p">:</span><span class="n">data</span><span class="p">];</span>
+<span class="lineno">20</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">unarchiveArray2</span><span class="p">);</span></code></pre></div>
 
 <blockquote>
   <h3 id="section-2">小结：</h3>
@@ -588,34 +624,33 @@ NSLog(@"%@",unarchiveArray2);
 
 <p>其主要步骤如下：</p>
 
-<pre><code class="language-objc">//获得文件路径
-NSString *secondFilePath = [documentsPath stringByAppendingPathComponent:@"secondFile.archive"];
-//1、使用NSData存放归档数据
-NSMutableData *archiveData = [NSMutableData data];
-//2、创建归档对象
-NSKeyedArchiver *myArchiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:archiveData];
-//3、添加归档内容（设置键值对）
-[myArchiver encodeObject:@"Wangbin" forKey:@"name"];
-[myArchiver encodeInt:22 forKey:@"age"];
-[myArchiver encodeObject:@[@"Objective-C", @"iOS"] forKey:@"language"];
-//4、完成归档
-[myArchiver finishEncoding];
-//5、将归档的数据存储到磁盘上
-if ([archiveData writeToFile:secondFilePath atomically:YES]) {
-    NSLog(@"Archive and write to file success");
-}
-//
-//解归档
-//1、从磁盘读取文件，生成NSData实例
-NSData *unArchiverData = [NSData dataWithContentsOfFile:secondFilePath];
-//2、根据data实例创建和初始化解归档对象
-NSKeyedUnarchiver *myUnarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:unArchiverData];
-//3、解归档，根据key值访问
-NSString *name = [myUnarchiver decodeObjectForKey:@"name"];
-int age = [myUnarchiver decodeIntForKey:@"age"];
-NSArray *array = [myUnarchiver decodeObjectForKey:@"language"];
-NSLog(@"name = %@ age = %d language = %@", name, age, array);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//获得文件路径</span>
+<span class="lineno"> 2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">secondFilePath</span> <span class="o">=</span> <span class="p">[</span><span class="n">documentsPath</span> <span class="nl">stringByAppendingPathComponent</span><span class="p">:</span><span class="s">@&quot;secondFile.archive&quot;</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//1、使用NSData存放归档数据</span>
+<span class="lineno"> 4</span> <span class="bp">NSMutableData</span> <span class="o">*</span><span class="n">archiveData</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableData</span> <span class="n">data</span><span class="p">];</span>
+<span class="lineno"> 5</span> <span class="c1">//2、创建归档对象</span>
+<span class="lineno"> 6</span> <span class="bp">NSKeyedArchiver</span> <span class="o">*</span><span class="n">myArchiver</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSKeyedArchiver</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initForWritingWithMutableData</span><span class="p">:</span><span class="n">archiveData</span><span class="p">];</span>
+<span class="lineno"> 7</span> <span class="c1">//3、添加归档内容（设置键值对）</span>
+<span class="lineno"> 8</span> <span class="p">[</span><span class="n">myArchiver</span> <span class="nl">encodeObject</span><span class="p">:</span><span class="s">@&quot;Wangbin&quot;</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno"> 9</span> <span class="p">[</span><span class="n">myArchiver</span> <span class="nl">encodeInt</span><span class="p">:</span><span class="mi">22</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;age&quot;</span><span class="p">];</span>
+<span class="lineno">10</span> <span class="p">[</span><span class="n">myArchiver</span> <span class="nl">encodeObject</span><span class="p">:</span><span class="l">@[</span><span class="s">@&quot;Objective-C&quot;</span><span class="p">,</span> <span class="s">@&quot;iOS&quot;</span><span class="l">]</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;language&quot;</span><span class="p">];</span>
+<span class="lineno">11</span> <span class="c1">//4、完成归档</span>
+<span class="lineno">12</span> <span class="p">[</span><span class="n">myArchiver</span> <span class="n">finishEncoding</span><span class="p">];</span>
+<span class="lineno">13</span> <span class="c1">//5、将归档的数据存储到磁盘上</span>
+<span class="lineno">14</span> <span class="k">if</span> <span class="p">([</span><span class="n">archiveData</span> <span class="nl">writeToFile</span><span class="p">:</span><span class="n">secondFilePath</span> <span class="nl">atomically</span><span class="p">:</span><span class="nb">YES</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno">15</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Archive and write to file success&quot;</span><span class="p">);</span>
+<span class="lineno">16</span> <span class="p">}</span>
+<span class="lineno">17</span> <span class="c1">//</span>
+<span class="lineno">18</span> <span class="c1">//解归档</span>
+<span class="lineno">19</span> <span class="c1">//1、从磁盘读取文件，生成NSData实例</span>
+<span class="lineno">20</span> <span class="bp">NSData</span> <span class="o">*</span><span class="n">unArchiverData</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSData</span> <span class="nl">dataWithContentsOfFile</span><span class="p">:</span><span class="n">secondFilePath</span><span class="p">];</span>
+<span class="lineno">21</span> <span class="c1">//2、根据data实例创建和初始化解归档对象</span>
+<span class="lineno">22</span> <span class="bp">NSKeyedUnarchiver</span> <span class="o">*</span><span class="n">myUnarchiver</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSKeyedUnarchiver</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initForReadingWithData</span><span class="p">:</span><span class="n">unArchiverData</span><span class="p">];</span>
+<span class="lineno">23</span> <span class="c1">//3、解归档，根据key值访问</span>
+<span class="lineno">24</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">myUnarchiver</span> <span class="nl">decodeObjectForKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno">25</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="p">[</span><span class="n">myUnarchiver</span> <span class="nl">decodeIntForKey</span><span class="p">:</span><span class="s">@&quot;age&quot;</span><span class="p">];</span>
+<span class="lineno">26</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="n">myUnarchiver</span> <span class="nl">decodeObjectForKey</span><span class="p">:</span><span class="s">@&quot;language&quot;</span><span class="p">];</span>
+<span class="lineno">27</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;name = %@ age = %d language = %@&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">array</span><span class="p">);</span></code></pre></div>
 
 <blockquote>
   <h3 id="section-4">小结：</h3>
@@ -644,44 +679,42 @@ NSLog(@"name = %@ age = %d language = %@", name, age, array);
 <p>当我们对自己定义的对象进行“编码/解码”操作时，却需要实现 NSCoding协议的两个方法<code>encodeWithCoder: </code>, <code>initWithCoder:</code> 来告诉程序该如何来“编码/解码”我们自己的对象！并且要遵循 NSCopying协议<br />
 示例如下：</p>
 
-<p><code>objc CHStudent.m
-#import "CHStudent.h"
-//
-@implementation CHStudent
-//
-- (void)encodeWithCoder:(NSCoder *)aCoder{
-//编码规则    
-    [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeInteger:self.age forKey:@"age"];
-    [aCoder encodeInteger:self.score forKey:@"score"];    
-}
-//
-- (id)initWithCoder:(NSCoder *)aDecoder{
-//解码规则    
-    _name = [aDecoder decodeObjectForKey:@"name"];
-    _age = [aDecoder decodeIntegerForKey:@"age"];
-    _score = [aDecoder decodeIntegerForKey:@"score"];
-    return self;
-}
-@end
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// CHStudent.m</span>
+<span class="lineno"> 2</span> <span class="cp">#import &quot;CHStudent.h&quot;</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span> <span class="k">@implementation</span> <span class="nc">CHStudent</span>
+<span class="lineno"> 5</span> <span class="c1">//</span>
+<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">encodeWithCoder:</span><span class="p">(</span><span class="bp">NSCoder</span> <span class="o">*</span><span class="p">)</span><span class="nv">aCoder</span><span class="p">{</span>
+<span class="lineno"> 7</span> <span class="c1">//编码规则    </span>
+<span class="lineno"> 8</span>     <span class="p">[</span><span class="n">aCoder</span> <span class="nl">encodeObject</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">name</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno"> 9</span>     <span class="p">[</span><span class="n">aCoder</span> <span class="nl">encodeInteger</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">age</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;age&quot;</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="p">[</span><span class="n">aCoder</span> <span class="nl">encodeInteger</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">score</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;score&quot;</span><span class="p">];</span>    
+<span class="lineno">11</span> <span class="p">}</span>
+<span class="lineno">12</span> <span class="c1">//</span>
+<span class="lineno">13</span> <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">initWithCoder:</span><span class="p">(</span><span class="bp">NSCoder</span> <span class="o">*</span><span class="p">)</span><span class="nv">aDecoder</span><span class="p">{</span>
+<span class="lineno">14</span> <span class="c1">//解码规则    </span>
+<span class="lineno">15</span>     <span class="n">_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">aDecoder</span> <span class="nl">decodeObjectForKey</span><span class="p">:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+<span class="lineno">16</span>     <span class="n">_age</span> <span class="o">=</span> <span class="p">[</span><span class="n">aDecoder</span> <span class="nl">decodeIntegerForKey</span><span class="p">:</span><span class="s">@&quot;age&quot;</span><span class="p">];</span>
+<span class="lineno">17</span>     <span class="n">_score</span> <span class="o">=</span> <span class="p">[</span><span class="n">aDecoder</span> <span class="nl">decodeIntegerForKey</span><span class="p">:</span><span class="s">@&quot;score&quot;</span><span class="p">];</span>
+<span class="lineno">18</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="lineno">19</span> <span class="p">}</span>
+<span class="lineno">20</span> <span class="k">@end</span></code></pre></div>
 
-<pre><code class="language-objc">//获得文件路径
-NSString *thirdFilePath = [documentsPath stringByAppendingPathComponent:@"thirdFile.archive"];
-//
-//将自定义对象 归档（序列化）到指定路径
-CHStudent *xiaoMing = [[CHStudent alloc]init];
-xiaoMing.name = @"xiaoMing";
-xiaoMing.age = 12;
-xiaoMing.score = 95;
-if ([NSKeyedArchiver archiveRootObject: xiaoMing toFile:thirdFilePath]) {
-    NSLog(@"Archiver customizing objects success");
-}
-//
-//解归档（反序列化）
-CHStudent *unArchiverXiaoMing = [NSKeyedUnarchiver unarchiveObjectWithFile:thirdFilePath];
-NSLog(@"name:%@  age:%ld  score:%ld",unArchiverXiaoMing.name, unArchiverXiaoMing.age, unArchiverXiaoMing.score);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//获得文件路径</span>
+<span class="lineno"> 2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">thirdFilePath</span> <span class="o">=</span> <span class="p">[</span><span class="n">documentsPath</span> <span class="nl">stringByAppendingPathComponent</span><span class="p">:</span><span class="s">@&quot;thirdFile.archive&quot;</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//</span>
+<span class="lineno"> 4</span> <span class="c1">//将自定义对象 归档（序列化）到指定路径</span>
+<span class="lineno"> 5</span> <span class="n">CHStudent</span> <span class="o">*</span><span class="n">xiaoMing</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CHStudent</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+<span class="lineno"> 6</span> <span class="n">xiaoMing</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">@&quot;xiaoMing&quot;</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="n">xiaoMing</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="n">xiaoMing</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="mi">95</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="k">if</span> <span class="p">([</span><span class="bp">NSKeyedArchiver</span> <span class="nl">archiveRootObject</span><span class="p">:</span> <span class="n">xiaoMing</span> <span class="nl">toFile</span><span class="p">:</span><span class="n">thirdFilePath</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno">10</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Archiver customizing objects success&quot;</span><span class="p">);</span>
+<span class="lineno">11</span> <span class="p">}</span>
+<span class="lineno">12</span> <span class="c1">//</span>
+<span class="lineno">13</span> <span class="c1">//解归档（反序列化）</span>
+<span class="lineno">14</span> <span class="n">CHStudent</span> <span class="o">*</span><span class="n">unArchiverXiaoMing</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSKeyedUnarchiver</span> <span class="nl">unarchiveObjectWithFile</span><span class="p">:</span><span class="n">thirdFilePath</span><span class="p">];</span>
+<span class="lineno">15</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;name:%@  age:%ld  score:%ld&quot;</span><span class="p">,</span><span class="n">unArchiverXiaoMing</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">unArchiverXiaoMing</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="n">unArchiverXiaoMing</span><span class="p">.</span><span class="n">score</span><span class="p">);</span></code></pre></div>
 
 <blockquote>
   <h3 id="section-6">小结：</h3>
@@ -705,38 +738,36 @@ NSLog(@"name:%@  age:%ld  score:%ld",unArchiverXiaoMing.name, unArchiverXiaoMing
 <p>除此之外，还有一种情况:如果一个自定义的类A，作为另一个自定义类B的一个属性存在；那么，如果要对B进行归档，那么，B要实现NSCoding协议。并且，A也要实现NSCoding协议<br />
 举个例子：</p>
 
-<p><code>objc CHStudent.m
-// CHStudent 要实现 NSCopying协议
-- (id)copyWithZone:(NSZone *)zone{
-//    
-    CHStudent *newStudent=[[self class] allocWithZone:zone];
-    newStudent.name = _name;
-    newStudent.age = _age;
-    newStudent.score = _score;
-    return  newStudent;
-}
-</code></p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// CHStudent.m</span>
+<span class="lineno"> 2</span> <span class="c1">// CHStudent 要实现 NSCopying协议</span>
+<span class="lineno"> 3</span> <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">copyWithZone:</span><span class="p">(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span><span class="p">{</span>
+<span class="lineno"> 4</span> <span class="c1">//    </span>
+<span class="lineno"> 5</span>     <span class="n">CHStudent</span> <span class="o">*</span><span class="n">newStudent</span><span class="o">=</span><span class="p">[[</span><span class="nb">self</span> <span class="k">class</span><span class="p">]</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
+<span class="lineno"> 6</span>     <span class="n">newStudent</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">_name</span><span class="p">;</span>
+<span class="lineno"> 7</span>     <span class="n">newStudent</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">_age</span><span class="p">;</span>
+<span class="lineno"> 8</span>     <span class="n">newStudent</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">_score</span><span class="p">;</span>
+<span class="lineno"> 9</span>     <span class="k">return</span>  <span class="n">newStudent</span><span class="p">;</span>
+<span class="lineno">10</span> <span class="p">}</span></code></pre></div>
 
-<pre><code class="language-objc">//路径
-NSString *fourthFilePath = [documentsPath stringByAppendingPathComponent:@"fourthFile.archive"];
-//数据
-NSArray *secondArray = @[xiaoMing, @"string"];
-//归档 存储
-if ([NSKeyedArchiver archiveRootObject:secondArray toFile:fourthFilePath]) {
-   NSLog(@"archive success");
-}
-//解归档
-NSArray *unArchiveArray4 = [NSKeyedUnarchiver unarchiveObjectWithFile:fourthFilePath];
-CHStudent *unarchiveStudent = [unArchiveArray4 objectAtIndex:0];
-NSLog(@"%@",unArchiveArray4);
-NSLog(@"name:%@  age:%ld  score:%ld",unarchiveStudent.name, unarchiveStudent.age, unarchiveStudent.score);
-</code></pre>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//路径</span>
+<span class="lineno"> 2</span> <span class="bp">NSString</span> <span class="o">*</span><span class="n">fourthFilePath</span> <span class="o">=</span> <span class="p">[</span><span class="n">documentsPath</span> <span class="nl">stringByAppendingPathComponent</span><span class="p">:</span><span class="s">@&quot;fourthFile.archive&quot;</span><span class="p">];</span>
+<span class="lineno"> 3</span> <span class="c1">//数据</span>
+<span class="lineno"> 4</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">secondArray</span> <span class="o">=</span> <span class="l">@[</span><span class="n">xiaoMing</span><span class="p">,</span> <span class="s">@&quot;string&quot;</span><span class="l">]</span><span class="p">;</span>
+<span class="lineno"> 5</span> <span class="c1">//归档 存储</span>
+<span class="lineno"> 6</span> <span class="k">if</span> <span class="p">([</span><span class="bp">NSKeyedArchiver</span> <span class="nl">archiveRootObject</span><span class="p">:</span><span class="n">secondArray</span> <span class="nl">toFile</span><span class="p">:</span><span class="n">fourthFilePath</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno"> 7</span>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;archive success&quot;</span><span class="p">);</span>
+<span class="lineno"> 8</span> <span class="p">}</span>
+<span class="lineno"> 9</span> <span class="c1">//解归档</span>
+<span class="lineno">10</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">unArchiveArray4</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSKeyedUnarchiver</span> <span class="nl">unarchiveObjectWithFile</span><span class="p">:</span><span class="n">fourthFilePath</span><span class="p">];</span>
+<span class="lineno">11</span> <span class="n">CHStudent</span> <span class="o">*</span><span class="n">unarchiveStudent</span> <span class="o">=</span> <span class="p">[</span><span class="n">unArchiveArray4</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="lineno">12</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">unArchiveArray4</span><span class="p">);</span>
+<span class="lineno">13</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;name:%@  age:%ld  score:%ld&quot;</span><span class="p">,</span><span class="n">unarchiveStudent</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">unarchiveStudent</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="n">unarchiveStudent</span><span class="p">.</span><span class="n">score</span><span class="p">);</span></code></pre></div>
 
 <p>从上面可以看出，归档需要注意的是：</p>
 
 <ol>
   <li>同一个对象属性，编码/解码的key要相同！</li>
-  <li>每一种基本数据类型，都有一个相应的编码/解码方法。如：<code>encodeObject</code>方法与<code>decodeObjectForKey</code> 方法，是成对出现的。</li>
+  <li>每一种基本数据类型，都有一个相应的编码/解码方法。如：<code>encodeObject</code> 方法与 <code>decodeObjectForKey</code> 方法，是成对出现的。</li>
   <li>如果一个自定义的类A，作为另一个自定义类B的一个属性存在；那么，如果要对B进行归档，那么，B要实现 NSCoding协议。并且，A也要实现 NSCoding协议</li>
 </ol>
 
@@ -907,8 +938,6 @@ NSLog(@"name:%@  age:%ld  score:%ld",unarchiveStudent.name, unarchiveStudent.age
     
     <a href="/tags/#markdown">markdown</a>
     
-    <a href="/tags/#ShareX">ShareX</a>
-    
     <a href="/tags/#iOS">iOS</a>
     
     <a href="/tags/#Objective-C">Objective-C</a>
@@ -942,6 +971,44 @@ NSLog(@"name:%@  age:%ld  score:%ld",unarchiveStudent.name, unarchiveStudent.age
     <a href="/tags/#GCD">GCD</a>
     
     <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#NSOperation">NSOperation</a>
+    
+    <a href="/tags/#NSThread">NSThread</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#subView">subView</a>
+    
+    <a href="/tags/#ViewLife">ViewLife</a>
+    
+    <a href="/tags/#UIApplication">UIApplication</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#navigation">navigation</a>
+    
+    <a href="/tags/#Bezier">Bezier</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#许巍">许巍</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
     
   </div>
 </div>
