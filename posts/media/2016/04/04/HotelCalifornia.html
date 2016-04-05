@@ -2,14 +2,14 @@
 <html>
 <head>
   
-  <title>动画CAAnimation系列--CABasicAnimation - Vanbein's Blog</title>
+  <title>Eagles - Hotel California - Vanbein's Blog</title>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Post Propertites -->
-  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation.html">
-  <meta name="description" content="CABasicAnimation 类是 CAAnimation 的子类，CABasicAnimation通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的 CAKeyFrameAnimation">
+  <link rel="canonical" href="http://www.vanbein.com/posts/media/2016/04/04/HotelCalifornia.html">
+  <meta name="description" content="我不懂音乐，但是我知道这是一首只需要听一次就会上瘾的歌曲 -- 老鹰乐队《加州旅馆 》94年现场版！如果你喜欢它的旋律节奏，那么它的歌词就显得更有神秘色彩了，特别是在当时那种社会背景下。">
   <meta name="author" content="Vanbein">
 
   <!-- Webmaster tools verification -->
@@ -128,14 +128,14 @@ $.get("http://ipinfo.io", function (response) {
       var screenWidth = jWindow.width();
       var postHeight = $('#post_content').height() + 150;
       var footerHeight = $('#footer').height();
-      if(scrollHeight > 650 && scrollHeight < postHeight && screenWidth > 1200){
-        $('#fixtoc').css({
+      if(scrollHeight > 1200 && screenWidth > 1200){
+        $('#fixed_search').css({
           'position':'fixed',
           'top':'75px',
           'z-index': '0'
         });
       }else{
-        $('#fixtoc').css({
+        $('#fixed_search').css({
           'position':'static'
         });
       }
@@ -148,7 +148,6 @@ $.get("http://ipinfo.io", function (response) {
       jWindow.trigger('scroll');
     });
     </script>
-
     
     <!-- End postion detection -->
 
@@ -482,199 +481,155 @@ ds.charset = 'UTF-8';
                 <!-- Media -->
                 
                 <div class="entry_media">
-                  <a href="/images/head-800x400/-9.png" class="popup_link"><img src="/images/head-800x400/-9.png" alt="动画CAAnimation系列--CABasicAnimation"></a>
+                  <a href="http://i68.tinypic.com/xognr7.jpg" class="popup_link"><img src="http://i68.tinypic.com/xognr7.jpg" alt="Eagles - Hotel California"></a>
                 </div>
                 
                 
+                
+                <div class="entry_media">
+                  <!-- Video -->
+                  <embed type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" quality="high" height="220" width="480" src="http://video.weibo.com/player/1034:baa2fbcef32305c3c04a20b9e1ca1986/v.swf"/>
+                </div>
                 
                 <!-- End Media -->
                 <!-- Full meta -->
                 <div class="full_meta clearfix">
                   <span class="meta_format"><i class="fa fa-file-text"></i></span>
-                  <span class="meta_date">Jan 6, 2016</span>
+                  <span class="meta_date">Apr 4, 2016</span>
                   <span class="meta_author">Vanbein</span>
                   
-                  <span class="meta_tags"> <u>iOS</u> <u>Animation</u> 
+                  <span class="meta_tags"> <u>Music</u> 
                   
                 </div><!-- End Full meta -->
                 <!-- Entry content -->
                 <div class="entry_content">
                   <!-- Entry title -->
-                  <h1 class="entry_title">动画CAAnimation系列--CABasicAnimation</h1><!-- End Entry title -->
-                  <p>在iOS中，展示动画可以类比于显示生活中的“拍电影”。拍电影有三大要素：演员+剧本+开拍，概念类比如下：</p>
+                  <h1 class="entry_title">Eagles - Hotel California</h1><!-- End Entry title -->
+                  <p>我不懂音乐，但是我知道这是一首只需要听一次就会上瘾的歌曲 – 老鹰乐队《加州旅馆 》94年现场版！</p>
 
-<ul>
-  <li>演员 —&gt; CALayer，规定电影的主角是谁</li>
-  <li>剧本 —&gt; CAAnimation，规定电影该怎么演，怎么走，怎么变换</li>
-  <li>开拍 —&gt; addAnimation，开始执行</li>
-</ul>
+<p>如果你喜欢它的旋律节奏，那么它的歌词就显得更有神秘色彩了，特别是在当时那种社会背景下。</p>
 
-<h4 id="calayer">1、CALayer是什么呢？</h4>
+<p>或许，每个人从这首歌中听到的东西都不一样，特别是你听的次数越来越多的时候。</p>
 
-<ul>
-  <li>CALayer是个与UIView很类似的概念，同样有layer,sublayer…，同样有backgroundColor、frame等相似的属性，我们可以将UIView看做一种特殊的CALayer，只不过UIView可以响应事件而已。</li>
-  <li>一般来说，layer可以有两种用途，二者不互相冲突：
-    <ul>
-      <li>一是对view相关属性的设置，包括圆角、阴影、边框等参数，更详细的参数请点击这里；</li>
-      <li>二是实现对view的动画操控。</li>
-    </ul>
-  </li>
-  <li>因此对一个view进行core animation动画，本质上是对该view的.layer进行动画操纵。</li>
-</ul>
-
-<h4 id="caanimation">2、CAAnimation是什么呢？</h4>
-
-<p>CAAnimation可分为四种：</p>
-
-<ol>
-  <li>CABasicAnimation<br />
-通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的CAKeyFrameAnimation</li>
-  <li>CAKeyframeAnimation<br />
-Keyframe顾名思义就是关键点的frame，你可以通过设定CALayer的始点、中间关键点、终点的frame，时间，动画会沿你设定的轨迹进行移动</li>
-  <li>CAAnimationGroup<br />
-Group也就是组合的意思，就是把对这个Layer的所有动画都组合起来。PS：一个layer设定了很多动画，他们都会同时执行，如何按顺序执行我到时候再讲。</li>
-  <li>CATransition<br />
-这个就是苹果帮开发者封装好的一些动画</li>
-</ol>
-
-<h4 id="cabasicanimation">CABasicAnimation用法</h4>
-
-<p><code>CABasicAnimation</code> 是<code>CAPropertyAnimation</code>的子类，自己只有三个property</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="kt">id</span> <span class="n">fromValue</span><span class="p">;</span> <span class="c1">//keyPath相应属性的初始值</span>
-<span class="lineno">2</span> <span class="k">@property</span><span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="kt">id</span> <span class="n">toValue</span><span class="p">;</span> <span class="c1">//keyPath相应属性的结束值</span>
-<span class="lineno">3</span> <span class="k">@property</span><span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="kt">id</span> <span class="n">byValue</span><span class="p">;</span></code></pre></div>
-
-<p>当你创建一个<code>CABasicAnimation</code>时,你需要通过<code>-setFromValue</code> 和<code>-setToValue</code> 来指定一个开始值和结束值。 当你增加基础动画到层中的时候,它开始运行。当用属性做动画完成时,例如用位置属性做动画,层就会立刻返回到它的初始位置，</p>
+<h4 id="section">歌词</h4>
 
 <blockquote>
-  <p>随着动画的进行，在长度为<code>duration</code>的持续时间内，<code>keyPath</code>相应属性的值从<code>fromValue</code>渐渐地变为<code>toValue</code></p>
+  <p>on a dark desert highway, 行驶在昏黑的荒漠公路上，</p>
 
-  <p>如果<code>fillMode = kCAFillModeForwards</code>和<code>removedOnCompletion = NO</code>，那么在动画执行完毕后，图层会保持显示动画执行后的状态。但在实质上，<strong>图层的属性值还是动画执行前的初始值，并没有真正被改变</strong>。<br />
-比如：CALayer的<code>position</code>初始值为(0,0)，<code>CABasicAnimation</code>的<code>fromValue</code>为(10,10)，<code>toValue</code>为(100,100)，虽然动画执行完毕后图层保持在(100,100)这个位置，实质上图层的<code>position</code>还是为(0,0)</p>
+  <p>cool wind in my hair. 凉风吹过我的头发。</p>
+
+  <p>warm smell of colitas, 温馨的大麻香，</p>
+
+  <p>rising up through the air. 弥漫在空气中。</p>
+
+  <p>up ahead in the distance, 抬头遥望远方，</p>
+
+  <p>I saw a shimmering light. 我看到微弱的灯光。</p>
+
+  <p>my head grew heavy my sight grew dim. 我的头越来越沉,视线也变得模糊。</p>
+
+  <p>I had 2 stop 4 the night. 我不得不停下来过夜。</p>
+
+  <p>there she stood in the doorway; 她站在门口那儿招呼我</p>
+
+  <p>I heard the mission bell. 我听到远处教堂的钟声。</p>
+
+  <p>and I was thinking 2 myself, 我在心里对自己说</p>
+
+  <p>“this could be heaven or this could be hell”. 这里可能是天堂也可能是地狱。</p>
+
+  <p>then she lit up a candle, 然后她点燃了蜡烛，</p>
+
+  <p>and she showed me the way. 给我引路。</p>
+
+  <p>there were voices down the corridor. 沿着走廊传来阵阵说话声。</p>
+
+  <p>I thought I heard them say… 我想我听到他们在说……</p>
+
+  <p>welcome to the hotel california! 欢迎来到加州旅馆！</p>
+
+  <p>such a lovely place! 如此美丽的地方！</p>
+
+  <p>such a lovely face! 多么可爱的的面容！！</p>
+
+  <p>plenty of room at the hotel california! 加州旅馆有充足的房间！</p>
+
+  <p>any time of year,u can find it here! 一年的任何时候,你都能在这找到房间。</p>
+
+  <p>her mind is tiffany-twisted, 她的心为珠宝所扭曲，</p>
+
+  <p>she got the mercedes bends. 她拥有豪华奔驰车。</p>
+
+  <p>she got a lot of pretty,pretty boys. 她有许多漂亮的小伙子。</p>
+
+  <p>that she calls friends. 她称之为朋友。</p>
+
+  <p>how they dance in the courtyard, 他们在庭院里翩翩起舞，</p>
+
+  <p>sweet summer sweat. 夏日的香汗伶俐。</p>
+
+  <p>some dance to remember! 有些舞是为了回忆！</p>
+
+  <p>some dance to forget! 而有些舞是为了忘却！</p>
+
+  <p>so I called up the captain, 于是我叫来领班，</p>
+
+  <p>“please bring me my wine.” 请给我来些酒。</p>
+
+  <p>he said”we haven’t had that spirit here, 他说我们这不供应列酒</p>
+
+  <p>since nineteen sixty nine.” 从1969年起。</p>
+
+  <p>and still those voices are calling from far away. 远处仍然传来他们的话语。</p>
+
+  <p>wake you up in the middle of the night. 在半夜把你吵醒。</p>
+
+  <p>just 2 hear them say… 只听到他们在说……</p>
+
+  <p>welcome to the hotel california! 欢迎到加州旅馆来！</p>
+
+  <p>such a lovely place! 如此美丽的地方！</p>
+
+  <p>such a lovely face! 多么可爱的的面容！</p>
+
+  <p>they livin’ it up at the hotel california. 他们在加州旅馆尽情狂欢。</p>
+
+  <p>what a nice surprise, 好得令人吃惊，</p>
+
+  <p>bring your alibis. 使你有来到这的借口。</p>
+
+  <p>mirrors on the ceiling, 天花板上镶嵌着的镜子，</p>
+
+  <p>the pink champagne on ice. 冰镇着的粉色香槟</p>
+
+  <p>and she said”we are all just prisoners here- 她说我们都是这的囚徒</p>
+
+  <p>-of our own device”. 但是是我们自愿的。</p>
+
+  <p>and in the master’s chambers. 在主人的卧房里。</p>
+
+  <p>they gathered 4 the feast. 他们为宴会聚在一起。</p>
+
+  <p>they stabbed it with their steely knives. 他们彼此间用钢刀相互砍杀。</p>
+
+  <p>but they just can’t kill the beast. 但他们甚至不能杀死野兽！</p>
+
+  <p>last thing I remember, 我所记得的最后一件事</p>
+
+  <p>I was running 4 the door. 是我跑向门口。</p>
+
+  <p>I had 2 find the passage back, 我必须找到来时的路，</p>
+
+  <p>to the place I was before. 回到我过去的地方。</p>
+
+  <p>“relax”,said the night man, 守夜人说放宽心，</p>
+
+  <p>“we are programmed to receive. 我们只是照常接待</p>
+
+  <p>you can checkout any time u like. 你想什么时候结帐都可以。</p>
+
+  <p>but you can never leave！” 但你永远无法离去！</p>
 </blockquote>
-
-<h4 id="section">下面是一些继承的常用的属性:</h4>
-
-<ul>
-  <li>
-    <p>Autoreverses：当你设定这个属性为 YES 时,在它到达目的地之后,动画的返回到开始的值,代替了直接跳转到 开始的值。</p>
-  </li>
-  <li>
-    <p>Duration：这个参数你已经相当熟悉了。它设定开始值到结束值花费的时间。期间会被速度的属性所影响。</p>
-  </li>
-  <li>
-    <p>RemovedOnCompletion：这个属性默认为 YES,那意味着,在指定的时间段完成后,动画就自动的从层上移除了。这个一般不用。假如你想要再次用这个动画时,你需要设定这个属性为 NO。这样的话,下次你在通过-set 方法设定动画的属 性时,它将再次使用你的动画,而非默认的动画。</p>
-  </li>
-  <li>
-    <p>Speed：默认的值为 1.0.这意味着动画播放按照默认的速度。如果你改变这个值为 2.0,动画会用 2 倍的速度播放。 这样的影响就是使持续时间减半。如果你指定的持续时间为 6 秒,速度为 2.0,动画就会播放 3 秒钟—一半的 持续时间。</p>
-  </li>
-  <li>
-    <p>BeginTime：这个属性在组动画中很有用。它根据父动画组的持续时间,指定了开始播放动画的时间。默认的是 0.0.组 动画在下篇文章中讨论“Animation Grouping”。</p>
-  </li>
-  <li>
-    <p>TimeOffset：如果一个时间偏移量是被设定,动画不会真正的可见,直到根据父动画组中的执行时间得到的时间都流逝 了。</p>
-  </li>
-  <li>
-    <p>RepeatCount：默认的是 0,意味着动画只会播放一次。如果指定一个无限大的重复次数,使用 MAXFLOAT。这个不应该和<code>repeatDration</code>属性一块使用。</p>
-  </li>
-  <li>
-    <p>RepeatDuration：这个属性指定了动画应该被重复多久。动画会一直重复,直到设定的时间流逝完。它不应该和 <code>repeatCount </code>一起使用。</p>
-  </li>
-</ul>
-
-<h4 id="section-1">3、一个小例子</h4>
-
-<p>比如我们想实现一个类似心跳的缩放动画可以这么做，分为演员初始化、设定剧本、电影开拍三个步骤：</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
-<span class="lineno"> 2</span>     <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
-<span class="lineno"> 3</span>     <span class="c1">// Do any additional setup after loading the view from its nib.</span>
-<span class="lineno"> 4</span>     <span class="p">[</span><span class="nb">self</span> <span class="n">initScaleLayer</span><span class="p">];</span>
-<span class="lineno"> 5</span> <span class="p">}</span>
-<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initScaleLayer</span>
-<span class="lineno"> 7</span> <span class="p">{</span>
-<span class="lineno"> 8</span>     <span class="c1">//演员初始化</span>
-<span class="lineno"> 9</span>     <span class="bp">CALayer</span> <span class="o">*</span><span class="n">scaleLayer</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CALayer</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-<span class="lineno">10</span>     <span class="n">scaleLayer</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">blueColor</span><span class="p">].</span><span class="bp">CGColor</span><span class="p">;</span>
-<span class="lineno">11</span>     <span class="n">scaleLayer</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
-<span class="lineno">12</span>     <span class="n">scaleLayer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="lineno">13</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addSublayer</span><span class="p">:</span><span class="n">scaleLayer</span><span class="p">];</span>
-<span class="lineno">14</span>     <span class="c1">//</span>
-<span class="lineno">15</span>     <span class="c1">//设定剧本</span>
-<span class="lineno">16</span>     <span class="bp">CABasicAnimation</span> <span class="o">*</span><span class="n">scaleAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CABasicAnimation</span> <span class="nl">animationWithKeyPath</span><span class="p">:</span><span class="s">@&quot;transform.scale&quot;</span><span class="p">];</span>
-<span class="lineno">17</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">fromValue</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="mf">1.0</span><span class="p">];</span>
-<span class="lineno">18</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">toValue</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="mf">1.5</span><span class="p">];</span>
-<span class="lineno">19</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">autoreverses</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
-<span class="lineno">20</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
-<span class="lineno">21</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">MAXFLOAT</span><span class="p">;</span>
-<span class="lineno">22</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span>
-<span class="lineno">23</span>     <span class="c1">//</span>
-<span class="lineno">24</span>     <span class="c1">//设置代理: 设置动画的代理，可以监听动画的执行过程，这里设置控制器为代理。</span>
-<span class="lineno">25</span>     <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
-<span class="lineno">26</span>     <span class="c1">//</span>
-<span class="lineno">27</span>     <span class="c1">//开演</span>
-<span class="lineno">28</span>     <span class="p">[</span><span class="n">scaleLayer</span> <span class="nl">addAnimation</span><span class="p">:</span><span class="n">scaleAnimation</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;scaleAnimation&quot;</span><span class="p">];</span>
-<span class="lineno">29</span> <span class="p">}</span>
-<span class="lineno">30</span> <span class="c1">//</span>
-<span class="lineno">31</span> <span class="c1">//代理方法</span>
-<span class="lineno">32</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStart:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">anim</span><span class="p">{</span>
-<span class="lineno">33</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;开始执行动画&quot;</span><span class="p">);</span>
-<span class="lineno">34</span> <span class="p">}</span>
-<span class="lineno">35</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStop:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">anim</span> <span class="nf">finished:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">flag</span><span class="p">{</span>
-<span class="lineno">36</span> 	<span class="c1">//动画执行完毕，</span>
-<span class="lineno">37</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;动画执行完毕&quot;</span><span class="p">);</span>
-<span class="lineno">38</span> <span class="p">}</span></code></pre></div>
-
-<p>其他效果可以依葫芦画瓢轻松实现。想要实现不同的效果，最关键的地方在于<code>CABasicAnimation</code>对象的初始化方式中<code>keyPath</code>的设定。</p>
-
-<ul>
-  <li>
-    <p>在iOS中有以下几种不同的<code>keyPath</code>，代表着不同的效果：</p>
-
-    <ul>
-      <li>transform.scale = 比例转换（x, y, z，value是NSNumber）</li>
-      <li>transform.rotation = 平面旋转（x, y, z）</li>
-      <li>transform.translation 按轴旋转（x, y, z，value是CGSize）</li>
-      <li>opacity (透明度，value是NSNumber0</li>
-      <li>margin</li>
-      <li>zPosition</li>
-      <li>backgroundColor  (背景颜色)</li>
-      <li>cornerRadius   (圆角value是NSNumber)</li>
-      <li>borderWidth (边框宽度)</li>
-      <li>bounds  (value是CGRect)</li>
-      <li>contents  (value是id,比如(id)image.CGImage)</li>
-      <li>contentsRect</li>
-      <li>frame</li>
-      <li>hidden</li>
-      <li>mask</li>
-      <li>masksToBounds</li>
-      <li>position  (相对于父图层的位置)</li>
-      <li>shadowColor  (value是(id)CGColor)</li>
-      <li>shadowOffset  (value是CGSize)</li>
-      <li>shadowOpacity  (value是NSNumber)</li>
-      <li>shadowRadius  (value是NSNumber)</li>
-    </ul>
-  </li>
-</ul>
-
-<blockquote>
-  <p>附代码github地址：<a href="https://github.com/Vanbein/CABasicAnimation">CABasicAnimation</a></p>
-</blockquote>
-
-<p>参考文章：</p>
-
-<ul>
-  <li>
-    <p><a href="http://www.cnblogs.com/bucengyongyou/archive/2012/12/20/2826590.html">CABasicAnimation用法</a></p>
-  </li>
-  <li>
-    <p><a href="http://www.cnblogs.com/wengzilin/p/4250957.html">【原】iOSCoreAnimation动画系列教程（一）：CABasicAnimation【包会】</a></p>
-  </li>
-  <li>
-    <p><a href="http://www.cnblogs.com/wendingding/p/3801157.html">iOS开发UI篇—核心动画(基础动画)</a></p>
-  </li>
-</ul>
 
 
                 </div><!-- End entry content -->
@@ -684,9 +639,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
                     <span><i class="fa fa-tags"></i> Tags</span>
                     
                     
-                    <a href="/tags/#iOS">iOS</a>
-                    
-                    <a href="/tags/#Animation">Animation</a>
+                    <a href="/tags/#Music">Music</a>
                     
                     
                   </div><!-- End Entry tags -->
@@ -694,7 +647,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
                   <div class="entry_tags categories">
                     <span><i class="fa fa-folder-open"></i> Category</span>
                     
-                    <a href="/categories/#iOS进阶">iOS进阶</a>
+                    <a href="/categories/#Media">Media</a>
                     
                   </div><!-- End Entry categories -->
                 </div><!-- end bottom tags and categories -->
@@ -704,7 +657,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 <div class="widget_title"><h3>Share this post</h3></div>
 <div class="tb_widget_weibo clearfix">
   <!-- Duoshuo Share Buttons -->
-  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation" data-title="动画CAAnimation系列--CABasicAnimation" data-images="/images/head-800x400/-9.png" data-content="CABasicAnimation 类是 CAAnimation 的子类，CABasicAnimation通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的 CAKeyFrameAnimation" data-url="http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation.html">
+  <div class="ds-share flat" data-thread-key="flinhong/posts/media/2016/04/04/HotelCalifornia" data-title="Eagles - Hotel California" data-images="http://i68.tinypic.com/xognr7.jpg" data-content="我不懂音乐，但是我知道这是一首只需要听一次就会上瘾的歌曲 -- 老鹰乐队《加州旅馆 》94年现场版！如果你喜欢它的旋律节奏，那么它的歌词就显得更有神秘色彩了，特别是在当时那种社会背景下。" data-url="http://www.vanbein.com/posts/media/2016/04/04/HotelCalifornia.html">
       <div class="ds-share-inline alignleft">
         <ul  class="ds-share-icons-16">
 
@@ -738,10 +691,10 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
   <script>
   	window._bd_share_config = {
   		common : {
-  			bdText : '动画CAAnimation系列--CABasicAnimation',
-  			bdDesc : 'CABasicAnimation 类是 CAAnimation 的子类，CABasicAnimation通过设定起始点，终点，时间，动画会沿着你这设定点进行移动。可以看做特殊的 CAKeyFrameAnimation',
-  			bdUrl : 'http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation.html',
-  			bdPic : '/images/head-800x400/-9.png'
+  			bdText : 'Eagles - Hotel California',
+  			bdDesc : '我不懂音乐，但是我知道这是一首只需要听一次就会上瘾的歌曲 -- 老鹰乐队《加州旅馆 》94年现场版！如果你喜欢它的旋律节奏，那么它的歌词就显得更有神秘色彩了，特别是在当时那种社会背景下。',
+  			bdUrl : 'http://www.vanbein.com/posts/media/2016/04/04/HotelCalifornia.html',
+  			bdPic : 'http://i68.tinypic.com/xognr7.jpg'
   		},
   		share : [{
   			"bdSize" : 16
@@ -756,10 +709,10 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 <!-- Page pagination -->
 <div class="tb_widget_weibo clearfix">
   
-    <a class="alignleft" href="/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation.html"><i class="fa fa-chevron-left"></i> 上一篇：CAAnimation入门</a>
+    <a class="alignleft" href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><i class="fa fa-chevron-left"></i> 上一篇：点亮我的 iOS开发技能树</a>
   
   
-    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/2016/01/06/CALayer.html">下一篇：关于CALayer <i class="fa fa-chevron-right"></i></a>
+    <a class="alignright" href="/archieves/">Blog Archieves <i class="fa fa-chevron-right"></i></a>
   
 </div>
 </div>
@@ -773,7 +726,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
   </div>
 
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation" data-title="动画CAAnimation系列--CABasicAnimation" data-url="http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation.html"></div>
+	<div class="ds-thread" data-thread-key="Vanbein/posts/media/2016/04/04/HotelCalifornia" data-title="Eagles - Hotel California" data-url="http://www.vanbein.com/posts/media/2016/04/04/HotelCalifornia.html"></div>
 <!-- 多说评论框 end -->
 
 
@@ -820,6 +773,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
   </div>
 </div><!-- End Widget Social widget -->
 
+    <!---->
     <div class="widget">
   <div class="widget_title"><h3>Tags</h3></div>
   <div class="tb_widget_tagcloud clearfix">
@@ -875,15 +829,6 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
   </div>
 </div>
 <!-- End Tags -->
-
-    <!-- Toc -->
-<div class="widget">
-  <div id="fixtoc">
-    <div id="toc"></div>
-    <!-- Related to the end of js.html -->
-  </div>
-</div>
-<!-- End Toc -->
 
   
 
@@ -1020,17 +965,6 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 <script type="text/javascript" src="/js/init.js"></script>
 <!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
 
-
-<script type="text/javascript" src="/js/toc.js"></script>
-<script>
-$(document).ready(function() {
-  // $('#toc').toc();
-  // $('#toc').toc({ noBackToTopLinks: true });
-  $('#toc').toc({ headers: '.entry_content h1, .entry_content h2, .entry_content h3, .entry_content h4, .entry_content h5, .entry_content h6'});
-  // $('#').sticky();
-  // $("#post_side_widget").stick_in_parent();
-});
-</script>
 
 
   </body>
