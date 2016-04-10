@@ -327,12 +327,20 @@ $.get("http://ipinfo.io", function (response) {
         </div>
         
         <div class="thumb_hover">
+<<<<<<< HEAD
           <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树"></a>
+=======
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树"></a>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
         </div>
         
       </div>
       <div class="item_content">
+<<<<<<< HEAD
         <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
+=======
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
         <div class="item_meta clearfix">
             <span class="meta_date">Mar 25, 2016</span>
             <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Vanbein</a></span>
@@ -505,6 +513,7 @@ ds.charset = 'UTF-8';
                 <div class="entry_content">
                   <!-- Entry title -->
                   <h1 class="entry_title">iOS实现模糊效果的几种方法</h1><!-- End Entry title -->
+<<<<<<< HEAD
                   <h2 id="api">一、苹果原生API</h2>
 
 <h3 id="core-image">1、Core Image</h3>
@@ -512,6 +521,16 @@ ds.charset = 'UTF-8';
 <p><code>Core Image</code> 是苹果用来简化图片处理的框架；在 iOS 平台上，5.0 之后就出现了 <code>Core Image</code> 的 API。<code>Core Image</code> 的 API 被放在 <code>CoreImage.framework</code> 库中。不过直到iOS6.0才开始支持模糊。这个API调用起来很方便简洁。</p>
 
 <p>在 iOS 和 OS X 平台上，Core Image 都提供了大量的滤镜（Filter），这也是 <code>Core Image</code> 库中比较核心的东西之一。按照官方文档记载，在 OS X 上有 120 多种 Filter，而在 iOS 上也有 90 多种。</p>
+=======
+                  <p>iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。</p>
+
+<h3 id="api">一、苹果原生API</h3>
+<p>#### 1、Core Image</p>
+
+<p><code>Core Image</code> 是苹果用来简化图片处理的框架；在 iOS 平台上，5.0 之后就出现了 <code>Core Image</code> 的 API。<code>Core Image</code> 的 API 被放在 <code>CoreImage.framework</code> 库中。不过直到iOS6.0才开始支持模糊。这个API调用起来很方便简洁。</p>
+
+<p>在 iOS 和 OS X 平台上，<code>Core Image</code> 都提供了大量的滤镜（Filter），这也是 <code>Core Image</code> 库中比较核心的东西之一。按照官方文档记载，在 OS X 上有 120 多种 Filter，而在 iOS 上也有 <code>90</code> 多。</p>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <p>下面是一段 Core Image 做模糊的示例代码：</p>
 
@@ -520,6 +539,7 @@ ds.charset = 'UTF-8';
 <span class="lineno"> 3</span>     <span class="c1">// 创建属性</span>
 <span class="lineno"> 4</span>     <span class="bp">CIImage</span> <span class="o">*</span><span class="n">ciImage</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CIImage</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithImage</span><span class="p">:</span><span class="n">image</span><span class="p">];</span>
 <span class="lineno"> 5</span>     
+<<<<<<< HEAD
 <span class="lineno"> 6</span>     <span class="c1">// 滤镜效果 高斯模糊</span>
 <span class="lineno"> 7</span> <span class="c1">//    CIFilter *filter = [CIFilter filterWithName:@&quot;CIGaussianBlur&quot;];</span>
 <span class="lineno"> 8</span> <span class="c1">//    [filter setValue:cimage forKey:kCIInputImageKey];</span>
@@ -557,11 +577,54 @@ ds.charset = 'UTF-8';
 <span class="lineno">40</span> <span class="p">}</span></code></pre></div>
 
 <p><img src="/images/2016/04/coreImage.png" alt="coreImage" /></p>
+=======
+<span class="lineno"> 6</span>     <span class="c1">//更多滤镜效果，见官方列表 https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIGaussianBlur</span>
+<span class="lineno"> 7</span>     <span class="c1">// 滤镜效果 高斯模糊</span>
+<span class="lineno"> 8</span> <span class="c1">//    CIFilter *filter = [CIFilter filterWithName:@&quot;CIGaussianBlur&quot;];</span>
+<span class="lineno"> 9</span> <span class="c1">//    [filter setValue:cimage forKey:kCIInputImageKey];</span>
+<span class="lineno">10</span> <span class="c1">//    // 指定模糊值 默认为10, 范围为0-100</span>
+<span class="lineno">11</span> <span class="c1">//    [filter setValue:[NSNumber numberWithFloat:blur] forKey:@&quot;inputRadius&quot;];</span>
+<span class="lineno">12</span>     
+<span class="lineno">13</span>     <span class="cm">/**</span>
+<span class="lineno">14</span> <span class="cm">     *  滤镜效果 VariableBlur</span>
+<span class="lineno">15</span> <span class="cm">     *  此滤镜模糊图像具有可变模糊半径。你提供和目标图像相同大小的灰度图像为它指定模糊半径</span>
+<span class="lineno">16</span> <span class="cm">     *  白色的区域模糊度最高，黑色区域则没有模糊。</span>
+<span class="lineno">17</span> <span class="cm">     */</span>
+<span class="lineno">18</span>     <span class="bp">CIFilter</span> <span class="o">*</span><span class="n">filter</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIFilter</span> <span class="nl">filterWithName</span><span class="p">:</span><span class="s">@&quot;CIMaskedVariableBlur&quot;</span><span class="p">];</span>
+<span class="lineno">19</span>     <span class="c1">// 指定过滤照片</span>
+<span class="lineno">20</span>     <span class="p">[</span><span class="n">filter</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">ciImage</span> <span class="nl">forKey</span><span class="p">:</span><span class="n">kCIInputImageKey</span><span class="p">];</span>
+<span class="lineno">21</span>     <span class="bp">CIImage</span> <span class="o">*</span><span class="n">mask</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIImage</span> <span class="nl">imageWithCGImage</span><span class="p">:</span><span class="n">maskImage</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">]</span> <span class="p">;</span>
+<span class="lineno">22</span>     <span class="c1">// 指定 mask image</span>
+<span class="lineno">23</span>     <span class="p">[</span><span class="n">filter</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">mask</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;inputMask&quot;</span><span class="p">];</span>
+<span class="lineno">24</span>     <span class="c1">// 指定模糊值  默认为10, 范围为0-100</span>
+<span class="lineno">25</span>     <span class="p">[</span><span class="n">filter</span> <span class="nl">setValue</span><span class="p">:[</span><span class="bp">NSNumber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="n">blur</span><span class="p">]</span> <span class="nl">forKey</span><span class="p">:</span> <span class="s">@&quot;inputRadius&quot;</span><span class="p">];</span>
+<span class="lineno">26</span>     
+<span class="lineno">27</span>     <span class="c1">// 生成图片</span>
+<span class="lineno">28</span>     <span class="bp">CIContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIContext</span> <span class="nl">contextWithOptions</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">29</span>     <span class="c1">// 创建输出</span>
+<span class="lineno">30</span>     <span class="bp">CIImage</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">filter</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="n">kCIOutputImageKey</span><span class="p">];</span>
+<span class="lineno">31</span>     
+<span class="lineno">32</span>     <span class="c1">// 下面这一行的代码耗费时间内存最多,可以开辟线程处理然后回调主线程给imageView赋值</span>
+<span class="lineno">33</span>     <span class="c1">//result.extent 指原来的大小size</span>
+<span class="lineno">34</span> <span class="c1">//    NSLog(@&quot;%@&quot;,NSStringFromCGRect(result.extent));</span>
+<span class="lineno">35</span> <span class="c1">//    CGImageRef outImage = [context createCGImage: result fromRect: result.extent];</span>
+<span class="lineno">36</span>     
+<span class="lineno">37</span>     <span class="n">CGImageRef</span> <span class="n">outImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="nl">createCGImage</span><span class="p">:</span> <span class="n">result</span> <span class="nl">fromRect</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">320.0</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">334.0</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)];</span>
+<span class="lineno">38</span>     <span class="bp">UIImage</span> <span class="o">*</span> <span class="n">blurImage</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageWithCGImage</span><span class="p">:</span><span class="n">outImage</span><span class="p">];</span>
+<span class="lineno">39</span>     
+<span class="lineno">40</span>     <span class="k">return</span> <span class="n">blurImage</span><span class="p">;</span>
+<span class="lineno">41</span> <span class="p">}</span></code></pre></div>
+
+<p> <br />
+ <br />
+ <img src="/images/2016/04/coreImage.png" alt="Core Image" /></p>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <blockquote>
   <p>更多的滤镜效果可以参见这个 <a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIGaussianBlur">Filter官方列表</a></p>
 </blockquote>
 
+<<<<<<< HEAD
 <h3 id="vimage">2、vImage</h3>
 
 <p>vImage 也是苹果推出的库，在 Accelerate.framework 中。</p>
@@ -663,18 +726,128 @@ ds.charset = 'UTF-8';
 <p><img src="/images/2016/04/vImage.png" alt="vImage.png" /></p>
 
 <h3 id="uivisualeffectview">3、UIVisualEffectView</h3>
+=======
+<h4 id="vimage">2、vImage</h4>
+
+<p>vImage 也是苹果推出的库，在 <code>Accelerate.framework</code> 中。</p>
+
+<p>Accelerate这个framework主要是用来做数字信号处理、图像处理相关的向量、矩阵运算的库。我们可以认为我们的图像都是由向量或者矩阵数据构成的，Accelerate里既然提供了高效的数学运算API，自然就能方便我们对图像做各种各样的处理。</p>
+
+<p>基于vImage我们可以根据图像的处理原理直接做模糊效果，或者使用现有的工具。<code>UIImage+ImageEffects</code>是个很好的图像处理库，看名字也知道是对UIImage做的分类扩展。这个工具被广泛地使用着，后面会做介绍。</p>
+
+<p>下面是一段使用 vImage 实现模糊效果的代码：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// image是图片，blur是模糊度</span>
+<span class="lineno"> 2</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">blurryImage:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="nf">withBlurLevel:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">blur</span>
+<span class="lineno"> 3</span> <span class="p">{</span>
+<span class="lineno"> 4</span>     <span class="k">if</span> <span class="p">(</span><span class="n">image</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+<span class="lineno"> 5</span>     <span class="p">{</span>
+<span class="lineno"> 6</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;error:为图片添加模糊效果时，未能获取原始图片&quot;</span><span class="p">);</span>
+<span class="lineno"> 7</span>         <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 8</span>     <span class="p">}</span>
+<span class="lineno"> 9</span>     <span class="c1">//模糊度,</span>
+<span class="lineno">10</span>     <span class="k">if</span> <span class="p">(</span><span class="n">blur</span> <span class="o">&lt;</span> <span class="mf">0.025f</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">11</span>         <span class="n">blur</span> <span class="o">=</span> <span class="mf">0.025f</span><span class="p">;</span>
+<span class="lineno">12</span>     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">blur</span> <span class="o">&gt;</span> <span class="mf">1.0f</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">13</span>         <span class="n">blur</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+<span class="lineno">14</span>     <span class="p">}</span>
+<span class="lineno">15</span>     
+<span class="lineno">16</span>     <span class="c1">//boxSize必须大于0</span>
+<span class="lineno">17</span>     <span class="kt">int</span> <span class="n">boxSize</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">blur</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+<span class="lineno">18</span>     <span class="n">boxSize</span> <span class="o">-=</span> <span class="p">(</span><span class="n">boxSize</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">19</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;boxSize:%i&quot;</span><span class="p">,</span><span class="n">boxSize</span><span class="p">);</span>
+<span class="lineno">20</span>     <span class="c1">//图像处理</span>
+<span class="lineno">21</span>     <span class="n">CGImageRef</span> <span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">;</span>
+<span class="lineno">22</span>     <span class="c1">//需要引入#import &lt;Accelerate/Accelerate.h&gt;</span>
+<span class="lineno">23</span>     
+<span class="lineno">24</span>     <span class="c1">//图像缓存,输入缓存，输出缓存</span>
+<span class="lineno">25</span>     <span class="n">vImage_Buffer</span> <span class="n">inBuffer</span><span class="p">,</span> <span class="n">outBuffer</span><span class="p">;</span>
+<span class="lineno">26</span>     <span class="n">vImage_Error</span> <span class="n">error</span><span class="p">;</span>
+<span class="lineno">27</span>     <span class="c1">//像素缓存</span>
+<span class="lineno">28</span>     <span class="kt">void</span> <span class="o">*</span><span class="n">pixelBuffer</span><span class="p">;</span>
+<span class="lineno">29</span>     
+<span class="lineno">30</span>     <span class="c1">//数据源提供者，Defines an opaque type that supplies Quartz with data.</span>
+<span class="lineno">31</span>     <span class="n">CGDataProviderRef</span> <span class="n">inProvider</span> <span class="o">=</span> <span class="n">CGImageGetDataProvider</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">32</span>     <span class="c1">// provider’s data.</span>
+<span class="lineno">33</span>     <span class="n">CFDataRef</span> <span class="n">inBitmapData</span> <span class="o">=</span> <span class="n">CGDataProviderCopyData</span><span class="p">(</span><span class="n">inProvider</span><span class="p">);</span>
+<span class="lineno">34</span>     
+<span class="lineno">35</span>     <span class="c1">//宽，高，字节/行，data</span>
+<span class="lineno">36</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">CGImageGetWidth</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">37</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">38</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">rowBytes</span> <span class="o">=</span> <span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">39</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">CFDataGetBytePtr</span><span class="p">(</span><span class="n">inBitmapData</span><span class="p">);</span>
+<span class="lineno">40</span>     
+<span class="lineno">41</span>     <span class="c1">//像数缓存，字节行*图片高</span>
+<span class="lineno">42</span>     <span class="n">pixelBuffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="o">*</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">));</span>
+<span class="lineno">43</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pixelBuffer</span><span class="p">;</span>
+<span class="lineno">44</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">CGImageGetWidth</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">45</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">46</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">rowBytes</span> <span class="o">=</span> <span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">47</span>     <span class="c1">// 第三个中间的缓存区,抗锯齿的效果</span>
+<span class="lineno">48</span>     <span class="kt">void</span> <span class="o">*</span><span class="n">pixelBuffer2</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="o">*</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">));</span>
+<span class="lineno">49</span>     <span class="n">vImage_Buffer</span> <span class="n">outBuffer2</span><span class="p">;</span>
+<span class="lineno">50</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pixelBuffer2</span><span class="p">;</span>
+<span class="lineno">51</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">CGImageGetWidth</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">52</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">53</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">rowBytes</span> <span class="o">=</span> <span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">54</span>     <span class="c1">//Convolves a region of interest within an ARGB8888 source image by an implicit M x N kernel that has the effect of a box filter.</span>
+<span class="lineno">55</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">vImageBoxConvolve_ARGB8888</span><span class="p">(</span><span class="o">&amp;</span><span class="n">inBuffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">outBuffer2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">kvImageEdgeExtend</span><span class="p">);</span>
+<span class="lineno">56</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">vImageBoxConvolve_ARGB8888</span><span class="p">(</span><span class="o">&amp;</span><span class="n">outBuffer2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">inBuffer</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">kvImageEdgeExtend</span><span class="p">);</span>
+<span class="lineno">57</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">vImageBoxConvolve_ARGB8888</span><span class="p">(</span><span class="o">&amp;</span><span class="n">inBuffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">outBuffer</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">kvImageEdgeExtend</span><span class="p">);</span>
+<span class="lineno">58</span>     <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">59</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;error from convolution %ld&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+<span class="lineno">60</span>     <span class="p">}</span>
+<span class="lineno">61</span>     <span class="c1">//    NSLog(@&quot;字节组成部分：%zu&quot;,CGImageGetBitsPerComponent(img));</span>
+<span class="lineno">62</span>     <span class="c1">//颜色空间DeviceRGB</span>
+<span class="lineno">63</span>     <span class="n">CGColorSpaceRef</span> <span class="n">colorSpace</span> <span class="o">=</span> <span class="n">CGColorSpaceCreateDeviceRGB</span><span class="p">();</span>
+<span class="lineno">64</span>     <span class="c1">//用图片创建上下文,CGImageGetBitsPerComponent(img),7,8</span>
+<span class="lineno">65</span>     <span class="n">CGContextRef</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">CGBitmapContextCreate</span><span class="p">(</span>
+<span class="lineno">66</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">data</span><span class="p">,</span>
+<span class="lineno">67</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
+<span class="lineno">68</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+<span class="lineno">69</span>                                              <span class="mi">8</span><span class="p">,</span>
+<span class="lineno">70</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">rowBytes</span><span class="p">,</span>
+<span class="lineno">71</span>                                              <span class="n">colorSpace</span><span class="p">,</span>
+<span class="lineno">72</span>                                              <span class="n">CGImageGetBitmapInfo</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">));</span>
+<span class="lineno">73</span>     
+<span class="lineno">74</span>     <span class="c1">//根据上下文，处理过的图片，重新组件</span>
+<span class="lineno">75</span>     <span class="n">CGImageRef</span> <span class="n">imageRef</span> <span class="o">=</span> <span class="n">CGBitmapContextCreateImage</span> <span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+<span class="lineno">76</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">returnImage</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageWithCGImage</span><span class="p">:</span><span class="n">imageRef</span><span class="p">];</span>
+<span class="lineno">77</span>     <span class="c1">//clean up</span>
+<span class="lineno">78</span>     <span class="n">CGContextRelease</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+<span class="lineno">79</span>     <span class="n">CGColorSpaceRelease</span><span class="p">(</span><span class="n">colorSpace</span><span class="p">);</span>
+<span class="lineno">80</span>     <span class="n">free</span><span class="p">(</span><span class="n">pixelBuffer</span><span class="p">);</span>
+<span class="lineno">81</span>     <span class="n">free</span><span class="p">(</span><span class="n">pixelBuffer2</span><span class="p">);</span>
+<span class="lineno">82</span>     <span class="n">CFRelease</span><span class="p">(</span><span class="n">inBitmapData</span><span class="p">);</span>
+<span class="lineno">83</span>     <span class="c1">//CGColorSpaceRelease(colorSpace);   //多余的释放</span>
+<span class="lineno">84</span>     <span class="n">CGImageRelease</span><span class="p">(</span><span class="n">imageRef</span><span class="p">);</span>
+<span class="lineno">85</span>     <span class="k">return</span> <span class="n">returnImage</span><span class="p">;</span>
+<span class="lineno">86</span> <span class="p">}</span></code></pre></div>
+
+<p><img src="/images/2016/04/vImage.png" alt="vImage" /></p>
+
+<h4 id="ios80-uivisualeffectview">3、iOS8.0以上使用 UIVisualEffectView</h4>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <p>UIVisualEffectView只支持iOS 8以后的设备，所以有一定的局限性，但是使用起来非常简单，并且能通过代码或 storyboard 实现模糊效果，下面是一段实现模糊效果的示例代码，其中 effectWithStyle 有 Light、ExtraLight、dark 三种，如下：</p>
 
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">UIVisualEffectView</span> <span class="o">*</span><span class="n">effectView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIVisualEffectView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithEffect</span><span class="p">:[</span><span class="n">UIBlurEffect</span> <span class="nl">effectWithStyle</span><span class="p">:</span><span class="n">UIBlurEffectStyleLight</span><span class="p">]];</span>
+<<<<<<< HEAD
 <span class="lineno">2</span> <span class="n">effectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">;</span>
 <span class="lineno">3</span> <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">effectView</span><span class="p">];</span></code></pre></div>
 
 <p><img src="/images/2016/04/blurEffect.png" alt="blurEffect.png" /></p>
+=======
+<span class="lineno">2</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">;</span>
+<span class="lineno">3</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">effectView</span><span class="p">];</span></code></pre></div>
+
+<p><img src="/images/2016/04/blurEffect.png" alt="BlurEffect" /></p>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <p>实现中间透明文字效果的代码为：</p>
 
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configBlurEffect</span><span class="p">{</span>
+<<<<<<< HEAD
 <span class="lineno"> 2</span>     
 <span class="lineno"> 3</span>     <span class="c1">// 原始图片 self.imageView</span>
 <span class="lineno"> 4</span>     <span class="c1">// 为了更好的看到UIVisualEffectView的即时渲染效果添加平移手势 此处通过 storyBoard 添加</span>
@@ -716,6 +889,45 @@ ds.charset = 'UTF-8';
 <h2 id="section">二、第三方库/工具</h2>
 
 <h3 id="fxblurview">1、FXBlurView</h3>
+=======
+<span class="lineno"> 2</span>     <span class="c1">// 原始图片 self.imageVie</span>
+<span class="lineno"> 3</span>     <span class="c1">// 为了更好的看到UIVisualEffectView的即时渲染效果添加平移手势 也可以通过 storyBoard 添加手势        	UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];</span>
+<span class="lineno"> 4</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">imageView</span> <span class="nl">addGestureRecognizer</span><span class="p">:</span><span class="n">pan</span><span class="p">];</span>
+<span class="lineno"> 5</span>     
+<span class="lineno"> 6</span>     <span class="c1">// 创建模糊View</span>
+<span class="lineno"> 7</span>     <span class="n">UIVisualEffectView</span> <span class="o">*</span><span class="n">effectView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIVisualEffectView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithEffect</span><span class="p">:[</span><span class="n">UIBlurEffect</span> <span class="nl">effectWithStyle</span><span class="p">:</span><span class="n">UIBlurEffectStyleLight</span><span class="p">]];</span>
+<span class="lineno"> 8</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">10.0f</span><span class="p">;</span>
+<span class="lineno"> 9</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">10</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="lineno">11</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">effectView</span><span class="p">];</span>
+<span class="lineno">12</span>     
+<span class="lineno">13</span>     <span class="c1">//添加Label</span>
+<span class="lineno">14</span>     <span class="bp">UILabel</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UILabel</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="n">effectView</span><span class="p">.</span><span class="n">bounds</span><span class="p">];</span>
+<span class="lineno">15</span>     <span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@&quot;Blur Effect&quot;</span><span class="p">;</span>
+<span class="lineno">16</span>     <span class="n">label</span><span class="p">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="n">NSTextAlignmentCenter</span><span class="p">;</span>
+<span class="lineno">17</span>     <span class="n">label</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIFont</span> <span class="nl">systemFontOfSize</span><span class="p">:</span><span class="mi">20</span><span class="p">];</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>     <span class="c1">// 在创建的模糊View的上面再添加一个子模糊View</span>
+<span class="lineno">20</span>     <span class="n">UIVisualEffectView</span> <span class="o">*</span><span class="n">subEffectView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIVisualEffectView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithEffect</span><span class="p">:[</span><span class="n">UIVibrancyEffect</span> <span class="nl">effectForBlurEffect</span><span class="p">:(</span><span class="n">UIBlurEffect</span> <span class="o">*</span><span class="p">)</span><span class="n">effectView</span><span class="p">.</span><span class="n">effect</span><span class="p">]];</span>
+<span class="lineno">21</span>     <span class="n">subEffectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">effectView</span><span class="p">.</span><span class="n">bounds</span><span class="p">;</span>
+<span class="lineno">22</span>     
+<span class="lineno">23</span>     <span class="p">[</span><span class="n">effectView</span><span class="p">.</span><span class="n">contentView</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">subEffectView</span><span class="p">];</span>
+<span class="lineno">24</span>     <span class="p">[</span><span class="n">subEffectView</span><span class="p">.</span><span class="n">contentView</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">label</span><span class="p">];</span>
+<span class="lineno">25</span> <span class="p">}</span>
+<span class="lineno">26</span> <span class="c1">//平移手势</span>
+<span class="lineno">27</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">panGesture:</span><span class="p">(</span><span class="bp">UIPanGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+<span class="lineno">28</span>     
+<span class="lineno">29</span>     <span class="bp">CGPoint</span> <span class="n">point</span> <span class="o">=</span> <span class="p">[</span><span class="n">sender</span> <span class="nl">translationInView</span><span class="p">:</span><span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno">30</span>     <span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+<span class="lineno">31</span>                                       <span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="lineno">32</span>     <span class="p">[</span><span class="n">sender</span> <span class="nl">setTranslation</span><span class="p">:</span><span class="n">CGPointZero</span> <span class="nl">inView</span><span class="p">:</span><span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno">33</span> 
+<span class="lineno">34</span> <span class="p">}</span></code></pre></div>
+
+<h3 id="section">二、第三方库/工具</h3>
+
+<h4 id="fxblurview">1、FXBlurView</h4>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <p><a href="https://github.com/nicklockwood/FXBlurView">FXBlurView</a> 是一个UIView的子类，效果和iOS7的背景实时模糊效果一样，但是支持到了 iOS 5.0。</p>
 
@@ -724,6 +936,7 @@ ds.charset = 'UTF-8';
 <p>FXBlurView 的使用非常简单，看一下它的源码就明白了，一个示例代码如下：</p>
 
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">FXBlurView</span> <span class="o">*</span><span class="n">blurView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FXBlurView</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<<<<<<< HEAD
 <span class="lineno">2</span> <span class="p">[</span><span class="n">blurView</span> <span class="nl">setFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">)];</span>
 <span class="lineno">3</span> <span class="p">[</span><span class="n">blurView</span> <span class="nl">setBackgroundColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">]];</span>
 <span class="lineno">4</span> <span class="c1">//设置模式</span>
@@ -734,6 +947,18 @@ ds.charset = 'UTF-8';
 <p><img src="/images/2016/04/FXBlurView.png" alt="FXBlurView.png" /></p>
 
 <h3 id="gpuimage">2、GPUImage</h3>
+=======
+<span class="lineno">2</span>     <span class="p">[</span><span class="n">blurView</span> <span class="nl">setFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">)];</span>
+<span class="lineno">3</span>     <span class="p">[</span><span class="n">blurView</span> <span class="nl">setBackgroundColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">]];</span>
+<span class="lineno">4</span>     <span class="c1">//设置模式</span>
+<span class="lineno">5</span>     <span class="nb">self</span><span class="p">.</span><span class="n">blurView</span><span class="p">.</span><span class="n">dynamic</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">6</span>     <span class="c1">//设置模糊半径</span>
+<span class="lineno">7</span>     <span class="nb">self</span><span class="p">.</span><span class="n">blurView</span><span class="p">.</span><span class="n">blurRadius</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span></code></pre></div>
+
+<p><img src="/images/2016/04/FXBlurView.png" alt="image" /></p>
+
+<h4 id="gpuimage">2、GPUImage</h4>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <p><a href="https://github.com/BradLarson/GPUImage">GPUImage</a> 是一个基于GPU图像和视频处理开源的iOS framework，适用面很广。</p>
 
@@ -741,11 +966,19 @@ ds.charset = 'UTF-8';
 
 <ol>
   <li>在 github 上 clone 源码</li>
+<<<<<<< HEAD
   <li>将它的 framework 整个文件夹拷贝到你的工程文件夹下</li>
   <li>将 framework 下的 <code>GPUImage.xcodeproj</code> 文件拖到你的 Xcode project 中</li>
   <li>到工程的 target 的 <code>Build Phases</code> 界面，添加 GPUImage 到 <code>Target Dependencies</code></li>
   <li>继续将 libGPUImage.a 添加到Build Phases 界面的 <code>Link Binary With Libraries</code></li>
   <li>在 <code>Link Binary With Libraries</code> 继续添加 GPUImage 的支持库：
+=======
+  <li>将它的 <code>framework</code> 整个文件夹拷贝到你的工程文件夹下</li>
+  <li>将 <code>framework</code> 下的 <code>GPUImage.xcodeproj</code> 文件拖到你的 Xcode project 中</li>
+  <li>到工程的 target 的 <code>Build Phases</code> 界面，添加 <code>GPUImage</code> 到 <code>Target Dependencies</code></li>
+  <li>继续将 <code>libGPUImage.a</code> 添加到<code>Build Phases</code> 界面的 <code>Link Binary With Libraries</code></li>
+  <li>在 <code>Link Binary With Libraries</code>继续添加 GPUImage 的支持库：
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
     <ul>
       <li>CoreMedia</li>
       <li>CoreVideo</li>
@@ -754,15 +987,24 @@ ds.charset = 'UTF-8';
       <li>QuartzCore</li>
     </ul>
   </li>
+<<<<<<< HEAD
   <li>最后，到工程的 <code>Build Settings</code> 设置 <code>Header Search Paths</code>，搜索 Header Search Paths 后在 <code>Header Search Paths</code> 一栏添加 framework 的头文件路径，不想手动输入可以将 framework 文件夹拖入即可自动生成路径，然后将后面的选项设置为 <strong>recursive</strong></li>
   <li>在工程使用 <code>#import "GPUImage.h"</code> 即可开始使用了</li>
 </ol>
 
 <p><img src="/images/2016/04/HeaderSearchPaths.png" alt="HeaderSearchPaths.png" /></p>
+=======
+  <li>最后，到工程的 <code>Build Settings</code>设置 <code>Header Search Paths</code>，搜索 Header Search Paths 后在 <code>Header Search Paths</code>一栏添加 framework 的头文件路径，不想手动输入可以将 <code>framework</code> 文件夹拖入即可自动生成路径，然后将后面的选项设置为 <strong>recursive</strong></li>
+  <li>在工程使用 <code>#import "GPUImage.h"</code> 即可开始使用了</li>
+</ol>
+
+<p><img src="/images/2016/04/HeaderSearchPaths.png" alt="image" /></p>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <p>如果要使用 GPUImage 实现高斯模糊，则非常简单，代码如下：</p>
 
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">blurryGPUImage:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="nf">withBlurLevel:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">blur</span> <span class="p">{</span>
+<<<<<<< HEAD
 <span class="lineno">2</span> 
 <span class="lineno">3</span>     <span class="c1">// 高斯模糊</span>
 <span class="lineno">4</span>     <span class="n">GPUImageGaussianBlurFilter</span> <span class="o">*</span> <span class="n">blurFilter</span> <span class="o">=</span> <span class="p">[[</span><span class="n">GPUImageGaussianBlurFilter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
@@ -794,6 +1036,37 @@ ds.charset = 'UTF-8';
 <span class="lineno">6</span> <span class="nb">self</span><span class="p">.</span><span class="n">grayScaleView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="n">grayScale</span><span class="p">];</span></code></pre></div>
 
 <p><img src="/images/2016/04/UIImage+ImageEffects.png" alt="UIImage+ImageEffects.png" /></p>
+=======
+<span class="lineno">2</span>     <span class="c1">// 高斯模糊</span>
+<span class="lineno">3</span>     <span class="n">GPUImageGaussianBlurFilter</span> <span class="o">*</span> <span class="n">blurFilter</span> <span class="o">=</span> <span class="p">[[</span><span class="n">GPUImageGaussianBlurFilter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">4</span>     <span class="n">blurFilter</span><span class="p">.</span><span class="n">blurRadiusInPixels</span> <span class="o">=</span> <span class="n">blur</span><span class="p">;</span>
+<span class="lineno">5</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">blurredImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">blurFilter</span> <span class="nl">imageByFilteringImage</span><span class="p">:</span><span class="n">image</span><span class="p">];</span>
+<span class="lineno">6</span>     <span class="k">return</span> <span class="n">blurredImage</span><span class="p">;</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
+
+<p><img src="/images/2016/04/GPUImage.png" alt="image" /></p>
+
+<h4 id="uiimageimageeffects">3、UIImage+ImageEffects</h4>
+
+<blockquote>
+  <p>Abstract: This is a category of UIImage that adds methods to apply blur and tint effects   to an image. This is the code you’ll want to look out to find out how to use vImage to efficiently calculate a blur.</p>
+
+  <p>摘要：这是UIImage的category，增加方法来对图像进行模糊和着色效果。这就是你想要的如何有效利用 <code>vImage</code>实现模糊效果的代码</p>
+</blockquote>
+
+<p><code>UIImage+ImageEffects</code>的模糊效果非常美观，对<code>UIImage+ImageEffects</code>进行修改后可以对图片进行局模糊;</p>
+
+<p><code>UIImage+ImageEffects</code>提供了很多方法可以使用，常用的几个方法使用示例如下：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 通用模糊，默认模糊半径为20.0</span>
+<span class="lineno">2</span> <span class="nb">self</span><span class="p">.</span><span class="n">blurView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="n">blurImage</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">//局部模糊</span>
+<span class="lineno">4</span> <span class="nb">self</span><span class="p">.</span><span class="n">partBlurView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="nl">blurImageAtFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">155.0</span><span class="o">*</span><span class="mi">2</span> <span class="p">,</span> <span class="mf">235.0</span><span class="o">*</span><span class="mf">4.0</span><span class="p">)];</span>
+<span class="lineno">5</span> <span class="c1">//灰度锐化图    </span>
+<span class="lineno">6</span> <span class="nb">self</span><span class="p">.</span><span class="n">grayScaleView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="n">grayScale</span><span class="p">];</span></code></pre></div>
+
+<p><img src="/images/2016/04/UIImage+ImageEffects.png" alt="UIImage+ImageEffects" /></p>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
 
 <blockquote>
   <p>附上代码的github地址 <a href="https://github.com/Vanbein/BlurViewExample">BlurViewExample</a></p>
@@ -1089,13 +1362,21 @@ ds.charset = 'UTF-8';
     <!-- Post item -->
     <div class="item clearfix">
       <div class="item_thumb clearfix">
+<<<<<<< HEAD
         <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树" class="visible animated"></a>
+=======
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
       </div>
       <div class="item_content">
         <div class="item_meta clearfix">
           <span class="meta_date">Mar 25, 2016</span>
         </div>
+<<<<<<< HEAD
         <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
+=======
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+>>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
       </div>
       <div class="order">&#9812;</div>
     </div><!-- End Post item -->
