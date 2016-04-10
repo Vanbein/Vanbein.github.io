@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>iOS实现模糊效果的几种方法 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://www.vanbein.com/posts/3rd-libraries/2016/04/06/blurView.html">
+  <meta name="description" content="iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 650 && scrollHeight < postHeight && screenWidth > 1200){
+        $('#fixtoc').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixtoc').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <!--<li><a href="/categories/">Categories</a></li>-->
+            <li><a href="/posts/">Archives</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/21/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/18/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/15/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/media/2016/03/15/blue-xuwei.html">许巍 - 蓝莲花</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/2016/03/09/blog.html">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/04/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/04/March-bi-ji.html">近期的一点笔记</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">02/26/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html">Xcode常用的Debug调试技巧总结</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/3rd-libraries/2016/04/06/blurView.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/3rd-libraries/2016/04/06/blurView.html"><img src="/images/head-800x400/-54.png" alt="iOS实现模糊效果的几种方法"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/3rd-libraries/2016/04/06/blurView.html">iOS实现模糊效果的几种方法</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 6, 2016</span>
+            <span class="meta_author"><a href="/posts/3rd-libraries/2016/04/06/blurView.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/media/2016/04/04/HotelCalifornia.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/media/2016/04/04/HotelCalifornia.html"><img src="http://i68.tinypic.com/xognr7.jpg" alt="Eagles - Hotel California"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/media/2016/04/04/HotelCalifornia.html">Eagles - Hotel California</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 4, 2016</span>
+            <span class="meta_author"><a href="/posts/media/2016/04/04/HotelCalifornia.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 25, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Xcode基础快捷键 -- 提高你的编码速率"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Mar 21, 2016</span>
+            <span class="meta_author"><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (22)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (5)</li>
+      
+      <li><a href="/categories/#journal">journal</a> (1)</li>
+      
+      <li><a href="/categories/#media">media</a> (2)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+      <li><a href="/categories/#3rd-libraries">3rd-libraries</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#runtime">runtime</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#Music">Music</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#Blur">Blur</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-54.png" class="popup_link"><img src="/images/head-800x400/-54.png" alt="iOS实现模糊效果的几种方法"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Apr 6, 2016</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>Blur</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">iOS实现模糊效果的几种方法</h1><!-- End Entry title -->
+                  <h2 id="api">一、苹果原生API</h2>
+
+<h3 id="core-image">1、Core Image</h3>
+
+<p><code>Core Image</code> 是苹果用来简化图片处理的框架；在 iOS 平台上，5.0 之后就出现了 <code>Core Image</code> 的 API。<code>Core Image</code> 的 API 被放在 <code>CoreImage.framework</code> 库中。不过直到iOS6.0才开始支持模糊。这个API调用起来很方便简洁。</p>
+
+<p>在 iOS 和 OS X 平台上，Core Image 都提供了大量的滤镜（Filter），这也是 <code>Core Image</code> 库中比较核心的东西之一。按照官方文档记载，在 OS X 上有 120 多种 Filter，而在 iOS 上也有 90 多种。</p>
+
+<p>下面是一段 Core Image 做模糊的示例代码：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">blurryImage:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="nf">withMaskImage:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">maskImage</span> <span class="nf">blurLevel:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">blur</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     
+<span class="lineno"> 3</span>     <span class="c1">// 创建属性</span>
+<span class="lineno"> 4</span>     <span class="bp">CIImage</span> <span class="o">*</span><span class="n">ciImage</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CIImage</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithImage</span><span class="p">:</span><span class="n">image</span><span class="p">];</span>
+<span class="lineno"> 5</span>     
+<span class="lineno"> 6</span>     <span class="c1">// 滤镜效果 高斯模糊</span>
+<span class="lineno"> 7</span> <span class="c1">//    CIFilter *filter = [CIFilter filterWithName:@&quot;CIGaussianBlur&quot;];</span>
+<span class="lineno"> 8</span> <span class="c1">//    [filter setValue:cimage forKey:kCIInputImageKey];</span>
+<span class="lineno"> 9</span> <span class="c1">//    // 指定模糊值 默认为10, 范围为0-100</span>
+<span class="lineno">10</span> <span class="c1">//    [filter setValue:[NSNumber numberWithFloat:blur] forKey:@&quot;inputRadius&quot;];</span>
+<span class="lineno">11</span>     
+<span class="lineno">12</span>     <span class="cm">/**</span>
+<span class="lineno">13</span> <span class="cm">     *  滤镜效果 VariableBlur</span>
+<span class="lineno">14</span> <span class="cm">     *  此滤镜模糊图像具有可变模糊半径。你提供和目标图像相同大小的灰度图像为它指定模糊半径</span>
+<span class="lineno">15</span> <span class="cm">     *  白色的区域模糊度最高，黑色区域则没有模糊。</span>
+<span class="lineno">16</span> <span class="cm">     */</span>
+<span class="lineno">17</span>     <span class="bp">CIFilter</span> <span class="o">*</span><span class="n">filter</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIFilter</span> <span class="nl">filterWithName</span><span class="p">:</span><span class="s">@&quot;CIMaskedVariableBlur&quot;</span><span class="p">];</span>
+<span class="lineno">18</span>     <span class="c1">// 指定过滤照片</span>
+<span class="lineno">19</span>     <span class="p">[</span><span class="n">filter</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">ciImage</span> <span class="nl">forKey</span><span class="p">:</span><span class="n">kCIInputImageKey</span><span class="p">];</span>
+<span class="lineno">20</span>     <span class="bp">CIImage</span> <span class="o">*</span><span class="n">mask</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIImage</span> <span class="nl">imageWithCGImage</span><span class="p">:</span><span class="n">maskImage</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">]</span> <span class="p">;</span>
+<span class="lineno">21</span>     <span class="c1">// 指定 mask image</span>
+<span class="lineno">22</span>     <span class="p">[</span><span class="n">filter</span> <span class="nl">setValue</span><span class="p">:</span><span class="n">mask</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@&quot;inputMask&quot;</span><span class="p">];</span>
+<span class="lineno">23</span>     <span class="c1">// 指定模糊值  默认为10, 范围为0-100</span>
+<span class="lineno">24</span>     <span class="p">[</span><span class="n">filter</span> <span class="nl">setValue</span><span class="p">:[</span><span class="bp">NSNumber</span> <span class="nl">numberWithFloat</span><span class="p">:</span><span class="n">blur</span><span class="p">]</span> <span class="nl">forKey</span><span class="p">:</span> <span class="s">@&quot;inputRadius&quot;</span><span class="p">];</span>
+<span class="lineno">25</span>     
+<span class="lineno">26</span>     <span class="c1">// 生成图片</span>
+<span class="lineno">27</span>     <span class="bp">CIContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIContext</span> <span class="nl">contextWithOptions</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">28</span>     <span class="c1">// 创建输出</span>
+<span class="lineno">29</span>     <span class="bp">CIImage</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">filter</span> <span class="nl">valueForKey</span><span class="p">:</span><span class="n">kCIOutputImageKey</span><span class="p">];</span>
+<span class="lineno">30</span>     
+<span class="lineno">31</span>     <span class="c1">// 下面这一行的代码耗费时间内存最多,可以开辟线程处理然后回调主线程给imageView赋值</span>
+<span class="lineno">32</span>     <span class="c1">//result.extent 指原来的大小size</span>
+<span class="lineno">33</span> <span class="c1">//    NSLog(@&quot;%@&quot;,NSStringFromCGRect(result.extent));</span>
+<span class="lineno">34</span> <span class="c1">//    CGImageRef outImage = [context createCGImage: result fromRect: result.extent];</span>
+<span class="lineno">35</span>     
+<span class="lineno">36</span>     <span class="n">CGImageRef</span> <span class="n">outImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="nl">createCGImage</span><span class="p">:</span> <span class="n">result</span> <span class="nl">fromRect</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">320.0</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">334.0</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)];</span>
+<span class="lineno">37</span>     <span class="bp">UIImage</span> <span class="o">*</span> <span class="n">blurImage</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageWithCGImage</span><span class="p">:</span><span class="n">outImage</span><span class="p">];</span>
+<span class="lineno">38</span>     
+<span class="lineno">39</span>     <span class="k">return</span> <span class="n">blurImage</span><span class="p">;</span>
+<span class="lineno">40</span> <span class="p">}</span></code></pre></div>
+
+<p><img src="/images/2016/04/coreImage.png" alt="coreImage" /></p>
+
+<blockquote>
+  <p>更多的滤镜效果可以参见这个 <a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIGaussianBlur">Filter官方列表</a></p>
+</blockquote>
+
+<h3 id="vimage">2、vImage</h3>
+
+<p>vImage 也是苹果推出的库，在 Accelerate.framework 中。</p>
+
+<p>Accelerate这个framework主要是用来做数字信号处理、图像处理相关的向量、矩阵运算的库。我们可以认为我们的图像都是由向量或者矩阵数据构成的，Accelerate里既然提供了高效的数学运算API，自然就能方便我们对图像做各种各样的处理。</p>
+
+<p>基于vImage我们可以根据图像的处理原理直接做模糊效果，或者使用现有的工具。UIImage+ImageEffects是个很好的图像处理库，看名字也知道是对UIImage做的分类扩展。这个工具被广泛地使用着，后面会做介绍。</p>
+
+<p>下面是一段使用 vImage 实现模糊效果的代码：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">// 添加通用模糊效果</span>
+<span class="lineno"> 2</span> <span class="c1">// image是图片，blur是模糊度</span>
+<span class="lineno"> 3</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">blurryImage:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="nf">withBlurLevel:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">blur</span>
+<span class="lineno"> 4</span> <span class="p">{</span>
+<span class="lineno"> 5</span>     <span class="k">if</span> <span class="p">(</span><span class="n">image</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+<span class="lineno"> 6</span>     <span class="p">{</span>
+<span class="lineno"> 7</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;error:为图片添加模糊效果时，未能获取原始图片&quot;</span><span class="p">);</span>
+<span class="lineno"> 8</span>         <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="lineno"> 9</span>     <span class="p">}</span>
+<span class="lineno">10</span>     <span class="c1">//模糊度,</span>
+<span class="lineno">11</span>     <span class="k">if</span> <span class="p">(</span><span class="n">blur</span> <span class="o">&lt;</span> <span class="mf">0.025f</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">12</span>         <span class="n">blur</span> <span class="o">=</span> <span class="mf">0.025f</span><span class="p">;</span>
+<span class="lineno">13</span>     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">blur</span> <span class="o">&gt;</span> <span class="mf">1.0f</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">14</span>         <span class="n">blur</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+<span class="lineno">15</span>     <span class="p">}</span>
+<span class="lineno">16</span>     
+<span class="lineno">17</span>     <span class="c1">//boxSize必须大于0</span>
+<span class="lineno">18</span>     <span class="kt">int</span> <span class="n">boxSize</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">blur</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+<span class="lineno">19</span>     <span class="n">boxSize</span> <span class="o">-=</span> <span class="p">(</span><span class="n">boxSize</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">20</span>     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;boxSize:%i&quot;</span><span class="p">,</span><span class="n">boxSize</span><span class="p">);</span>
+<span class="lineno">21</span>     <span class="c1">//图像处理</span>
+<span class="lineno">22</span>     <span class="n">CGImageRef</span> <span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">;</span>
+<span class="lineno">23</span>     <span class="c1">//需要引入#import &lt;Accelerate/Accelerate.h&gt;</span>
+<span class="lineno">24</span>     
+<span class="lineno">25</span>     <span class="c1">//图像缓存,输入缓存，输出缓存</span>
+<span class="lineno">26</span>     <span class="n">vImage_Buffer</span> <span class="n">inBuffer</span><span class="p">,</span> <span class="n">outBuffer</span><span class="p">;</span>
+<span class="lineno">27</span>     <span class="n">vImage_Error</span> <span class="n">error</span><span class="p">;</span>
+<span class="lineno">28</span>     <span class="c1">//像素缓存</span>
+<span class="lineno">29</span>     <span class="kt">void</span> <span class="o">*</span><span class="n">pixelBuffer</span><span class="p">;</span>
+<span class="lineno">30</span>     
+<span class="lineno">31</span>     <span class="c1">//数据源提供者，Defines an opaque type that supplies Quartz with data.</span>
+<span class="lineno">32</span>     <span class="n">CGDataProviderRef</span> <span class="n">inProvider</span> <span class="o">=</span> <span class="n">CGImageGetDataProvider</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">33</span>     <span class="c1">// provider’s data.</span>
+<span class="lineno">34</span>     <span class="n">CFDataRef</span> <span class="n">inBitmapData</span> <span class="o">=</span> <span class="n">CGDataProviderCopyData</span><span class="p">(</span><span class="n">inProvider</span><span class="p">);</span>
+<span class="lineno">35</span>     
+<span class="lineno">36</span>     <span class="c1">//宽，高，字节/行，data</span>
+<span class="lineno">37</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">CGImageGetWidth</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">38</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">39</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">rowBytes</span> <span class="o">=</span> <span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">40</span>     <span class="n">inBuffer</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">CFDataGetBytePtr</span><span class="p">(</span><span class="n">inBitmapData</span><span class="p">);</span>
+<span class="lineno">41</span>     
+<span class="lineno">42</span>     <span class="c1">//像数缓存，字节行*图片高</span>
+<span class="lineno">43</span>     <span class="n">pixelBuffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="o">*</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">));</span>
+<span class="lineno">44</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pixelBuffer</span><span class="p">;</span>
+<span class="lineno">45</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">CGImageGetWidth</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">46</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">47</span>     <span class="n">outBuffer</span><span class="p">.</span><span class="n">rowBytes</span> <span class="o">=</span> <span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">48</span>     <span class="c1">// 第三个中间的缓存区,抗锯齿的效果</span>
+<span class="lineno">49</span>     <span class="kt">void</span> <span class="o">*</span><span class="n">pixelBuffer2</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="o">*</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">));</span>
+<span class="lineno">50</span>     <span class="n">vImage_Buffer</span> <span class="n">outBuffer2</span><span class="p">;</span>
+<span class="lineno">51</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pixelBuffer2</span><span class="p">;</span>
+<span class="lineno">52</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">CGImageGetWidth</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">53</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">CGImageGetHeight</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">54</span>     <span class="n">outBuffer2</span><span class="p">.</span><span class="n">rowBytes</span> <span class="o">=</span> <span class="n">CGImageGetBytesPerRow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+<span class="lineno">55</span>     <span class="c1">//Convolves a region of interest within an ARGB8888 source image by an implicit M x N kernel that has the effect of a box filter.</span>
+<span class="lineno">56</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">vImageBoxConvolve_ARGB8888</span><span class="p">(</span><span class="o">&amp;</span><span class="n">inBuffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">outBuffer2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">kvImageEdgeExtend</span><span class="p">);</span>
+<span class="lineno">57</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">vImageBoxConvolve_ARGB8888</span><span class="p">(</span><span class="o">&amp;</span><span class="n">outBuffer2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">inBuffer</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">kvImageEdgeExtend</span><span class="p">);</span>
+<span class="lineno">58</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">vImageBoxConvolve_ARGB8888</span><span class="p">(</span><span class="o">&amp;</span><span class="n">inBuffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">outBuffer</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="n">boxSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">kvImageEdgeExtend</span><span class="p">);</span>
+<span class="lineno">59</span>     <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">60</span>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;error from convolution %ld&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+<span class="lineno">61</span>     <span class="p">}</span>
+<span class="lineno">62</span>     <span class="c1">//    NSLog(@&quot;字节组成部分：%zu&quot;,CGImageGetBitsPerComponent(img));</span>
+<span class="lineno">63</span>     <span class="c1">//颜色空间DeviceRGB</span>
+<span class="lineno">64</span>     <span class="n">CGColorSpaceRef</span> <span class="n">colorSpace</span> <span class="o">=</span> <span class="n">CGColorSpaceCreateDeviceRGB</span><span class="p">();</span>
+<span class="lineno">65</span>     <span class="c1">//用图片创建上下文,CGImageGetBitsPerComponent(img),7,8</span>
+<span class="lineno">66</span>     <span class="n">CGContextRef</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">CGBitmapContextCreate</span><span class="p">(</span>
+<span class="lineno">67</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">data</span><span class="p">,</span>
+<span class="lineno">68</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
+<span class="lineno">69</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+<span class="lineno">70</span>                                              <span class="mi">8</span><span class="p">,</span>
+<span class="lineno">71</span>                                              <span class="n">outBuffer</span><span class="p">.</span><span class="n">rowBytes</span><span class="p">,</span>
+<span class="lineno">72</span>                                              <span class="n">colorSpace</span><span class="p">,</span>
+<span class="lineno">73</span>                                              <span class="n">CGImageGetBitmapInfo</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">));</span>
+<span class="lineno">74</span>     
+<span class="lineno">75</span>     <span class="c1">//根据上下文，处理过的图片，重新组件</span>
+<span class="lineno">76</span>     <span class="n">CGImageRef</span> <span class="n">imageRef</span> <span class="o">=</span> <span class="n">CGBitmapContextCreateImage</span> <span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+<span class="lineno">77</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">returnImage</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIImage</span> <span class="nl">imageWithCGImage</span><span class="p">:</span><span class="n">imageRef</span><span class="p">];</span>
+<span class="lineno">78</span>     <span class="c1">//clean up</span>
+<span class="lineno">79</span>     <span class="n">CGContextRelease</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+<span class="lineno">80</span>     <span class="n">CGColorSpaceRelease</span><span class="p">(</span><span class="n">colorSpace</span><span class="p">);</span>
+<span class="lineno">81</span>     <span class="n">free</span><span class="p">(</span><span class="n">pixelBuffer</span><span class="p">);</span>
+<span class="lineno">82</span>     <span class="n">free</span><span class="p">(</span><span class="n">pixelBuffer2</span><span class="p">);</span>
+<span class="lineno">83</span>     <span class="n">CFRelease</span><span class="p">(</span><span class="n">inBitmapData</span><span class="p">);</span>
+<span class="lineno">84</span>     <span class="c1">//CGColorSpaceRelease(colorSpace);   //多余的释放</span>
+<span class="lineno">85</span>     <span class="n">CGImageRelease</span><span class="p">(</span><span class="n">imageRef</span><span class="p">);</span>
+<span class="lineno">86</span>     <span class="k">return</span> <span class="n">returnImage</span><span class="p">;</span>
+<span class="lineno">87</span> <span class="p">}</span></code></pre></div>
+
+<p><img src="/images/2016/04/vImage.png" alt="vImage.png" /></p>
+
+<h3 id="uivisualeffectview">3、UIVisualEffectView</h3>
+
+<p>UIVisualEffectView只支持iOS 8以后的设备，所以有一定的局限性，但是使用起来非常简单，并且能通过代码或 storyboard 实现模糊效果，下面是一段实现模糊效果的示例代码，其中 effectWithStyle 有 Light、ExtraLight、dark 三种，如下：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">UIVisualEffectView</span> <span class="o">*</span><span class="n">effectView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIVisualEffectView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithEffect</span><span class="p">:[</span><span class="n">UIBlurEffect</span> <span class="nl">effectWithStyle</span><span class="p">:</span><span class="n">UIBlurEffectStyleLight</span><span class="p">]];</span>
+<span class="lineno">2</span> <span class="n">effectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">effectView</span><span class="p">];</span></code></pre></div>
+
+<p><img src="/images/2016/04/blurEffect.png" alt="blurEffect.png" /></p>
+
+<p>实现中间透明文字效果的代码为：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">configBlurEffect</span><span class="p">{</span>
+<span class="lineno"> 2</span>     
+<span class="lineno"> 3</span>     <span class="c1">// 原始图片 self.imageView</span>
+<span class="lineno"> 4</span>     <span class="c1">// 为了更好的看到UIVisualEffectView的即时渲染效果添加平移手势 此处通过 storyBoard 添加</span>
+<span class="lineno"> 5</span> <span class="c1">//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];</span>
+<span class="lineno"> 6</span> <span class="c1">//    [self.imageView addGestureRecognizer:pan];</span>
+<span class="lineno"> 7</span>     
+<span class="lineno"> 8</span>     <span class="c1">// 创建模糊View</span>
+<span class="lineno"> 9</span>     <span class="n">UIVisualEffectView</span> <span class="o">*</span><span class="n">effectView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIVisualEffectView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithEffect</span><span class="p">:[</span><span class="n">UIBlurEffect</span> <span class="nl">effectWithStyle</span><span class="p">:</span><span class="n">UIBlurEffectStyleLight</span><span class="p">]];</span>
+<span class="lineno">10</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">10.0f</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">12</span>     <span class="n">effectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="lineno">13</span>     <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">effectView</span><span class="p">];</span>
+<span class="lineno">14</span>     
+<span class="lineno">15</span>     
+<span class="lineno">16</span>     <span class="bp">UILabel</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UILabel</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame</span><span class="p">:</span><span class="n">effectView</span><span class="p">.</span><span class="n">bounds</span><span class="p">];</span>
+<span class="lineno">17</span>     <span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@&quot;Blur Effect&quot;</span><span class="p">;</span>
+<span class="lineno">18</span>     <span class="n">label</span><span class="p">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="n">NSTextAlignmentCenter</span><span class="p">;</span>
+<span class="lineno">19</span>     <span class="n">label</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIFont</span> <span class="nl">systemFontOfSize</span><span class="p">:</span><span class="mi">20</span><span class="p">];</span>
+<span class="lineno">20</span>     <span class="c1">//    [effectView.contentView addSubview:label];</span>
+<span class="lineno">21</span>     <span class="c1">// 在创建的模糊View的上面再添加一个子模糊View</span>
+<span class="lineno">22</span>     <span class="n">UIVisualEffectView</span> <span class="o">*</span><span class="n">subEffectView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIVisualEffectView</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithEffect</span><span class="p">:[</span><span class="n">UIVibrancyEffect</span> <span class="nl">effectForBlurEffect</span><span class="p">:(</span><span class="n">UIBlurEffect</span> <span class="o">*</span><span class="p">)</span><span class="n">effectView</span><span class="p">.</span><span class="n">effect</span><span class="p">]];</span>
+<span class="lineno">23</span>     
+<span class="lineno">24</span>     <span class="n">subEffectView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">effectView</span><span class="p">.</span><span class="n">bounds</span><span class="p">;</span>
+<span class="lineno">25</span>     
+<span class="lineno">26</span>     <span class="p">[</span><span class="n">effectView</span><span class="p">.</span><span class="n">contentView</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">subEffectView</span><span class="p">];</span>
+<span class="lineno">27</span>     
+<span class="lineno">28</span>     <span class="p">[</span><span class="n">subEffectView</span><span class="p">.</span><span class="n">contentView</span> <span class="nl">addSubview</span><span class="p">:</span><span class="n">label</span><span class="p">];</span>
+<span class="lineno">29</span> <span class="p">}</span>
+<span class="lineno">30</span> 
+<span class="lineno">31</span> <span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">panGesture:</span><span class="p">(</span><span class="bp">UIPanGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+<span class="lineno">32</span>     
+<span class="lineno">33</span>     <span class="bp">CGPoint</span> <span class="n">point</span> <span class="o">=</span> <span class="p">[</span><span class="n">sender</span> <span class="nl">translationInView</span><span class="p">:</span><span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno">34</span>     <span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+<span class="lineno">35</span>                                       <span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="lineno">36</span>     <span class="p">[</span><span class="n">sender</span> <span class="nl">setTranslation</span><span class="p">:</span><span class="n">CGPointZero</span> <span class="nl">inView</span><span class="p">:</span><span class="n">sender</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="lineno">37</span> 
+<span class="lineno">38</span> <span class="p">}</span></code></pre></div>
+
+<h2 id="section">二、第三方库/工具</h2>
+
+<h3 id="fxblurview">1、FXBlurView</h3>
+
+<p><a href="https://github.com/nicklockwood/FXBlurView">FXBlurView</a> 是一个UIView的子类，效果和iOS7的背景实时模糊效果一样，但是支持到了 iOS 5.0。</p>
+
+<p>FXBlurView 有两种模式，一种是 <code>static</code> 静态模糊：也就是只模糊一次，后面即使背景图片变化了，模糊效果也不会变化；另外就是 <code>dynamic</code> 动态模糊：这会实时的对背景图片进行模糊，是会不断变化的。</p>
+
+<p>FXBlurView 的使用非常简单，看一下它的源码就明白了，一个示例代码如下：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="n">FXBlurView</span> <span class="o">*</span><span class="n">blurView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FXBlurView</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">2</span> <span class="p">[</span><span class="n">blurView</span> <span class="nl">setFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">)];</span>
+<span class="lineno">3</span> <span class="p">[</span><span class="n">blurView</span> <span class="nl">setBackgroundColor</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">]];</span>
+<span class="lineno">4</span> <span class="c1">//设置模式</span>
+<span class="lineno">5</span> <span class="nb">self</span><span class="p">.</span><span class="n">blurView</span><span class="p">.</span><span class="n">dynamic</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="lineno">6</span> <span class="c1">//设置模糊半径</span>
+<span class="lineno">7</span> <span class="nb">self</span><span class="p">.</span><span class="n">blurView</span><span class="p">.</span><span class="n">blurRadius</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span></code></pre></div>
+
+<p><img src="/images/2016/04/FXBlurView.png" alt="FXBlurView.png" /></p>
+
+<h3 id="gpuimage">2、GPUImage</h3>
+
+<p><a href="https://github.com/BradLarson/GPUImage">GPUImage</a> 是一个基于GPU图像和视频处理开源的iOS framework，适用面很广。</p>
+
+<p>顺便说一下 GPUImage 的一种使用方法：</p>
+
+<ol>
+  <li>在 github 上 clone 源码</li>
+  <li>将它的 framework 整个文件夹拷贝到你的工程文件夹下</li>
+  <li>将 framework 下的 <code>GPUImage.xcodeproj</code> 文件拖到你的 Xcode project 中</li>
+  <li>到工程的 target 的 <code>Build Phases</code> 界面，添加 GPUImage 到 <code>Target Dependencies</code></li>
+  <li>继续将 libGPUImage.a 添加到Build Phases 界面的 <code>Link Binary With Libraries</code></li>
+  <li>在 <code>Link Binary With Libraries</code> 继续添加 GPUImage 的支持库：
+    <ul>
+      <li>CoreMedia</li>
+      <li>CoreVideo</li>
+      <li>OpenGLES</li>
+      <li>AVFoundation</li>
+      <li>QuartzCore</li>
+    </ul>
+  </li>
+  <li>最后，到工程的 <code>Build Settings</code> 设置 <code>Header Search Paths</code>，搜索 Header Search Paths 后在 <code>Header Search Paths</code> 一栏添加 framework 的头文件路径，不想手动输入可以将 framework 文件夹拖入即可自动生成路径，然后将后面的选项设置为 <strong>recursive</strong></li>
+  <li>在工程使用 <code>#import "GPUImage.h"</code> 即可开始使用了</li>
+</ol>
+
+<p><img src="/images/2016/04/HeaderSearchPaths.png" alt="HeaderSearchPaths.png" /></p>
+
+<p>如果要使用 GPUImage 实现高斯模糊，则非常简单，代码如下：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">blurryGPUImage:</span><span class="p">(</span><span class="bp">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="nf">withBlurLevel:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">blur</span> <span class="p">{</span>
+<span class="lineno">2</span> 
+<span class="lineno">3</span>     <span class="c1">// 高斯模糊</span>
+<span class="lineno">4</span>     <span class="n">GPUImageGaussianBlurFilter</span> <span class="o">*</span> <span class="n">blurFilter</span> <span class="o">=</span> <span class="p">[[</span><span class="n">GPUImageGaussianBlurFilter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="lineno">5</span>     <span class="n">blurFilter</span><span class="p">.</span><span class="n">blurRadiusInPixels</span> <span class="o">=</span> <span class="n">blur</span><span class="p">;</span>
+<span class="lineno">6</span>     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">blurredImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">blurFilter</span> <span class="nl">imageByFilteringImage</span><span class="p">:</span><span class="n">image</span><span class="p">];</span>
+<span class="lineno">7</span>     
+<span class="lineno">8</span>     <span class="k">return</span> <span class="n">blurredImage</span><span class="p">;</span>
+<span class="lineno">9</span> <span class="p">}</span></code></pre></div>
+
+<p><img src="/images/2016/04/GPUImage.png" alt="GPUImage.png" /></p>
+
+<h3 id="uiimageimageeffects">3、UIImage+ImageEffects</h3>
+
+<blockquote>
+  <p>Abstract: This is a category of UIImage that adds methods to apply blur and tint effects to an image. This is the code you’ll want to look out to find out how to use vImage to efficiently calculate a blur.</p>
+
+  <p>摘要：这是UIImage的category，增加方法来对图像进行模糊和着色效果。这就是你想要的如何有效利用 vImage实现模糊效果的代码</p>
+</blockquote>
+
+<p><code>UIImage+ImageEffects</code> 的模糊效果非常美观，对 <code>UIImage+ImageEffects</code> 进行修改后可以对图片进行局模糊;</p>
+
+<p><code>UIImage+ImageEffects</code> 提供了很多方法可以使用，常用的几个方法使用示例如下：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 通用模糊，默认模糊半径为20.0</span>
+<span class="lineno">2</span> <span class="nb">self</span><span class="p">.</span><span class="n">blurView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="n">blurImage</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="c1">// 局部模糊</span>
+<span class="lineno">4</span> <span class="nb">self</span><span class="p">.</span><span class="n">partBlurView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="nl">blurImageAtFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">155.0</span><span class="o">*</span><span class="mi">2</span> <span class="p">,</span> <span class="mf">235.0</span><span class="o">*</span><span class="mf">4.0</span><span class="p">)];</span>
+<span class="lineno">5</span> <span class="c1">// 灰度锐化图</span>
+<span class="lineno">6</span> <span class="nb">self</span><span class="p">.</span><span class="n">grayScaleView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;WID-small&quot;</span><span class="p">]</span> <span class="n">grayScale</span><span class="p">];</span></code></pre></div>
+
+<p><img src="/images/2016/04/UIImage+ImageEffects.png" alt="UIImage+ImageEffects.png" /></p>
+
+<blockquote>
+  <p>附上代码的github地址 <a href="https://github.com/Vanbein/BlurViewExample">BlurViewExample</a></p>
+</blockquote>
+
+<p>推荐阅读：</p>
+
+<ul>
+  <li><a href="http://www.cocoachina.com/ios/20141009/9860.html">如何使用iOS 8的虚化效果</a></li>
+</ul>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#Blur">Blur</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#3rd-Libraries">3rd-Libraries</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/3rd-libraries/2016/04/06/blurView" data-title="iOS实现模糊效果的几种方法" data-images="/images/head-800x400/-54.png" data-content="iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。" data-url="http://www.vanbein.com/posts/3rd-libraries/2016/04/06/blurView.html">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'iOS实现模糊效果的几种方法',
+  			bdDesc : 'iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。',
+  			bdUrl : 'http://www.vanbein.com/posts/3rd-libraries/2016/04/06/blurView.html',
+  			bdPic : '/images/head-800x400/-54.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/media/2016/04/04/HotelCalifornia.html"><i class="fa fa-chevron-left"></i> 上一篇：Eagles - Hotel California</a>
+  
+  
+    <a class="alignright" href="/archieves/">Blog Archieves <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/3rd-libraries/2016/04/06/blurView" data-title="iOS实现模糊效果的几种方法" data-url="http://www.vanbein.com/posts/3rd-libraries/2016/04/06/blurView.html"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#runtime">runtime</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#life">life</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#Music">Music</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#Blur">Blur</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    <!-- Toc -->
+<div class="widget">
+  <div id="fixtoc">
+    <div id="toc"></div>
+    <!-- Related to the end of js.html -->
+  </div>
+</div>
+<!-- End Toc -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/3rd-libraries/2016/04/06/blurView.html"><img src="/images/head-800x400/-54.png" alt="iOS实现模糊效果的几种方法" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 6, 2016</span>
+        </div>
+        <h4><a href="/posts/3rd-libraries/2016/04/06/blurView.html">iOS实现模糊效果的几种方法</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/media/2016/04/04/HotelCalifornia.html"><img src="http://i68.tinypic.com/xognr7.jpg" alt="Eagles - Hotel California" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 4, 2016</span>
+        </div>
+        <h4><a href="/posts/media/2016/04/04/HotelCalifornia.html">Eagles - Hotel California</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Mar 25, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="https://jekyllrb.com/">Jekyll</a></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+            <li><a href="www.jianshu.com">简书</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+<script type="text/javascript" src="/js/toc.js"></script>
+<script>
+$(document).ready(function() {
+  // $('#toc').toc();
+  // $('#toc').toc({ noBackToTopLinks: true });
+  $('#toc').toc({ headers: '.entry_content h1, .entry_content h2, .entry_content h3, .entry_content h4, .entry_content h5, .entry_content h6'});
+  // $('#').sticky();
+  // $("#post_side_widget").stick_in_parent();
+});
+</script>
+
+
+  </body>
+</html>

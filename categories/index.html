@@ -210,6 +210,16 @@ $.get("http://ipinfo.io", function (response) {
     
       <!-- Article -->
       <article>
+        <span class="date">03/21/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
         <span class="date">03/18/2016</span>
         <span class="time">Vanbein</span>
         <div class="timeline_content">
@@ -258,16 +268,6 @@ $.get("http://ipinfo.io", function (response) {
         </div>
       </article><!-- End Article -->
     
-      <!-- Article -->
-      <article>
-        <span class="date">02/23/2016</span>
-        <span class="time">Vanbein</span>
-        <div class="timeline_content">
-          <i class="fa fa-clock-o" jQuery></i>
-          <h3><a href="/posts/tips/2016/02/23/ios-interview.html">iOS 面试题集锦</a></h3>
-        </div>
-      </article><!-- End Article -->
-    
   </div>
 </div><!-- End Timeline widet -->
 
@@ -275,6 +275,27 @@ $.get("http://ipinfo.io", function (response) {
 <div class="widget">
   <div class="widget_title"><h3>Recent posts</h3></div>
   <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/3rd-libraries/2016/04/06/blurView.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/3rd-libraries/2016/04/06/blurView.html"><img src="/images/head-800x400/-54.png" alt="iOS实现模糊效果的几种方法"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/3rd-libraries/2016/04/06/blurView.html">iOS实现模糊效果的几种方法</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 6, 2016</span>
+            <span class="meta_author"><a href="/posts/3rd-libraries/2016/04/06/blurView.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
     
     <!-- Post item -->
     <div class="item clearfix">
@@ -305,12 +326,12 @@ $.get("http://ipinfo.io", function (response) {
         </div>
         
         <div class="thumb_hover">
-          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树"></a>
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树"></a>
         </div>
         
       </div>
       <div class="item_content">
-        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
         <div class="item_meta clearfix">
             <span class="meta_date">Mar 25, 2016</span>
             <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Vanbein</a></span>
@@ -339,27 +360,6 @@ $.get("http://ipinfo.io", function (response) {
       </div>
     </div><!-- End Post item -->
     
-    <!-- Post item -->
-    <div class="item clearfix">
-      <div class="item_thumb">
-        <div class="thumb_icon">
-          <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html" jQuery><i class="fa fa-copy"></i></a>
-        </div>
-        
-        <div class="thumb_hover">
-          <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html"><img src="/images/head-800x400/-26.png" alt="iOS开发中一些常用的小知识或技巧"></a>
-        </div>
-        
-      </div>
-      <div class="item_content">
-        <h4><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h4>
-        <div class="item_meta clearfix">
-            <span class="meta_date">Mar 18, 2016</span>
-            <span class="meta_author"><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">Vanbein</a></span>
-        </div>
-      </div>
-    </div><!-- End Post item -->
-    
   </div>
 </div><!-- End Recent posts -->
 
@@ -382,6 +382,8 @@ $.get("http://ipinfo.io", function (response) {
       <li><a href="/categories/#media">media</a> (2)</li>
       
       <li><a href="/categories/#ios高级">ios高级</a> (1)</li>
+      
+      <li><a href="/categories/#3rd-libraries">3rd-libraries</a> (1)</li>
       
     </ul>
   </div>
@@ -438,6 +440,8 @@ $.get("http://ipinfo.io", function (response) {
     <a href="/tags/#Xocde">Xocde</a>
     
     <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#Blur">Blur</a>
     
   </div>
 </div>
@@ -1259,10 +1263,40 @@ ds.charset = 'UTF-8';
         <div class="item clearfix">
           <div class="item_content">
 
-            <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><span class="format">ios高级</span>点亮我的 iOS开发技能树</a></h4>
-            <p>iOS开发技能树，需要一个不落得去点亮</p>
+            <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><span class="format">ios高级</span>点亮我的iOS开发技能树</a></h4>
+            <p>iOS开发工程师的职业图谱！路漫漫其修远兮，吾将上下而求索。</p>
             <div class="item_meta clearfix">
               <span class="meta_date">Mar 25, 2016</span>
+              <span class="meta_author"><a href="/">Vanbein</a></span>
+            </div>
+          </div>
+        </div><!-- End Post item -->
+      
+    </div><!-- End List layout -->
+  </div>
+</div>
+
+<!-- Panel title -->
+<div class="panel_title">
+  <div>
+    <h4><a id="3rd-libraries">3rd-libraries</a></h4>
+  </div>
+  <span>View all articles under 3rd-libraries</span>
+</div><!-- End Panel title -->
+
+<div class="row">
+  <div class="col col_12_of_12">
+    <!-- List layout -->
+    <div class="list_posts_1">
+      
+        <!-- Post item -->
+        <div class="item clearfix">
+          <div class="item_content">
+
+            <h4><a href="/posts/3rd-libraries/2016/04/06/blurView.html"><span class="format">3rd-libraries</span>iOS实现模糊效果的几种方法</a></h4>
+            <p>iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。</p>
+            <div class="item_meta clearfix">
+              <span class="meta_date">Apr 6, 2016</span>
               <span class="meta_author"><a href="/">Vanbein</a></span>
             </div>
           </div>
@@ -1376,6 +1410,8 @@ ds.charset = 'UTF-8';
     
     <a href="/tags/#SkillMap">SkillMap</a>
     
+    <a href="/tags/#Blur">Blur</a>
+    
   </div>
 </div>
 <!-- End Tags -->
@@ -1424,6 +1460,20 @@ ds.charset = 'UTF-8';
     <!-- Post item -->
     <div class="item clearfix">
       <div class="item_thumb clearfix">
+        <a href="/posts/3rd-libraries/2016/04/06/blurView.html"><img src="/images/head-800x400/-54.png" alt="iOS实现模糊效果的几种方法" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 6, 2016</span>
+        </div>
+        <h4><a href="/posts/3rd-libraries/2016/04/06/blurView.html">iOS实现模糊效果的几种方法</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
         <a href="/posts/media/2016/04/04/HotelCalifornia.html"><img src="http://i68.tinypic.com/xognr7.jpg" alt="Eagles - Hotel California" class="visible animated"></a>
       </div>
       <div class="item_content">
@@ -1438,27 +1488,13 @@ ds.charset = 'UTF-8';
     <!-- Post item -->
     <div class="item clearfix">
       <div class="item_thumb clearfix">
-        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树" class="visible animated"></a>
       </div>
       <div class="item_content">
         <div class="item_meta clearfix">
           <span class="meta_date">Mar 25, 2016</span>
         </div>
-        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
-      </div>
-      <div class="order">&#9812;</div>
-    </div><!-- End Post item -->
-  
-    <!-- Post item -->
-    <div class="item clearfix">
-      <div class="item_thumb clearfix">
-        <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Xcode基础快捷键 -- 提高你的编码速率" class="visible animated"></a>
-      </div>
-      <div class="item_content">
-        <div class="item_meta clearfix">
-          <span class="meta_date">Mar 21, 2016</span>
-        </div>
-        <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
       </div>
       <div class="order">&#9812;</div>
     </div><!-- End Post item -->
