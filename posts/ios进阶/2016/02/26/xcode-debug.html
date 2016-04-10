@@ -327,20 +327,12 @@ $.get("http://ipinfo.io", function (response) {
         </div>
         
         <div class="thumb_hover">
-<<<<<<< HEAD
           <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树"></a>
-=======
-          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树"></a>
->>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
         </div>
         
       </div>
       <div class="item_content">
-<<<<<<< HEAD
         <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
-=======
-        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
->>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
         <div class="item_meta clearfix">
             <span class="meta_date">Mar 25, 2016</span>
             <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Vanbein</a></span>
@@ -516,7 +508,8 @@ ds.charset = 'UTF-8';
                   <p>本文主要记录下Xcode结合LLDB调试命令以及OBJC运行时的调试技巧，不定期更新</p>
 
 <h3 id="section">常用宏定义</h3>
-<p>#### 1、OPTIMIZE，Debug和Release判定</p>
+
+<h4 id="optimizedebugrelease">1、OPTIMIZE，Debug和Release判定</h4>
 
 <ul>
   <li>Release编译时定义</li>
@@ -532,6 +525,7 @@ ds.charset = 'UTF-8';
 <span class="lineno">7</span> <span class="p">}</span></code></pre></div>
 
 <h4 id="i386x8664">2、i386与x86_64，模拟器环境判定</h4>
+
 <p>有时工程依赖的Lib库只编译了真机的代码，模拟器编译出错。为了可以模拟器调试，使用此宏略过不能编译的代码</p>
 
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isSimulatorMode</span><span class="p">{</span>
@@ -616,6 +610,7 @@ ds.charset = 'UTF-8';
 <p><img src="/images/2016/01/p.png" alt="p,输出变量的值" title="LLDB--p,输出变量的值" /></p>
 
 <h4 id="call">3、Call，执行一段代码</h4>
+
 <ul>
   <li>使用格式：call (返回类型)表达式</li>
   <li>调试状态下，对于点语法支持不佳。如果发现符号未找到的情况，尝试使用发送消息的方式。如果还不行，根据提示，声明类型。对于PO、P等指令同样也需要注意</li>
@@ -655,6 +650,7 @@ ds.charset = 'UTF-8';
 <p><img src="/images/2016/01/breakpoint_1.png" alt="breakpoint" /></p>
 
 <h4 id="section-4">2、略特殊的断点</h4>
+
 <p>在<code>Breakpoint Navigator</code>栏的左下角，点击加号可以给程序添加几种不同类型的断点：</p>
 
 <p><img src="/images/2016/01/breakpoint_2.png" alt="breakpoint_2" /></p>
@@ -988,21 +984,13 @@ ds.charset = 'UTF-8';
     <!-- Post item -->
     <div class="item clearfix">
       <div class="item_thumb clearfix">
-<<<<<<< HEAD
         <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的iOS开发技能树" class="visible animated"></a>
-=======
-        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="点亮我的 iOS开发技能树" class="visible animated"></a>
->>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
       </div>
       <div class="item_content">
         <div class="item_meta clearfix">
           <span class="meta_date">Mar 25, 2016</span>
         </div>
-<<<<<<< HEAD
         <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的iOS开发技能树</a></h4>
-=======
-        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">点亮我的 iOS开发技能树</a></h4>
->>>>>>> 5b4b828ee92f1996563fd7e2d1b7471905b64b4a
       </div>
       <div class="order">&#9812;</div>
     </div><!-- End Post item -->
