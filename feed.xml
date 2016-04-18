@@ -5,8 +5,8 @@
     <description>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</description>
     <link>http://www.vanbein.com/</link>
     <atom:link href="http://www.vanbein.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 18 Apr 2016 15:46:26 +0800</pubDate>
-    <lastBuildDate>Mon, 18 Apr 2016 15:46:26 +0800</lastBuildDate>
+    <pubDate>Mon, 18 Apr 2016 17:23:18 +0800</pubDate>
+    <lastBuildDate>Mon, 18 Apr 2016 17:23:18 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -122,14 +122,7 @@
 
 &lt;p&gt;通知常用于在模块间传递消息，所以通知要尽可能地表示出发生的事件，通知的命名范式是：&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;[ 触发通知的类名 ] + [Did&lt;/td&gt;
-      &lt;td&gt;Will] + [ 动作 ] + Notification&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;[ 触发通知的类名 ] + [Did/Will] + [ 动作 ] + Notification&lt;/p&gt;
 
 &lt;p&gt;示例如下：&lt;/p&gt;
 
@@ -928,39 +921,47 @@
       &lt;li&gt;运算符和表达式(R2,P4)&lt;/li&gt;
       &lt;li&gt;判断(R2,P4)&lt;/li&gt;
       &lt;li&gt;循环(R2,P4)&lt;/li&gt;
-      &lt;li&gt;Objective-C编码规范(R2,P4)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/objective-c/2016/04/18/Objective-C-Coding-Standards.html&quot;&gt;Objective-C编码规范&lt;/a&gt;(R2,P4)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Objective-C语法进阶(R3,P3)
     &lt;ul&gt;
       &lt;li&gt;类和对象(R3,P3)&lt;/li&gt;
-      &lt;li&gt;属性和变量(R3,P3)&lt;/li&gt;
-      &lt;li&gt;继承(R3,P3)&lt;/li&gt;
-      &lt;li&gt;多态(R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/08/propertyshu-xing-xiu-shi-fu-zong-jie.html&quot;&gt;属性和变量&lt;/a&gt;(R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/16/objective-cde-ji-cheng-he-duo-tai.html&quot;&gt;继承和多态&lt;/a&gt;(R3,P3)&lt;/li&gt;
       &lt;li&gt;动态绑定(R3,P3)&lt;/li&gt;
-      &lt;li&gt;block块(R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/block-block.html&quot;&gt;block块&lt;/a&gt;(R3,P3)&lt;/li&gt;
       &lt;li&gt;异常处理(R3,P3)&lt;/li&gt;
-      &lt;li&gt;Category类别(R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/07/category.html&quot;&gt;Category类别&lt;/a&gt;(R3,P3)&lt;/li&gt;
       &lt;li&gt;Extension扩展(R3,P3)&lt;/li&gt;
-      &lt;li&gt;Protocol协议 (R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/07/protocol-xie-yi.html&quot;&gt;Protocol协议&lt;/a&gt; (R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/singleton-dan-li.html&quot;&gt;Singleton单例&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Objective-C高级语法(R4,P2)
     &lt;ul&gt;
-      &lt;li&gt;KVC(R4,P2)&lt;/li&gt;
-      &lt;li&gt;KVO(R4,P2)&lt;/li&gt;
-      &lt;li&gt;Notification(R4,P2)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/kvc-slash-kvoli-jie.html&quot;&gt;KVC/KVO&lt;/a&gt;(R4,P2)
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html&quot;&gt;KVC的一些冷门小技巧&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/notification-tong-zhi.html&quot;&gt;Notification&lt;/a&gt;(R4,P2)&lt;/li&gt;
       &lt;li&gt;引用计数与ARC(R4,P2)&lt;/li&gt;
-      &lt;li&gt;内存管理(R4,P4)&lt;/li&gt;
-      &lt;li&gt;多线程(R4,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/27/nei-cun-guan-li.html&quot;&gt;内存管理&lt;/a&gt;(R4,P4)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/22/duo-xian-cheng-ru-men.html&quot;&gt;多线程&lt;/a&gt;(R4,P3)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Objective-C Foundation框架(R3,P3)
     &lt;ul&gt;
-      &lt;li&gt;NSNumber(R3,P3)&lt;/li&gt;
-      &lt;li&gt;NSString(R3,P4)&lt;/li&gt;
-      &lt;li&gt;NSArray(R3,P4)&lt;/li&gt;
-      &lt;li&gt;NSDictionary(R3,P4)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsstring&quot;&gt;NSString&lt;/a&gt;(R3,P4)
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/17/nsstringshu-xing-shi-yao-shi-hou-yong-copy,shi-yao-shi-hou-yong-strong.html&quot;&gt;NSString属性什么时候用copy，什么时候用strong?&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsarray&quot;&gt;NSArray&lt;/a&gt;(R3,P4)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdictionary&quot;&gt;NSDictionary&lt;/a&gt;(R3,P4)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsnumber&quot;&gt;NSNumber&lt;/a&gt;(R3,P3)&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdate&quot;&gt;NSDate&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;NSSet(R3,P2)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -1004,7 +1005,7 @@
 &lt;h4 id=&quot;iosr2p3-1&quot;&gt;1、iOS基础(R2,P3)&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;iOS生命周期(R3,P3)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/28/uiapplication,-uiviewsheng-ming-zhou-qi-xiang-guan.html&quot;&gt;iOS生命周期&lt;/a&gt;(R3,P3)&lt;/li&gt;
   &lt;li&gt;事件与消息(R3,P3)&lt;/li&gt;
   &lt;li&gt;模拟器(R2,P2)&lt;/li&gt;
   &lt;li&gt;真机调试(R2,P2)&lt;/li&gt;
@@ -1039,24 +1040,34 @@
 &lt;h4 id=&quot;r3p2-2&quot;&gt;1、动画效果(R3,P2)&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;UIView动画(R3,P2)&lt;/li&gt;
-  &lt;li&gt;Core Animation(R3,P2)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/13/uiviewdong-hua-feng-zhuang.html&quot;&gt;UIView动画&lt;/a&gt;(R3,P2)&lt;/li&gt;
+  &lt;li&gt;Core Animation(R3,P2)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2016/01/06/CALayer.html&quot;&gt;CALayer&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2016/01/05/caanimation.html&quot;&gt;CAAnimation入门&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/12/uibezierpathxiang-jie.html&quot;&gt;UIBezierPath&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/05/CATransition.html&quot;&gt;CATransition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/06/CABasicanimation.html&quot;&gt;CABasicanimation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/08/CAKeyframeanimation.html&quot;&gt;CAKeyframeanimation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/11/dong-hua-caanimationxi-lie-caanimationgroup.html&quot;&gt;CAAnimationGroup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;第三方动画库pop(R3,P1)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;r4p4&quot;&gt;2、多线程(R4,P4)&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;NSThread(R4,P3)&lt;/li&gt;
-  &lt;li&gt;NSOperationQueue(R4,P4)&lt;/li&gt;
-  &lt;li&gt;GCD(R3,P4)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/nsthreadde-ji-ben-shi-yong.html&quot;&gt;NSThread&lt;/a&gt;(R4,P3)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/nsoperationde-ji-ben-shi-yong.html&quot;&gt;NSOperationQueue&lt;/a&gt;(R4,P4)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/gcdde-li-jie.html&quot;&gt;GCD&lt;/a&gt;(R3,P4)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;r3p4&quot;&gt;3、数据存储(R3,P4)&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;NSUserDefault(R3,P4)&lt;/li&gt;
-  &lt;li&gt;NSKeyedArchiver&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/10/shu-ju-cun-qu-nsuserdefaults.html&quot;&gt;NSUserDefault&lt;/a&gt;(R3,P4)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/10/nskeyedarchiver-gui-dang.html&quot;&gt;NSKeyedArchiver&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;SQLite(R3,P2)&lt;/li&gt;
   &lt;li&gt;CoreData(R3,P4)&lt;/li&gt;
 &lt;/ul&gt;
@@ -1105,8 +1116,8 @@
 &lt;h4 id=&quot;debug&quot;&gt;9、Debug调试&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;断点（条件、全局）&lt;/li&gt;
-  &lt;li&gt;lldb调试基本指令&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html#section-2&quot;&gt;断点(条件、全局)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html&quot;&gt;lldb调试基本指令&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;NSZombieEnabled&lt;/li&gt;
 &lt;/ul&gt;
 
