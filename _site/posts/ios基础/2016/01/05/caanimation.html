@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>CAAnimation入门 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation.html">
+  <meta name="description" content="初次学习使用动画，需要用到`CATransition`，于是就先来了解下`CAAnimation`">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 650 && scrollHeight < postHeight && screenWidth > 1200){
+        $('#fixtoc').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixtoc').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <!--<li><a href="/categories/">Categories</a></li>-->
+            <li><a href="/posts/">Archives</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">04/06/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">iOS中第三方库的汇总</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">04/06/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/3rd-libraries/2016/04/06/blurView.html">iOS实现模糊效果的几种方法</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/25/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">我的iOS开发技能树</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/21/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/18/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/2016/03/09/blog.html">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html"><img src="/images/head-800x400/-57.png" alt="iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html">iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 20, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/code/2016/04/19/A-Loading-Animation.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/code/2016/04/19/A-Loading-Animation.html"><img src="/images/head-800x400/-11.png" alt="一个简单的 loading 动画"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/code/2016/04/19/A-Loading-Animation.html">一个简单的 loading 动画</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 19, 2016</span>
+            <span class="meta_author"><a href="/posts/code/2016/04/19/A-Loading-Animation.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html"><img src="/images/head-800x400/-55.png" alt="我的Objective-C编码规范"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html">我的Objective-C编码规范</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 18, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html"><img src="/images/head-800x400/-56.png" alt="iOS中第三方库的汇总"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">iOS中第三方库的汇总</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 6, 2016</span>
+            <span class="meta_author"><a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#jekyll">jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#ios基础">ios基础</a> (23)</li>
+      
+      <li><a href="/categories/#ios进阶">ios进阶</a> (15)</li>
+      
+      <li><a href="/categories/#tips">tips</a> (5)</li>
+      
+      <li><a href="/categories/#ios高级">ios高级</a> (2)</li>
+      
+      <li><a href="/categories/#3rd-libraries">3rd-libraries</a> (2)</li>
+      
+      <li><a href="/categories/#code">code</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#runtime">runtime</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#Blur">Blur</a>
+    
+    <a href="/tags/#第三方库">第三方库</a>
+    
+    <a href="/tags/#iPod">iPod</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Media -->
+                
+                <div class="entry_media">
+                  <a href="/images/head-800x400/-21.png" class="popup_link"><img src="/images/head-800x400/-21.png" alt="CAAnimation入门"></a>
+                </div>
+                
+                
+                
+                <!-- End Media -->
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <span class="meta_format"><i class="fa fa-file-text"></i></span>
+                  <span class="meta_date">Jan 5, 2016</span>
+                  <span class="meta_author">Vanbein</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>Animation</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">CAAnimation入门</h1><!-- End Entry title -->
+                  <p>初次学习使用动画，需要用到<code>CATransition</code>，于是就先来了解下<code>CAAnimation</code></p>
+
+<h3 id="section">一、简单介绍</h3>
+
+<ul>
+  <li>
+    <p><code>Core Animation</code>，中文翻译为核心动画，它是一组非常强大的动画处理API，使用它能做出非常炫丽的动画效果，而且往往是事半功倍。也就是说，使用少量的代码就可以实现非常强大的功能。</p>
+  </li>
+  <li>
+    <p><code>Core Animation</code>是跨平台的，可以用在Mac OS X和iOS平台。</p>
+  </li>
+  <li>
+    <p><code>Core Animation</code>的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。</p>
+  </li>
+  <li>
+    <p>要注意的是，<code>Core Animation</code>是直接作用在<code>CALayer</code>上的，并非<code>UIView</code>。</p>
+  </li>
+</ul>
+
+<h3 id="core-animation">二、Core Animation的使用步骤</h3>
+
+<ol>
+  <li>
+    <p>使用它需要先添加<code>QuartzCore.framework</code>框架和引入主头文件<code>&lt;QuartzCore/QuartzCore.h&gt;</code>(iOS7以后不需要)</p>
+  </li>
+  <li>
+    <p>初始化一个CAAnimation对象，并设置一些动画相关属性</p>
+  </li>
+  <li>
+    <p>通过调用CALayer的<code>addAnimation:forKey:</code>方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了</p>
+  </li>
+  <li>
+    <p>通过调用CALayer的<code>removeAnimationForKey:</code>方法可以停止CALayer中的动画</p>
+  </li>
+</ol>
+
+<h3 id="caanimation">三、CAAnimation类的继承结构图</h3>
+
+<p><img src="/images/2016/01/CAAnimation.png" alt="CAAnimation" title="CAAnimation类继承结构图" /></p>
+
+<h4 id="caanimation-1">CAAnimation类</h4>
+
+<blockquote>
+  <p>CAAnimation is an abstract animation class. It provides the basic support for the CAMediaTiming and CAActionprotocols.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>CAAnimation类，是一个抽象类。遵循CAMediaTiming协议和CAAction协议！</p>
+  </li>
+  <li>
+    <p>CAMediaTiming协议: 可以调整时间,包括持续时间,速度,重复次数。</p>
+  </li>
+  <li>
+    <p>CAAction协议: 可以通过响应动作的方式来显示动画。</p>
+  </li>
+  <li>
+    <p>CAAnimation是所有动画类的父类，但是它不能直接使用，应该使用它的子类。</p>
+  </li>
+</ul>
+
+<h4 id="caanimation-2">CAAnimation的派生类</h4>
+
+<ul>
+  <li>能用的动画类只有4个子类
+    <ul>
+      <li>CATransition 提供渐变效果:(推拉push效果,消退fade效果,揭开reveal效果)。</li>
+      <li>CAAnimationGroup 允许多个动画同时播放。</li>
+      <li>CABasicAnimation 提供了对单一动画的实现。</li>
+      <li>CAKeyframeAnimation 关键桢动画,可以定义行动路线。</li>
+    </ul>
+  </li>
+  <li>CAPropertyAnimation
+    <ul>
+      <li>是CAAnimation的子类，但是不能直接使用，</li>
+      <li>要想创建动画对象，应该使用它的两个子类：<code>CABasicAnimation</code> 和 <code>CAKeyframeAnimation</code></li>
+      <li>它有个NSString类型的<code>keyPath</code>属性，你可以指定CALayer的某个属性名为<code>keyPath</code>，并且对CALayer的这个属性的值进行修改，达到相应的动画效果。比如，指定<code>@"position"</code>为<code>keyPath</code>，就会修改CALayer的position属性的值，以达到平移的动画效果</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="section-1">另外其他派生类</h5>
+
+<ul>
+  <li>CAConstraint 约束类,在布局管理器类中用它来设置属性。</li>
+  <li>CAConstraintLayoutManager 约束布局管理器,是用来将多个CALayer进行布局的.各个CALayer是通过名称来区分,而布局属性是通过CAConstraint来设置的。</li>
+  <li>CATransaction 事务类,可以对多个layer的属性同时进行修改.它分隐式事务,和显式事务。</li>
+</ul>
+
+<h3 id="section-2">四、动画实例</h3>
+
+<p>看一段动画代码：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="c1">//给imageView设置新图片</span>
+<span class="lineno"> 2</span> 	<span class="p">[</span><span class="n">_imgView</span> <span class="nl">setImage</span><span class="p">:[</span><span class="bp">UIImage</span> <span class="nl">imageNamed</span><span class="p">:</span><span class="s">@&quot;QQ&quot;</span><span class="p">]];</span>
+<span class="lineno"> 3</span> 	<span class="c1">//添加imageView的切换动画，</span>
+<span class="lineno"> 4</span>     <span class="bp">CATransition</span> <span class="o">*</span><span class="n">animation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CATransition</span> <span class="n">animation</span><span class="p">];</span>
+<span class="lineno"> 5</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setDuration</span><span class="p">:</span><span class="mf">1.0</span><span class="p">];</span>
+<span class="lineno"> 6</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setFillMode</span><span class="p">:</span><span class="n">kCAFillModeForwards</span><span class="p">];</span>
+<span class="lineno"> 7</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setTimingFunction</span><span class="p">:[</span><span class="bp">CAMediaTimingFunction</span> <span class="nl">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseOut</span><span class="p">]];</span>
+<span class="lineno"> 8</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setType</span><span class="p">:</span><span class="s">@&quot;rippleEffect&quot;</span><span class="p">];</span><span class="c1">// rippleEffect</span>
+<span class="lineno"> 9</span>     <span class="p">[</span><span class="n">animation</span> <span class="nl">setSubtype</span><span class="p">:</span><span class="n">kCATransitionFromTop</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="p">[</span><span class="n">_imgView</span><span class="p">.</span><span class="n">layer</span> <span class="nl">addAnimation</span><span class="p">:</span><span class="n">animation</span> <span class="nl">forKey</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
+
+<p>实现功能就是，在UIImageView换新图片的时候，做相应的动画效果！好让，UIImageView转化时，不至于太单调！</p>
+
+<p>首先第一句：</p>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="bp">CATransition</span> <span class="o">*</span><span class="n">animation</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CATransition</span> <span class="n">animation</span><span class="p">];</span></code></pre></div>
+
+<p>因为<code>CATransition</code>是<code>CAAnimation</code>的子类,所以直接通过<code>CATransition</code>的<code>+ (id)animation</code> 方法创建了一个<code>CATransition</code>对象</p>
+
+<h3 id="caanimation-3">五、CAAnimation属性</h3>
+
+<ul>
+  <li>delegate</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">retain</span><span class="p">)</span> <span class="kt">id</span> <span class="n">delegate</span></code></pre></div>
+
+<p>为CAAnimation设置代理。默认为nil。<br />
+注意：一个CAAnimation实例，不能设置delegate为self。会引起循环引用。</p>
+
+<ul>
+  <li>removedOnCompletion</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">getter</span><span class="o">=</span><span class="n">isRemovedOnCompletion</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">removedOnCompletion</span></code></pre></div>
+
+<p>设置是否动画完成后，动画效果从设置的layer上移除。默认为YES，代表动画执行完毕后就从图层上移除，图形会恢复到动画执行前的状态。如果想让图层保持显示动画执行后的状态，那就设置为NO，不过还要设置fillMode为kCAFillModeForwards</p>
+
+<ul>
+  <li>timingFunction</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="k">@property</span><span class="p">(</span><span class="k">retain</span><span class="p">)</span> <span class="bp">CAMediaTimingFunction</span> <span class="o">*</span><span class="n">timingFunction</span></code></pre></div>
+
+<p>速度控制函数，控制动画运行的节奏，也就是动画自身的“节奏”：比如：开始快，结束时变慢；开始慢，结束时变快；匀速；等，在动画过程中的“时机”效果。</p>
+
+<ul>
+  <li>animation</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">animation</span></code></pre></div>
+
+<p>创建并返回一个CAAnimation实例。</p>
+
+<ul>
+  <li>defaultValueForKey</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">defaultValueForKey:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span></code></pre></div>
+
+<p>根据属性key，返回相应的属性值。</p>
+
+<h3 id="camediatiming">六、来自CAMediaTiming协议的属性</h3>
+
+<ul>
+  <li>
+    <p>duration：动画的持续时间</p>
+  </li>
+  <li>
+    <p>repeatCount：动画的重复次数</p>
+  </li>
+  <li>
+    <p>repeatDuration：动画的重复时间</p>
+  </li>
+  <li>
+    <p>fillMode：决定当前对象在非active时间段的行为.比如动画开始之前,动画结束之后</p>
+  </li>
+  <li>
+    <p>beginTime：可以用来设置动画延迟执行时间，若想延迟2s，就设置为<code>CACurrentMediaTime()+2</code>，<code>CACurrentMediaTime()</code>为图层的当前时间</p>
+  </li>
+</ul>
+
+<h3 id="caanimation-4">七、CAAnimation实例方法</h3>
+
+<ul>
+  <li>shouldArchiveValueForKey</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldArchiveValueForKey:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span></code></pre></div>
+
+<p>返回指定的属性值是否可以归档。<br />
+&gt; key：指定的属性。<br />
+&gt; YES：指明该属性可以被归档；NO：不能被归档。</p>
+
+<h4 id="caanimation-5">CAAnimation协议方法</h4>
+<ul>
+  <li>animationDidStart</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStart:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">theAnimation</span></code></pre></div>
+
+<p>动画开始时，执行的方法。<br />
+theAnimation：正在执行动画的CAAnimation实例。</p>
+
+<ul>
+  <li>animationDidStop:finished</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animationDidStop:</span><span class="p">(</span><span class="bp">CAAnimation</span> <span class="o">*</span><span class="p">)</span><span class="nv">theAnimation</span> <span class="nf">finished:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">flag</span></code></pre></div>
+
+<p>动画执行完成或者动画为执行被删除时，执行该方法。<br />
+&gt; theAnimation：完成或者被删除的动画实例<br />
+&gt; flag：标志该动画是执行完成或者被删除：YES：执行完成；NO：被删除。</p>
+
+<p>如果我们有多个动画，在这个代理方法中需要进行判断是那一个动画的delegate，可以通过在配置动画时给动画对象添加一个键值对，通过<code>setValue: forKey:</code>方法。</p>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#Animation">Animation</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS基础">iOS基础</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation" data-title="CAAnimation入门" data-images="/images/head-800x400/-21.png" data-content="初次学习使用动画，需要用到`CATransition`，于是就先来了解下`CAAnimation`" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation.html">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'CAAnimation入门',
+  			bdDesc : '初次学习使用动画，需要用到`CATransition`，于是就先来了解下`CAAnimation`',
+  			bdUrl : 'http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation.html',
+  			bdPic : '/images/head-800x400/-21.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/ios%E8%BF%9B%E9%98%B6/2016/01/05/CATransition.html"><i class="fa fa-chevron-left"></i> 上一篇：动画CAAnimation系列--CATransition</a>
+  
+  
+    <a class="alignright" href="/posts/ios%E8%BF%9B%E9%98%B6/2016/01/06/CABasicanimation.html">下一篇：动画CAAnimation系列--CABasicAnimation <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation" data-title="CAAnimation入门" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/01/05/caanimation.html"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#runtime">runtime</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#Blur">Blur</a>
+    
+    <a href="/tags/#第三方库">第三方库</a>
+    
+    <a href="/tags/#iPod">iPod</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    <!-- Toc -->
+<div class="widget">
+  <div id="fixtoc">
+    <div id="toc"></div>
+    <!-- Related to the end of js.html -->
+  </div>
+</div>
+<!-- End Toc -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div><!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html"><img src="/images/head-800x400/-57.png" alt="iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 20, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html">iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/code/2016/04/19/A-Loading-Animation.html"><img src="/images/head-800x400/-11.png" alt="一个简单的 loading 动画" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 19, 2016</span>
+        </div>
+        <h4><a href="/posts/code/2016/04/19/A-Loading-Animation.html">一个简单的 loading 动画</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html"><img src="/images/head-800x400/-55.png" alt="我的Objective-C编码规范" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 18, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html">我的Objective-C编码规范</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="https://jekyllrb.com/">Jekyll</a></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+            <li><a href="www.jianshu.com">简书</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+<script type="text/javascript" src="/js/toc.js"></script>
+<script>
+$(document).ready(function() {
+  // $('#toc').toc();
+  // $('#toc').toc({ noBackToTopLinks: true });
+  $('#toc').toc({ headers: '.entry_content h1, .entry_content h2, .entry_content h3, .entry_content h4, .entry_content h5, .entry_content h6'});
+  // $('#').sticky();
+  // $("#post_side_widget").stick_in_parent();
+});
+</script>
+
+
+  </body>
+</html>

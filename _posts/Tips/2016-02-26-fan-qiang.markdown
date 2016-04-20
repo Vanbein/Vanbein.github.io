@@ -1,0 +1,107 @@
+---
+layout: post
+date: 2016-01-26 23:52:02 +0800
+title: 翻墙的正确方式 - 免费且简单粗暴
+category: Tips
+tags: Tip 翻墙
+image: /images/head-800x400/-27.png
+description: 本文主要介绍两种免费的翻墙的方式。
+toc: true
+homepage: true
+---
+
+
+本文主要介绍两种免费的翻墙的方式。
+
+### 一、为什么要翻墙？
+
+我在天朝的IT从业人员中，没有人不知道防火长城GFW(Great Firewall of China)的存在。GFW的利与弊在这不再深究。以下列出的我翻墙的理由：
+
+1. 搜索，百度的竞价排名搜出来的东西跟google完全不在同一档次，想要更高的搜索质量。
+2. 作为一个ios开发者，大部分优质的（开源）软件/库都是国外的人开发的。当获取某一个库的时候，不翻墙，更新很慢，甚至无法更新。
+3. 锻炼英语能力，通过阅读一些原始的文档（至少有工作驱使）来练练英语水平。
+4. 世界那么大，我想去看看。可以看看外面的资讯，避免一面之辞。
+
+
+### 二、翻墙历程
+
+1. 第一次翻墙，使用了免费的VPN，使用起来很难受，非常不稳定，网速也慢。
+2. 第二次翻墙，使用了付费的VPN，但是仍然不稳定，特别是在公司使用公司网络翻墙时，由于使用同一网络的人太多，所以经常连不上VPN。
+3. 第三次翻墙，是使用了免费开源的翻墙工具XX-Net([https://github.com/XX-net/XX-Net](https://github.com/XX-net/XX-Net))，用起来很爽，因为它免费、安装简单、速度快、智能路由，虽然我目前没有再用，但是也是要介绍的主角之一。
+4. 第四次翻墙，同样是使用了免费开源的翻墙工具 -- [蓝灯Lantern](https://github.com/getlantern/lantern)，这个用起来比XX-Net还要爽，因为它使用非常非常简单，只需安装，不需要任何代理配置，可使用平台也多，截止写这篇文章的时候已经出了安卓版，iOS暂时没出。强烈推荐使用
+
+### 三、Lantern 的使用
+
+> 使用很简单，到[github地址](https://github.com/getlantern/lantern)选择下载自己平台的软件，安装，打开浏览器显示lantern运行成功后，即可免费不限流量翻墙了，如果您对速率要求非常高，请选择使用XX-Net或花钱买个VPN。
+
+### 四、XX-Net安装过程
+
+> 该项目的github地址：[https://github.com/XX-net/XX-Net](https://github.com/XX-net/XX-Net)
+> 
+> 官方给出的使用教程：[使用方法](https://github.com/XX-net/XX-Net/wiki/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
+> windows系统的可参照官方教程：[https://github.com/XX-net/XX-Net/wiki/使用方法](https://github.com/XX-net/XX-Net/wiki/使用方法)
+
+下面是我在Mac下的安装步骤。
+
+由于我觉得上面的教程中配置比较麻烦，发现有现成的集成软件可用，于是我的安装方法如下：
+
+![集成XX-Net的软件](/images/2016/01/XX-Net.png)
+
+
+#### 1、下载`appifed-xx-net`
+
+如上图所示的地方，下载完成后得到一个`XX-Net`应用程序，双击打开后会自动打开Safari，此时只需要再配置一下Safari的代理设置即可打开google了。
+
+#### 2、代理配置
+
+官方的设置代理方法([https://github.com/XX-net/XX-Net/wiki/设置代理](https://github.com/XX-net/XX-Net/wiki/设置代理))没有包括Mac OS系统的设置方法，经过我自己的测试，只需要在`Safari - 偏好设置 - 高级 - 代理`选择`更改设置`，然后选择`自动代理配置`，在URL中输入`http://127.0.0.1:8086/proxy.pac`保存应用即可完成代理的设置，此时我们就可以打开google进行搜索了。
+
+![设置代理](/images/2016/01/delegate.png)
+
+#### 3、添加自己的AppID
+
+首先我们需要去创建一个自己的AppID，官方有一个图文并茂的教程，非常清晰：[how to create my AppIDs](https://github.com/XX-net/XX-Net/wiki/how-to-create-my-AppIDs)。
+
+下面是我创建AppID的过程：
+
+创建AppID之前，应保证启用弱安全应用
+[https://www.google.com/settings/security/lesssecureapps](https://www.google.com/settings/security/lesssecureapps)
+对于多数用户而言，你只需要启用弱安全应用，就可以上传AppID
+
+注：如果你已经启用2步登录验证，那么不需要启用弱安全应用，而是设置应用专用密码： [https://security.google.com/settings/security/apppasswords](https://security.google.com/settings/security/apppasswords)
+设备选"其他"，随便起个名词，比如GoAgent，点"生成"后，会出来一串密码。 以后就拿这个密码来上传AppID部署服务端
+
+启用弱安全应用后，打开 [https://console.developers.google.com](https://console.developers.google.com) ，你会看到下图的界面
+
+![创建AppID](/images/2016/01/creatappid.png)
+
+
+点击`创建专案`进行创建，然后输入相关信息即可。
+
+* 注意：AppID只能由字母、-、和数字组成，可填入你希望的AppID，
+* 点选不要发送邮件
+
+![设置AppID](/images/2016/01/appidsetting.png)
+
+#### 4、设置部署权限
+提示：在部署之前，AppID是无法使用的，不要将他们填入到XX-Net的配置中。
+1、打开[http://127.0.0.1:8085/?module=goagent&menu=deploy](http://127.0.0.1:8085/?module=goagent&menu=deploy) ，按下图说明操作： 
+
+![配置AppID](/images/2016/01/setting1.png)
+![部署AppID](/images/2016/01/setting3.png)
+
+2、如果你成功做到这一步，那么恭喜你，你即将修成正果，只差最后一步。 打开[http://127.0.0.1:8085/?module=goagent&menu=config](http://127.0.0.1:8085/?module=goagent&menu=config)，然后老样子看图即可。 
+
+![最后配置](/images/2016/01/setting2.png)
+
+3、当你点击“保存并重启”的那一刻，你就脱离了苦海，视频畅饮，没有任何限制
+
+
+#### 5、补充说明
+
+1. 每个GAE应用每天限额流量1G，每个帐号限制12个
+2. AppID只影响流量，不影响速度
+3. 安装好后非特殊情况，别升级！
+
+
+

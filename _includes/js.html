@@ -1,0 +1,24 @@
+<!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+{% if page.toc %}
+<script type="text/javascript" src="/js/toc.js"></script>
+<script>
+$(document).ready(function() {
+  // $('#toc').toc();
+  // $('#toc').toc({ noBackToTopLinks: true });
+  $('#toc').toc({ headers: '.entry_content h1, .entry_content h2, .entry_content h3, .entry_content h4, .entry_content h5, .entry_content h6'});
+  // $('#').sticky();
+  // $("#post_side_widget").stick_in_parent();
+});
+</script>
+{% endif %}
