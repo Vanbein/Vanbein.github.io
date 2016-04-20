@@ -277,11 +277,11 @@ blockquote footer {
 }*/
 blockquote{
   /* 引用块 */
-  background: #f0f0f0;
+  background: #fafafa;
   /*overflow: auto;
   display: block;
-  /* padding - 引用块内边距 */
-  padding: 0.5em 0em 0.5em 1em;
+  /* padding - 引用块内边距 上右下左 */
+  padding: 0.0em 1.5em 0.0em 1.5em;
   line-height: 1.8em;
   /* margin - 引用块外边距 */
   margin: 1em 0em 1em 0em;

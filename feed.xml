@@ -5,9 +5,205 @@
     <description>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</description>
     <link>http://www.vanbein.com/</link>
     <atom:link href="http://www.vanbein.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 18 Apr 2016 17:23:18 +0800</pubDate>
-    <lastBuildDate>Mon, 18 Apr 2016 17:23:18 +0800</lastBuildDate>
+    <pubDate>Tue, 19 Apr 2016 15:53:42 +0800</pubDate>
+    <lastBuildDate>Tue, 19 Apr 2016 15:53:42 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
+    
+      <item>
+        <title>一个简单的 loading 动画</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;一、概览&lt;/h3&gt;
+
+&lt;p&gt;使用 Core Animation 实现的一个简单的 loading 动画。&lt;/p&gt;
+
+&lt;p&gt;效果预览图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016/04/loading.gif&quot; alt=&quot;loading&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;首先来分析下这个动画的效果，明显它分为两部分动画&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;图片上下跳动，并且在上升过程中平面旋转 180 度&lt;/li&gt;
+  &lt;li&gt;loading… 这几个字的出现动画，从左到右依次出现， 并且每个字有一个从上落下渐入动画&lt;/li&gt;
+  &lt;li&gt;图片上下跳动两次，旋转 360 度的时间，等于 loading… 文字完成一次动画的时间，约1.6s&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016/04/resolution.png&quot; alt=&quot;resolution&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;二、图片上下跳动旋转动画&lt;/h3&gt;
+
+&lt;h4 id=&quot;imageview&quot;&gt;1. 创建 imageView&lt;/h4&gt;
+
+&lt;p&gt;创建一个 imageView，由于最开始从上往下开始动画，所以初始位置在动画效果的顶部&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIImageView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;initWithFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGRectMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIImage&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;imageNamed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;LOADING&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contentMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIViewContentModeScaleAspectFill&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//默认隐藏&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;2. 配置动画&lt;/h4&gt;
+
+&lt;p&gt;由于图片的动画效果比较简单，所以只用 &lt;code&gt;CABasicAnimation&lt;/code&gt; 结合 &lt;code&gt;CAAnimationGroup&lt;/code&gt; 即可实现。&lt;/p&gt;
+
+&lt;p&gt;初始我们或许会认为图片只需要不断的做“下落，上升并旋转180度”这样一个 Group 动画即可，但是如果这样做的实际效果是图片从底部上升到顶部旋转180度后，再下落时图层会恢复成初始心态，即没有旋转180度的形态。虽然设置了 &lt;code&gt;fillMode = kCAFillModeForwards&lt;/code&gt; 和 &lt;code&gt;removedOnCompletion = NO&lt;/code&gt;，但是这样只是让图层保持了动画结束时的状态，图层的真正状态是没改变的，所以第二次开始动画时又会恢复到初始状态。&lt;/p&gt;
+
+&lt;p&gt;因此，只能将完成一次 360 度旋转动画作为一个 Group，那么这个动画过程可以分解为：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;图片下落到底部&lt;/li&gt;
+  &lt;li&gt;图片上升到顶部，并且这个过程中旋转 180 度&lt;/li&gt;
+  &lt;li&gt;图片下落到底部&lt;/li&gt;
+  &lt;li&gt;图片上升到顶部，并且这个过程中再旋转 180 度&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;落实到代码上后，关键代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAAnimationGroup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;imageMoveAnimationForImageView:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIImageView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//1. 向下移动&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//imageView.layer.position = (34.0, 12.0)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animationWithKeyPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSValue&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueWithCGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSValue&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueWithCGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGPointMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;43&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;beginTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timingFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAMediaTimingFunction&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;functionWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCAMediaTimingFunctionEaseIn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//2.1 向上移动&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animationWithKeyPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSValue&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueWithCGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGPointMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;34.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;45.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSValue&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueWithCGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;beginTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timingFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAMediaTimingFunction&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;functionWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCAMediaTimingFunctionEaseOut&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//2.2 旋转到180&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animationWithKeyPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;transform.rotation.z&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSNumber&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;numberWithFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSNumber&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;numberWithFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M_PI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fillMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCAFillModeForwards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removedOnCompletion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;beginTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timingFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAMediaTimingFunction&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;functionWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCAMediaTimingFunctionEaseOut&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt;  
+&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//省略了下落，上升并从180度旋转到360度的第二段动画&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;  
+&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CAAnimationGroup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAAnimationGroup&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animations&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;moveUpAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotateAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;moveDownAnimation_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;moveUpAnimation_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotateAnimation_2&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;34&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repeatCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAXFLOAT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removedOnCompletion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fillMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCAFillModeForwards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;38&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timingFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAMediaTimingFunction&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;functionWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCAMediaTimingFunctionLinear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;39&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//    group.delegate = self;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;40&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;41&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;imageAnimation&amp;quot;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;forKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;42&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;43&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;44&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;三、文字出现动画&lt;/h3&gt;
+
+&lt;p&gt;试想一下，如果这是一个 Label，&lt;code&gt;Label.text = @&quot;Loading...&quot;&lt;/code&gt;，那么想要实现这个动画就很困难，于是我们可以考虑把”Loading…“这 10 个字符分别放在了 10 个 Label里面，让这些 Label 依次做动画即可实现同样的效果。&lt;/p&gt;
+
+&lt;h4 id=&quot;label&quot;&gt;1. 创建 Label&lt;/h4&gt;
+
+&lt;p&gt;根据每个字符的 width，依次创建 Lable，一个字符为一个 Label&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;NSArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;L&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;o&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;d&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;i&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;n&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;UIColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textTintColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textTintColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;textTintColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIColor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;whiteColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//默认白色&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;textTintColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textTintColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labelArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSMutableArray&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;arrayWithCapacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//记录字符串的总长度，用以设定下一个 Label 的位置&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//获取字符宽度&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contentString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//目标字符串&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CGRect&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contentString&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;boundingRectWithSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGSizeMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAXFLOAT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;15.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSStringDrawingUsesLineFragmentOrigin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NSStringDrawingUsesFontLeading&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;NSFontAttributeName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIFont&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;systemFontOfSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;charWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CGRectGetWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;UILabel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UILabel&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;initWithFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGRectMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;charWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;font&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIFont&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;systemFontOfSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;14.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textAlignment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NSTextAlignmentCenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textTintColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;totalWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;charWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labelArray&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;2. 配置动画&lt;/h4&gt;
+
+&lt;p&gt;把文字动画进行分解后，得到整个动画过程如下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;每个字依次的出现，全部都出现后文字消失&lt;/li&gt;
+  &lt;li&gt;每个字的出现动画有落下、渐入效果&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;同图片的动画类似，使用 &lt;code&gt;CAAnimationGroup&lt;/code&gt; 即可，如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAAnimationGroup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;labelAppearAnimationForLabel:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UILabel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delay:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//1. 透明度渐变&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animationWithKeyPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;opacity&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSNumber&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;numberWithFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSNumber&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;numberWithFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;beginTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removedOnCompletion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fillMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCAFillModeForwards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timingFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAMediaTimingFunction&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;functionWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCAMediaTimingFunctionEaseOut&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//2. 向下移动&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CABasicAnimation&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animationWithKeyPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSValue&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueWithCGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGPointMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;NSValue&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;valueWithCGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fillMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCAFillModeForwards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.15f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;beginTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removedOnCompletion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timingFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAMediaTimingFunction&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;functionWithName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCAMediaTimingFunctionEaseIn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;     &lt;span class=&quot;bp&quot;&gt;CAAnimationGroup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;CAAnimationGroup&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animations&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;l&quot;&gt;@[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opacityAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;moveDownAnimation&lt;/span&gt;&lt;span class=&quot;l&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repeatCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAXFLOAT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removedOnCompletion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoreverses&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fillMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCAFillModeForwards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//    group.delegate = self;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;附代码地址：&lt;a href=&quot;https://github.com/Vanbein/LoadingAnimation&quot;&gt;LoadingAnimation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Tue, 19 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://www.vanbein.com/posts/code/2016/04/19/A-Loading-Animation.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/code/2016/04/19/A-Loading-Animation.html</guid>
+        
+        <category>Animation</category>
+        
+        
+        <category>code</category>
+        
+      </item>
     
       <item>
         <title>我的Objective-C编码规范</title>
@@ -90,6 +286,17 @@
 
 &lt;p&gt;Apple命名规则尽可能坚持，特别是与这些相关的 &lt;a href=&quot;https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html&quot;&gt;memory management rules&lt;/a&gt; 。&lt;/p&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;命名原则&lt;br /&gt;
+1. 清晰&lt;br /&gt;
+    * 清晰并简短，但不为了简短牺牲清晰&lt;br /&gt;
+    * 不简写事物名称，即使它很长&lt;br /&gt;
+    * 避免有歧义的命名&lt;br /&gt;
+2. 一致性&lt;br /&gt;
+    * 在整个工程中保持命名一致性，如果不确定，查找工程中已有的命名定义&lt;br /&gt;
+    * 一致性对于用到了多态的类尤其重要,做同样事的方法应有相同的命名&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;p&gt;长的，描述性的方法和变量命名是好的，命名使用&lt;strong&gt;驼峰式&lt;/strong&gt;，命名中应避免出现数字&lt;/p&gt;
 
 &lt;p&gt;应该：&lt;/p&gt;
@@ -98,7 +305,7 @@
 
 &lt;p&gt;不应该：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;UIButton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setBut&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;UIButton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setBtn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;类名首字母大写&lt;/strong&gt;，类名前添加三个大学字母作为个性化前缀，比如”VNB”，&lt;/li&gt;
@@ -500,7 +707,7 @@
 
 &lt;h3 id=&quot;section-15&quot;&gt;18. 黄金路径&lt;/h3&gt;
 
-&lt;p&gt;当使用条件语句编码时，左手边的代码应该是”golden” 或 “happy”路径。也就是不要嵌套if语句，多个返回语句也是OK。&lt;/p&gt;
+&lt;p&gt;当编写条件语句的时候,尽量不要多层嵌套if语句,这样可以减少代码复杂性,并且 让代码更加容易阅读。多个return语句是可以的。&lt;/p&gt;
 
 &lt;p&gt;应该：&lt;/p&gt;
 
@@ -563,13 +770,13 @@
 
 </description>
         <pubDate>Mon, 18 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://www.vanbein.com/posts/objective-c/2016/04/18/Objective-C-Coding-Standards.html</link>
-        <guid isPermaLink="true">http://www.vanbein.com/posts/objective-c/2016/04/18/Objective-C-Coding-Standards.html</guid>
+        <link>http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html</link>
+        <guid isPermaLink="true">http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html</guid>
         
         <category>Objective-C</category>
         
         
-        <category>objective-c</category>
+        <category>ios基础</category>
         
       </item>
     
@@ -904,16 +1111,18 @@
 
 &lt;h2 id=&quot;r3p2&quot;&gt;一、理论基础(R3,P2)&lt;/h2&gt;
 
-&lt;h4 id=&quot;r4p3&quot;&gt;1、数据结构(R4,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r4p3&quot;&gt;1、数据结构(R4,P3)&lt;/h3&gt;
 
-&lt;h4 id=&quot;r4p3-1&quot;&gt;2、算法(R4,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r4p3-1&quot;&gt;2、算法(R4,P3)&lt;/h3&gt;
 
 &lt;h2 id=&quot;r3p2-1&quot;&gt;二、编程语言(R3,P2)&lt;/h2&gt;
 
-&lt;h4 id=&quot;objective-cr3p3&quot;&gt;1、Objective-C基础(R3,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;objective-cr3p3&quot;&gt;1、Objective-C基础(R3,P3)&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Objective-C基本语法(R2,P4)
+  &lt;li&gt;
+    &lt;p&gt;Objective-C基本语法(R2,P4)&lt;/p&gt;
+
     &lt;ul&gt;
       &lt;li&gt;变量(R2,P4)&lt;/li&gt;
       &lt;li&gt;常量(R2,P4)&lt;/li&gt;
@@ -924,50 +1133,98 @@
       &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/objective-c/2016/04/18/Objective-C-Coding-Standards.html&quot;&gt;Objective-C编码规范&lt;/a&gt;(R2,P4)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Objective-C语法进阶(R3,P3)
+  &lt;li&gt;
+    &lt;p&gt;Objective-C语法进阶(R3,P3)&lt;/p&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;类和对象(R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/08/propertyshu-xing-xiu-shi-fu-zong-jie.html&quot;&gt;属性和变量&lt;/a&gt;(R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/16/objective-cde-ji-cheng-he-duo-tai.html&quot;&gt;继承和多态&lt;/a&gt;(R3,P3)&lt;/li&gt;
-      &lt;li&gt;动态绑定(R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/block-block.html&quot;&gt;block块&lt;/a&gt;(R3,P3)&lt;/li&gt;
-      &lt;li&gt;异常处理(R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/07/category.html&quot;&gt;Category类别&lt;/a&gt;(R3,P3)&lt;/li&gt;
-      &lt;li&gt;Extension扩展(R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/07/protocol-xie-yi.html&quot;&gt;Protocol协议&lt;/a&gt; (R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/singleton-dan-li.html&quot;&gt;Singleton单例&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;类和对象(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/08/propertyshu-xing-xiu-shi-fu-zong-jie.html&quot;&gt;属性和变量&lt;/a&gt;(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/16/objective-cde-ji-cheng-he-duo-tai.html&quot;&gt;继承和多态&lt;/a&gt;(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;动态绑定(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/block-block.html&quot;&gt;block块&lt;/a&gt;(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;异常处理(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/07/category.html&quot;&gt;Category类别&lt;/a&gt;(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Extension扩展(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/07/protocol-xie-yi.html&quot;&gt;Protocol协议&lt;/a&gt; (R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/singleton-dan-li.html&quot;&gt;Singleton单例&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Objective-C高级语法(R4,P2)
+  &lt;li&gt;
+    &lt;p&gt;Objective-C高级语法(R4,P2)&lt;/p&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/kvc-slash-kvoli-jie.html&quot;&gt;KVC/KVO&lt;/a&gt;(R4,P2)
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/kvc-slash-kvoli-jie.html&quot;&gt;KVC/KVO&lt;/a&gt;(R4,P2)&lt;/p&gt;
+
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html&quot;&gt;KVC的一些冷门小技巧&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/notification-tong-zhi.html&quot;&gt;Notification&lt;/a&gt;(R4,P2)&lt;/li&gt;
-      &lt;li&gt;引用计数与ARC(R4,P2)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/27/nei-cun-guan-li.html&quot;&gt;内存管理&lt;/a&gt;(R4,P4)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/22/duo-xian-cheng-ru-men.html&quot;&gt;多线程&lt;/a&gt;(R4,P3)&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/09/notification-tong-zhi.html&quot;&gt;Notification&lt;/a&gt;(R4,P2)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;引用计数与ARC(R4,P2)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/27/nei-cun-guan-li.html&quot;&gt;内存管理&lt;/a&gt;(R4,P4)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/22/duo-xian-cheng-ru-men.html&quot;&gt;多线程&lt;/a&gt;(R4,P3)&lt;/p&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Objective-C Foundation框架(R3,P3)
+  &lt;li&gt;
+    &lt;p&gt;Objective-C Foundation框架(R3,P3)&lt;/p&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsstring&quot;&gt;NSString&lt;/a&gt;(R3,P4)
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsstring&quot;&gt;NSString&lt;/a&gt;(R3,P4)&lt;/p&gt;
+
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/17/nsstringshu-xing-shi-yao-shi-hou-yong-copy,shi-yao-shi-hou-yong-strong.html&quot;&gt;NSString属性什么时候用copy，什么时候用strong?&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsarray&quot;&gt;NSArray&lt;/a&gt;(R3,P4)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdictionary&quot;&gt;NSDictionary&lt;/a&gt;(R3,P4)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsnumber&quot;&gt;NSNumber&lt;/a&gt;(R3,P3)&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdate&quot;&gt;NSDate&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;NSSet(R3,P2)&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsarray&quot;&gt;NSArray&lt;/a&gt;(R3,P4)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdictionary&quot;&gt;NSDictionary&lt;/a&gt;(R3,P4)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsnumber&quot;&gt;NSNumber&lt;/a&gt;(R3,P3)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdate&quot;&gt;NSDate&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;NSSet(R3,P2)&lt;/p&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;swiftr2p2&quot;&gt;2、Swift基础(R2,P2)&lt;/h4&gt;
+&lt;h3 id=&quot;swiftr2p2&quot;&gt;2、Swift基础(R2,P2)&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Swift基本语法(R2,P2)
@@ -1002,32 +1259,62 @@
 
 &lt;h2 id=&quot;iosr2p3&quot;&gt;三、iOS开发基础(R2,P3)&lt;/h2&gt;
 
-&lt;h4 id=&quot;iosr2p3-1&quot;&gt;1、iOS基础(R2,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;iosr2p3-1&quot;&gt;1、iOS基础(R2,P3)&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/28/uiapplication,-uiviewsheng-ming-zhou-qi-xiang-guan.html&quot;&gt;iOS生命周期&lt;/a&gt;(R3,P3)&lt;/li&gt;
-  &lt;li&gt;事件与消息(R3,P3)&lt;/li&gt;
-  &lt;li&gt;模拟器(R2,P2)&lt;/li&gt;
-  &lt;li&gt;真机调试(R2,P2)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/28/uiapplication,-uiviewsheng-ming-zhou-qi-xiang-guan.html&quot;&gt;iOS生命周期&lt;/a&gt;(R3,P3)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;事件与消息(R3,P3)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;模拟器(R2,P2)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;真机调试(R2,P2)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;uir2p4&quot;&gt;2、UI控件(R2,P4)&lt;/h4&gt;
+&lt;h3 id=&quot;uir2p4&quot;&gt;2、UI控件(R2,P4)&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Button(R2,P4)&lt;/li&gt;
-  &lt;li&gt;Label(R2,P4)&lt;/li&gt;
-  &lt;li&gt;ImageView(R2,P4)&lt;/li&gt;
-  &lt;li&gt;ScrollView(R2,P4)&lt;/li&gt;
-  &lt;li&gt;TableView(R4,P4)&lt;/li&gt;
-  &lt;li&gt;CollectionView(R4,P3)&lt;/li&gt;
-  &lt;li&gt;TextView&lt;/li&gt;
-  &lt;li&gt;UIWebView&lt;/li&gt;
-  &lt;li&gt;UINavigationBar&lt;/li&gt;
-  &lt;li&gt;UITabBar&lt;/li&gt;
-  &lt;li&gt;自定义控件(R4,P2)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Button(R2,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Label(R2,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ImageView(R2,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ScrollView(R2,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TableView(R4,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CollectionView(R4,P3)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TextView&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UIWebView&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UINavigationBar&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;UITabBar&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;自定义控件(R4,P2)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p3&quot;&gt;3、界面布局(R3,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p3&quot;&gt;3、界面布局(R3,P3)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;代码布局(R3,P3)&lt;/li&gt;
@@ -1037,42 +1324,76 @@
 
 &lt;h2 id=&quot;iosr3p3&quot;&gt;四、iOS开发进阶(R3,P3)&lt;/h2&gt;
 
-&lt;h4 id=&quot;r3p2-2&quot;&gt;1、动画效果(R3,P2)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p2-2&quot;&gt;1、动画效果(R3,P2)&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/13/uiviewdong-hua-feng-zhuang.html&quot;&gt;UIView动画&lt;/a&gt;(R3,P2)&lt;/li&gt;
-  &lt;li&gt;Core Animation(R3,P2)
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/13/uiviewdong-hua-feng-zhuang.html&quot;&gt;UIView动画&lt;/a&gt;(R3,P2)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Core Animation&lt;/strong&gt;(R3,P2)&lt;/p&gt;
+
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2016/01/06/CALayer.html&quot;&gt;CALayer&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2016/01/05/caanimation.html&quot;&gt;CAAnimation入门&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/12/uibezierpathxiang-jie.html&quot;&gt;UIBezierPath&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/05/CATransition.html&quot;&gt;CATransition&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/06/CABasicanimation.html&quot;&gt;CABasicanimation&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/08/CAKeyframeanimation.html&quot;&gt;CAKeyframeanimation&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/11/dong-hua-caanimationxi-lie-caanimationgroup.html&quot;&gt;CAAnimationGroup&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2016/01/06/CALayer.html&quot;&gt;CALayer&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2016/01/05/caanimation.html&quot;&gt;CAAnimation入门&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/12/uibezierpathxiang-jie.html&quot;&gt;UIBezierPath&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/05/CATransition.html&quot;&gt;CATransition&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/06/CABasicanimation.html&quot;&gt;CABasicanimation&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/08/CAKeyframeanimation.html&quot;&gt;CAKeyframeanimation&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/01/11/dong-hua-caanimationxi-lie-caanimationgroup.html&quot;&gt;CAAnimationGroup&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;第三方动画库pop(R3,P1)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;第三方动画库pop(R3,P1)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r4p4&quot;&gt;2、多线程(R4,P4)&lt;/h4&gt;
+&lt;h3 id=&quot;r4p4&quot;&gt;2、多线程(R4,P4)&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/nsthreadde-ji-ben-shi-yong.html&quot;&gt;NSThread&lt;/a&gt;(R4,P3)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/nsoperationde-ji-ben-shi-yong.html&quot;&gt;NSOperationQueue&lt;/a&gt;(R4,P4)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/gcdde-li-jie.html&quot;&gt;GCD&lt;/a&gt;(R3,P4)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/nsthreadde-ji-ben-shi-yong.html&quot;&gt;NSThread&lt;/a&gt;(R4,P3)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/nsoperationde-ji-ben-shi-yong.html&quot;&gt;NSOperationQueue&lt;/a&gt;(R4,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/15/gcdde-li-jie.html&quot;&gt;GCD&lt;/a&gt;(R3,P4)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p4&quot;&gt;3、数据存储(R3,P4)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p4&quot;&gt;3、数据存储(R3,P4)&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/10/shu-ju-cun-qu-nsuserdefaults.html&quot;&gt;NSUserDefault&lt;/a&gt;(R3,P4)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/10/nskeyedarchiver-gui-dang.html&quot;&gt;NSKeyedArchiver&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;SQLite(R3,P2)&lt;/li&gt;
-  &lt;li&gt;CoreData(R3,P4)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2015/12/10/shu-ju-cun-qu-nsuserdefaults.html&quot;&gt;NSUserDefault&lt;/a&gt;(R3,P4)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios基础/2015/12/10/nskeyedarchiver-gui-dang.html&quot;&gt;NSKeyedArchiver&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SQLite(R3,P2)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CoreData(R3,P4)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p3-1&quot;&gt;4、数据处理(R3,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p3-1&quot;&gt;4、数据处理(R3,P3)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Model(R4,P3)&lt;/li&gt;
@@ -1080,7 +1401,7 @@
   &lt;li&gt;JSON解析(R3,P4)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p1&quot;&gt;5、物理特性(R3,P1)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p1&quot;&gt;5、物理特性(R3,P1)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;各类传感器(R3,P1)&lt;/li&gt;
@@ -1089,7 +1410,7 @@
   &lt;li&gt;Force Touch(R3,P1)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p3-2&quot;&gt;6、网络与通信(R3,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p3-2&quot;&gt;6、网络与通信(R3,P3)&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Http(R3,P4)&lt;/li&gt;
   &lt;li&gt;Socket(R3,P2)&lt;/li&gt;
@@ -1097,7 +1418,7 @@
   &lt;li&gt;抓包(R4,P1)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p3-3&quot;&gt;7、屏幕适配(R3,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p3-3&quot;&gt;7、屏幕适配(R3,P3)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;代码适配(R3,P4)&lt;/li&gt;
@@ -1106,22 +1427,28 @@
   &lt;li&gt;Size Classes(R4,P2)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;section&quot;&gt;8、单元测试：&lt;/h4&gt;
+&lt;h3 id=&quot;section&quot;&gt;8、单元测试：&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;单元测试基础原理&lt;/li&gt;
   &lt;li&gt;XCTest&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;debug&quot;&gt;9、Debug调试&lt;/h4&gt;
+&lt;h3 id=&quot;debug&quot;&gt;9、Debug调试&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html#section-2&quot;&gt;断点(条件、全局)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html&quot;&gt;lldb调试基本指令&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;NSZombieEnabled&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html#section-2&quot;&gt;断点(条件、全局)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html&quot;&gt;lldb调试基本指令&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;NSZombieEnabled&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p2-3&quot;&gt;10、其他(R3,P2)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p2-3&quot;&gt;10、其他(R3,P2)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;多点触控(R3,P1)&lt;/li&gt;
@@ -1134,7 +1461,7 @@
 
 &lt;h2 id=&quot;iosr4p2&quot;&gt;五、iOS高级开发(R4,P2)&lt;/h2&gt;
 
-&lt;h4 id=&quot;iosr4p2-1&quot;&gt;1、iOS架构(R4，P2)&lt;/h4&gt;
+&lt;h3 id=&quot;iosr4p2-1&quot;&gt;1、iOS架构(R4，P2)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;MVC(R3,P2)&lt;/li&gt;
@@ -1142,7 +1469,7 @@
   &lt;li&gt;设计模式(R5,P2)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r3p2-4&quot;&gt;2、第三方框架(R3,P2)&lt;/h4&gt;
+&lt;h3 id=&quot;r3p2-4&quot;&gt;2、第三方框架(R3,P2)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;AFNetworking(R3,P3)&lt;/li&gt;
@@ -1151,7 +1478,7 @@
   &lt;li&gt;Maso10nry(R3,P1)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;sdkr3p2&quot;&gt;3、第三方SDK(R3,P2)&lt;/h4&gt;
+&lt;h3 id=&quot;sdkr3p2&quot;&gt;3、第三方SDK(R3,P2)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;分享(R3,P3)&lt;/li&gt;
@@ -1162,42 +1489,47 @@
 
 &lt;h2 id=&quot;r3p3-4&quot;&gt;六、开发效率(R3,P3)&lt;/h2&gt;
 
-&lt;h4 id=&quot;ider2p4&quot;&gt;1、IDE(R2,P4)&lt;/h4&gt;
+&lt;h3 id=&quot;ider2p4&quot;&gt;1、IDE(R2,P4)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Xcode(R2,P4)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r2p1&quot;&gt;2、插件(R2,P1)&lt;/h4&gt;
+&lt;h3 id=&quot;r2p1&quot;&gt;2、插件(R2,P1)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/alcatraz/Alcatraz&quot;&gt;Alcatraz&lt;/a&gt;(R2,P1)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r2p3&quot;&gt;3、包管理(R2,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r2p3&quot;&gt;3、包管理(R2,P3)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Cocoapods&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r2p3-1&quot;&gt;4、版本控制(R2,P3)&lt;/h4&gt;
+&lt;h3 id=&quot;r2p3-1&quot;&gt;4、版本控制(R2,P3)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Git(R2,P3)&lt;/li&gt;
   &lt;li&gt;SVN(R2,P3)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r2p1-1&quot;&gt;5、应用内测与分发(R2,P1)&lt;/h4&gt;
+&lt;h3 id=&quot;r2p1-1&quot;&gt;5、应用内测与分发(R2,P1)&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Pre.im(R2,P1)&lt;/li&gt;
   &lt;li&gt;蒲公英(R2,P1)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;r2p1-2&quot;&gt;6、后台服务(R2,P1)&lt;/h4&gt;
+&lt;h3 id=&quot;r2p1-2&quot;&gt;6、后台服务(R2,P1)&lt;/h3&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.bmob.cn/&quot;&gt;Bmob&lt;/a&gt;(R2,P1)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.parse.com/&quot;&gt;Parse&lt;/a&gt; (R2,P1)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.bmob.cn/&quot;&gt;Bmob&lt;/a&gt;(R2,P1)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.parse.com/&quot;&gt;Parse&lt;/a&gt; (R2,P1)&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 25 Mar 2016 00:00:00 +0800</pubDate>
@@ -1835,7 +2167,7 @@
       </item>
     
       <item>
-        <title>近期的一点笔记</title>
+        <title>3月的一些知识点笔记</title>
         <description>&lt;h3 id=&quot;barbuttonitem-&quot;&gt;一、调整导航栏自定义的 BarButtonItem 到屏幕边侧的间距&lt;/h3&gt;
 
 &lt;p&gt;比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔&lt;/p&gt;
@@ -2833,37 +3165,6 @@ OC的多态体现是：重写，没有重载这种表现形式&lt;/li&gt;
         
         
         <category>ios进阶</category>
-        
-      </item>
-    
-      <item>
-        <title>2016 - just do it!</title>
-        <description>&lt;p&gt;转眼，2016 就过去接近三个月，然而我貌似并没有取得突破性的成长，所以接下来我要更加严格要求自己了，别让自己在 2017 才后悔没有尽全力！2016的我，一定要加油啊！&lt;/p&gt;
-
-&lt;p&gt;2015，从走出校园到今天，大半年了，值得去追忆的美好不少，但是我们总得顺着时间向前走，不，不要用走，我需要奔跑，谁让我在大学四年里一直浑浑噩噩呢？往事不再提，就让那些变成过去吧。幸运的是，自己找到感兴趣的一份工作，或许这是老天让我改过自新的机会吧，不至于继续沉沦了。&lt;/p&gt;
-
-&lt;p&gt;我目前要学习的东西太多，要坚持的习惯太多，任务很多，压力很大，但是我必须全部接下。&lt;/p&gt;
-
-&lt;p&gt;对于 iOS，我必须好好学习，踏踏实实，这是一件美好的事情。&lt;/p&gt;
-
-&lt;p&gt;对于亲人朋友，要更加懂得珍惜，当然，还要好好经营眼前这份宝贵的爱情！&lt;/p&gt;
-
-&lt;p&gt;一切，都值得我去努力！&lt;/p&gt;
-
-&lt;p&gt;所以，多看书、多学新东西、多敲代码，多做有意义的事情。&lt;/p&gt;
-
-&lt;p&gt;Yes，just do it! 下面这首歌，一直很有感觉，勉励自己！&lt;/p&gt;
-
-&lt;p&gt;&amp;lt;iframe frameborder=”no” border=”0” marginwidth=”0” marginheight=”0” width=330 height=86 src=”http://music.163.com/outchain/player?type=2&amp;amp;id=29999506&amp;amp;auto=1&amp;amp;height=66”&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 14 Feb 2016 00:00:00 +0800</pubDate>
-        <link>http://www.vanbein.com/posts/journal/2016/02/14/2016-to-myself.html</link>
-        <guid isPermaLink="true">http://www.vanbein.com/posts/journal/2016/02/14/2016-to-myself.html</guid>
-        
-        <category>life</category>
-        
-        
-        <category>journal</category>
         
       </item>
     

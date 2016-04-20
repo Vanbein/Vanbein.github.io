@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
-        <loc>http://www.vanbein.com/posts/objective-c/2016/04/18/Objective-C-Coding-Standards.html</loc>
+        <loc>http://www.vanbein.com/posts/code/2016/04/19/A-Loading-Animation.html</loc>
+    </url>
+    
+    <url>
+        <loc>http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html</loc>
     </url>
     
     <url>
@@ -39,10 +43,6 @@
     
     <url>
         <loc>http://www.vanbein.com/posts/ios%E8%BF%9B%E9%98%B6/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html</loc>
-    </url>
-    
-    <url>
-        <loc>http://www.vanbein.com/posts/journal/2016/02/14/2016-to-myself.html</loc>
     </url>
     
     <url>
