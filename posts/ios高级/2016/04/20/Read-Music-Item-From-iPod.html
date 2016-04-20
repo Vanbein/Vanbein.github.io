@@ -658,6 +658,8 @@ ds.charset = 'UTF-8';
 
 <p>这部分如果要展开的话还会有相当多的内容，国外的先辈们早在2010年就已经发掘了这两个类的用法，详细参见<a href="http://www.subfurther.com/blog/2010/07/19/from-iphone-media-library-to-pcm-samples-in-dozens-of-confounding-potentially-lossy-steps/">这里</a>和<a href="http://www.subfurther.com/blog/2010/12/13/from-ipod-library-to-pcm-samples-in-far-fewer-steps-than-were-previously-necessary/">这里</a>。这两篇讲的比较详细并且附有Sample（其中还涉及了一些Extended Audio File Services的内容），如果里面Sample无法下载可以从点击<a href="http://msching.github.io/files/MediaLibraryExportThrowaway1.zip">MediaLibraryExportThrowaway1.zip</a> 和 <a href="http://msching.github.io/files/VTM_AViPodReader.zip">VTM_AViPodReader.zip</a> 下载。</p>
 
+<h4 id="section-1">示例代码</h4>
+
 <p>下面的代码就是利用了 AVAssetExportSession 将 iPod 库中的歌曲数据导出为 m4a 文件：</p>
 
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">  1</span> <span class="cp">#define Cache_Directory [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@&quot;Web&quot;]</span>
