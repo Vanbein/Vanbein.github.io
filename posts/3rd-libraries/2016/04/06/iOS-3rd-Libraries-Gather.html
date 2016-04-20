@@ -2,14 +2,14 @@
 <html>
 <head>
   
-  <title>Singleton--单例 - Vanbein's Blog</title>
+  <title>iOS中第三方库的汇总 - Vanbein's Blog</title>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Post Propertites -->
-  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html">
-  <meta name="description" content="说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。">
+  <link rel="canonical" href="http://www.vanbein.com/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">
+  <meta name="description" content="Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。">
   <meta name="author" content="Vanbein">
 
   <!-- Webmaster tools verification -->
@@ -484,7 +484,7 @@ ds.charset = 'UTF-8';
                 <!-- Media -->
                 
                 <div class="entry_media">
-                  <a href="/images/head-800x400/-45.png" class="popup_link"><img src="/images/head-800x400/-45.png" alt="Singleton--单例"></a>
+                  <a href="/images/head-800x400/-56.png" class="popup_link"><img src="/images/head-800x400/-56.png" alt="iOS中第三方库的汇总"></a>
                 </div>
                 
                 
@@ -493,278 +493,32 @@ ds.charset = 'UTF-8';
                 <!-- Full meta -->
                 <div class="full_meta clearfix">
                   <span class="meta_format"><i class="fa fa-file-text"></i></span>
-                  <span class="meta_date">Dec 9, 2015</span>
+                  <span class="meta_date">Apr 6, 2016</span>
                   <span class="meta_author">Vanbein</span>
                   
-                  <span class="meta_tags"> <u>iOS</u> <u>单例</u> <u>Objective-C</u> 
+                  <span class="meta_tags"> <u>第三方库</u> 
                   
                 </div><!-- End Full meta -->
                 <!-- Entry content -->
                 <div class="entry_content">
                   <!-- Entry title -->
-                  <h1 class="entry_title">Singleton--单例</h1><!-- End Entry title -->
-                  <h2 id="section">一、单例介绍</h2>
-
-<h3 id="section-1">1. 什么是单例</h3>
-
-<p>说到单例首先要提到<strong>单例模式</strong>，因为单例模式是单例存在的目的</p>
+                  <h1 class="entry_title">iOS中第三方库的汇总</h1><!-- End Entry title -->
+                  <p>Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。</p>
 
 <ul>
   <li>
-    <p>单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
-  </li>
-  <li>
-    <p>单例，顾名思义：单独的实例。</p>
-  </li>
-  <li>
-    <p>简单的说，单例是一个特殊的实例，在单例所属的类中只存在单例这么一个实例，并且单例类似全局变量，在系统任意地方都能访问单例</p>
-  </li>
-  <li>
-    <p>获取单例的规律一般以 default、stand、share开头</p>
-  </li>
-</ul>
+    <p>下面是一些比较好的总结</p>
 
-<blockquote>
-  <p>单例对象<br />
-我们使用一个类获取对象时，多次创建对象或者多次获取对象，得到的都是同一份对象，那么该对象就是 <strong>单例对象</strong> – 同时只存在一个实例对象。<br />
-创建对象时使用的类被称为单例类。</p>
-</blockquote>
-
-<ul>
-  <li>单例对象的特点
     <ul>
-      <li>可以被全局访问</li>
-      <li>不会被释放</li>
-      <li>创建过程只执行1次</li>
+      <li>
+        <p><a href="http://ios.jobbole.com/84684/">Github 上的 iOS 开源项目</a></p>
+      </li>
+      <li>
+        <p><a href="http://mp.weixin.qq.com/s?__biz=MzA4MjI0NjczNQ==&amp;mid=402397098&amp;idx=1&amp;sn=2dc7f592f55bb9af0392367d6e5a8e38&amp;scene=0#wechat_redirect">【资源集合】94个iOS开发资源推荐，帮你加速应用开发</a></p>
+      </li>
     </ul>
   </li>
 </ul>
-
-<h3 id="section-2">2. 单例用处</h3>
-
-<p>根据单例模式的定义，我们知道一般两种情况下使用单例：</p>
-
-<blockquote>
-  <ol>
-    <li>系统中某种对象只能存在一个，多了就会出问题</li>
-  </ol>
-</blockquote>
-
-<blockquote>
-  <ol>
-    <li>系统中某种对象实例只需要一个就够用了，多了占内存</li>
-  </ol>
-</blockquote>
-
-<p>对于第一种情况，我们必须使用单例，对于第二种情况，我们虽然可以不用单例，但是单例是更优的选择</p>
-
-<p>iOS的系统中有很多地方用的都是单例:</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">];</span>
-<span class="lineno">2</span> <span class="p">[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">];</span>
-<span class="lineno">3</span> <span class="p">[</span><span class="bp">NSFileManager</span> <span class="n">defaultManager</span><span class="p">];</span>
-<span class="lineno">4</span> <span class="p">[</span><span class="bp">NSUserDefaults</span> <span class="n">standardUserDefaults</span><span class="p">];</span>
-<span class="lineno">5</span> <span class="p">[</span><span class="bp">NSURLCache</span> <span class="n">sharedURLCache</span><span class="p">];</span>
-<span class="lineno">6</span> <span class="p">[</span><span class="bp">NSHTTPCookieStorage</span> <span class="n">sharedHTTPCookieStorage</span><span class="p">];</span></code></pre></div>
-
-<h2 id="section-3">二、单例的创建</h2>
-
-<p>单例有伪单例和完整的单例之分，一般使用伪单例就足够了 每次都用 sharedDataHandle 创建对象。</p>
-
-<h3 id="section-4">1. 伪单例</h3>
-
-<p>伪单例，可以理解为通过我们特定的方法获取的对象才是单例对象。<br />
-其实现分为两步：<br />
-1、 获取单例对象的方法</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno">1</span> <span class="c1">// 创建单例对象的方法。类方法 </span>
-<span class="lineno">2</span> <span class="c1">// 命名规则： default/standard/shared + 类名</span>
-<span class="lineno">3</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">;</span></code></pre></div>
-
-<p>2、 方法的实现，实现可有下面的三种方式<br />
-#### （1）单线程单例</p>
-
-<p>我们知道对于单例类，我们必须留出一个接口来返回生成的单例，由于一个类中只能有一个实例，所以我们在第一次访问这个实例的时候创建，之后访问直接取已经创建好的实例</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
-<span class="lineno"> 2</span> <span class="c1">//</span>
-<span class="lineno"> 3</span> <span class="c1">// 因为实例是全局的 因此要定义为全局变量，且需要存储在静态区，不释放。不能存储在栈区。</span>
-<span class="lineno"> 4</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-<span class="lineno"> 5</span> <span class="c1">//</span>
-<span class="lineno"> 6</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
-<span class="lineno"> 7</span> 	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">handle</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 8</span> 		<span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DataHandle</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-<span class="lineno"> 9</span> 		    <span class="p">}</span>
-<span class="lineno">10</span> 	<span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
-<span class="lineno">11</span> <span class="p">}</span>
-<span class="lineno">12</span> <span class="k">@end</span></code></pre></div>
-
-<blockquote>
-  <p>备注：严格意义上来说，我们还需要将<code>alloc</code>方法封住，因为严格的单例是不允许再创建其他实例的，而<code>alloc</code>方法可以在外部任意生成实例。但是考虑到<code>alloc</code>属于<code>NSObject</code>，iOS中无法将<code>alloc</code>变成私有方法，最多只能覆盖<code>alloc</code>让其返回空，不过这样做也可能会让使用接口的人误解，造成其他问题。所以我们一般情况下对<code>alloc</code>不做特殊处理。系统的单例也未对<code>alloc</code>做任何处理。理论上对<code>alloc</code>进行处理的单例才算真正意义上完整的单例，下面会有说明的。</p>
-</blockquote>
-
-<h4 id="synchronized-">（2）@synchronized 单例</h4>
-
-<p>对于一个实例，我们一般并不能保证他一定会在单线程模式下使用，所以我们得适配多线程情况。在多线程情况下，上面的单例创建方式可能会出现问题。如果两个线程同时调用<code>sharedDataHandle</code>,可能会创建出2个 handle 来。所以对于多线程情况下，我们需要使用<code>@synchronized</code>来加锁。</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
-<span class="lineno"> 2</span> <span class="c1">//</span>
-<span class="lineno"> 3</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-<span class="lineno"> 4</span> <span class="c1">//</span>
-<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
-<span class="lineno"> 6</span> <span class="c1">//</span>
-<span class="lineno"> 7</span> 	<span class="k">@synchronized</span><span class="p">(</span><span class="nb">self</span><span class="p">){</span>
-<span class="lineno"> 8</span> 		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">handle</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 9</span>             <span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DataHandle</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-<span class="lineno">10</span>          <span class="p">}</span>
-<span class="lineno">11</span>     <span class="p">}</span>
-<span class="lineno">12</span>     <span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
-<span class="lineno">13</span> <span class="p">}</span>
-<span class="lineno">14</span> <span class="k">@end</span></code></pre></div>
-
-<p>这样的话，当多个线程同时调用<code>sharedDataHandle</code>时，由于<code>@synchronized</code>已经加锁，所以只能有一个线程进入创建 handle。这样就解决了多线程下调用单例的问题</p>
-
-<h3 id="dispatchonce">3. dispatch_once单例</h3>
-
-<p>使用<code>@synchronized</code>虽然解决了多线程的问题，但是并不完美。因为只有在handle未创建时，我们加锁才是有必要的。如果handle已经创建.这时候锁不仅没有好处，而且还会影响到程序执行的性能（多个线程执行<code>@synchronized</code>中的代码时，只有一个线程执行，其他线程需要等待）。那么有没有方法既可以解决问题，又不影响性能呢？</p>
-
-<p>这个方法就是GCD中的<code>dispatch_once</code></p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
-<span class="lineno"> 2</span> <span class="c1">//</span>
-<span class="lineno"> 3</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-<span class="lineno"> 4</span> <span class="c1">//</span>
-<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
-<span class="lineno"> 6</span> <span class="c1">//</span>
-<span class="lineno"> 7</span> 	<span class="n">staticdispatch_once_tonceToken</span><span class="p">;</span><span class="c1">//①onceToken = 0;</span>
-<span class="lineno"> 8</span> 	<span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>			
-<span class="lineno"> 9</span> 		<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">onceToken</span><span class="p">);</span><span class="c1">//②onceToken = 140734731430192</span>
-<span class="lineno">10</span> 		<span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DataHandle</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>		
-<span class="lineno">11</span> 	    <span class="p">});</span>
-<span class="lineno">12</span> 	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">onceToken</span><span class="p">);</span> <span class="c1">//③onceToken = -1;</span>
-<span class="lineno">13</span> 	<span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
-<span class="lineno">14</span> <span class="p">}</span>
-<span class="lineno">15</span> <span class="k">@end</span></code></pre></div>
-
-<p><code>dispatch_once</code>为什么能做到既解决同步多线程问题又不影响性能呢？</p>
-
-<p>下面我们来看看<code>dispatch_once</code>的原理：</p>
-
-<p><code>dispatch_once</code>主要是根据onceToken的值来决定怎么去执行代码。</p>
-
-<p>当onceToken= 0时，线程执行<code>dispatch_once</code>的block中代码</p>
-
-<p>当onceToken= -1时，线程跳过<code>dispatch_once</code>的block中代码不执行</p>
-
-<p>当onceToken为其他值时，线程被线程被阻塞，等待onceToken值改变</p>
-
-<p>当线程首先调用<code>shareInstance</code>，某一线程要执行block中的代码时，首先需要改变onceToken的值，再去执行block中的代码。这里onceToken的值变为了 140734731430192。</p>
-
-<p>这样当其他线程再获取onceToken的值时，值已经变为 140734731430192。其他线程被阻塞。</p>
-
-<p>当block线程执行完block之后。onceToken变为-1。其他线程不再阻塞，跳过block。</p>
-
-<p>下次再调用<code>shareInstance</code>时，block已经为-1。直接跳过block。</p>
-
-<p>这样<code>dispatch_once</code>在首次调用时同步阻塞线程，生成单例之后，不再阻塞线程。<code>dispatch_once</code>是创建单例的最优方案</p>
-
-<h3 id="section-5">4. 完整的单例</h3>
-
-<p>单例在应用程序运行期间<strong>只会存在一份</strong>，因此不管是alloc、init 还是 copy，mutableCopy 都应当只有一份实例，由于 alloc 方法内部是调用<code>allocWithZone</code>，重写 <code>allocWithZone</code>，让这个方法生成实例的代码只能运行一次即可。</p>
-
-<p><strong>完整的单例</strong>要做到四个方面：</p>
-
-<ol>
-  <li>为单例对象实现一个静态实例,然后设置成nil，</li>
-  <li>构造方法检查静态实例是否为nil，是则新建并返回一个实例，</li>
-  <li>重写allocWithZone方法，用来保证其他人直接使用alloc和init试图获得一个新实例的时候不会产生一个新实例，</li>
-  <li>适当实现copyWithZone，,retain,retainCount,release和autorelease 等方法</li>
-</ol>
-
-<p>注意： 此处完整的单例在进行方法实现时，略有不同 目的是为了避免死循环，如果 在单例类里面重写了 <code>allocWithZone</code> 方法 ， 在创建单例对象时 使用 <code>[[DataHandle alloc] init]</code> 创建，会死循环，具体如下：</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="k">@implementation</span> <span class="nc">DataHandle</span>
-<span class="lineno"> 2</span> <span class="c1">//</span>
-<span class="lineno"> 3</span> <span class="k">static</span> <span class="n">DataHandle</span> <span class="o">*</span><span class="n">handle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-<span class="lineno"> 4</span> <span class="c1">//</span>
-<span class="lineno"> 5</span> <span class="p">+</span> <span class="p">(</span><span class="n">DataHandle</span> <span class="o">*</span><span class="p">)</span><span class="nf">sharedDataHandle</span><span class="p">{</span>
-<span class="lineno"> 6</span> 	<span class="n">staticdispatch_once_tonceToken</span><span class="p">;</span>
-<span class="lineno"> 7</span> 	<span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>			
-<span class="lineno"> 8</span>            <span class="n">handle</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="nb">nil</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span> <span class="c1">// 避免死循环</span>
-<span class="lineno"> 9</span> 	    <span class="p">});</span>
-<span class="lineno">10</span> 	<span class="k">return</span> <span class="n">handle</span><span class="p">;</span>
-<span class="lineno">11</span> <span class="p">}</span>
-<span class="lineno">12</span> <span class="k">@end</span></code></pre></div>
-
-<p>除了alloc 方法还需要考虑 copy 和 mutableCopy，这两个不需要使用到 alloc 就能得到一个实例，因此也需要重写这两个实例。（需要遵守各自的协议才能实现方法）</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">copy</span>
-<span class="lineno"> 2</span> <span class="p">{</span>
-<span class="lineno"> 3</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
-<span class="lineno"> 4</span> <span class="p">}</span>
-<span class="lineno"> 5</span> <span class="c1">//</span>
-<span class="lineno"> 6</span> <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">mutableCopy</span>
-<span class="lineno"> 7</span> <span class="p">{</span>
-<span class="lineno"> 8</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
-<span class="lineno"> 9</span> <span class="p">}</span>
-<span class="lineno">10</span> <span class="c1">//</span>
-<span class="lineno">11</span> <span class="p">+</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">allocWithZone:</span><span class="p">(</span><span class="k">struct</span> <span class="bp">_NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span>
-<span class="lineno">12</span> <span class="p">{</span>
-<span class="lineno">13</span>     <span class="k">return</span> <span class="p">[</span><span class="n">DataHandle</span> <span class="n">sharedDataHandle</span><span class="p">];</span>
-<span class="lineno">14</span> <span class="p">}</span>
-<span class="lineno">15</span> <span class="c1">//</span>
-<span class="lineno">16</span> <span class="p">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">copyWithZone:</span><span class="p">(</span><span class="k">struct</span> <span class="bp">_NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span>
-<span class="lineno">17</span> <span class="p">{</span>
-<span class="lineno">18</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
-<span class="lineno">19</span> <span class="p">}</span></code></pre></div>
-
-<p>如果是 ARC，单例设计就已经完成，但在 MRC 环境下的时候，还需要做一些额外的事情,因为单例会在应用程序运行时一直存在,因此不需要 retain和 release 操作,而且在 release 之后,如果单例对象被释放掉，由于生成实例的方法只会运行一遍，释放掉之后再运行，返回的实例会是空的，这个并不是预期结果,因此 retain 和 release 方法也都需要重写，另外新需要将 retainCount 方法也重写，以提示这是个特殊的对象。</p>
-
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="lineno"> 1</span> <span class="p">+</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">alloc</span><span class="p">{</span>
-<span class="lineno"> 2</span>     <span class="k">return</span> <span class="p">[</span><span class="n">DataHandle</span> <span class="n">sharedDataHandle</span><span class="p">];</span>
-<span class="lineno"> 3</span> <span class="p">}</span>
-<span class="lineno"> 4</span> <span class="c1">//</span>
-<span class="lineno"> 5</span> <span class="p">-(</span><span class="n">oneway</span> <span class="kt">void</span><span class="p">)</span><span class="nf">release</span><span class="p">{</span>
-<span class="lineno"> 6</span> 	<span class="c1">//nothing</span>
-<span class="lineno"> 7</span> 	<span class="c1">//  因为只有一个实例， 一直不释放，所以不增加引用计数。增加无意义。</span>
-<span class="lineno"> 8</span>  <span class="p">}</span>
-<span class="lineno"> 9</span> <span class="c1">//</span>
-<span class="lineno">10</span> <span class="p">-</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">retain</span><span class="p">{</span>	 
-<span class="lineno">11</span>     <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
-<span class="lineno">12</span> <span class="p">}</span>
-<span class="lineno">13</span> <span class="c1">//</span>
-<span class="lineno">14</span> <span class="p">-</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">autorelease</span><span class="p">{</span>
-<span class="lineno">15</span>    		<span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
-<span class="lineno">16</span> <span class="p">}</span>
-<span class="lineno">17</span> <span class="c1">//</span>
-<span class="lineno">18</span> <span class="p">-</span> <span class="p">(</span><span class="bp">NSUInteger</span><span class="p">)</span><span class="nf">retainCount</span><span class="p">{</span>	    
-<span class="lineno">19</span>     <span class="k">return</span> <span class="n">NSUIntegerMax</span><span class="p">;</span>
-<span class="lineno">20</span> <span class="p">}</span></code></pre></div>
-
-<blockquote>
-  <p><strong>注意</strong>:</p>
-
-  <ul>
-    <li>可以使用宏来抽取单例的代码,但要注意区分 ARC 和 MRC</li>
-    <li><code>if __has_feature(objc_arc)</code> 可判断当前项目的环境是否是ARC</li>
-    <li>单例不可以被继承，由于生成实例的方法只会执行一次，如果有继承，父类跟子类最后都会是一样的实例。</li>
-  </ul>
-</blockquote>
-
-<h2 id="section-6">三、总结：</h2>
-
-<ul>
-  <li>
-    <p>单例模式是一个很好的设计模式，他就像一个全局变量一样，可以让我们在任何地方都使用同一个实例。</p>
-  </li>
-  <li>
-    <p>如果要自己创建单例模式，最好使用<code>dispatch_once</code>方法，这样即可解决多线程问题，又能达到高效的目的</p>
-  </li>
-  <li>
-    <p>单例虽然好用，不过他并不适合继承和扩展，所以使用单例的时候要注意这点。千万不要任何东西都使用单例，要适可而止</p>
-  </li>
-</ul>
-
 
                 </div><!-- End entry content -->
                 <div class="bottom_wrapper"><!-- bottom tags and categories -->
@@ -773,11 +527,7 @@ ds.charset = 'UTF-8';
                     <span><i class="fa fa-tags"></i> Tags</span>
                     
                     
-                    <a href="/tags/#iOS">iOS</a>
-                    
-                    <a href="/tags/#单例">单例</a>
-                    
-                    <a href="/tags/#Objective-C">Objective-C</a>
+                    <a href="/tags/#第三方库">第三方库</a>
                     
                     
                   </div><!-- End Entry tags -->
@@ -785,7 +535,7 @@ ds.charset = 'UTF-8';
                   <div class="entry_tags categories">
                     <span><i class="fa fa-folder-open"></i> Category</span>
                     
-                    <a href="/categories/#iOS基础">iOS基础</a>
+                    <a href="/categories/#3rd-Libraries">3rd-Libraries</a>
                     
                   </div><!-- End Entry categories -->
                 </div><!-- end bottom tags and categories -->
@@ -795,7 +545,7 @@ ds.charset = 'UTF-8';
 <div class="widget_title"><h3>Share this post</h3></div>
 <div class="tb_widget_weibo clearfix">
   <!-- Duoshuo Share Buttons -->
-  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li" data-title="Singleton--单例" data-images="/images/head-800x400/-45.png" data-content="说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html">
+  <div class="ds-share flat" data-thread-key="flinhong/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather" data-title="iOS中第三方库的汇总" data-images="/images/head-800x400/-56.png" data-content="Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。" data-url="http://www.vanbein.com/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">
       <div class="ds-share-inline alignleft">
         <ul  class="ds-share-icons-16">
 
@@ -829,10 +579,10 @@ ds.charset = 'UTF-8';
   <script>
   	window._bd_share_config = {
   		common : {
-  			bdText : 'Singleton--单例',
-  			bdDesc : '说到单例首先要提到单例模式，因为单例模式是单例存在的目的：单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。',
-  			bdUrl : 'http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html',
-  			bdPic : '/images/head-800x400/-45.png'
+  			bdText : 'iOS中第三方库的汇总',
+  			bdDesc : 'Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。',
+  			bdUrl : 'http://www.vanbein.com/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html',
+  			bdPic : '/images/head-800x400/-56.png'
   		},
   		share : [{
   			"bdSize" : 16
@@ -847,10 +597,10 @@ ds.charset = 'UTF-8';
 <!-- Page pagination -->
 <div class="tb_widget_weibo clearfix">
   
-    <a class="alignleft" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi.html"><i class="fa fa-chevron-left"></i> 上一篇：Notification--通知</a>
+    <a class="alignleft" href="/posts/3rd-libraries/2016/04/06/blurView.html"><i class="fa fa-chevron-left"></i> 上一篇：iOS实现模糊效果的几种方法</a>
   
   
-    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/10/nskeyedarchiver-gui-dang.html">下一篇：NSKeyedArchiver--对象归档 <i class="fa fa-chevron-right"></i></a>
+    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html">下一篇：我的Objective-C编码规范 <i class="fa fa-chevron-right"></i></a>
   
 </div>
 </div>
@@ -864,7 +614,7 @@ ds.charset = 'UTF-8';
   </div>
 
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li" data-title="Singleton--单例" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html"></div>
+	<div class="ds-thread" data-thread-key="Vanbein/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather" data-title="iOS中第三方库的汇总" data-url="http://www.vanbein.com/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html"></div>
 <!-- 多说评论框 end -->
 
 
