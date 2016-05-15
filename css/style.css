@@ -1124,8 +1124,10 @@ ul.page-numbers li span.current {
 .full_meta {
     line-height: 40px;
     height: 40px;
-    color: #fff;
-    background-color: #444;
+    color: #989898;
+    /*去掉背景，文字改为灰色*/
+    /*color: #fff;*/
+    /*background-color: #444;*/
     font-size: 12px
 }
 .full_meta span {
@@ -1176,7 +1178,7 @@ ul.page-numbers li span.current {
 }
 .full_meta span.meta_author:before {
     font-size: 12px;
-    margin: 0 5px 0 0;
+    margin: 0 5px 0 5px;
     content: "\f007";
     font-family: "FontAwesome";
     -webkit-transition: all 0.2s;

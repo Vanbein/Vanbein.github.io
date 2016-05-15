@@ -5,8 +5,8 @@
     <description>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</description>
     <link>http://www.vanbein.com/</link>
     <atom:link href="http://www.vanbein.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 22 Apr 2016 17:40:05 +0800</pubDate>
-    <lastBuildDate>Fri, 22 Apr 2016 17:40:05 +0800</lastBuildDate>
+    <pubDate>Sun, 15 May 2016 20:57:13 +0800</pubDate>
+    <lastBuildDate>Sun, 15 May 2016 20:57:13 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -1102,6 +1102,23 @@
         <title>iOS中第三方库的汇总</title>
         <description>&lt;p&gt;Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。&lt;/p&gt;
 
+&lt;h3 id=&quot;ios&quot;&gt;优质的iOS资源&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/vsouza/awesome-ios&quot;&gt;vsouza/awesome-ios&lt;/a&gt;：awesome-ios —— 精选的优质iOS生态系统，包括Objective-C和Swift项目。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/matteocrippa/awesome-swift&quot;&gt;matteocrippa/awesome-swift&lt;/a&gt;：awesome-swift——收集了很多优质的swift资源。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/cjwirth/awesome-ios-ui&quot;&gt;cjwirth/awesome-ios-ui&lt;/a&gt;：awesome-ios-ui——优质iOS UI/UX库精选。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/futurice/ios-good-practices&quot;&gt;futurice/ios-good-practices&lt;/a&gt;：ios-good-practices——为iOS开发者提供灵感，作者是Futurice的开发者们。如果你想找一些iOS的最佳实践以供自己模仿学习，那这些是极好的。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;xcode&quot;&gt;Xcode插件&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -2166,7 +2183,7 @@
     
       <item>
         <title>iOS开发中一些常用的小知识或技巧</title>
-        <description>&lt;p&gt;true本文将记录在学习iOS开发过程中所学到的小知识点，以及一些技巧，会保持更新。&lt;/p&gt;
+        <description>&lt;p&gt;本文将记录在学习iOS开发过程中所学到的小知识点，以及一些技巧，会保持更新。&lt;/p&gt;
 
 &lt;h3 id=&quot;buttonlabel&quot;&gt;1. 将图片设置为圆形，或给button，label等设置圆角&lt;/h3&gt;
 
