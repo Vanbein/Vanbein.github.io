@@ -13,8 +13,8 @@ url: "http://www.vanbein.com"
 markdown: kramdown
 highlighter: rouge 
 kramdown:
-  input:         GFM
-  auto_ids:      true
+  input: GFM
+  syntax_highlighter: rouge
 auto_id_prefix: 'id-'
 safe: true
 

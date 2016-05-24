@@ -13,22 +13,26 @@ toc: true
 NSOperation:是在GCD的基础上进行的一层面向对象的包装.
 
 ### 核心概念:
+
 任务和队列.和GCD基本上是一样的,只不过更加的面向对象.用起来比较爽.
 
 ### NSOperation的作用
+
 * 配合使用NSOperation和NSOperationQueue也能实现多线程编程
 * NSOperation:就是任务
 * NSOperationQueue:就是队列
 
 ### NSOperation的子类
+
 * NSOperation是个抽象类，并不具备封装操作的能力，必须使用它的子类
 
 ### 使用NSOperation子类的方式有3种:
-* ##### 1.NSInvocationOperation,  不常用
 
-	* 第一个参数：目标对象
-	* 第二个参数：该操作要调用的方法，最多接受一个参数
-	* 第三个参数：调用方法传递的参数，如果方法不接受参数，那么该值传nil
+#### 1. NSInvocationOperation,  不常用
+
+* 第一个参数：目标对象
+* 第二个参数：该操作要调用的方法，最多接受一个参数
+* 第三个参数：调用方法传递的参数，如果方法不接受参数，那么该值传nil
 
 {% highlight objc linenos %}
  //1.封装任务
@@ -49,7 +53,7 @@ NSOperation:是在GCD的基础上进行的一层面向对象的包装.
 }
 {% endhighlight %}
 
-* ##### 2.NSBlockOperation,
+#### 2. NSBlockOperation,
 
 NSBlockOperation提供了一个类方法，在该类方法中封装操作
 
@@ -68,12 +72,14 @@ NSBlockOperation提供了一个类方法，在该类方法中封装操作
   }];
   //3.启动任务
   [op1 start];
- {% endhighlight %}
-> #### 注意:
+{% endhighlight %}
+
+> **注意:**
+> 
 > 默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作,只有将NSOperation放到一个NSOperationQueue中，才会异步执行操作
 
 
-* ##### 3.自定义NSOperation
+#### 3. 自定义NSOperation
 
 **自定义NSOperation的步骤:**
 
@@ -87,11 +93,10 @@ NSBlockOperation提供了一个类方法，在该类方法中封装操作
   //自定义任务的好处: 提高代码的复用性
  YFYOperation *op1 = [[YFYOperation alloc] init];
  YFYOperation *op2 = [[YFYOperation alloc] init];
-//
   //3.添加任务到队列
  [queue addOperation:op1];
  [queue addOperation:op2];
- {% endhighlight %}
+{% endhighlight %}
  
 * 重写 `- (void)main` 方法的注意点:
 	* 自己创建自动释放池（因为如果是异步操作，无法访问主线程的自动释 放池）
@@ -172,6 +177,7 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 {% endhighlight %}
 
 ### 最大并发数
+
 **什么是并发数?**
 
 * 同时执行的任务数,比如，同时开3个线程执行3个任务，并发数就是3

@@ -11,7 +11,8 @@ Sometimes, you can visit with **https**, but the Google fonts cannot be loaded a
 
 *  This jekyll theme was designed by [Frank Lin](github.com/flinhong/flinhong.github.io). 
 
-* I am updating this blog theme that meet my needs, so these files aren't suitable for you to create your own blog.
+* I am updating this blog theme that meet my needs, so these files aren't suitable for you to create your own blog. You can get more information form [这个Blog网站的搭建过程](http://www.vanbein.com/posts/jekyll/2016/03/09/blog/)
+
 
 * Please go to [flinhong-demo1](https://coding.net/u/flinhong/p/Jekyll-Demo1/git) to download the 'Jekyll' files. Or go to [demo1.flinhong.com](http://demo1.flinhong.com) to preview the theme.
 
