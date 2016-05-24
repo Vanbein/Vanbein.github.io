@@ -18,7 +18,7 @@ kramdown:
 auto_id_prefix: 'id-'
 safe: true
 
-permalink: /posts/:categories/:year/:month/:day/:title/
+permalink: /posts/:categories/:year/:month/:day/:title.html
 
 # pretty # YYYY/MM/DD/page-title/index.html
 

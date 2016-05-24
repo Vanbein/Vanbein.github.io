@@ -2,14 +2,14 @@
 <html>
 <head>
   
-  <title>Vanbein's Blog</title>
+  <title>Notification--通知 - Vanbein's Blog</title>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Post Propertites -->
-  <link rel="canonical" href="http://www.vanbein.com/">
-  <meta name="description" content="This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.">
+  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi.html">
+  <meta name="description" content="Notification(通知)是iOS系统下重要的消息传递机制之一，通知封装了诸如窗口获得焦点、网络连接关闭等事件信息，通知的内容可按照我们实际的需求来定制。在实际开发中或多或少都会接触到。">
   <meta name="author" content="Vanbein">
 
   <!-- Webmaster tools verification -->
@@ -128,14 +128,14 @@ $.get("http://ipinfo.io", function (response) {
       var screenWidth = jWindow.width();
       var postHeight = $('#post_content').height() + 150;
       var footerHeight = $('#footer').height();
-      if(scrollHeight > 1200 && screenWidth > 1200){
-        $('#fixed_search').css({
+      if(scrollHeight > 650 && scrollHeight < postHeight && screenWidth > 1200){
+        $('#fixtoc').css({
           'position':'fixed',
           'top':'75px',
           'z-index': '0'
         });
       }else{
-        $('#fixed_search').css({
+        $('#fixtoc').css({
           'position':'static'
         });
       }
@@ -148,6 +148,7 @@ $.get("http://ipinfo.io", function (response) {
       jWindow.trigger('scroll');
     });
     </script>
+
     
     <!-- End postion detection -->
 
@@ -474,349 +475,204 @@ ds.charset = 'UTF-8';
 
       <!-- Section -->
       <section>
-        <div class="container">
-          <div class="row">
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
             <!-- Main content -->
             <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <!--<span class="meta_format"><i class="fa fa-file-text"></i></span>-->
+                  <span class="meta_author">Vanbein</span>
+                  <span class="meta_date">12/09/2015</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>Objective-C</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">Notification--通知</h1><!-- End Entry title -->
+                  <p>Notification(通知)是iOS系统下重要的消息传递机制之一，通知封装了诸如窗口获得焦点、网络连接关闭等事件信息，通知的内容可按照我们实际的需求来定制。在实际开发中或多或少都会接触到。</p>
 
-              <!---->
+<h2 id="section">一、概览</h2>
+<p>在对象间进行信息传递的标准方式就是消息(一个对象调起另一对象的方法)。这就要求发送消息的对象必须知道接收者是谁，消息的响应者是谁。在iOS系统下，通过广播机制来达到这个目的，对象向通知中心<code class="highlighter-rouge">NSNotificationCenter</code>投递一个通知，由通知中心将其收到的通知分发给“感兴趣”的接收者。通知中心的原理非常符合设计模式中的观察者(Observer）模式。</p>
 
-              <!-- Panel title -->
-<!--<div class="panel_title">
-  <div>
-    <h4><a href="/categories/#Media">Music & Video</a></h4>
+<p><code class="highlighter-rouge">NSNotificationCenter</code> 与 <code class="highlighter-rouge">Delegate</code> 类似，都属于对象之间通信的手段，但也存在不同，开发者需要根据具体应用场景选择恰当的通信方式。不同点在于：</p>
+
+<ul>
+  <li>
+    <p>Delegate通常是对象一对一的通信，耦合性高，而通知可以是一对多个对象，并且不再需要返回值，耦合性相对较低。</p>
+  </li>
+  <li>
+    <p>对象可以从通知中心中接收任意个它感兴趣的通知，而不像代理只能接收预设的方法。</p>
+  </li>
+  <li>
+    <p>发送通知的对象甚至不知道（也许不想知道）通知消息响应者们（Observers）的存在。</p>
+  </li>
+</ul>
+
+<h2 id="section-1">二、通知</h2>
+
+<p>通知<code class="highlighter-rouge">NSNotification</code>结构中主要包括：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>  <span class="c1">// 通知的标识名称(一般为常量字符串)
+</span><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">id</span> <span class="n">object</span><span class="p">;</span>  <span class="c1">// 任意想要携带的对象，通常为发送者自己
+</span><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">userInfo</span><span class="p">;</span> <span class="o">//</span> <span class="err">关于通知的附加信息</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h2 id="section-2">三、通知中心</h2>
+<p>Cocoa框架中包括两种通知中心：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="n">NSNotificationCenter</span> <span class="err">单进程通知管理</span>
+<span class="n">NSDistributedNotificationCenter</span> <span class="err">一台机器中多个进程的通知管理</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="nsnotificationcenter">NSNotificationCenter</h3>
+<p>每个进程都包含一个默认的通知中心，通过［NSNotificationCenter defaultCenter］获取，需要注意的是：</p>
+
+<ol>
+  <li>通知中心分发给观察者处理采用同步机制，也就是说，当某一对象发送一个通知时，会一直阻塞在发送方法内，直到通知中心将该通知分发给所有观察者并且全部成功处理返回后，发送者才能执行其所在线程内的后续代码。如果需要异步发送通知，可以使用文章后面的“通知队列”。</li>
+  <li>在多线程的应用程序中，通知总是在发送的线程中传送，这个线程可能不同于观察者注册所在的线程。</li>
+</ol>
+
+<p><strong>发送通知方法：</strong></p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">postNotification</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">postNotificationName</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">postNotificationName</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">anObject</span> <span class="nf">userInfo</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">aUserInfo</span><span class="p">;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p><strong>注册通知方法:</strong></p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addObserver</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">observer</span> <span class="nf">selector</span><span class="p">:(</span><span class="n">SEL</span><span class="p">)</span><span class="nv">aSelector</span> <span class="nf">name</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>注意到<code class="highlighter-rouge">addObserver:selector:name:object:</code>不仅指定一个观察者，指定通知中心发送给观察者的消息，还有接收通知的名字，以及指定的对象。一般来说需要指定name和object，但如果仅仅指定了一个object，观察者将收到该对象的所有通知。例如代码中name为nil,那么观察者将接收到object对象的所有消息，但是确定不了接收这些消息的顺序。如果指定了一个通知名称，观察者将只收到它每次发出的通知。例如，上面的代码中object为nil，那么客户对象（self）将收到任何对象发出的通知。如果既没有指定指定object，也没有指定name，那么该观察者将收到所有对象的所有消息。</p>
+
+<p><strong>移除通知方法</strong></p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeObserver</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">observer</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeObserver</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">observer</span> <span class="nf">name</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aName</span> <span class="nf">object</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">id</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>其中，<code class="highlighter-rouge">removeObserver:</code>是删除通知中心保存的调度表一个观察者的所有入口，而<code class="highlighter-rouge">removeObserver:name:object:</code>是删除匹配了通知中心保存的调度表中观察者的一个入口。</p>
+
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#Objective-C">Objective-C</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS基础">iOS基础</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi" data-title="Notification--通知" data-images="/images/head-800x400/-46.png" data-content="Notification(通知)是iOS系统下重要的消息传递机制之一，通知封装了诸如窗口获得焦点、网络连接关闭等事件信息，通知的内容可按照我们实际的需求来定制。在实际开发中或多或少都会接触到。" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi.html">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
   </div>
-</div><!-- End Panel title -->
-<!-- Layout post 1 -->
-<!--<div class="row">
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : 'Notification--通知',
+  			bdDesc : 'Notification(通知)是iOS系统下重要的消息传递机制之一，通知封装了诸如窗口获得焦点、网络连接关闭等事件信息，通知的内容可按照我们实际的需求来定制。在实际开发中或多或少都会接触到。',
+  			bdUrl : 'http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi.html',
+  			bdPic : '/images/head-800x400/-46.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
   
-</div><!-- End Layout post 1 -->
-<!-- Panel title -->
-<div class="panel_title">
-  <div>
-    <h4><a href="/blog">Recent Posts</a></h4>
+    <a class="alignleft" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/kvc-slash-kvoli-jie.html"><i class="fa fa-chevron-left"></i> 上一篇：KVC/KVO理解</a>
+  
+  
+    <a class="alignright" href="/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/singleton-dan-li.html">下一篇：Singleton--单例 <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
   </div>
-</div><!-- End Panel title -->
-<!-- Layout post 2 -->
-<div class="row">
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi" data-title="Notification--通知" data-url="http://www.vanbein.com/posts/ios%E5%9F%BA%E7%A1%80/2015/12/09/notification-tong-zhi.html"></div>
+<!-- 多说评论框 end -->
 
 
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html"><img src="/images/head-800x400/-57.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#iOS高级">iOS高级</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html">iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中</a></h4>
-            <p>最近有需要从 iOS 系统的音乐库里面拷贝歌曲到 APP 的 Documents 目录下进行共享使用，于是总结一下使用的方法。其中使用了 MPMediaQuery 来获得音乐文件的信息，比如歌手、专辑名、专辑封面、时长、 ASSetURL 地址等，然后通过 ASSetURL 地址使用 AVAssetExportSession 导出其数据。 [<a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">04/20/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
+</div><!-- End Comments -->
 
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/code/2016/04/19/A-Loading-Animation.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/code/2016/04/19/A-Loading-Animation.html"><img src="/images/head-800x400/-11.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#Code">Code</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/code/2016/04/19/A-Loading-Animation" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/code/2016/04/19/A-Loading-Animation.html">一个简单的 loading 动画</a></h4>
-            <p>使用 Core Animation 实现的一个简单的 loading 动画。 [<a href="/posts/code/2016/04/19/A-Loading-Animation.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">04/19/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html"><img src="/images/head-800x400/-55.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#iOS基础">iOS基础</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html">我的Objective-C编码规范</a></h4>
-            <p>这是我根据网络上的一些编码规范，配合自己的偏好，总结的Objective-C编码规范 [<a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">04/18/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/3rd-libraries/2016/04/06/blurView.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/3rd-libraries/2016/04/06/blurView.html"><img src="/images/head-800x400/-54.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#3rd-Libraries">3rd-Libraries</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/3rd-libraries/2016/04/06/blurView" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/3rd-libraries/2016/04/06/blurView.html">iOS实现模糊效果的几种方法</a></h4>
-            <p>iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。 [<a href="/posts/3rd-libraries/2016/04/06/blurView.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">04/06/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html"><img src="/images/head-800x400/-56.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#3rd-Libraries">3rd-Libraries</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">iOS中第三方库的汇总</a></h4>
-            <p>Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。 [<a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">04/06/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html"><img src="/images/head-800x400/-52.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#iOS高级">iOS高级</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">我的iOS开发技能树</a></h4>
-            <p>iOS开发工程师的职业图谱！路漫漫其修远兮，吾将上下而求索。 [<a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">03/25/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html"><img src="/images/head-800x400/-19.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#Tips">Tips</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/tips/2016/03/21/xcode-acceleratorKey" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Xcode基础快捷键 -- 提高你的编码速率</a></h4>
-            <p>在 Xcode 中有许多快捷键，它可以使得我们的编码工作更为高效，对于在代码文件中快速导航、定位Bug以及新增应用特性都是极有效的。 [<a href="/posts/tips/2016/03/21/xcode-acceleratorKey.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">03/21/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html"><img src="/images/head-800x400/-26.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#Tips">Tips</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/tips/2016/03/18/chang-yong-de-ji-qiao" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">iOS开发中一些常用的小知识或技巧</a></h4>
-            <p>本文将记录在学习iOS开发过程中所学到的小知识点，以及一些技巧，会保持更新。 [<a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">03/18/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/jekyll/2016/03/09/blog.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/jekyll/2016/03/09/blog.html"><img src="/images/head-800x400/-24.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#Jekyll">Jekyll</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/jekyll/2016/03/09/blog" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/jekyll/2016/03/09/blog.html">这个Blog网站的搭建过程</a></h4>
-            <p>之前我使用了Github + Octopress搭建了自己的blog，折腾一段时间后觉得可能使用Github + Jekyll 更好，碰巧又遇到了一个自己喜爱的主题，所以就果断的迁移了过来。这儿也非常感谢林宏开源的主题！ [<a href="/posts/jekyll/2016/03/09/blog.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">03/09/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-
-<div class="col col_12_of_12">
-    <!-- Layout post 1 -->
-    <div class="layout_post_2 clearfix">
-        <div class="item_thumb">
-            
-            <div class="thumb_icon">
-                <a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html" jQuery><i class="fa fa-copy"></i></a>
-            </div>
-            <div class="thumb_hover">
-                <a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html"><img src="/images/head-800x400/-13.png" alt="Post" class="visible animated"></a>
-            </div>
-            
-            
-            <div class="thumb_meta">
-                <span class="category" jQuery><a href="/categories/#iOS进阶">iOS进阶</a></span>
-                <span class="comments"><span class="ds-thread-count" data-thread-key="flinhong/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug" data-count-type="comments"></span></span>
-            </div>
-        </div>
-        <div class="item_content">
-            <h4><a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html">Xcode常用的Debug调试技巧总结</a></h4>
-            <p>本文主要记录下Xcode结合LLDB调试命令以及OBJC运行时的调试技巧，不定期更新. [<a href="/posts/ios%E8%BF%9B%E9%98%B6/2016/02/26/xcode-debug.html">Read More...</a>]</p>
-            <div class="item_meta clearfix">
-                <span class="meta_date">02/26/2016</span>
-                <span class="meta_author"><a href="#">Vanbein</a></span>
-            </div>
-        </div>
-    </div><!-- End Layout post 1 -->
-</div>
-
-
-</div><!-- End Layout post 2 -->
-
-            </div>
-            <!-- End Main content -->
+            </div><!-- Main content End -->
             <!-- Sidebar -->
 <div class="col col_3_of_12">
   <!-- Widget Search widget -->
+  <div id="fixed_search">
   <div class="widget">
     <div class="widget_title"><h3>Search widget</h3></div>
     <div class="tb_widget_search">
@@ -826,7 +682,10 @@ ds.charset = 'UTF-8';
       </form>
     </div>
   </div><!-- End Widget Search widget -->
-  <!-- Widget Social widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
 <div class="widget" id="socialize">
   <div class="widget_title"><h3>Socialize</h3></div>
   <div class="tb_widget_socialize clearfix">
@@ -850,21 +709,7 @@ ds.charset = 'UTF-8';
   </div>
 </div><!-- End Widget Social widget -->
 
-  <!-- Widget Weibo-->
-<div class="widget">
-<div class="widget_title"><h3>Recent Weibo</h3></div>
-<div class="tb_widget_weibo clearfix">
-<iframe width="100%" height="400" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=2491417605&verifier=bad874a2&dpc=1"></iframe>
-</div>
-</div><!-- End Widget Weibo -->
-
-  <!-- Recent Comments -->
-<div class="widget">
-  <div class="widget_title"><h3>Recent Comments</h3></div>
-    	<div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
-</div>
-
-  <div class="widget">
+    <div class="widget">
   <div class="widget_title"><h3>Tags</h3></div>
   <div class="tb_widget_tagcloud clearfix">
     
@@ -922,14 +767,22 @@ ds.charset = 'UTF-8';
 </div>
 <!-- End Tags -->
 
-  <!---->
+    <!-- Toc -->
+<div class="widget">
+  <div id="fixtoc">
+    <div id="toc"></div>
+    <!-- Related to the end of js.html -->
+  </div>
+</div>
+<!-- End Toc -->
+
+  
+
 </div><!-- End Sidebar -->
 
-          </div>
-        </div>
-        <!-- End Container -->
-      </section>
-      <!-- End Section -->
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
       <!-- Footer -->
 <footer id="footer">
 <div class="container">
@@ -1046,8 +899,7 @@ ds.charset = 'UTF-8';
 </footer><!-- End Footer -->
 <a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
-    </div>
-    <!-- End Wrapper -->
+    </div><!-- Wrapper End -->
     <!-- Scripts -->
 <script type="text/javascript" src="/js/jqueryscript.min.js"></script>
 <script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
@@ -1060,6 +912,17 @@ ds.charset = 'UTF-8';
 <script type="text/javascript" src="/js/init.js"></script>
 <!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
 
+
+<script type="text/javascript" src="/js/toc.js"></script>
+<script>
+$(document).ready(function() {
+  // $('#toc').toc();
+  // $('#toc').toc({ noBackToTopLinks: true });
+  $('#toc').toc({ headers: '.entry_content h1, .entry_content h2, .entry_content h3, .entry_content h4, .entry_content h5, .entry_content h6'});
+  // $('#').sticky();
+  // $("#post_side_widget").stick_in_parent();
+});
+</script>
 
 
   </body>
