@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      {% include header.html %}
+
+      <!-- Section -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+
+              <!--{% include slider-home.html %}-->
+
+              {% include recent-posts-home.html %}
+            </div>
+            <!-- End Main content -->
+            {% include indexsidebar.html %}
+          </div>
+        </div>
+        <!-- End Container -->
+      </section>
+      <!-- End Section -->
+      {% include footer.html %}
+    </div>
+    <!-- End Wrapper -->
+    {% include js.html %}
+  </body>
+</html>

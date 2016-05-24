@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>我的iOS开发技能树 - Vanbein's Blog</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Post Propertites -->
+  <link rel="canonical" href="http://www.vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap/">
+  <meta name="description" content="iOS开发工程师的职业图谱！路漫漫其修远兮，吾将上下而求索。">
+  <meta name="author" content="Vanbein">
+
+  <!-- Webmaster tools verification -->
+  <!--<meta name="google-site-verification" content="wc5yltpwXh2yCl_FDs1tTZZjKNSjv472zn_UxO6vKUQ" />
+  <meta name="baidu-site-verification" content="UuLhUp8nxE" />
+  <meta name="msvalidate.01" content="1A07987F97E9CB54E6658A930023D60C" />
+  <meta name="360-site-verification" content="42ac234ae1fbbfd83c7005d6cf38601d" />-->
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/weather.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" type="text/css" media="(max-width:768px)" href="/css/responsive-0.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:769px) and (max-width:992px)" href="/css/responsive-768.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:993px) and (max-width:1200px)" href="/css/responsive-992.css">
+  <link rel="stylesheet" type="text/css" media="(min-width:1201px)" href="/css/responsive-1200.css">
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper" class="wide">
+      <!-- Header -->
+<header id="header" role="banner">
+<!-- Header meta -->
+<div class="header_meta" class="sticky header_meta">
+  <div class="container">
+
+    <!-- Weather -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region);
+    $("#details").html(JSON.stringify(response, null, 4));
+    $("#city").html(response.city + ", " + response.country);
+    $("#loc").html(response.loc);
+    var result = response.loc.split(",");
+    var lat = result[0];
+    var lon = result[1];
+    document.getElementById('city').value = response.city;
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=6fe49f5ee6dd7ff81e5bc5404d93920b", function (wdata) {
+      var temp = (wdata.main.temp);
+      var weather = (wdata.weather[0].main);
+      $("#temp").html(temp + "°C");
+    });
+
+}, "jsonp");
+</script>
+
+<div class="weather_forecast">
+  <i class="wi wi-day-cloudy"></i>
+  <span class="city" id="city"></span>
+  <span class="temp" id="temp"></span>
+</div><!-- End Weather forecast -->
+
+
+    <!-- Scroll Up -->
+    <script>
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(200); // Fade in the arrow
+            }
+            else {
+                $('#return-to-top').fadeOut(200); // Else fade out the arrow
+            }
+        });
+        $('#return-to-top').click(function () { // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0 // Scroll to top of body
+            }, 500);
+        });
+    });
+    </script>
+    <!-- Scroll Up End -->
+
+    <!-- Position detection -->
+    
+    <script>
+    var jWindow = $(window);
+    jWindow.scroll(function(){
+      var scrollHeight = jWindow.scrollTop();
+      var screenHeight = jWindow.height();
+      var screenWidth = jWindow.width();
+      var postHeight = $('#post_content').height() + 150;
+      var footerHeight = $('#footer').height();
+      if(scrollHeight > 650 && scrollHeight < postHeight && screenWidth > 1200){
+        $('#fixtoc').css({
+          'position':'fixed',
+          'top':'75px',
+          'z-index': '0'
+        });
+      }else{
+        $('#fixtoc').css({
+          'position':'static'
+        });
+      }
+    });
+
+    window.onload = function(){
+      jWindow.trigger('scroll');
+    };
+    jWindow.resize(function(){
+      jWindow.trigger('scroll');
+    });
+    </script>
+
+    
+    <!-- End postion detection -->
+
+    <!-- Top menu -->
+    <nav class="top_navigation" role="navigation">
+      <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/posts/">Archives</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav><!-- End Top menu -->
+  </div>
+</div><!-- End Header meta -->
+<!-- Header main -->
+<div id="header_main" class="sticky header_main">
+    <div class="container">
+        <!-- Logo -->
+        <div class="site_brand">
+            <h1 id="site_title"><a href="/">Vanbein's <span>Blog</span></a></h1>
+            <h2 id="site_description">A plant may produce new flowers, man is young but once.</h2>
+        </div><!-- End Logo -->
+        <!-- Site navigation -->
+        <nav class="site_navigation" role="navigation">
+          <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <!--<li><a href="/categories/">Categories</a></li>-->
+            <li><a href="/posts/">Archives</a></li>
+            <li class="menu-item-has-children has_dt_mega_menu"><a href="/">Widget Menu</a>
+  <span class="site_sub_menu_toggle"></span>
+  <ul class="dt_mega_menu" jQuery>
+    <li>
+      <!-- Timeline widet -->
+<div class="widget">
+  <div class="widget_title"><h3>Timeline</h3></div>
+  <div class="tb_widget_timeline clearfix">
+    
+      <!-- Article -->
+      <article>
+        <span class="date">04/06/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/3rd-libraries/2016/04/06/blurView/">iOS实现模糊效果的几种方法</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">04/06/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather/">iOS中第三方库的汇总</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/25/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap/">我的iOS开发技能树</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/21/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/21/xcode-acceleratorKey/">Xcode基础快捷键 -- 提高你的编码速率</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/18/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/tips/2016/03/18/chang-yong-de-ji-qiao/">iOS开发中一些常用的小知识或技巧</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+      <!-- Article -->
+      <article>
+        <span class="date">03/09/2016</span>
+        <span class="time">Vanbein</span>
+        <div class="timeline_content">
+          <i class="fa fa-clock-o" jQuery></i>
+          <h3><a href="/posts/jekyll/2016/03/09/blog/">这个Blog网站的搭建过程</a></h3>
+        </div>
+      </article><!-- End Article -->
+    
+  </div>
+</div><!-- End Timeline widet -->
+
+      <!-- Recent posts -->
+<div class="widget">
+  <div class="widget_title"><h3>Recent posts</h3></div>
+  <div class="tb_widget_recent_list clearfix">
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod/" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod/"><img src="/images/head-800x400/-57.png" alt="iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod/">iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 20, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod/">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/code/2016/04/19/A-Loading-Animation/" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/code/2016/04/19/A-Loading-Animation/"><img src="/images/head-800x400/-11.png" alt="一个简单的 loading 动画"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/code/2016/04/19/A-Loading-Animation/">一个简单的 loading 动画</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 19, 2016</span>
+            <span class="meta_author"><a href="/posts/code/2016/04/19/A-Loading-Animation/">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards/" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards/"><img src="/images/head-800x400/-55.png" alt="我的Objective-C编码规范"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards/">我的Objective-C编码规范</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 18, 2016</span>
+            <span class="meta_author"><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards/">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb">
+        <div class="thumb_icon">
+          <a href="/posts/3rd-libraries/2016/04/06/blurView/" jQuery><i class="fa fa-copy"></i></a>
+        </div>
+        
+        <div class="thumb_hover">
+          <a href="/posts/3rd-libraries/2016/04/06/blurView/"><img src="/images/head-800x400/-54.png" alt="iOS实现模糊效果的几种方法"></a>
+        </div>
+        
+      </div>
+      <div class="item_content">
+        <h4><a href="/posts/3rd-libraries/2016/04/06/blurView/">iOS实现模糊效果的几种方法</a></h4>
+        <div class="item_meta clearfix">
+            <span class="meta_date">Apr 6, 2016</span>
+            <span class="meta_author"><a href="/posts/3rd-libraries/2016/04/06/blurView/">Vanbein</a></span>
+        </div>
+      </div>
+    </div><!-- End Post item -->
+    
+  </div>
+</div><!-- End Recent posts -->
+
+      <!-- Category widget -->
+<div class="widget">
+  <div class="widget_title"><h3>Catgory</h3></div>
+  <div class="tb_widget_categories">
+    <ul>
+      
+      <li><a href="/categories/#Jekyll">Jekyll</a> (6)</li>
+      
+      <li><a href="/categories/#iOS基础">iOS基础</a> (23)</li>
+      
+      <li><a href="/categories/#iOS进阶">iOS进阶</a> (15)</li>
+      
+      <li><a href="/categories/#Tips">Tips</a> (4)</li>
+      
+      <li><a href="/categories/#iOS高级">iOS高级</a> (2)</li>
+      
+      <li><a href="/categories/#3rd-Libraries">3rd-Libraries</a> (2)</li>
+      
+      <li><a href="/categories/#Code">Code</a> (1)</li>
+      
+    </ul>
+  </div>
+</div><!-- End Category widget -->
+
+      <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#runtime">runtime</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#第三方库">第三方库</a>
+    
+    <a href="/tags/#Blur">Blur</a>
+    
+    <a href="/tags/#iPod">iPod</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    </li>
+  </ul>
+</li>
+
+          </ul>
+        </nav><!-- End Site navigation -->
+    </div>
+</div><!-- End Header main -->
+
+
+
+<!-- 多说 Duoshuo JS -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"vanbein"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0]
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+
+</header><!-- End Header -->
+
+
+      <!-- Section -->
+      <section>
+        <div class="container"><!-- container -->
+          <div class="row"><!--  row -->
+            <!-- Main content -->
+            <div class="col col_9_of_12">
+              <!-- Post -->
+              <article class="post" id="post_content">
+                <!-- Full meta -->
+                <div class="full_meta clearfix">
+                  <!--<span class="meta_format"><i class="fa fa-file-text"></i></span>-->
+                  <span class="meta_author">Vanbein</span>
+                  <span class="meta_date">03/25/2016</span>
+                  
+                  <span class="meta_tags"> <u>iOS</u> <u>SkillMap</u> 
+                  
+                </div><!-- End Full meta -->
+                <!-- Entry content -->
+                <div class="entry_content">
+                  <!-- Entry title -->
+                  <h1 class="entry_title">我的iOS开发技能树</h1><!-- End Entry title -->
+                  <blockquote>
+  <p>说明</p>
+
+  <ul>
+    <li><strong>难度等级：</strong>R1-R5, 对应关系：零基础(R1)、简单(R2)、一般(R3)、困难(R4)、非常困难(R5)</li>
+    <li><strong>达到程度：</strong>P1-P5, 对应关系：了解(P1)、熟悉(P2)、掌握(P3)、精通(P4)、专家(P5)</li>
+  </ul>
+</blockquote>
+
+<p>职业图谱</p>
+
+<h2 id="r3p2">一、理论基础(R3,P2)</h2>
+
+<h3 id="r4p3">1、数据结构(R4,P3)</h3>
+
+<h3 id="r4p3-1">2、算法(R4,P3)</h3>
+
+<h2 id="r3p2-1">二、编程语言(R3,P2)</h2>
+
+<h3 id="objective-cr3p3">1、Objective-C基础(R3,P3)</h3>
+
+<ol>
+  <li>
+    <p>Objective-C基本语法(R2,P4)</p>
+
+    <ul>
+      <li>变量(R2,P4)</li>
+      <li>常量(R2,P4)</li>
+      <li>数据类型(R2,P4)</li>
+      <li>运算符和表达式(R2,P4)</li>
+      <li>判断(R2,P4)</li>
+      <li>循环(R2,P4)</li>
+      <li><a href="http://www.vanbein.com/posts/objective-c/2016/04/18/Objective-C-Coding-Standards.html">Objective-C编码规范</a>(R2,P4)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Objective-C语法进阶(R3,P3)</p>
+
+    <ul>
+      <li>
+        <p>类和对象(R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/08/propertyshu-xing-xiu-shi-fu-zong-jie.html">属性和变量</a>(R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/16/objective-cde-ji-cheng-he-duo-tai.html">继承和多态</a>(R3,P3)</p>
+      </li>
+      <li>
+        <p>动态绑定(R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/09/block-block.html">block块</a>(R3,P3)</p>
+      </li>
+      <li>
+        <p>异常处理(R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/07/category.html">Category类别</a>(R3,P3)</p>
+      </li>
+      <li>
+        <p>Extension扩展(R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/07/protocol-xie-yi.html">Protocol协议</a> (R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/09/singleton-dan-li.html">Singleton单例</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Objective-C高级语法(R4,P2)</p>
+
+    <ul>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/09/kvc-slash-kvoli-jie.html">KVC/KVO</a>(R4,P2)</p>
+
+        <ul>
+          <li><a href="http://www.vanbein.com/posts/ios进阶/2016/02/22/%5B%3F%5D-xie-bu-wei-ren-zhi-de-kvcji-qiao.html">KVC的一些冷门小技巧</a></li>
+        </ul>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/09/notification-tong-zhi.html">Notification</a>(R4,P2)</p>
+      </li>
+      <li>
+        <p>引用计数与ARC(R4,P2)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/11/27/nei-cun-guan-li.html">内存管理</a>(R4,P4)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/22/duo-xian-cheng-ru-men.html">多线程</a>(R4,P3)</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Objective-C Foundation框架(R3,P3)</p>
+
+    <ul>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsstring">NSString</a>(R3,P4)</p>
+
+        <ul>
+          <li><a href="http://www.vanbein.com/posts/ios基础/2015/12/17/nsstringshu-xing-shi-yao-shi-hou-yong-copy,shi-yao-shi-hou-yong-strong.html">NSString属性什么时候用copy，什么时候用strong?</a></li>
+        </ul>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsarray">NSArray</a>(R3,P4)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdictionary">NSDictionary</a>(R3,P4)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsnumber">NSNumber</a>(R3,P3)</p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2015/11/25/nsstring.html#nsdate">NSDate</a></p>
+      </li>
+      <li>
+        <p>NSSet(R3,P2)</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="swiftr2p2">2、Swift基础(R2,P2)</h3>
+
+<ol>
+  <li>Swift基本语法(R2,P2)
+    <ul>
+      <li>变量(R2,P2)</li>
+      <li>常量(R2,P2)</li>
+      <li>数据类型(R2,P2)</li>
+      <li>判断(R2,P2)</li>
+      <li>循环(R2,P2)</li>
+      <li>Swift编码规范(R2,P2)</li>
+    </ul>
+  </li>
+  <li>Swift语法进阶(R3,P2)
+    <ul>
+      <li>Swift字符串(R3,P2)</li>
+      <li>数组(R3,P2)</li>
+      <li>字典(R3,P2)</li>
+      <li>元组(R3,P2)</li>
+      <li>函数(R3,P2)</li>
+      <li>可选型optionals(R3,P2)</li>
+      <li>枚举(R3,P2)</li>
+      <li>闭包 (R3,P2)</li>
+    </ul>
+  </li>
+  <li>Swift高级语法(R4,P1)
+    <ul>
+      <li>Swift和Objective-C混合编程(R3,P1)</li>
+      <li>Swift源码(R5,P1)</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="iosr2p3">三、iOS开发基础(R2,P3)</h2>
+
+<h3 id="iosr2p3-1">1、iOS基础(R2,P3)</h3>
+
+<ul>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/28/uiapplication,-uiviewsheng-ming-zhou-qi-xiang-guan.html">iOS生命周期</a>(R3,P3)</p>
+  </li>
+  <li>
+    <p>事件与消息(R3,P3)</p>
+  </li>
+  <li>
+    <p>模拟器(R2,P2)</p>
+  </li>
+  <li>
+    <p>真机调试(R2,P2)</p>
+  </li>
+</ul>
+
+<h3 id="uir2p4">2、UI控件(R2,P4)</h3>
+
+<ul>
+  <li>
+    <p>Button(R2,P4)</p>
+  </li>
+  <li>
+    <p>Label(R2,P4)</p>
+  </li>
+  <li>
+    <p>ImageView(R2,P4)</p>
+  </li>
+  <li>
+    <p>ScrollView(R2,P4)</p>
+  </li>
+  <li>
+    <p>TableView(R4,P4)</p>
+  </li>
+  <li>
+    <p>CollectionView(R4,P3)</p>
+  </li>
+  <li>
+    <p>TextView</p>
+  </li>
+  <li>
+    <p>UIWebView</p>
+  </li>
+  <li>
+    <p>UINavigationBar</p>
+  </li>
+  <li>
+    <p>UITabBar</p>
+  </li>
+  <li>
+    <p>自定义控件(R4,P2)</p>
+  </li>
+</ul>
+
+<h3 id="r3p3">3、界面布局(R3,P3)</h3>
+
+<ul>
+  <li>代码布局(R3,P3)</li>
+  <li>nib/xib文件(R2,P3)</li>
+  <li>storyboard(R2,P3)</li>
+</ul>
+
+<h2 id="iosr3p3">四、iOS开发进阶(R3,P3)</h2>
+
+<h3 id="r3p2-2">1、动画效果(R3,P2)</h3>
+
+<ul>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2016/01/13/uiviewdong-hua-feng-zhuang.html">UIView动画</a>(R3,P2)</p>
+  </li>
+  <li>
+    <p><strong>Core Animation</strong>(R3,P2)</p>
+
+    <ul>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2016/01/06/CALayer.html">CALayer</a></p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios基础/2016/01/05/caanimation.html">CAAnimation入门</a></p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios进阶/2016/01/12/uibezierpathxiang-jie.html">UIBezierPath</a></p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios进阶/2016/01/05/CATransition.html">CATransition</a></p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios进阶/2016/01/06/CABasicanimation.html">CABasicanimation</a></p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios进阶/2016/01/08/CAKeyframeanimation.html">CAKeyframeanimation</a></p>
+      </li>
+      <li>
+        <p><a href="http://www.vanbein.com/posts/ios进阶/2016/01/11/dong-hua-caanimationxi-lie-caanimationgroup.html">CAAnimationGroup</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>第三方动画库pop(R3,P1)</p>
+  </li>
+</ul>
+
+<h3 id="r4p4">2、多线程(R4,P4)</h3>
+
+<ul>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2015/12/15/nsthreadde-ji-ben-shi-yong.html">NSThread</a>(R4,P3)</p>
+  </li>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2015/12/15/nsoperationde-ji-ben-shi-yong.html">NSOperationQueue</a>(R4,P4)</p>
+  </li>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2015/12/15/gcdde-li-jie.html">GCD</a>(R3,P4)</p>
+  </li>
+</ul>
+
+<h3 id="r3p4">3、数据存储(R3,P4)</h3>
+
+<ul>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2015/12/10/shu-ju-cun-qu-nsuserdefaults.html">NSUserDefault</a>(R3,P4)</p>
+  </li>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios基础/2015/12/10/nskeyedarchiver-gui-dang.html">NSKeyedArchiver</a></p>
+  </li>
+  <li>
+    <p>SQLite(R3,P2)</p>
+  </li>
+  <li>
+    <p>CoreData(R3,P4)</p>
+  </li>
+</ul>
+
+<h3 id="r3p3-1">4、数据处理(R3,P3)</h3>
+
+<ul>
+  <li>Model(R4,P3)</li>
+  <li>XML解析(R3,P4)</li>
+  <li>JSON解析(R3,P4)</li>
+</ul>
+
+<h3 id="r3p1">5、物理特性(R3,P1)</h3>
+
+<ul>
+  <li>各类传感器(R3,P1)</li>
+  <li>摄像头(R3,P1)</li>
+  <li>指纹识别(R3,P1)</li>
+  <li>Force Touch(R3,P1)</li>
+</ul>
+
+<h3 id="r3p3-2">6、网络与通信(R3,P3)</h3>
+<ul>
+  <li>Http(R3,P4)</li>
+  <li>Socket(R3,P2)</li>
+  <li>SOAP(R3,P2)</li>
+  <li>抓包(R4,P1)</li>
+</ul>
+
+<h3 id="r3p3-3">7、屏幕适配(R3,P3)</h3>
+
+<ul>
+  <li>代码适配(R3,P4)</li>
+  <li>Autoresizing(R2,P4)</li>
+  <li>AutoLayout(R3,P3)</li>
+  <li>Size Classes(R4,P2)</li>
+</ul>
+
+<h3 id="section">8、单元测试：</h3>
+
+<ul>
+  <li>单元测试基础原理</li>
+  <li>XCTest</li>
+</ul>
+
+<h3 id="debug">9、Debug调试</h3>
+
+<ul>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html#section-2">断点(条件、全局)</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.vanbein.com/posts/ios进阶/2016/02/26/xcode-debug.html">lldb调试基本指令</a></p>
+  </li>
+  <li>
+    <p>NSZombieEnabled</p>
+  </li>
+</ul>
+
+<h3 id="r3p2-3">10、其他(R3,P2)</h3>
+
+<ul>
+  <li>多点触控(R3,P1)</li>
+  <li>手势识别(R3,P1)</li>
+  <li>传感器(R3,P1)</li>
+  <li>定位(R3,P3)</li>
+  <li>电源管理(R3,P1)</li>
+  <li>消息推送(R3,P3)</li>
+</ul>
+
+<h2 id="iosr4p2">五、iOS高级开发(R4,P2)</h2>
+
+<h3 id="iosr4p2-1">1、iOS架构(R4，P2)</h3>
+
+<ul>
+  <li>MVC(R3,P2)</li>
+  <li>MVVM(R4,P1)</li>
+  <li>设计模式(R5,P2)</li>
+</ul>
+
+<h3 id="r3p2-4">2、第三方框架(R3,P2)</h3>
+
+<ul>
+  <li>AFNetworking(R3,P3)</li>
+  <li>SDWebImage(R3,P2)</li>
+  <li>MBProgressHUD(R3,P2)</li>
+  <li>Maso10nry(R3,P1)</li>
+</ul>
+
+<h3 id="sdkr3p2">3、第三方SDK(R3,P2)</h3>
+
+<ul>
+  <li>分享(R3,P3)</li>
+  <li>第三方登录(R4,P2)</li>
+  <li>短信验证码(R3,P3)</li>
+  <li>其他各类API(R3,P2)</li>
+</ul>
+
+<h2 id="r3p3-4">六、开发效率(R3,P3)</h2>
+
+<h3 id="ider2p4">1、IDE(R2,P4)</h3>
+
+<ul>
+  <li>Xcode(R2,P4)</li>
+</ul>
+
+<h3 id="r2p1">2、插件(R2,P1)</h3>
+
+<ul>
+  <li><a href="https://github.com/alcatraz/Alcatraz">Alcatraz</a>(R2,P1)</li>
+</ul>
+
+<h3 id="r2p3">3、包管理(R2,P3)</h3>
+
+<ul>
+  <li>Cocoapods</li>
+</ul>
+
+<h3 id="r2p3-1">4、版本控制(R2,P3)</h3>
+
+<ul>
+  <li>Git(R2,P3)</li>
+  <li>SVN(R2,P3)</li>
+</ul>
+
+<h3 id="r2p1-1">5、应用内测与分发(R2,P1)</h3>
+
+<ul>
+  <li>Pre.im(R2,P1)</li>
+  <li>蒲公英(R2,P1)</li>
+</ul>
+
+<h3 id="r2p1-2">6、后台服务(R2,P1)</h3>
+
+<ul>
+  <li>
+    <p><a href="http://www.bmob.cn/">Bmob</a>(R2,P1)</p>
+  </li>
+  <li>
+    <p><a href="http://www.parse.com/">Parse</a> (R2,P1)</p>
+  </li>
+</ul>
+
+                </div><!-- End entry content -->
+                <div class="bottom_wrapper"><!-- bottom tags and categories -->
+                  <!-- Entry tags -->
+                  <div class="entry_tags">
+                    <span><i class="fa fa-tags"></i> Tags</span>
+                    
+                    
+                    <a href="/tags/#iOS">iOS</a>
+                    
+                    <a href="/tags/#SkillMap">SkillMap</a>
+                    
+                    
+                  </div><!-- End Entry tags -->
+                  <!-- Entry categories -->
+                  <div class="entry_tags categories">
+                    <span><i class="fa fa-folder-open"></i> Category</span>
+                    
+                    <a href="/categories/#iOS高级">iOS高级</a>
+                    
+                  </div><!-- End Entry categories -->
+                </div><!-- end bottom tags and categories -->
+              </article><!-- End Post -->
+              <!-- Baidu Share-->
+<div class="widget">
+<div class="widget_title"><h3>Share this post</h3></div>
+<div class="tb_widget_weibo clearfix">
+  <!-- Duoshuo Share Buttons -->
+  <div class="ds-share flat" data-thread-key="flinhong/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap" data-title="我的iOS开发技能树" data-images="/images/head-800x400/-52.png" data-content="iOS开发工程师的职业图谱！路漫漫其修远兮，吾将上下而求索。" data-url="http://www.vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap/">
+      <div class="ds-share-inline alignleft">
+        <ul  class="ds-share-icons-16">
+
+          <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+          <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a></li>
+          <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+          <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+          <li><a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a></li>
+          <li><a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+          <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+        </ul>
+        <div class="ds-share-icons-more">
+        </div>
+      </div>
+   </div>
+  <!-- End Duoshuo Share Buttons -->
+
+  <!-- Baidu share buttons -->
+  <div class="bdsharebuttonbox alignright" data-tag="share_1">
+  	<a class="bds_tsina" data-cmd="tsina"></a>
+  	<a class="bds_weixin" data-cmd="weixin"></a>
+    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+  	<a class="bds_douban" data-cmd="douban"></a>
+    <a class="bds_twi" data-cmd="twi"></a>
+    <a class="bds_fbook" data-cmd="fbook"></a>
+    <a class="bds_evernotecn" data-cmd="evernotecn"></a>
+  	<a class="bds_more" data-cmd="more">更多</a>
+  	<a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+  	window._bd_share_config = {
+  		common : {
+  			bdText : '我的iOS开发技能树',
+  			bdDesc : 'iOS开发工程师的职业图谱！路漫漫其修远兮，吾将上下而求索。',
+  			bdUrl : 'http://www.vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap/',
+  			bdPic : '/images/head-800x400/-52.png'
+  		},
+  		share : [{
+  			"bdSize" : 16
+  		}]
+  	}
+  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+  <!-- End Baidu Share Buttons -->
+  <hr>
+</div>
+
+<!-- Page pagination -->
+<div class="tb_widget_weibo clearfix">
+  
+    <a class="alignleft" href="/posts/tips/2016/03/21/xcode-acceleratorKey/"><i class="fa fa-chevron-left"></i> 上一篇：Xcode基础快捷键 -- 提高你的编码速率</a>
+  
+  
+    <a class="alignright" href="/posts/3rd-libraries/2016/04/06/iOS-3rd-Libraries-Gather/">下一篇：iOS中第三方库的汇总 <i class="fa fa-chevron-right"></i></a>
+  
+</div>
+</div>
+
+              <!-- Comments -->
+<div id="comments">
+  <div class="panel_title">
+    <div>
+      <h4>Comments</h4>
+    </div>
+  </div>
+
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vanbein/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap" data-title="我的iOS开发技能树" data-url="http://www.vanbein.com/posts/ios%E9%AB%98%E7%BA%A7/2016/03/25/iOS-Skillmap/"></div>
+<!-- 多说评论框 end -->
+
+
+</div><!-- End Comments -->
+
+            </div><!-- Main content End -->
+            <!-- Sidebar -->
+<div class="col col_3_of_12">
+  <!-- Widget Search widget -->
+  <div id="fixed_search">
+  <div class="widget">
+    <div class="widget_title"><h3>Search widget</h3></div>
+    <div class="tb_widget_search">
+      <form action="/search/" target="_blank" method="get">
+        <input type="text" name=q size=40 placeholder="Search in site...">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div><!-- End Widget Search widget -->
+  </div>
+
+  
+    <!-- Widget Social widget -->
+<div class="widget" id="socialize">
+  <div class="widget_title"><h3>Socialize</h3></div>
+  <div class="tb_widget_socialize clearfix">
+    <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+      <div class="symbol"><i class="fa fa-twitter"></i></div>
+      <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+    </a>
+    <a href="http://weibo.com/u/2491417605" target="_blank" class="icon google">
+      <div class="symbol"><i class="fa fa-weibo"></i></div>
+      <div class="text"><p>微博</p><p>@Vanbein</p></div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100011590802454" target="_blank" class="icon facebook">
+      <div class="symbol"><i class="fa fa-facebook"></i></div>
+      <div class="text"><p>Facebook</p><p>@Vanbein</p></div>
+    </a>
+    
+    <!--<a href="https://cn.linkedin.com/in/flinhong" target="_blank" class="icon linkedin">
+      <div class="symbol"><i class="fa fa-linkedin"></i></div>
+      <div class="text"><p>LinkedIn</p><p>Hong Lin</p></div>
+    </a>-->
+  </div>
+</div><!-- End Widget Social widget -->
+
+    <div class="widget">
+  <div class="widget_title"><h3>Tags</h3></div>
+  <div class="tb_widget_tagcloud clearfix">
+    
+    <a href="/tags/#Jekyll">Jekyll</a>
+    
+    <a href="/tags/#markdown">markdown</a>
+    
+    <a href="/tags/#iOS">iOS</a>
+    
+    <a href="/tags/#Objective-C">Objective-C</a>
+    
+    <a href="/tags/#delegate">delegate</a>
+    
+    <a href="/tags/#Protocol">Protocol</a>
+    
+    <a href="/tags/#Block">Block</a>
+    
+    <a href="/tags/#KVC">KVC</a>
+    
+    <a href="/tags/#KVO">KVO</a>
+    
+    <a href="/tags/#单例">单例</a>
+    
+    <a href="/tags/#runtime">runtime</a>
+    
+    <a href="/tags/#Tip">Tip</a>
+    
+    <a href="/tags/#多线程">多线程</a>
+    
+    <a href="/tags/#block">block</a>
+    
+    <a href="/tags/#Animation">Animation</a>
+    
+    <a href="/tags/#layer">layer</a>
+    
+    <a href="/tags/#authorization">authorization</a>
+    
+    <a href="/tags/#QRcode">QRcode</a>
+    
+    <a href="/tags/#翻墙">翻墙</a>
+    
+    <a href="/tags/#debug">debug</a>
+    
+    <a href="/tags/#Xocde">Xocde</a>
+    
+    <a href="/tags/#SkillMap">SkillMap</a>
+    
+    <a href="/tags/#第三方库">第三方库</a>
+    
+    <a href="/tags/#Blur">Blur</a>
+    
+    <a href="/tags/#iPod">iPod</a>
+    
+  </div>
+</div>
+<!-- End Tags -->
+
+    <!-- Toc -->
+<div class="widget">
+  <div id="fixtoc">
+    <div id="toc"></div>
+    <!-- Related to the end of js.html -->
+  </div>
+</div>
+<!-- End Toc -->
+
+  
+
+</div><!-- End Sidebar -->
+
+          </div><!-- end row -->
+        </div><!-- end container -->
+      </section><!-- Section End -->
+      <!-- Footer -->
+<footer id="footer">
+<div class="container">
+  <div class="row">
+    <div class="col col_3_of_12">
+      <!-- Widget Text widget -->
+      <div class="widget">
+        <div class="widget_title"><h3>Bloginfo</h3></div>
+        <p>This blog theme was designed by Frank Lin. I am updating this blog theme that meet my needs. Thanks to Github and Jekyll for the technical supports.</p>
+        <!-- <p>Please feel free to fork this theme on <a href="https://github.com/flinhong/flinhong.github.io"><i class="fa fa-github"></i><a>.</p> -->
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Vanbein's Blog</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#666">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+        </p>
+      </div><!-- End Widget text widget -->
+      <!-- Widget Social widget -->
+      <!--<div class="widget">
+        <div class="widget_title"><h3>Socialize</h3></div>
+        <div class="tb_widget_socialize clearfix">
+          <a href="http://www.twitter.com/vanbein" target="_blank" class="icon twitter">
+            <div class="symbol"><i class="fa fa-twitter"></i></div>
+            <div class="text"><p>Twitter</p><p>@Vanbein</p></div>
+          </a>
+          <a href="http://www.weibo.com/u/2491417605" target="_blank" class="icon google">
+            <div class="symbol"><i class="fa fa-weibo"></i></div>
+            <div class="text"><p>微博</p><p>@Vanbein</p></div>
+          </a>
+        </div>
+      </div>-->
+      <!-- End Widget Social widget -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget Recent Posts-->
+<div class="widget">
+<div class="widget_title"><h3>Recent posts</h3></div>
+<div class="tb_widget_top_rated clearfix">
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod/"><img src="/images/head-800x400/-57.png" alt="iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 20, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E9%AB%98%E7%BA%A7/2016/04/20/Read-Music-Item-From-iPod/">iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/code/2016/04/19/A-Loading-Animation/"><img src="/images/head-800x400/-11.png" alt="一个简单的 loading 动画" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 19, 2016</span>
+        </div>
+        <h4><a href="/posts/code/2016/04/19/A-Loading-Animation/">一个简单的 loading 动画</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+    <!-- Post item -->
+    <div class="item clearfix">
+      <div class="item_thumb clearfix">
+        <a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards/"><img src="/images/head-800x400/-55.png" alt="我的Objective-C编码规范" class="visible animated"></a>
+      </div>
+      <div class="item_content">
+        <div class="item_meta clearfix">
+          <span class="meta_date">Apr 18, 2016</span>
+        </div>
+        <h4><a href="/posts/ios%E5%9F%BA%E7%A1%80/2016/04/18/Objective-C-Coding-Standards/">我的Objective-C编码规范</a></h4>
+      </div>
+      <div class="order">&#9812;</div>
+    </div><!-- End Post item -->
+  
+</div>
+</div><!-- End Widget recent posts -->
+
+    </div>
+
+    <div class="col col_3_of_12">
+      <!-- Widget recent tweets -->
+      <div class="widget">
+        <div class="widget_title"><h3>Recent Tweets</h3></div>
+          <div class="tb_widget_recent_list clearfix">
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Vanbein" data-widget-id="708664244821053441" data-chrome="nofooter noborders noheader transparent noscrollbar">Tweets by @Vanbein</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+         </div>
+      </div><!-- End Widget recent tweets -->
+    </div>
+
+    <div class="col col_3_of_12">
+      <div class="widget">
+        <div class="widget_title"><h3>Links</h3></div>
+        <div class="tb_widget_categories">
+          <ul>
+             <li><a href="/posts/">Sitemap for Reader</a> <i class="fa fa-archive"></i></li>
+<!--            <li><a href="/sitemap.xml">Sitemap</a> <i class="fa fa-sitemap"></i></li>-->
+            <li><a href="/feed.xml">Feeds</a> <i class="fa fa-rss"></i></li>
+<!--            <li><a href="/atom.xml">Atom Feeds</a> <i class="fa fa-rss-square"></i></li>-->
+            <li><a href="https://github.com/vanbein">GitHub</a> <i class="fa fa-github-square"></i></li>
+            <li><a href="https://jekyllrb.com/">Jekyll</a></li>
+            <li><a href="http://www.flinhong.com">Frank's Blog</a></li>
+            <li><a href="www.jianshu.com">简书</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer><!-- End Footer -->
+<a id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    </div><!-- Wrapper End -->
+    <!-- Scripts -->
+<script type="text/javascript" src="/js/jqueryscript.min.js"></script>
+<script type="text/javascript" src="/js/jqueryuiscript.min.js"></script>
+<script type="text/javascript" src="/js/easing.min.js"></script>
+<script type="text/javascript" src="/js/smoothscroll.min.js"></script>
+<script type="text/javascript" src="/js/magnific.min.js"></script>
+<script type="text/javascript" src="/js/bxslider.min.js"></script>
+<script type="text/javascript" src="/js/fitvids.min.js"></script>
+<script type="text/javascript" src="/js/viewportchecker.min.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<!-- <script id="dsq-count-scr" src="//flinhong.disqus.com/count.js" async></script> -->
+
+
+<script type="text/javascript" src="/js/toc.js"></script>
+<script>
+$(document).ready(function() {
+  // $('#toc').toc();
+  // $('#toc').toc({ noBackToTopLinks: true });
+  $('#toc').toc({ headers: '.entry_content h1, .entry_content h2, .entry_content h3, .entry_content h4, .entry_content h5, .entry_content h6'});
+  // $('#').sticky();
+  // $("#post_side_widget").stick_in_parent();
+});
+</script>
+
+
+  </body>
+</html>

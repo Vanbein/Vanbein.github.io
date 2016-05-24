@@ -1,0 +1,36 @@
+---
+layout: pages_sidebar
+title: Blog Posts
+permalink: /posts/
+---
+
+{% for post in site.posts %}
+  {% assign currentdate = post.date | date: "%B %Y" %}
+  {% if currentdate != date %}
+  <!-- Panel title -->
+  <div class="panel_title">
+    <div>
+      <h4><a id="my{{ currentdate }}">{{ currentdate }}</a></h4>
+    </div>
+    <!-- <span>View all articles posted in {{ currentdate }}</span> -->
+  </div><!-- End Panel title -->
+  {% endif %}
+  {% assign date = currentdate %}
+
+  <div class="row">
+    <div class="col col_12_of_12">
+      <!-- List layout -->
+      <div class="list_posts_1">
+          <!-- Post item -->
+          <div class="item clearfix">
+            <div class="item_content">
+
+              <h4><a href="{{ post.url }}">· <span class="meta_date">{{ post.date | date: "%b %-d" }}</span> - {{ post.title }}</a></h4>
+            </div>
+          </div><!-- End Post item -->
+      </div><!-- End List layout -->
+    </div>
+  </div>
+
+
+{% endfor %}
