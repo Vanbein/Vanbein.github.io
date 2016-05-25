@@ -3,8 +3,6 @@
 
 Of course, it's [vanbein.github.io](http://vanbein.github.io) and [vanbein.com](http://vanbein.com).
 
-Sometimes, you can visit with **https**, but the Google fonts cannot be loaded and the same to some Javascripts.
-
 
 ## For use of this theme
 
