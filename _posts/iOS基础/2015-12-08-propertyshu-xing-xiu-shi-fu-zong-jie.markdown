@@ -38,7 +38,7 @@ ARC在编译期间，根据 Objective-C 对象的存活周期，在适当的位�
 
 下面我们来声明一个Person类来学习：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface Person : NSObject
 // 注意：苹果有命名规范的，命名属性时，不能以copy开头。
 // 如果下面的属性声明为copyString，会编译不通过。
@@ -52,7 +52,7 @@ ARC在编译期间，根据 Objective-C 对象的存活周期，在适当的位�
 
 如果属性没有指定类型，默认是什么呢？其实是**strong**。如果证明呢？验证方法：分别将array属性的类型分别设置为weak, assign,strong,不设置，这四种情况的结果分别是：第一种打印为空，第二种直接直接崩溃，第三种和最后一种是可以正常使用。如下面的验证代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 Person *lili = [[Person alloc] init];
 lili.name = @"LiLi";
 lili.copiedString = @"LiLi\' father is LLL";
@@ -65,7 +65,7 @@ NSLog(@"%@", otherArray);
 
 再继续添加下面的代码。默认声明变量的类型为`__strong`类型，因此上面的`NSArray *otherArray = lili.array;` 与 `__strong NSArray *otherArray = lili.array;` 是一样的。如果我们要使用弱引用，特别是在解决循环强引用时就特别重要了。我们可以使用`__weak`声明变量为弱引用，这样就不会增加引用计数值。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 __strong NSArray *strongArray = otherArray;
 otherArray = nil;
 // 打印出来正常的结果。
@@ -79,7 +79,7 @@ NSLog(@"weakArray: %@", weakArray);
 
 ## 三、xib/storybard连接的对象为什么可以使用weak
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (nonatomic, weak) IBOutlet UIButton *button;
 {% endhighlight %}
 
@@ -87,7 +87,7 @@ NSLog(@"weakArray: %@", weakArray);
 
 如果我们不使用`xib/storyboard`，而是使用纯代码创建呢？
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (nonatomic, weak) UIButton *button;
 {% endhighlight %}
 
@@ -95,7 +95,7 @@ NSLog(@"weakArray: %@", weakArray);
 
 这样写，在创建时通过 `self.button = ...` 就是出现错误，因为这是弱引用。所以我们需要声明为强引用，也就是这样：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (nonatomic, strong) UIButton *button;
 {% endhighlight %}
 
@@ -103,7 +103,7 @@ NSLog(@"weakArray: %@", weakArray);
 
 在使用block时，尽量使用 typedef 来起一个别名，这样更容易阅读。使block作为属性时，使用copy。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef void (^HYBTestBlock)(NSString *name);
 @property (nonatomic, copy) HYBTestBlock testBlock;
 {% endhighlight %}
@@ -113,7 +113,7 @@ typedef void (^HYBTestBlock)(NSString *name);
 
 下面时使用copy的方式，验证如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *hahaString = @"哈哈";
 NSString *heheString = [hahaString copy];
 // 哈哈, 哈哈
@@ -136,7 +136,7 @@ NSLog(@"%@, %@", hahaString, heheString);
 
 * unsafe_unretained：用unsafe_unretained声明的指针，指针指向的对象一旦被释放，这些指针将成为野指针。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (nonatomic, copy) NSString *name;
 // 一旦所指向的对象被释放，就会成为野指针
 @property (nonatomic, unsafe_unretained) NSString *unsafeName;
@@ -153,7 +153,7 @@ NSLog(@"%@", lili.unsafeName);
 
 我相信还有不少朋友有这样一种误解：浅拷贝就是用copy，深拷贝就是用mutableCopy。如果有这样的误解，一定要更正过来。copy只是不可变拷贝，而mutableCopy是可变拷贝。比如，`NSArray arr = [modelsArray copy]`，那么arr是不可变的。而`NSMutableArray ma = [modelsArray mutableCopy]`，那么ma是可变的。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 lili.array = [@[@"谢谢", @"感谢"] mutableCopy];
 NSMutableArray *otherArray = [lili.array copy];
 lili.array[0] = @"修改了谢谢";
@@ -166,7 +166,7 @@ NSLog(@"%@ %@", otherArray[0], lili.array[0]);
 
 数组中是对象时：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSMutableArray *personArray = [[NSMutableArray alloc] init];
 Person *person1 = [[Person alloc] init];
 person1.name = @"lili";
@@ -215,7 +215,7 @@ NSLog(@"%@", ((Person *)(personArray[0])).name);
 在ARC下，getter/setter的写法与MRC的不同
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (nonatomic, strong) NSMutableArray *array;
 //
 - (void)setArray:(NSMutableArray *)array {
@@ -229,7 +229,7 @@ NSLog(@"%@", ((Person *)(personArray[0])).name);
 如果是要重写`getter`,就得增加一个变量了，如果同时重写getter/setter方法，就不会自动生成_array变量，因此我们可以声明一个变量为_array:
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)setArray:(NSMutableArray *)array {
   if (_array != array) {
     _array = nil;

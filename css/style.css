@@ -170,7 +170,7 @@ strong,
 b {
     color: #222
 }
-code {
+/*code {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   color: #52595d;
   background-clip: padding-box;
@@ -178,13 +178,15 @@ code {
   margin: 0px;
   padding-left: 0px;
   padding-right: 0px;
-}
+}*/
+
 p code {
   /* 行间代码 */
   padding-left: 2px;
   padding-right: 2px;
-  /*padding-top: 8px;*/
-  /*padding-bottom: 1px;*/
+  padding-top: 2px;
+  padding-bottom: 1px;
+  border-radius: 4px; 
   /*background-color: #d9d9d9;
   color: #a6412b;*/
   background-color: #f3f3f3;
@@ -192,27 +194,39 @@ p code {
 }
 
 pre {
-    overflow: auto;
-    display: block;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-left: 3px;
-    margin: 0 0 10px;
-    line-height: 21px;
-    word-break: break-all;
-    word-wrap: break-word;
-    background-color: #f0f0f0;
-
-/*    border-style:dotted dotted dotted solid;
-    border-width:0px 0px 0px 3px;
-    border-color:#f8a450;*/
-    /* 代码块虚线框 */
-    border-style:dotted dotted dotted dotted;
-    /*border-width:1px 1px 1px 1px;*/
-    border-color:#50554e;
-    border-width:0px 0px 0px 0px;
+  border: solid 0px #ddd;
+  border-radius: 6px; 
+  background: #f0f0f0;
+  /* padding - 代码块内边距 上右下左 */
+  padding: 5px 10px 5px 10px;
+  line-height: 23px;
+  /* margin 上右下左*/
+  margin: 20px 0px 20px 0px;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: inherit;
+  word-wrap: inherit;
 }
-code,
+
+/*pre {*/
+    /*overflow: auto;*/
+    /*display: block;*/
+    /*padding-top: 7px;*/
+    /*padding-bottom: 7px;*/
+    /*padding-left: 3px;*/
+    /*margin: 0 0 10px;*/
+    /*line-height: 21px;*/
+    /*word-break: break-all;*/
+    /*word-wrap: break-word;*/
+    /*background-color: #f0f0f0;*/
+    
+    /* 代码块虚线框 */
+    /*border-style:dotted dotted dotted dotted;*/
+    /*border-color:#50554e;*/
+    /*border-width:0px 0px 0px 0px;*/
+/*}*/
+
+/*code,*/
 kbd,
 pre,
 samp {
@@ -288,9 +302,12 @@ blockquote{
   border-style:dotted dotted dotted solid;
   border-width:0px 0px 0px 3px;
   border-color:#f85050;
+  /*圆角：左上角、右上角、右下角、左下角（顺时针顺序）*/
+  border-radius: 0px 6px 6px 0px;
 }
 figure {
-    margin: 0 0 10px 0
+    margin: 0px 0px 0px 0px;
+    border-radius: 6px; 
 }
 .text_left {
     text-align: left
@@ -309,21 +326,23 @@ figure {
     3. Forms
 ------------------------------------------------------------------------------*/
 table {
+	/*vanbein 取消修复代码高亮多了个table 标签*/
     font-size: 14px;
     width: 100%;
     max-width: 100%;
     text-align: left;
     margin-bottom: 20px;
-    border-left: 1px solid #eee;
-    border-top: 1px solid #eee;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
     background-color: #fff;
 }
 table th,
 table td {
-    padding: 6px;
+    /*vanbein 取消修复代码高亮多了个table 标签*/
+    padding: 0px;
     vertical-align: top;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc
 }
 table thead th {
     font-weight: 700

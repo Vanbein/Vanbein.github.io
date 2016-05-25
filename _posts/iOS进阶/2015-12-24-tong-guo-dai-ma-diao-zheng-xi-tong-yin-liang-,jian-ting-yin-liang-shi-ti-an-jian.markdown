@@ -17,7 +17,7 @@ toc: true
 
 * 和监听键盘弹出类似的，Apple提供了一个通知给我们，只要在合适的地方添加对这个通知的监听即可。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)registeNotification{images
     //1.注册监听系统音量变化，记得在适当的地方移除监听
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -45,7 +45,7 @@ toc: true
 
 这个时候可以添加一句代码，即可让在这个页面时，按下音量实体键显示**音量**，而不是铃声
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //使音量控制实体键响应“音量”而不是”铃声”
 [[AVAudioSession sharedInstance] setActive:YES error:NULL];
 {% endhighlight %}
@@ -57,7 +57,7 @@ toc: true
 
 这是因为程序进入后台后，上述一行代码 [AVAudioSession sharedInstance] 又不再是 Active 状态，所以需要在`AppDelegate.m`里面重新设置，这样即可一直响应“音量”了，比如：
 
-{% highlight objc linenos %} AppDelegate.m
+{% highlight objc  %} AppDelegate.m
 - (void)applicationWillEnterForeground:(UIApplication *)application {
       //使程序重新激活后，对音量实体键响应为“音量”而不是“铃声”
       [[AVAudioSession sharedInstance] setActive:YES error:NULL];
@@ -82,7 +82,7 @@ toc: true
 
 于是想要隐藏"音量提示框"就可以通过添加以下代码实现：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //隐藏"音量提示框"
 //注意使用之前需要添加`MediaPlayer.framework`
 MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-100, -100, 100, 100)];
@@ -103,7 +103,7 @@ volumeView.hidden = NO;
 	
 具体的代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//不显示“铃声”，显示“音量”

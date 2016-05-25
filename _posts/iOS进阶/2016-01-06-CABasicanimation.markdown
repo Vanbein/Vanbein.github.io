@@ -40,7 +40,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 
 `CABasicAnimation` 是`CAPropertyAnimation`的子类，自己只有三个property
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nullable, strong) id fromValue; //keyPath相应属性的初始值
 @property(nullable, strong) id toValue; //keyPath相应属性的结束值
 @property(nullable, strong) id byValue;
@@ -77,7 +77,7 @@ Group也就是组合的意思，就是把对这个Layer的所有动画都组合�
 
 比如我们想实现一个类似心跳的缩放动画可以这么做，分为演员初始化、设定剧本、电影开拍三个步骤：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

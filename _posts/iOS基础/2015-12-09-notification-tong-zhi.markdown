@@ -26,7 +26,7 @@ Notification(通知)是iOS系统下重要的消息传递机制之一，通知封
 
 通知`NSNotification`结构中主要包括：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (readonly, copy) NSString *name;  // 通知的标识名称(一般为常量字符串)
 @property (readonly, retain) id object;  // 任意想要携带的对象，通常为发送者自己
 @property (readonly, copy) NSDictionary *userInfo; // 关于通知的附加信息
@@ -35,7 +35,7 @@ Notification(通知)是iOS系统下重要的消息传递机制之一，通知封
 ## 三、通知中心
 Cocoa框架中包括两种通知中心：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSNotificationCenter 单进程通知管理
 NSDistributedNotificationCenter 一台机器中多个进程的通知管理
 {% endhighlight %}
@@ -48,7 +48,7 @@ NSDistributedNotificationCenter 一台机器中多个进程的通知管理
 
 **发送通知方法：**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)postNotification:(NSNotification *)notification;
 - (void)postNotificationName:(NSString *)aName object:(nullable id)anObject;
 - (void)postNotificationName:(NSString *)aName object:(nullable id)anObject userInfo:(nullable NSDictionary *)aUserInfo;
@@ -56,7 +56,7 @@ NSDistributedNotificationCenter 一台机器中多个进程的通知管理
 
 **注册通知方法:**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)addObserver:(id)observer selector:(SEL)aSelector name:(nullable NSString *)aName object:(nullable id)anObject;
 {% endhighlight %}
 
@@ -65,7 +65,7 @@ NSDistributedNotificationCenter 一台机器中多个进程的通知管理
 
 **移除通知方法**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)removeObserver:(id)observer;
 - (void)removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject;
 {% endhighlight %}

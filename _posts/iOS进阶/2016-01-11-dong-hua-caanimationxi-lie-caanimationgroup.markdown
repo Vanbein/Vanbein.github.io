@@ -21,7 +21,7 @@ toc: true
 
 ### 示例代码
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     //
     //平移

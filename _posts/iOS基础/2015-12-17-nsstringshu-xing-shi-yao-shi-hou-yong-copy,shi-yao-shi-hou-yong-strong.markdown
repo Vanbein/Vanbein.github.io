@@ -15,7 +15,7 @@ homepage: false
 
 我们定义一个类，并为其声明两个字符串属性，如下所示：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface TestStringClass ()
 @property (nonatomic, strong) NSString *strongString;
 @property (nonatomic, copy) NSString *copyedString;
@@ -26,7 +26,7 @@ homepage: false
 
 首先，我们用一个不可变字符串来为这两个属性赋值，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)test {
     NSString *string = [NSString stringWithFormat:@"abc"];
     self.strongString = string;
@@ -47,7 +47,7 @@ homepage: false
 
 接下来，我们把string由不可变改为可变对象，看看会是什么结果。即将下面这一句
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *string = [NSString stringWithFormat:@"abc"];
 //改成：
 NSMutableString *string = [NSMutableString stringWithFormat:@"abc"];

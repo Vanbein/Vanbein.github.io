@@ -26,7 +26,7 @@ OC中和Java类似，不支持多重继承，但OOP语言C++就支持多继承�
 
 当类被加载时load就会别调用，load是类方法，可以直接被类调用
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //重写NSObject中的load方法
 +(void) load
 {
@@ -41,7 +41,7 @@ OC中和Java类似，不支持多重继承，但OOP语言C++就支持多继承�
 
 测试：重写initalize方法，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //重写initialize方法，会在类第一次使用时调用
 +(void) initialize
 {
@@ -62,7 +62,7 @@ OC中和Java类似，不支持多重继承，但OOP语言C++就支持多继承�
 
 举个例子
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //重写alloc方法
 +(id) alloc
 {
@@ -96,7 +96,7 @@ ObjectTest *o2 = [ObjectTest new];
 * -(Class)class或者 +(Class)class 返回当前对象的所属类;  
 * -(Class)superclass 或者 +(Class)superclass返回当前类的父类
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //返回当前对象所对应的类
 NSString *className =(NSString *) [self class];
 NSLog(@"%@类的display方法", className);
@@ -111,7 +111,7 @@ NSLog(@"%@类的父类是%@", className, superClassName);
 
 示例代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //isKindOfClass的用法
 BOOL b =  [objct isKindOfClass:[ObjectTest class]];
 if (b == YES) {
@@ -121,7 +121,7 @@ if (b == YES) {
 ### 7. -(BOOL)isMemberOfClass:(Class)aClass;  
 * 这只能判断摸个实例是否属于某个类，不能判断是否属于某个父类；
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //isMemberOfClass
 BOOL result = [o2 isMemberOfClass:[NSObject class]];
 if (result == NO) {
@@ -132,7 +132,7 @@ if (result == NO) {
 ### 8. -(NSString *) description; 
 * 返回字符串形式对象的描述，方便调试
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //description
 NSString *descript = [o2 description];
 NSLog(@"%@", descript);
@@ -142,7 +142,7 @@ NSLog(@"%@", descript);
 ### 9. -(NSUInteger) hash; 
 * 返回对象的哈希值；
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //hash的用法
 NSUInteger hash = [o2 hash];
 NSLog(@"%p", hash);
@@ -152,7 +152,7 @@ NSLog(@"%p", hash);
 ### 10. -(BOOL) isEqual:(id)object; 
 * 比较两个对象是否相同，默认是使用地址进行比较的，且hash值一定要相同
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //isEqual的用法
 NSString *str1 = @"111";
 NSString *str2 = str1;
@@ -178,7 +178,7 @@ else
 > 3. 为富人类定义一个刷卡方法
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface Richer : NSObject
 {
     @protected
@@ -216,7 +216,7 @@ else
 > 2. 实现便利初始化方法，用[ super init ]初始化富人类的直接父类，也就是NSObject
 > 3. 使用便利构造器返回实例化并初始化后的对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #import "Richer.h"
 @implementation Richer
 //实现getter和setter方法
@@ -258,7 +258,7 @@ else
 > 1. 为富二代类添加新的爱好属性
 > 2. 为富二代添加新的方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #import "Richer.h"
 // 
 @interface Richer2nd : Richer
@@ -289,7 +289,7 @@ else
 > 1. 在编写便利初始化方法时利用super来调用父类的便利初始化方法来把继承到的父类的方法进行初始化
 > 2. 用self给新添加的属性进行初始化
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #import "Richer2nd.h"
 // 
 @implementation Richer2nd
@@ -346,7 +346,7 @@ else
 
 多态简单的说就是对于不同对象响应同一个方法时做出的不同反应。在 OC中动态类型id是实现多态的一种方式，id是一个独特的数据类型，可以转换为任何数据类型，上面的富人和富二代可以这样定义
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 id richer = nil;
 // 
 //测试富人类
@@ -363,7 +363,7 @@ richer = [Richer2nd richer2ndWithName:@"BILL`s son" AndAge:16 AndGender:@"男" A
 
 ​多态的另一个例子: Animal是父类，子类有Cat 和 Dog,子分别重写了父类中的eat方法；实例化对象的时候可以用下面的方法：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 Animal *animal = nil;
  //实例化猫的对象
 animal = [Cat new];

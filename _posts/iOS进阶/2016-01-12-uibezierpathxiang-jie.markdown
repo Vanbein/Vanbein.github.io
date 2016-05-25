@@ -38,7 +38,7 @@ toc: true
 > * 注：这个五边形类要继承自UIView。
 
  
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)drawRect:(CGRect)rect  
 {  
     UIColor *color = [UIColor redColor];  
@@ -69,7 +69,7 @@ toc: true
 
 如果是绘制矩形或者椭圆之类的特殊图形，可以不用像上面一样，`UIBezierPath`包含了几个特殊形状的类方法，我们可以直接使用：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 创建矩形
 + (UIBezierPath *)bezierPathWithRect:(CGRect)rect
 //
@@ -101,7 +101,7 @@ toc: true
 
 **除了这些闭合的特殊路径，也有一些方法用来添加子路径。**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 添加直线
 - (void)addLineToPoint:(CGPoint)point
 //
@@ -147,7 +147,7 @@ toc: true
 
 下面的代码就是赋值一个新的CGPathRef给UIBezierPath对象。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // Create the path data
 CGMutablePathRef cgPath = CGPathCreateMutable();
 CGPathAddEllipseInRect(cgPath, NULL, CGRectMake(0, 0, 300, 300));
@@ -165,7 +165,7 @@ CGPathRelease(cgPath);
 
 如果我们使用`Core Graphics`函数和`UIBezierPath`函数混合方法，我们必须小心的移动path 信息在两者之间。因为`UIBezierPath`类拥有自己底层的`CGPathRef data type`，我们不能简单的检索该类型并直接的修改它。相反，我们应该生成一个副本，然后修改此副本，然后赋值此副本给CGPath属性，如下代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIBezierPath*    aPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 300, 300)];
 // 
 // Get the CGPathRef and create a mutable version.
@@ -184,7 +184,7 @@ CGPathRelease(mutablePath);
 
 我们可以使用贝塞尔曲线绘制一条路径，然后通过keyframe动画让动画沿着所设置的路径执行，下面举个例子说明：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad{
 	[super viewDidLoad];
 	//路径动画

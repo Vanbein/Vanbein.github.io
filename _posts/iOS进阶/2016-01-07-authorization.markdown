@@ -17,7 +17,7 @@ iOS7以后需要用户授权才能访问相机、相册、定位等信息，所�
 
 在程序中怎么获取是否拥有对相册的访问权限，然后做相应地操作呢，首先下面列出了相册的一些权限值和对应的含义：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef NS_ENUM(NSInteger, ALAuthorizationStatus) {
 	ALAuthorizationStatusNotDetermined = 0, 
 	//用户未对这个应用程序的权限做出选择
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, ALAuthorizationStatus) {
 
 我们在应用中只需要通过以下代码即可获得相册的权限值，然后做相应的操作。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
 {% endhighlight %}
 
@@ -45,7 +45,7 @@ ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
 
 在iOS7之前,摄像头是一直可以访问的，隐私设置选项中没有关闭相应软件的摄像头功能的选项。在ios7以后摄像头和相册一样增加了访问权限的设置，应用中第一次访问摄像头的时候，系统会询问你是否授权应用访问你的摄像头。摄像头的权限和相册的权限基本上一样，有：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef NS_ENUM(NSInteger, AVAuthorizationStatus) {
 	AVAuthorizationStatusNotDetermined = 0,
 	AVAuthorizationStatusRestricted,
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, AVAuthorizationStatus) {
 
 同相册一样，我们可以通过以下代码获取对摄像头的访问权限：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];  
 {% endhighlight %}
 
@@ -64,13 +64,13 @@ AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaT
 
 若需要检测的是整个的iOS系统的定位服务是否开启，可通过以下方法：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [CLLocationManager locationServicesEnabled] 
 {% endhighlight %}
 
 但是往往我们需要检测当前应用的定位服务是否开启，此时我们可通过下面方法来检测：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 	//获取定位权限状态
     CLAuthorizationStatus *authStatus = [CLLocationManager authorizationStatus];
 	//
@@ -101,7 +101,7 @@ typedef NS_ENUM(int, CLAuthorizationStatus) {
  
 一般都是使用通知的方式，添加收到通知的回调方法，在回调方法里面进行判断。实现代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //注册通知
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChangeListenerCallback:) name:AVAudioSessionRouteChangeNotification object:nil];
 //通知回调

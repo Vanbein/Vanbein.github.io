@@ -43,14 +43,14 @@ GCD(Grand Central Dispatch)是iOS开发中的一大“利器“，需要仔细�
 #### GCD中有2个用来执行任务的常用函数
 * 用同步的方式执行任务
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_sync(dispatch_queue_t queue, dispatch_block_t block);
 {% endhighlight %}
 
 * 用异步的方式执行任务
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_async(dispatch_queue_t queue, dispatch_block_t block);
 {% endhighlight %}
 
@@ -71,7 +71,7 @@ dispatch_async(dispatch_queue_t queue, dispatch_block_t block);
 ### 创建队列
 #### 创建队列的方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 使用dispatch_queue_create函数创建队列
 dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t attr); 
 // const char *label 队列名称  // dispatch_queue_attr_t attr 队列的类型
@@ -80,7 +80,7 @@ dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t 
 #### 创建并发队列
 * 使用函数创建并发队列
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 创建并发队列
 dispatch_queue_t queue = dispatch_queue_create("com.zmj.queue", DISPATCH_QUEUE_CONCURRENT);
 {% endhighlight %}
@@ -89,7 +89,7 @@ dispatch_queue_t queue = dispatch_queue_create("com.zmj.queue", DISPATCH_QUEUE_C
 	+ GCD默认已经提供了全局的并发队列，供整个应用使用，可以无需手动创建
 	+ 使用dispatch_get_global_queue函数获得全局的并发队列
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_queue_t dispatch_get_global_queue(
 dispatch_queue_priority_t priority,
 unsigned long flags); 
@@ -101,7 +101,7 @@ dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAU
 
 * 全局并发队列的优先级
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #define DISPATCH_QUEUE_PRIORITY_HIGH 2 // 高
 #define DISPATCH_QUEUE_PRIORITY_DEFAULT 0 // 默认（中）
 #define DISPATCH_QUEUE_PRIORITY_LOW (-2) // 低
@@ -112,7 +112,7 @@ dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAU
 
 * 使用dispatch_queue_create函数创建串行队列
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 创建串行队列（队列类型传递NULL或者DISPATCH_QUEUE_SERIAL）
 dispatch_queue_t queue = dispatch_queue_create("com.zmj.queue", NULL);
 {% endhighlight %}
@@ -121,7 +121,7 @@ dispatch_queue_t queue = dispatch_queue_create("com.zmj.queue", NULL);
 	+ 主队列是GCD自带的一种特殊的串行队列
 	+ 放在主队列中的任务，都会放到主线程中执行
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 使用dispatch_get_main_queue()获得主队列
 dispatch_queue_t queue = dispatch_get_main_queue();
 {% endhighlight %}
@@ -129,7 +129,7 @@ dispatch_queue_t queue = dispatch_get_main_queue();
 ### 线程间通信示例
 * 从子线程回到主线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_async(
 dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // 执行耗时的异步操作...
@@ -145,13 +145,13 @@ dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 * 在前面的任务执行结束后它才执行，而且它后面的任务等它执行完成之后才会执行
 * 这个queue不能是全局的并发队列
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_barrier_async(dispatch_queue_t queue, dispatch_block_t block);
 {% endhighlight %}
 
 * 实例代码
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)barrier
 {
     dispatch_queue_t queue = dispatch_queue_create("12312312", DISPATCH_QUEUE_CONCURRENT);
@@ -180,14 +180,14 @@ dispatch_barrier_async(dispatch_queue_t queue, dispatch_block_t block);
 
 * 调用NSObject的方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self performSelector:@selector(run) withObject:nil afterDelay:2.0];
 // 2秒后再调用self的run方法
 {% endhighlight %}
 
 * 使用GCD函数
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     // 2秒后执行这里的代码...
 });
@@ -195,14 +195,14 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), 
 
 * 使用NSTimer
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(test) userInfo:nil repeats:NO];
 {% endhighlight %}
 
 
 #### 使用dispatch_once函数能保证某段代码在程序运行过程中只被执行1次
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 static dispatch_once_t onceToken;
 dispatch_once(&onceToken, ^{
     // 只执行1次的代码(这里面默认是线程安全的)
@@ -211,7 +211,7 @@ dispatch_once(&onceToken, ^{
 
 #### 使用dispatch_apply函数能进行快速迭代遍历
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_apply(10, dispatch_get_global_queue(0, 0), ^(size_t index){
     // 执行10次代码，index顺序不确定
 });
@@ -221,7 +221,7 @@ dispatch_apply(10, dispatch_get_global_queue(0, 0), ^(size_t index){
 * 传统文件剪切需要遍历for循环，效率低
 * 快速迭代，让循环里面的任务同时执行
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 快速迭代实现文件剪切
 - (void)apply
 {
@@ -244,7 +244,7 @@ dispatch_apply(10, dispatch_get_global_queue(0, 0), ^(size_t index){
 }
 {% endhighlight %}
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 传统文件剪切
 - (void)moveFile
 {
@@ -269,7 +269,7 @@ dispatch_apply(10, dispatch_get_global_queue(0, 0), ^(size_t index){
 * 如果有这么1种需求,首先：分别异步执行2个耗时的操作,其次：等2个异步操作都执行完毕后，再回到主线程执行操作
 * 如果想要快速高效地实现上述需求，可以考虑用队列组
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 dispatch_group_t group =  dispatch_group_create();
 dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // 执行1个耗时的异步操作
@@ -284,7 +284,7 @@ dispatch_group_notify(group, dispatch_get_main_queue(), ^{
 
 ##### 队列组的应用---合成图片
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)group
 {
 //

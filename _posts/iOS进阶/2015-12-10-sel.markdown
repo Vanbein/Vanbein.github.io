@@ -15,7 +15,7 @@ toc: true
 ### 定义
 下面是method相关的定义
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef struct objc_method \*Method;
 //编译器依据类中定义的方法为该类产生一个或更多这种这种结构.
 //一个类的实现可以分散在一个文件中不同部分,同时类别可以分散在不同的模块中.
@@ -57,13 +57,13 @@ struct objc_method_description_list {
 IMP 和 SEL 的结构如下：
 
 **IMP**
-{% highlight objc linenos %}
+{% highlight objc  %}
 id (*IMP)(id, SEL, ...)
 {% endhighlight %}
 
 **SEL**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef struct objc_selector *SEL;
 struct objc_selector
 {
@@ -75,7 +75,7 @@ struct objc_selector
 ### 发送消息
 当一个receiver接收消息时，会触发` objc_msgSend(receiver, SEL op, ...); `，首先去runtime底层代码去查看，这些参数的来源，每一个receiver都是`objc_object`结构体的实例，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 struct objc_objc {
 	Class isa  OBJC_ISA_AVAILABILITY;
 }

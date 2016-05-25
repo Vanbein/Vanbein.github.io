@@ -32,7 +32,7 @@ toc: true
 
 创建一个 imageView，由于最开始从上往下开始动画，所以初始位置在动画效果的顶部
 
-{% highlight objc linenos %}
+{% highlight objc %}
 self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 2, 18, 20)];
 self.imageView.image = [UIImage imageNamed:@"LOADING"];
 self.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -55,10 +55,10 @@ self.imageView.hidden = YES;//默认隐藏
 
 落实到代码上后，关键代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (CAAnimationGroup *)imageMoveAnimationForImageView:(UIImageView *)imageView{
     
-    //1. 向下移动
+    /* 向下移动 */
     //imageView.layer.position = (34.0, 12.0)
     CABasicAnimation *moveDownAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
     moveDownAnimation.fromValue = [NSValue valueWithCGPoint:imageView.layer.position];
@@ -111,7 +111,7 @@ self.imageView.hidden = YES;//默认隐藏
 
 根据每个字符的 width，依次创建 Lable，一个字符为一个 Label
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *textArray = @[@"L", @"o", @"a", @"d", @"i", @"n", @"g",@".", @".", @"."];
 UIColor *textTintColor;
 if (!self.textTintColor) {
@@ -156,7 +156,7 @@ for (int i = 0; i < 10; i ++) {
 
 同图片的动画类似，使用 `CAAnimationGroup` 即可，如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (CAAnimationGroup *)labelAppearAnimationForLabel:(UILabel *)label delay:(CGFloat)delay{
     
     //1. 透明度渐变

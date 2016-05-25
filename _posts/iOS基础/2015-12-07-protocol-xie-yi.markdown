@@ -50,7 +50,7 @@ homepage: false
 	+ 如何在代码中要求对象必须具备这些行为？
 		- 数据类型<协议名称> 变量名
 		
-{% highlight objc linenos %}
+{% highlight objc  %}
 //如果没有遵循协议，则会报警告
 id<StudentCondition> sutdent = [[Person alloc] init];
 {% endhighlight %}

@@ -1,15 +1,13 @@
-.highlight  { color: #333333; background: #f0f0f0; } /* 符号，比如 . , []  */
-.highlight .n, .highlight .py, .highlight .nx { color: #666666; }  /* 普通字符 */  
-
-.highlight .c { color: #559c26; }  /* 注释 Comment font-style: italic */
-.highlight .c1 { color: #559c26; } /* //的注释 Comment.Single #989888 font-style: italic*/
-.highlight .cm { color: #559c26; }    /* /*的注释 Comment.Multiline font-style: italic */
-.highlight .cs { color: #559c26; } /* Comment.Special   font-weight: bold;*/
+.highlight  { background: #f0f0f0; }
+.highlight .c { color: #559c26; font-style: italic }  /* 注释 Comment */
+.highlight .c1 { color: #559c26; font-style: italic } /* //的注释 Comment.Single #989888*/
+.highlight .cm { color: #559c26; font-style: italic }    /* /*的注释 Comment.Multiline */
+.highlight .cs { color: #559c26; font-style: italic } /* Comment.Special   font-weight: bold;*/
 .highlight .err { color: #a61717 } /* 错误 Error ; background-color: #e3d2d2  */
 .highlight .cp { color: #812e15 } /* 头文件-#import Comment.Preproc ; font-weight: bold */
 .highlight .kt { color: #5C2699 } /* 方法返回值 Keyword.Type ; font-weight: bold*/
-.highlight .nf { color: #1487b1 } /* 方法名 Name.Function font-weight: bold  */
-.highlight .nv { color: #333333 }    /* 方法参数 Name.Variable 008080 */
+.highlight .nf { color: #39237e } /* 方法名 Name.Function font-weight: bold  */
+.highlight .nv { color: #000 }    /* 方法参数 Name.Variable 008080 */
 .highlight .k { color: #D31895 } /* 关键字 Keyword ; font-weight: bold */
 .highlight .nn { color: #D31895 } /* Name.Namespace */
 .highlight .nb { color: #D31895 } /* BOOL值 Name.Builtin */
@@ -19,7 +17,8 @@
 .highlight .mh { color: #786dff } /* Literal.Number.Hex */
 .highlight .mo { color: #786dff } /* Literal.Number.Oct */
 .highlight .il { color: #786dff } /* Literal.Number.Integer.Long */
-.highlight .o { color: #a5215d; font-weight: normal } /* 运算符号 比如 + = * Operator bold */
+.highlight .o { color: #000; font-weight: normal } /* 操作符号 Operator bold */
+
 
 .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
 .highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
@@ -64,5 +63,3 @@
 
 .highlight .lineno { color: #000; display:inline-block; padding: 0 5px; border-right:0px solid #ccc; }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; background: #f0f0f0; }
-
-.highlight .nl { color: #000; }

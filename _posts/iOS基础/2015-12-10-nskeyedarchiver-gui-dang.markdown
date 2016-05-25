@@ -39,7 +39,7 @@ homepage: false
 
 NSKeyedArchiver 可对 Foundation 框架中的对象进行归档
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //1.获取文档路径
 NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 NSString *filePath = [documentsPath stringByAppendingPathComponent:@"file.archive"];  
@@ -80,7 +80,7 @@ NSLog(@"%@",unarchiveArray2);
 
 其主要步骤如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //获得文件路径
 NSString *secondFilePath = [documentsPath stringByAppendingPathComponent:@"secondFile.archive"];
 //1、使用NSData存放归档数据
@@ -127,7 +127,7 @@ NSLog(@"name = %@ age = %d language = %@", name, age, array);
 
 当我们对自己定义的对象进行“编码/解码”操作时，却需要实现 NSCoding协议的两个方法`encodeWithCoder: `, `initWithCoder:` 来告诉程序该如何来“编码/解码”我们自己的对象！并且要遵循 NSCopying协议
 示例如下：
-{% highlight objc linenos %}
+{% highlight objc  %}
 // CHStudent.m
 #import "CHStudent.h"
 //
@@ -150,7 +150,7 @@ NSLog(@"name = %@ age = %d language = %@", name, age, array);
 @end
 {% endhighlight %}
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //获得文件路径
 NSString *thirdFilePath = [documentsPath stringByAppendingPathComponent:@"thirdFile.archive"];
 //
@@ -180,7 +180,7 @@ NSLog(@"name:%@  age:%ld  score:%ld",unArchiverXiaoMing.name, unArchiverXiaoMing
 除此之外，还有一种情况:如果一个自定义的类A，作为另一个自定义类B的一个属性存在；那么，如果要对B进行归档，那么，B要实现NSCoding协议。并且，A也要实现NSCoding协议
 举个例子：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // CHStudent.m
 // CHStudent 要实现 NSCopying协议
 - (id)copyWithZone:(NSZone *)zone{
@@ -193,7 +193,7 @@ NSLog(@"name:%@  age:%ld  score:%ld",unArchiverXiaoMing.name, unArchiverXiaoMing
 }
 {% endhighlight %}
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //路径
 NSString *fourthFilePath = [documentsPath stringByAppendingPathComponent:@"fourthFile.archive"];
 //数据

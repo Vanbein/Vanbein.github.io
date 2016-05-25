@@ -46,7 +46,7 @@ extension看起来很像一个匿名的category，但是extension和有名字的
 ### 三、category真面目
 我们知道，所有的OC类和对象，在runtime层都是用struct表示的，category也不例外，在runtime层，category用结构体 `category_t`（在 `objc-runtime-new.h`中可以找到此定义）表示，如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef struct category_t {
     const char *name;
     classref_t cls;
@@ -77,7 +77,7 @@ category的加载时间：在iOS的世界里两个方法：`+(void)load` ，`+(v
 ##### 示例：
 我们通过一个例子来具体说明：首先在category中 按照正常方式，声明一个属性(这里是block)。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)setBlock:(handler)block
 {
     objc_setAssociatedObject(self, &key, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -106,7 +106,7 @@ category的加载时间：在iOS的世界里两个方法：`+(void)load` ，`+(v
 
 3. 上面说到的`@dynamic`是一种动态属性。其getter、setter方法由自己生成，而非系统提供。可以根据消息转发来实现。大致说下吧，OC中调用方法本质是像这个对象发送消息。而消息会转换成objc_msgSend（）这个函数。而最终调用的方法是 本质是selector对应的IMP，就是C里面的函数指针，不同的是这个IMP 含有默认的参数，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef id (*IMP)(id, SEL, ...);
 {% endhighlight %}
 
@@ -123,7 +123,7 @@ typedef id (*IMP)(id, SEL, ...);
 现在来创建一个Category来为NSString添加扩展方法。点击` File -> New -> File `然后选择 `Cocoa Touch Objective-C category`. 这里我们命名为 RemoveNum。记得要从 Category on 下拉框选择 NSString，最后点击Create按钮旁的Next按钮。声明Category扩展的方法。
 选择 `NSString+RemoveNums.h`文件。添加以下代码:
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface  NSString (RemoveNums)//分类名放在圆括号中，为`RomoveNums`
 - (NSString *)removeNumbersFromString:(NSString *)string;
 @end
@@ -132,7 +132,7 @@ typedef id (*IMP)(id, SEL, ...);
 实现Category扩展的方法。
 接着来到`NSString+RemoveNums.m`文件。添加以下代码,可以看到这个方法实际做的事情就是从整个NSString去除掉所有的数字字符。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (NSString *)removeNumbersFromString:(NSString *)string
 {
     NSString *trimmedString = nil;
@@ -145,14 +145,14 @@ typedef id (*IMP)(id, SEL, ...);
 ##### Step3. 导入Category
 在`ViewController.h`文件头部添加以下代码来导入Category
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #import "NSString+RemoveNums.h"
 {% endhighlight %}
 
 ##### Step4. 测试Category
 在`ViewController.h`文件的viewDidLoad方法中添加以下代码。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *stringWithNums = @"ABC 123";
 NSLog(@"stringWithNums         --> %@",stringWithNums);
 stringWithNums = [stringWithNums removeNumbersFromString:stringWithNums];

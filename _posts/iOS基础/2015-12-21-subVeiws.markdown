@@ -13,7 +13,7 @@ toc: true
 
 > 最近在项目中需要判断当前是否打开了YouTube播放视频，因为YouTube播放后有一个可收缩的播控条，它是在 `AppDelegate.m` 中添加在window上的，因此在需要判断的时候，就需要判断当前window中是否有YouTube的播控条。此时就是通过设置播控条的**Tag**值，遍历window的subViews，进行比较判断出来的。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews]) {
             if (isShowView.tag == YouTubePlayControl_ShowControl_ViewTag) {
             //找到了播控条
@@ -38,7 +38,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 　
 #### 添加View
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)addSubviews{
     //设置bgView
     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 290)];
@@ -82,7 +82,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 
 #### 只显示tag=11的view
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)showTag11{
     //先隐藏所有
     for (UIView *tempView in [self.bgView subviews]) {
@@ -104,7 +104,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 
 #### 只显示tag = 13的view
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)showTag13{
     //先隐藏所有
     for (UIView *tempView in [self.bgView subviews]) {
@@ -142,7 +142,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 > * 
 > 所以在使用`viewWithTag:`，以及在设置子view的Tag值时， 需要注意不要使用数值较小的Tag值，使用时建议加一个定值
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #define subViewTag   10000
 {% endhighlight %}
 
@@ -162,7 +162,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 　
 举个例子测试如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 {
 	//父视图
 	UIView *fatherView = [[UIView alloc] initWithFrame:CGRectMake(20, 400, 100, 40)];

@@ -494,15 +494,14 @@ instead of decimal-encoded entites like `&#8212;`.
 
 示例语法：
 
-	```语言类型 代码文件名 代码下载链接
+	``` 语言类型
 	//这是一个代码区块
 	//这种会显示代码行数
-	//会自动判断代码语言类型进行语法高亮
 	NSString *string = @"Hello world!";
 	NSLog(@"%@",string);
 	```
 	
-	```ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+	``` ruby 
 	class Fixnum
 		def prime?
 			('1' * self) !~ /^1?$|^(11+?)\1+$/
@@ -514,7 +513,7 @@ instead of decimal-encoded entites like `&#8212;`.
 显示效果：
 
 
-```objc Test.m
+``` objc
 //这是一个代码区块
 //这种会显示代码行数
 //会自动判断代码语言类型进行语法高亮
@@ -522,9 +521,7 @@ NSString *string = @"Hello world!";
 NSLog(@"%@",string);
 ```
 
-或者：
-
-```ruby Discover if a number is prime http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/ Source Article
+``` ruby
 class Fixnum
   def prime?
     ('1' * self) !~ /^1?$|^(11+?)\1+$/
@@ -532,7 +529,7 @@ class Fixnum
 end
 ```
 
-但是目前我的环境，貌似不支持上述两种代码高亮形式，所以可以用下面这种：(使用时请去掉 % 前的 \)
+但是目前我的环境，貌似不支持上述两种代码高亮形式，所以可以用下面这种：(使用时请去掉 % 前的 `\`)
 
 	{\% highlight objc linenos \%}
 	//这是一个代码区块 这种会显示代码行数
@@ -540,7 +537,7 @@ end
 	NSLog(@"%@",string);
 	{\% endhighlight \%}
 	
-	{\% highlight ruby linenos \%}
+	{\% highlight ruby \%}
 	class Fixnum
 	  def prime?
 	    ('1' * self) !~ /^1?$|^(11+?)\1+$/
@@ -556,7 +553,7 @@ NSString *string = @"Hello world!";
 NSLog(@"%@",string);
 {% endhighlight %}
 
-{% highlight ruby linenos %}
+{% highlight ruby %}
 class Fixnum
   def prime?
     ('1' * self) !~ /^1?$|^(11+?)\1+$/

@@ -23,7 +23,7 @@ homepage: false
 
 ##### startProgress
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property float startProgress
 {% endhighlight %}
 
@@ -31,7 +31,7 @@ homepage: false
 
 ##### endProgress
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property float endProgress
 {% endhighlight %}
 
@@ -45,7 +45,7 @@ homepage: false
  
 ##### filter
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nullable, strong) id filter;
 {% endhighlight %}
 
@@ -57,7 +57,7 @@ homepage: false
 
 ##### type
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(copy) NSString *type
 {% endhighlight %}
 
@@ -68,7 +68,7 @@ homepage: false
 
 预定义的过渡效果：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString * const kCATransitionFade; //淡出
 NSString * const kCATransitionMoveIn; //覆盖原图
 NSString * const kCATransitionPush; //推出
@@ -78,7 +78,7 @@ NSString * const kCATransitionReveal; //从底部显示
 注意：
 还有很多私有API效果，使用的时候要小心，可能会导致app审核不被通过
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //
 //以下API效果可以安全使用
 fade     //交叉淡化过渡(不支持过渡方向)
@@ -110,7 +110,7 @@ oglApplicationSuspend //像按”home” 按钮的效果.
 
 ##### subtype
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nullable, copy) NSString *subtype;
 {% endhighlight %}
 
@@ -120,7 +120,7 @@ oglApplicationSuspend //像按”home” 按钮的效果.
 
 预定义的过渡方向为：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString * const kCATransitionFromRight; //从右边开始
 NSString * const kCATransitionFromLeft; //从左边开始
 NSString * const kCATransitionFromTop; //从顶部开始
@@ -129,7 +129,7 @@ NSString * const kCATransitionFromBottom; //从底部开始
 
 ##### timingFunction
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nullable, strong) CAMediaTimingFunction *timingFunction;
 {% endhighlight %}
 
@@ -138,7 +138,7 @@ NSString * const kCATransitionFromBottom; //从底部开始
 
 * 动画的开始与结束的快慢,有五个预置分别为(下同):
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 kCAMediaTimingFunctionLinear            //线性,即匀速
 kCAMediaTimingFunctionEaseIn            //先慢后快
 kCAMediaTimingFunctionEaseOut           //先快后慢
@@ -154,7 +154,7 @@ transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimi
 
 对于有较多动画效果时，可以选择新建一个动画类，里面封装所有需要用到的动画效果。下面列举一个简单的例子：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #pragma CATransition动画封装实现
 - (void) transitionWithType:(NSString *) type WithSubtype:(NSString *) subtype ForView : (UIView *) view
 {
@@ -180,7 +180,7 @@ transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimi
 
 对于有些动画效果，可直接用UIView的block回调实现动画的代码封装, 比如上下翻页，封装例子如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #pragma UIView实现动画
 - (void) animationWithView : (UIView *)view WithAnimationTransition : (UIViewAnimationTransition) transition
 {
@@ -193,7 +193,7 @@ transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimi
 
 于是，封装好之后，我们只需要调用封装方法即可，不必每次都写：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //淡化效果
 [self transitionWithType:kCATransitionFade WithSubtype:kCATransitionFromLeft ForView:self.view];
 //波纹效果

@@ -13,7 +13,7 @@ toc: true
 
 ### 一、获取数组里的,最大、最小、平均、求和
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *array = @[@"11", @"9", @"2", @"20", @"8"]; 
 NSNumber *sum = [array valueForKeyPath:@"@sum.floatValue"]; 
 NSNumber *avg = [array valueForKeyPath:@"@avg.floatValue"]; 
@@ -27,14 +27,14 @@ NSLog(@"min:%@",min);
 
 ### 二、删除重复数据
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *array = @[@"a", @"b", @"c", @"a", @"d"]; //返回的是一个新的数组
 NSArray *newArray = [array valueForKeyPath:@"@distinctUnionOfObjects.self"]; 
 NSLog(@"%@", newArray);
 {% endhighlight %}
 
 ### 三、同样可以嵌套使用，先剔除name对应值的重复数据再取值
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *array = @[ @{@"title":@"zxp",@"name":@"zhangxiaoping"}, @{@"title":@"zxp2",@"name":@"zhangxiaoping2"}, @{@"title":@"zxp",@"name":@"zhangxiaoping3"}, @{@"title":@"zxp",@"name":@"zhangxiaoping"}];
 //根据name字段，来进行重复删除。
 NSArray *newArray = [array valueForKeyPath:@"@distinctUnionOfObjects.name"];
@@ -45,7 +45,7 @@ NSLog(@"%@", newArray);
 
 ### 四、进行实例方法的调用
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *array = @[@"name", @"w", @"aa", @"ZXPing"]; 
 NSLog(@"%@", [array valueForKeyPath:@"uppercaseString"]);
 {% endhighlight %}

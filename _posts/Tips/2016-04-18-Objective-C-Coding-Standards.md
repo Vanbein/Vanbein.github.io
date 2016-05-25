@@ -25,13 +25,13 @@ toc: true
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIColor *myColor = [UIColor whiteColor];  
 {% endhighlight %}
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIColor *myColour = [UIColor whiteColor];  
 {% endhighlight %}
 
@@ -47,7 +47,7 @@ UIColor *myColour = [UIColor whiteColor];
 
 一般建议按照以下示例来分组代码，注意顺序，排序的原则是：越是对其它对象有影响的方法应越靠前，越是私有的方法越靠后。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #pragma mark - Instance Life Cycle
 - (instancetype)init {..}
 - (void)dealloc {..}
@@ -102,13 +102,13 @@ Apple命名规则尽可能坚持，特别是与这些相关的 [memory managemen
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIButton *settingsButton;  
 {% endhighlight %}
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIButton *setBtn;  
 {% endhighlight %}
 
@@ -119,13 +119,13 @@ UIButton *setBtn;
 
 * **变量名小写字母开头**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
 {% endhighlight %}
 
 * **常量以小写字母k开头，后续首字母大写**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 static NSTimeInterval const kVNBTutorialViewControllerNavigationFadeAnimationDuration = 0.3;  
 {% endhighlight %}
 
@@ -137,7 +137,7 @@ static NSTimeInterval const kVNBTutorialViewControllerNavigationFadeAnimationDur
 
 示例如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSApplicationDidBecomeActiveNotification
 NSWindowDidMiniaturizeNotification
 NSTextViewDidChangeSelectionNotification
@@ -156,7 +156,7 @@ NSColorPanelColorDidChangeNotification
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface VNBTutorial : NSObject  
 @property (strong, nonatomic) NSString *tutorialName;  
 @end  
@@ -164,7 +164,7 @@ NSColorPanelColorDidChangeNotification
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface VNBTutorial : NSObject {  
   NSString *_tutorialName;  
 }  
@@ -176,14 +176,14 @@ NSColorPanelColorDidChangeNotification
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (weak, nonatomic) IBOutlet UIView *containerView;  
 @property (strong, nonatomic) NSString *tutorialName;  
 {% endhighlight %}
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (nonatomic, weak) IBOutlet UIView *containerView;  
 @property (nonatomic) NSString *tutorialName;
 {% endhighlight %}
@@ -194,13 +194,13 @@ NSColorPanelColorDidChangeNotification
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (copy, nonatomic) NSString *tutorialName;  
 {% endhighlight %}
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (strong, nonatomic) NSString *tutorialName;  
 {% endhighlight %}
 
@@ -212,7 +212,7 @@ NSColorPanelColorDidChangeNotification
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSInteger arrayCount = [self.array count];  
 view.backgroundColor = [UIColor orangeColor];  
 [UIApplication sharedApplication].delegate;  
@@ -220,7 +220,7 @@ view.backgroundColor = [UIColor orangeColor];
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSInteger arrayCount = self.array.count;  
 [view setBackgroundColor:[UIColor orangeColor]];  
 UIApplication.sharedApplication.delegate; 
@@ -234,7 +234,7 @@ UIApplication.sharedApplication.delegate;
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;  
 - (void)sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;  
 - (id)viewWithTag:(NSInteger)tag;  
@@ -243,7 +243,7 @@ UIApplication.sharedApplication.delegate;
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)setT:(NSString *)text i:(UIImage *)image;  
 - (void)sendAction:(SEL)aSelector :(id)anObject :(BOOL)flag;  
 - (id)taggedView:(NSInteger)tag;  
@@ -260,7 +260,7 @@ UIApplication.sharedApplication.delegate;
 
 协议、委托的注释要明确说明其被触发的条件：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 /** Delegate - Sent when failed to init connection, like p2p failed. */
 -(void)initConnectionDidFailed:(IPCConnectHandler *)handler;
 {% endhighlight %}
@@ -274,7 +274,7 @@ NSString、NSDictionary、NSArray 和 NSNumber 的字面值应该在创建这些
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];  
 NSDictionary *productManagers = @{@"iPhone": @"Kate", @"iPad": @"Kamal", @"Mobile Web": @"Bill"};  
 NSNumber *shouldUseLiterals = @YES;  
@@ -283,7 +283,7 @@ NSNumber *buildingStreetNumber = @10018;
 
 不应该:
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];  
 NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];  
 NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];  
@@ -300,7 +300,7 @@ NSNumber *buildingStreetNumber = [NSNumber numberWithInteger:10018];
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 if (user.isHappy) {  
     //Do something  
 } else {  
@@ -310,7 +310,7 @@ if (user.isHappy) {
  
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 if (user.isHappy)  
 {  
     //Do something  
@@ -323,19 +323,19 @@ else {
 (2) 在控制语句中如果随后的语句只有一行，不允许省略括号
 
 应该：
-{% highlight objc linenos %}
+{% highlight objc  %}
 if (flag == YES) {    NSLog(@“Hello”);}
 {% endhighlight %}
 
 不应该：
-{% highlight objc linenos %}
+{% highlight objc  %}
 if (flag == YES) NSLog(@“Hello”);
 if (flag == YES)    NSLog(@“Hello”);
 {% endhighlight %}
 
 (3) Switch 语句中，无论一个 case 语句是否包含了多个语句，都需要加上括号。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 switch (condition) {    case 1: {        // single line statement    break;    } case 2: {        // ...        //Multi-line example using braces        break;    } default:        // ....        break; 
 }
 {% endhighlight %}
@@ -344,7 +344,7 @@ switch (condition) {    case 1: {        // single line statement    break; 
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // blocks are easily readable  
 [UIView animateWithDuration:1.0 animations:^{  
     // something  
@@ -355,7 +355,7 @@ switch (condition) {    case 1: {        // single line statement    break; 
   
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // colon-aligning makes the block indentation hard to read  
 [UIView animateWithDuration:1.0  
                  animations:^{  
@@ -373,14 +373,14 @@ switch (condition) {    case 1: {        // single line statement    break; 
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 static NSString * const RWTAboutViewControllerCompanyName = @"RayWenderlich.com";  
 static CGFloat const RWTImageThumbnailHeight = 50.0;  
 {% endhighlight %}
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #define CompanyName @"RayWenderlich.com"  
 #define thumbnailHeight 2  
 {% endhighlight %}
@@ -391,7 +391,7 @@ static CGFloat const RWTImageThumbnailHeight = 50.0;
 
 例如：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef NS_ENUM(NSInteger, RWTLeftMenuTopItemType) {  
   RWTLeftMenuTopItemMain,  
   RWTLeftMenuTopItemShows,  
@@ -401,7 +401,7 @@ typedef NS_ENUM(NSInteger, RWTLeftMenuTopItemType) {
  
 你也可以显式地赋值(展示旧的k-style常量定义)：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef NS_ENUM(NSInteger, RWTGlobalConstants) {  
   RWTPinSizeMin = 1,  
   RWTPinSizeMax = 5,  
@@ -414,7 +414,7 @@ typedef NS_ENUM(NSInteger, RWTGlobalConstants) {
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 enum GlobalConstants {  
   kMaxPinSize = 5,  
   kMaxPinCount = 500,  
@@ -430,14 +430,14 @@ Objective-C 使用 YES 和 NO。因为 true 和 false 应该只在 CoreFoundatio
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 if (someObject) {}  
 if (![anotherObject boolValue]) {}  
 {% endhighlight %}
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 if (someObject == nil) {}  
 if ([anotherObject boolValue] == NO) {}  
 if (isAwesome == YES) {} // Never do this.  
@@ -446,14 +446,14 @@ if (isAwesome == true) {} // Never do this.
 
 如果BOOL属性的名字是一个形容词，属性就能忽略"is"前缀，但要指定get访问器的惯用名称。例如：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property (assign, getter=isEditable) BOOL editable;  
 {% endhighlight %}
 
 同样的，也**不要将其它类型的值作为 BOOL 来返回**，这种情况下， BOOL 变量只会取值的最后一个字节来赋值，这样很可能会取到 0 （ NO ）。但是，一些逻辑操作符比如 &&, ||, ! 的返回是可以直接赋给 BOOL 的。
 
 应该：
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (BOOL)isBold {
 return ([self fontTraits] & NSFontBoldTrait) ? YES : NO;
 }
@@ -469,7 +469,7 @@ return ([self fontTraits] & NSFontBoldTrait) ? YES : NO;
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //错误，不要将其它类型转化为 BOOL 返回
 - (BOOL)isBold {
     return [self fontTraits] & NSFontBoldTrait;
@@ -490,7 +490,7 @@ Non-boolean的变量与某东西比较，加上括号()会提高可读性。但�
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSInteger value = 5;  
 result = (value != 0) ? x : y;  
 
@@ -500,7 +500,7 @@ result = isHorizontal ? x : y;
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 result = a > b ? x = c > d ? c : d : y;  
 {% endhighlight %}
 
@@ -509,7 +509,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 **Init 方法**应该遵循 Apple 生成代码模板的命名规则，返回类型应该使用 instancetype 而不是 id。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (instancetype)init {  
   self = [super init];  
   if (self) {  
@@ -524,7 +524,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 当类构造方法被使用时，它应该返回类型是 instancetype 而不是 id。这样确保编译器正确地推断结果类型。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface Airplane  
 + (instancetype)airplaneWithType:(RWTAirplaneType)type;  
 @end  
@@ -541,7 +541,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 CGRect frame = self.view.frame;  
 CGFloat x = CGRectGetMinX(frame);  
 CGFloat y = CGRectGetMinY(frame);  
@@ -552,7 +552,7 @@ CGRect frame = CGRectMake(0.0, 0.0, width, height);
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 CGRect frame = self.view.frame;  
 CGFloat x = frame.origin.x;  
 CGFloat y = frame.origin.y;  
@@ -568,7 +568,7 @@ CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)someMethod {  
   if (![someOther boolValue]) {  
     return;  
@@ -579,7 +579,7 @@ CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)someMethod {  
   if ([someOther boolValue]) {  
     //Do something important  
@@ -593,7 +593,7 @@ CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
 
 应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSError *error;  
 if (![self trySomethingWithError:&error]) {  
   // Handle Error  
@@ -602,7 +602,7 @@ if (![self trySomethingWithError:&error]) {
 
 不应该：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSError *error;  
 [self trySomethingWithError:&error];  
 if (error) {  
@@ -616,7 +616,7 @@ if (error) {
 
 单例对象应该使用线程安全模式来创建共享实例。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 + (instancetype)sharedInstance {  
   static id sharedInstance = nil;  
   static dispatch_once_t onceToken;  

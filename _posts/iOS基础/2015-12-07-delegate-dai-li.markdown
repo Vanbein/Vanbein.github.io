@@ -56,7 +56,7 @@ delegate(委托/代理)是iOS开发中常用的设计模式，表示将一个对
 使用 Xcode 创建一个工程时，Xcode 自动生成的 `AppDelegate.h`& `AppDelegate.m`两个文件，就可以看到 delegate 的使用。`AppDelegate.h`如下所示：
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #import <UIKit/UIKit.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
@@ -65,7 +65,7 @@ delegate(委托/代理)是iOS开发中常用的设计模式，表示将一个对
 
 在`AppDelegate.h` 中，AppDelegate类声明了遵守 `UIApplicationDelegate`协议。查看 `UIApplicationDelegate`协议包含了哪些属性和方法：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @protocol UIApplicationDelegate<NSObject>
 @optional
 - (void)applicationDidFinishLaunching:(UIApplication *)application;
@@ -76,7 +76,7 @@ delegate(委托/代理)是iOS开发中常用的设计模式，表示将一个对
 由于`UIApplicationDelegate`协议中属性和方法太多，只列出部分供展示在`UIApplicationDelegate`协议中，由关键字@optional可知方法都是可选的。协议所声明的方法可以是必需的(@required)或是可选的(@optional)。默认都是必需的。委托协议中的方法通常都是可选的。
 在 `AppDelegate.m`中，实现了应用生命周期的方法(均在协议`UIApplicationDelegate`定义的可选方法):
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation AppDelegate
 #pragma mark - Application lifecycle methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { return YES;}
@@ -105,7 +105,7 @@ delegate的使用步骤总的有六步，可分为前三布，后三步：
 
 **Step1：**声明delegate原型，即定义一个protocol
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #import <Foundation/Foundation.h>
 @class Boss;
 @protocol BossDelegate <NSObject>
@@ -119,7 +119,7 @@ delegate的使用步骤总的有六步，可分为前三布，后三步：
 
 **Step2：**委托者（Boss）声明一个delegate变量，来指明谁是我的委托者，为我办事
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //Boss.h
 #import <Foundation/Foundation.h>
 #import "BossDelegate.h"
@@ -136,7 +136,7 @@ delegate的使用步骤总的有六步，可分为前三布，后三步：
 
 **Step3：**委托者（Boss）调用delegate内的方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //Boss.h
 #import "Boss.h"
 @implementation Boss
@@ -157,7 +157,7 @@ delegate的使用步骤总的有六步，可分为前三布，后三步：
 
 **Step4：**被委托者（秘书）声明服从delegate
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //Secretary.h
 #import <Foundation/Foundation.h>
 #import "BossDelegate.h"
@@ -168,7 +168,7 @@ delegate的使用步骤总的有六步，可分为前三布，后三步：
 
 **Step5：**设置delegate的值
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // main.m
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
@@ -188,7 +188,7 @@ int main(int argc, char * argv[]) {
 
 **Step6：**被委托者（秘书）实现delegate方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // Secretary.m
 #import "Secretary.h"
 @implementation Secretary
@@ -210,7 +210,7 @@ int main(int argc, char * argv[]) {
 
 经过上述六步，一个完整的delegate就实现了，运行程序，结果如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 2015-12-7 17:19:30.487 Protocol_Delegate_Demo[2230:174797] 秘书正在帮老板接听电话...
 2015-12-7 17:19:30.489 Protocol_Delegate_Demo[2230:174797] 秘书正在帮老板订餐...
 {% endhighlight %}

@@ -20,7 +20,7 @@ homepage: false
 * **自动变量**
 自动变量在Block中的具体表现就是截获自动变量，来看下面这一段代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 int b = 0;
 void (^blo)() = ^{
     NSLog(@"Input:b=%d",b);
@@ -35,7 +35,7 @@ blo();
 
 我们再来看一段代码
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 int b = 0;
     void (^blo)() = ^{
         b = 3;
@@ -44,7 +44,7 @@ int b = 0;
 
 这段代码**编译出错**，编译器提示的大概就是不能在Block中改变变量的值。因为在Block中截获了变量的瞬间值以后就不能再改变变量的值，如果想要在Block中改变变量的值，那么我们只需要在变量声明的时候加上`__Block`修饰符，像这样
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 __block int b = 0;
     void (^blo)() = ^{
         b = 3;
@@ -53,7 +53,7 @@ __block int b = 0;
 
 然而这样的情况又是允许的：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
  NSMutableArray *array = [[NSMutableArray alloc]init];
     void (^blo)() = ^{
         [array addObject:@"Obj"];
@@ -70,7 +70,7 @@ __block int b = 0;
 
 我们来具体看一下Block语法的书写，我们首先来看一个完整的Block：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
  ^ NSString *(NSString *a,NSString *b){
         return a;
     };
@@ -84,7 +84,7 @@ __block int b = 0;
 
 其实我们可以省略Block的返回值，像这样写：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 ^ (NSString *a,NSString *b){
         return a;
     };
@@ -92,7 +92,7 @@ __block int b = 0;
 
 这样写和上面那种写法是一模一样的，其实如果没有参数列表我们甚至可以省略参数列表，像这样：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 ^ {
         NSLog(@"我没有参数列表");
     };
@@ -100,7 +100,7 @@ __block int b = 0;
 
 如果把这段代码写完整，那么就是这样的：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 ^void(void) {
         NSLog(@"我没有参数列表");
     };
@@ -108,7 +108,7 @@ __block int b = 0;
 
 为什么需要Block变量？我们可以这样理解，我们通过这个Block变量来获取Block的指针，然后通过这个指针就可以来使用Block函数。我们先来看一下如何声明一个Block变量
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 int (^Blo)(NSString *s1,NSString *s2);
 {% endhighlight %}
 
@@ -122,7 +122,7 @@ int (^Blo)(NSString *s1,NSString *s2);
 
 好的，然后我们用上面讲到的Block语法来对这个Block变量进行赋值：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 int (^Blo)(NSString *s1,NSString *s2);
 //
 Blo = ^(NSString *s1,NSString *s2){
@@ -136,13 +136,13 @@ Blo = ^(NSString *s1,NSString *s2){
 
 Block能够当作函数参数，首先我们声明一个Block类型变量 ，并加上typedef修饰符，像这样：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef void(^Blo)(NSString *s1,UIColor *c);
 {% endhighlight %}
 
 这样我们就可以使用Blo来表示这个Block，然后我就可以将Blo加入到函数参数中，我们来声明一个函数：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)func:(Blo)BlockPra
     BlockPra(@"Str",[UIColor redColor]);
 }
@@ -150,7 +150,7 @@ typedef void(^Blo)(NSString *s1,UIColor *c);
 
 然后我们可以这样使用这个函数：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self func:^(NSString *s1, UIColor *c) {
         NSLog(@"%@",s1);
         self.view.backgroundColor = c;
@@ -164,14 +164,14 @@ typedef void(^Blo)(NSString *s1,UIColor *c);
 
 页面B的.h文件中定义了这样一个Block指针，然后声明了一个变量，像这样：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 typedef void(^Blo)(NSString *s1,UIColor *c);
 @property (nonatomic, copy) Blo block;
 {% endhighlight %}
 
 然后我们在页面A当中有这么一段代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 ViewController *b = [[ViewController alloc]init];
 //
 __weak  ViewController *wself = self;
@@ -184,7 +184,7 @@ b.block = ^(NSString *s1,UIColor *c){
 
 然后在页面B的任意地方我们调用block变量，像这样：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 self.block(@"str",[UIColor redColor]);
 {% endhighlight %}
 
@@ -192,7 +192,7 @@ self.block(@"str",[UIColor redColor]);
 
 * 在这里有一点需要注意就是Block的使用引起的循环引用。如果在Block中使用附有`__strong`修饰符的对象类型自动变量，那么当Block从栈复制到堆时，改对象为Block所有。这样容易引起循环引用，从而发生内存泄漏，然而我们只需要保证当前控制器也就是self在需要释放的时候正确释放就可以，所以我们再来看上面那段代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 __weak  ViewController *wself = self;
 {% endhighlight %}
 

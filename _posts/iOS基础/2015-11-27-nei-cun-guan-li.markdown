@@ -58,7 +58,7 @@ homepage: false
 
 `assign`，用于基本数据类型
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)setA:(int)a{
     _a=a;
 }
@@ -66,7 +66,7 @@ homepage: false
 
 `retain`，通常用于非字符串对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)setA:(Car *)a{
     if(_a!=a){
         [_a release];
@@ -77,7 +77,7 @@ homepage: false
 
 `copy`，通常用于字符串对象、`block`、`NSArray`、`NSDictionary`
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)setA:(NSString *)a{
     if(_a!=a){
         [_a release];
@@ -117,7 +117,7 @@ objective-C的内存管理遵守下面这个简单的策略：
 
 > 注：简单的赋值不会拥有某个对象。比如：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *name = person.fullName;
 {% endhighlight %}
 
@@ -133,7 +133,7 @@ dealloc方法用来释放这个对象所占的内存(包括成员变量)和其�
  `Accessor Methods`，也就是对象的 `property`（属性）的getter和setter方法。显然，如果getter返回的对象已经被运行环境回收了，那么这个getter的返回值是毫无意义的。这就需要在setter方法里“拥有”相应的property。
 比如：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface Counter : NSObject
 @property (nonatomic, retain) NSNumber *count;
 @end
@@ -141,7 +141,7 @@ dealloc方法用来释放这个对象所占的内存(包括成员变量)和其�
 
 getter方法仅仅返回成员变量就可以：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(NSNumber *)count {
     return _count;
 }
@@ -149,7 +149,7 @@ getter方法仅仅返回成员变量就可以：
 
 setter方法需要保证对这个成员变量的“拥有”：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)setCount:(NSNumber *)newCount {
     [newCount retain];          //拥有新值
     [_count release];             //放弃老值
@@ -160,7 +160,7 @@ setter方法需要保证对这个成员变量的“拥有”：
 使用Accessor Methods
 以下是一种使用方式：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSNumber *zero = ［NSNumber alloc] initWithInteger:0];
 [self setCount:zero];
 [zero release];
@@ -168,7 +168,7 @@ NSNumber *zero = ［NSNumber alloc] initWithInteger:0];
 
 以下是一种可能引发错误的，偷懒的使用方式：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSNumber *zero = ［NSNumber alloc] initWithInteger:0];
 [_count release];
 _count = zero;  

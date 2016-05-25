@@ -26,19 +26,19 @@ UIApplication对象的**主要任务**:
 
 ### 一、获得UIApplication对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [UIApplication sharedApplication]
 {% endhighlight %}
 
 ### 二、获得UIApplicationDelegate对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [[UIApplication sharedApplication] delegate]
 {% endhighlight %}
 
 ### 三、获得UIWindow对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //UIWindow数组
 [[UIApplication sharedApplication] windows];   
 //UIWindow数组中最后调用makeKeyAndVisible方法的UIWindow对象
@@ -48,13 +48,13 @@ UIApplication对象的**主要任务**:
 
 ##### 1. 设置应用程序图标右上角的红色提醒数字
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nonatomic) NSInteger applicationIconBadgeNumber;
 {% endhighlight %}
 
 示例代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //1.获得UIApplication
@@ -69,7 +69,7 @@ UIApplication对象的**主要任务**:
 
 ##### 2. 设置联网指示器的可见性
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nonatomic,getter=isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
 {% endhighlight %}
 
@@ -77,7 +77,7 @@ UIApplication对象的**主要任务**:
 
 示例代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //1.获得UIApplication
@@ -90,7 +90,7 @@ UIApplication对象的**主要任务**:
 
 * UIApplication有个功能十分强大的openURL:方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (BOOL)openURL:(NSURL*)url;
 //
 // openURL:方法的部分功能有
@@ -120,7 +120,7 @@ UIApplication *app = [UIApplication sharedApplication];
 
 * UIViewController实现下列方法就可以轻松管理状态栏的可见性和样式
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 状态栏的样式
 - (UIStatusBarStyle)preferredStatusBarStyle; 
 // 状态栏的可见性
@@ -135,14 +135,14 @@ UIApplication *app = [UIApplication sharedApplication];
 ![利用UIApplication来管理状态栏](/images/2015/12/UIApplicationManageState.png "修改Info.plist")
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 {% endhighlight %}
 
 
 ### 五、控制和处理UIEvent
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	//分发一个event到另外一个对象去处理
@@ -160,13 +160,13 @@ UIApplication *app = [UIApplication sharedApplication];
 
 ### 六、晃动是否有撤销或者重做动作
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;  
 {% endhighlight %}
 
 ### 七、配置通知设置
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //注册远程推送通知
 UIUserNotificationType  types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
 UIUserNotificationSettings  *mySettings  = [UIUserNotificationSettings settingsForTypes:types categories:nil];
@@ -200,7 +200,7 @@ NSArray *arr = [[UIApplication sharedApplication] scheduledLocalNotifications];
 
 ### 八、APP后台运行相关
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //app状态 
 [[UIApplication sharedApplication] applicationState]; 
 //设置后台运行时间
@@ -225,7 +225,7 @@ NSLog(@"state = %d",state);
 
 ### 九、APP样式
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //隐藏状态条
 [[UIApplication sharedApplication] setStatusBarHidden:YES];
 [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
@@ -244,13 +244,13 @@ NSLog(@"state = %d",state);
 
 ### 十、设置状态条的方向
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
 {% endhighlight %}
 
 ### 十一、数据类型
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIBackgroundTaskIdentifier : Int
 typedef enum : NSUInteger {
    UIRemoteNotificationTypeNone    = 0,
@@ -320,7 +320,7 @@ NSString *const  UIApplicationInvalidInterfaceOrientationException;
 
 ### 十二、通知
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIApplicationBackgroundRefreshStatusDidChangeNotification
 UIApplicationDidBecomeActiveNotification
 UIApplicationDidChangeStatusBarFrameNotification

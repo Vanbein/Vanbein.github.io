@@ -45,7 +45,7 @@ homepage: false
 iOS的系统中有很多地方用的都是单例:
 
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [UIApplication sharedApplication];
 [NSNotificationCenter defaultCenter];
 [NSFileManager defaultManager];
@@ -64,7 +64,7 @@ iOS的系统中有很多地方用的都是单例:
 其实现分为两步：
 1、 获取单例对象的方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 创建单例对象的方法。类方法 
 // 命名规则： default/standard/shared + 类名
 + (DataHandle *)sharedDataHandle; 
@@ -75,7 +75,7 @@ iOS的系统中有很多地方用的都是单例:
 
 我们知道对于单例类，我们必须留出一个接口来返回生成的单例，由于一个类中只能有一个实例，所以我们在第一次访问这个实例的时候创建，之后访问直接取已经创建好的实例
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation DataHandle
 //
 // 因为实例是全局的 因此要定义为全局变量，且需要存储在静态区，不释放。不能存储在栈区。
@@ -96,7 +96,7 @@ static DataHandle *handle = nil;
 
 对于一个实例，我们一般并不能保证他一定会在单线程模式下使用，所以我们得适配多线程情况。在多线程情况下，上面的单例创建方式可能会出现问题。如果两个线程同时调用`sharedDataHandle`,可能会创建出2个 handle 来。所以对于多线程情况下，我们需要使用`@synchronized`来加锁。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation DataHandle
 //
 static DataHandle *handle = nil;
@@ -121,7 +121,7 @@ static DataHandle *handle = nil;
 
 这个方法就是GCD中的`dispatch_once`
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation DataHandle
 //
 static DataHandle *handle = nil;
@@ -174,7 +174,7 @@ static DataHandle *handle = nil;
 
 注意： 此处完整的单例在进行方法实现时，略有不同 目的是为了避免死循环，如果 在单例类里面重写了 `allocWithZone` 方法 ， 在创建单例对象时 使用 `[[DataHandle alloc] init]` 创建，会死循环，具体如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation DataHandle
 //
 static DataHandle *handle = nil;
@@ -192,7 +192,7 @@ static DataHandle *handle = nil;
 除了alloc 方法还需要考虑 copy 和 mutableCopy，这两个不需要使用到 alloc 就能得到一个实例，因此也需要重写这两个实例。（需要遵守各自的协议才能实现方法）
 	
 	
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (id)copy
 {
     return self;
@@ -216,7 +216,7 @@ static DataHandle *handle = nil;
 
 如果是 ARC，单例设计就已经完成，但在 MRC 环境下的时候，还需要做一些额外的事情,因为单例会在应用程序运行时一直存在,因此不需要 retain和 release 操作,而且在 release 之后,如果单例对象被释放掉，由于生成实例的方法只会运行一遍，释放掉之后再运行，返回的实例会是空的，这个并不是预期结果,因此 retain 和 release 方法也都需要重写，另外新需要将 retainCount 方法也重写，以提示这是个特殊的对象。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 + (instancetype)alloc{
     return [DataHandle sharedDataHandle];
 }

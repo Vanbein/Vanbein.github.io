@@ -18,7 +18,7 @@ toc: true
 
 具体来说 NSUserDefaults 是iOS系统提供的一个单例类(iOS提供了若干个单例类)，通过类方法`standardUserDefaults `可以获取 NSUserDefaults 单例。如：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 {% endhighlight %}
 
@@ -41,7 +41,7 @@ NSUserDefaults单例以`key-value`的形式存储了一系列偏好设置，key�
 ### 二、存数据
 NSUserDefaults 保存数据的方法可根据不同类型的对象使用更简便方法，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - setBool:forKey:
 - setFloat:forKey:
 - setInteger:forKey:
@@ -51,7 +51,7 @@ NSUserDefaults 保存数据的方法可根据不同类型的对象使用更简�
 
 比如保存一个整数、字符串、BOOL值。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 [defaults setObject:@”jack“ forKey:@"firstName"];
 [defaults setInteger:10 forKey:@"Age"];
@@ -63,7 +63,7 @@ NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
 * 保存**自定义的对象**时，可先转换为NSDate，再保存，比如保存一张图片
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIImage *image =[UIImage imageNamed:@"somename"];
 NSData *imageData = UIImageJPEGRepresentation(image, 100);//把image归档为NSData
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -74,7 +74,7 @@ NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 ### 三、读数据
 数据读取和数据保存一样，不同的对象可用不同的方法，比如读取上面保存的几个对象：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 NSString *firstName = [defaults objectForKey:@"firstName"]
 NSInteger age = [defaults integerForKey:@"Age"];
@@ -86,7 +86,7 @@ UIImage *image = [UIImage imageWithData:imageData];
 
 * **注意**保存到 NSUserDefaults 的对象一定是不可变的，因此读取出来也是不可变的，比如想要保存和读取一个可变数组mutableArray时，应该是这样的：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //保存：应该另存为转换为不可变数组再保存
 NSMutableArray *mutableArray = [NSMutableArray arrayWithObjects:@"123",@"234",@"345", nil];
 //
@@ -103,7 +103,7 @@ NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:[user objectForKey
 ### 四、删除数据
 由于 NSUserDefaults 它是将信息写入到本地的一个plist文件里， 所以和删除plist里的某一项内容一样，直接用下面的方法就可以直接删除 NSUserDefaults 中的某一个特定的项的内容了，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 {% endhighlight %}
 
@@ -116,7 +116,7 @@ NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:[user objectForKey
 
 代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)removeAllNSUserDefaultsObject{
 //
 NSUserDefaults *userDefatluts = [NSUserDefaults standardUserDefaults];
@@ -132,7 +132,7 @@ for(NSString* key in [dictionary allKeys]){
 ### 五、NSUserDefaults域
 考虑这么一种情况：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 BOOL showTutorialOnLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShowTutorial"];
 {% endhighlight %}
 
@@ -140,7 +140,7 @@ BOOL showTutorialOnLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"
 解决方式：使用 `registerDefaults:`方法
 首先创建一个包含用户偏好设置信息的`DefaultPreferences.plist`文件，添加到`target`中。在运行时，app就可以加载这个文件并且把内容传到 `registerDefaults :`
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSURL *defaultPrefsFile = [[NSBundle mainBundle]
 URLForResource:@"DefaultPreferences" withExtension:@"plist"];
 NSDictionary *defaultPrefs = [NSDictionary dictionaryWithContentsOfURL:defaultPrefsFile];

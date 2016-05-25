@@ -26,7 +26,7 @@ toc: true
 
 线程一启动，就会在线程thread中执行self的run方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 1.创建线程
 NSThread *thread = [[NSThread alloc] initWithTarget:selfselector:@selector(run) object:nil];
 // 2.设置线程的优先级(0.0 - 1.0，1.0最高级)  
@@ -39,7 +39,7 @@ thread.threadPriority = 1;
 
 `detachNewThreadSelector:` 不用手动调用start方法, 系统会自动启动  没有返回值, 不能对线程进行更多的设置
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
 {% endhighlight %}
 
@@ -47,7 +47,7 @@ thread.threadPriority = 1;
 
 系统会自动创建一个子线程, 并且在子线程中自动执行self的@selector方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self performSelectorInBackground:@selector(run) withObject:nil];
 {% endhighlight %}
 
@@ -55,7 +55,7 @@ thread.threadPriority = 1;
 
 * 主线程相关用法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 + (NSThread *)mainThread; // 获得主线程
 - (BOOL)isMainThread; // 是否为主线程
 + (BOOL)isMainThread; // 是否为主线程
@@ -64,13 +64,13 @@ NSThread *main = [NSThread mainThread];
 
 * 获得当前线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSThread *current = [NSThread currentThread];
 {% endhighlight %}
 
 * 获取线程的名字
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)setName:(NSString *)name;
 - (NSString *)name;
 {% endhighlight %}
@@ -85,7 +85,7 @@ NSThread *current = [NSThread currentThread];
 
 #### 启动线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)start; 
 // 进入就绪状态 -> 运行状态。当线程任务执行完毕，自动进入死亡状态
 阻塞（暂停）线程
@@ -96,7 +96,7 @@ NSThread *current = [NSThread currentThread];
 
 #### 阻塞（暂停）线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 暂停1s  
 [NSThread sleepForTimeInterval:1]; 
 [NSThread sleepUntilDate:[NSDate dateWithTimeInterval:1 sinceDate:[NSDate date]]];
@@ -106,7 +106,7 @@ NSThread *current = [NSThread currentThread];
 #### 强制停止线程
 注意：一旦线程停止（死亡）了，就不能再次开启任务
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 进入死亡状态
 + (void)exit;
 {% endhighlight %}
@@ -126,7 +126,7 @@ NSThread *current = [NSThread currentThread];
 
 * ### 使用格式
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // (锁对象self)
 @synchronized
 { 
@@ -191,19 +191,19 @@ NSThread *current = [NSThread currentThread];
 
 * ### 在当前线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self performSelector:@selector(run) withObject:nil];
 {% endhighlight %}
 
 * 在主线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:YES];
 {% endhighlight %}
 
 * 在指定线程
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self performSelector:@selector(run) onThread:thread withObject:nil waitUntilDone:YES];
 {% endhighlight %}
 > waitUntilDone的含义: 

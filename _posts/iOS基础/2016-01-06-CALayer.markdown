@@ -15,7 +15,7 @@ toc: true
 
 其实UIView之所以能显示在屏幕上，完全是因为它内部的一个图层，在创建UIView对象时，UIView内部会自动创建一个图层(即CALayer对象)，通过UIView的layer属性可以访问这个层
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(nonatomic,readonly,retain) CALayer *layer; 
 {% endhighlight %}
 
@@ -96,7 +96,7 @@ toc: true
 
 #### 测试代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -220,7 +220,7 @@ toc: true
 	* position：用于设置CALayer的位置。修改这个属性会产生平移动画
 
 #### 示例代码
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)animatableProperty{
     //创建图层
     self.mylayer =[CALayer layer];

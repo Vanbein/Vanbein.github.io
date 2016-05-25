@@ -16,7 +16,7 @@ UINavigationController通常被我们称为导航栏，它是视图与视图之�
 
 首先，我们通常新建工程是直接将视图控制器添加到window上，而现在有navigation以后，就多了一层：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions  
 {  
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];  
@@ -36,7 +36,7 @@ UINavigationController通常被我们称为导航栏，它是视图与视图之�
 
 这样我们的navigation就加载上去了。下面我们来设置navigation的属性：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad  
 {  
     [super viewDidLoad];  
@@ -112,7 +112,7 @@ UINavigationController通常被我们称为导航栏，它是视图与视图之�
 
 这里还有一个属性常用，就是：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 	NSArray *arr = [NSArray arrayWithObjects:@"1", @"2", nil];  
     UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:arr];  
     self.navigationItem.titleView = segment;//设置navigation上的titleview  

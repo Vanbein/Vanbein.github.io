@@ -30,7 +30,7 @@ toc: true
 
 ### 二、几个简单的例子
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //矩形轨迹动画
 - (CAKeyframeAnimation *)rectAnimation{ 
     //1. 创建核心动画

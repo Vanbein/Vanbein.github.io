@@ -20,7 +20,7 @@ homepage: true
 
 下面是一段 Core Image 做模糊的示例代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (UIImage *)blurryImage:(UIImage *)image withMaskImage:(UIImage *)maskImage blurLevel:(CGFloat)blur {
     
     // 创建属性
@@ -77,7 +77,7 @@ Accelerate这个framework主要是用来做数字信号处理、图像处理相�
 
 下面是一段使用 vImage 实现模糊效果的代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 添加通用模糊效果
 // image是图片，blur是模糊度
 - (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur
@@ -174,7 +174,7 @@ Accelerate这个framework主要是用来做数字信号处理、图像处理相�
 
 UIVisualEffectView只支持iOS 8以后的设备，所以有一定的局限性，但是使用起来非常简单，并且能通过代码或 storyboard 实现模糊效果，下面是一段实现模糊效果的示例代码，其中 effectWithStyle 有 Light、ExtraLight、dark 三种，如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
 effectView.frame = self.view.frame;
 [self.view addSubview:effectView];
@@ -184,7 +184,7 @@ effectView.frame = self.view.frame;
 
 实现中间透明文字效果的代码为：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)configBlurEffect{
     
     // 原始图片 self.imageView
@@ -237,7 +237,7 @@ FXBlurView 有两种模式，一种是 `static` 静态模糊：也就是只模�
 
 FXBlurView 的使用非常简单，看一下它的源码就明白了，一个示例代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 FXBlurView *blurView = [[FXBlurView alloc] init];
 [blurView setFrame:CGRectMake(40.0, 60.0, 240.0, 240.0)];
 [blurView setBackgroundColor:[UIColor whiteColor]];
@@ -276,7 +276,7 @@ self.blurView.blurRadius = 10.0;
 
 如果要使用 GPUImage 实现高斯模糊，则非常简单，代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (UIImage *)blurryGPUImage:(UIImage *)image withBlurLevel:(CGFloat)blur {
 
     // 高斯模糊
@@ -302,7 +302,7 @@ self.blurView.blurRadius = 10.0;
 
 `UIImage+ImageEffects` 提供了很多方法可以使用，常用的几个方法使用示例如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 通用模糊，默认模糊半径为20.0
 self.blurView.image = [[UIImage imageNamed:@"WID-small"] blurImage];
 // 局部模糊

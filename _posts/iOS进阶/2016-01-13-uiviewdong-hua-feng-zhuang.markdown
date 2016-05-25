@@ -77,7 +77,7 @@ UIView封装的block动画有三种：
 
 * 方法调用完毕后，相当于执行了下面两句代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 添加toView到父视图
 [fromView.superview addSubview:toView]; 
 // 把fromView从父视图中移除
@@ -91,7 +91,7 @@ UIView封装的block动画有三种：
 
 比如想要实现一个图片的移动动画：将图片移动到点击的位置；可通过下面的代码实现，下面的代码演示了通过**block**和**静态方法**实现动画控制的过程：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @interface KCMainViewController (){
     UIImageView *_imageView;
 }
@@ -142,7 +142,7 @@ UIView封装的block动画有三种：
 
 由于在iOS开发中弹性动画使用很普遍，所以在iOS7苹果官方直接提供了一个方法用于弹性动画开发，下面简单的演示一下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #pragma mark 点击事件
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch=touches.anyObject;
@@ -195,7 +195,7 @@ UIView封装的block动画有三种：
 
 从iOS7开始UIView动画中封装了关键帧动画，下面就来看一下如何使用UIView封装方法进行关键帧动画控制，这里实现前面关键帧动画部分对于落叶动画的控制。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //UITouch *touch=touches.anyObject;
     //CGPoint location= [touch locationInView:self.view];
@@ -249,7 +249,7 @@ UIView封装的block动画有三种：
 
 从iOS4.0开始，UIView直接封装了转场动画，使用起来同样很简单。下面举一个图片浏览时的转场动画加以说明：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //
@@ -308,7 +308,7 @@ UIView封装的block动画有三种：
 
 上面的转场动画演示中，其实仅仅有一个视图UIImageView做转场动画，每次转场通过切换UIImageView的内容而已。如果有两个完全不同的视图，并且每个视图布局都很复杂，此时要在这两个视图之间进行转场可以使用下面的方法进行两个视图间的转场
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 + (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion NS_AVAILABLE_IOS(4_0)
 {% endhighlight %}
 

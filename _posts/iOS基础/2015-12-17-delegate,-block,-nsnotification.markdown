@@ -26,7 +26,7 @@ toc: true
 
 ARC下这样防止：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 __weak typeof(self) weakSelf = self;
   [yourBlock:^(NSArray *repeatedArray, NSArray *incompleteArray) {
        [weakSelf doSomething];
@@ -35,7 +35,7 @@ __weak typeof(self) weakSelf = self;
 
 非ARC
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 __block typeof(self) weakSelf = self;
   [yourBlock:^(NSArray *repeatedArray, NSArray *incompleteArray) {
        [weakSelf doSomething];

@@ -24,7 +24,7 @@ KVC，即是指 [NSKeyValueCoding](https://developer.apple.com/library/mac/docum
 
 如下面的例子：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // Person.h
 #import <Foundation/Foundation.h>
 //
@@ -37,7 +37,7 @@ KVC，即是指 [NSKeyValueCoding](https://developer.apple.com/library/mac/docum
 @end
 {% endhighlight %}
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // ViewController.m
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,7 +63,7 @@ KVC，即是指 [NSKeyValueCoding](https://developer.apple.com/library/mac/docum
 
 现在，如果 Person 有另外一个 key 配偶（spouse），spouse 的 key 值是另一个 Person 对象，用 KVC 可以这样写：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //
@@ -97,13 +97,13 @@ KVC，即是指 [NSKeyValueCoding](https://developer.apple.com/library/mac/docum
 
 `key` 与 `key path` 要区分开来，`key` 可以从一个对象中获取值，而 `key path` 可以将多个 key 用点号 “.” 分割连接起来，比如上面例子中的：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [p valueForKeyPath:@"spouse.name"];
 {% endhighlight %}
 
 相当于这样……
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [[p valueForKey:@"spouse"] valueForKey:@"name"];
 {% endhighlight %}
 
@@ -121,7 +121,7 @@ KVC，即是指 [NSKeyValueCoding](https://developer.apple.com/library/mac/docum
 
 举个例子如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 static NSString *const KVO_CONTEXT_ADDRESS_CHANGED = @"KVO_CONTEXT_ADDRESS_CHANGED";
 // 
 @implementation ViewController

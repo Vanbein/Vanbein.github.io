@@ -23,7 +23,7 @@ homepage: false
 
 * 将刚才添加的CSS文件包含到相应的layout文件中，例如`_layouts/post.html`。
 
-{% highlight css linenos %}
+{% highlight css %}
 <head>
 ...
 <link href="/css/syntax.css" rel="stylesheet">
@@ -31,20 +31,9 @@ homepage: false
 </head>
 {% endhighlight %}
 
-* 第三步呢，就是在你的post中使用`highlight` Liquid tags。当然，你需要在`_config.yml`中设置好highlighter。如果你不想显示行号，可以不用加`linenos`。
+* 第三步呢，就是在你的post中使用`highlight` Liquid tags。当然，你需要在`_config.yml`中设置好highlighter。如果你想显示行号，可以加`linenos`。
 
 * 那么，举个栗子，这段Ruby代码经过Jekyll处理之后就变成：
-
-{% highlight ruby linenos %}
-def show
-  puts "Outputting a very lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong lo-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-ong line"
-  @widget = Widget(params[:id])
-  respond_to do |format|
-    format.html # show.html.erb
-    format.json { render json: @widget }
-  end
-end
-{% endhighlight %}
 
 {% highlight ruby %}
 def show
@@ -59,7 +48,7 @@ end
 
 还不错吧，你还可以进一步改进CSS，使行号与代码部分以不同样式分隔开，比如说我这里，让行号颜色变浅一些，并添加了竖线分割。要这么做，只需要在CSS中添加：
 
-{% highlight html linenos %}
+{% highlight html %}
 /* Add to css/syntax.css */
 .highlight .lineno { color: #ccc; display:inline-block; padding: 0 5px; border-right:1px solid #ccc; }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }

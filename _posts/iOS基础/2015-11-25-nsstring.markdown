@@ -35,7 +35,7 @@ Foundation框架中一些常用的类
 
 #####  1）初始化
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 NSString *str = @"Hello world!";//创建一个字符串常量
 //应尽量少使用以下方式通过使用 alloc 创建一个字符串对象，不推荐使用
 NSString *str2 = [[NSString alloc] initWithFormat:@"__%@__",str];
@@ -47,7 +47,7 @@ NSString *str3 = [NSString stringWithFormat:@"__%@__",str];
 
 获取子字符串,有3种方法
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 NSString *subStrTo = [@"HelloWorld" substringToIndex:6];  //从字符串开始到第六个字符        
 NSString *subStrFrom = [@"HelloWorld" substringFromIndex:6]; //从第6个字符开始到字符串结束
 NSRange range = NSMakeRange(3, 5);  //从第3个字符开始，截取5个字符
@@ -58,7 +58,7 @@ NSString *subStrRange = [@"HelloWorld" substringWithRange:range];
 
 将字符串按照指定的字符进行分割
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //这里以.为依据进行分割
 NSArray *array = [@"www.baidu.com" componentsSeparatedByString:@"."];
 //得到arrry = @[@"www",@"baidu",@"com"];
@@ -66,7 +66,7 @@ NSArray *array = [@"www.baidu.com" componentsSeparatedByString:@"."];
 
 ##### 4）查找子字符串
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 NSRange range = [@"12rasd124" rangeOfString:@"asd"];
 if (range.location != NSNotFound) {
      NSString *str = [@"12rasd124" substringWithRange:range];
@@ -75,12 +75,12 @@ if (range.location != NSNotFound) {
 
 ##### 5）替换子字符串
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 NSString *str = [@"asdasd" stringByReplacingOccurrencesOfString:@"asd" withString:@"ok"];
 {% endhighlight %}
 
 ##### 6）路径相关
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 [filepath lastPathComponent];                 //获得文件名
 [filepath pathExtension];                     //获得文件扩展名
 [filtpaht stringByDeletingLastPathComponent]; //获得文件的所在文件夹路径
@@ -89,13 +89,13 @@ NSString *str = [@"asdasd" stringByReplacingOccurrencesOfString:@"asd" withStrin
 
 ##### 7）判断字符串是否为空
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 if (str.length > 0) //不管str是不是nil都可以这么判断
 {% endhighlight %}
 
 ##### 8）判断字符串相等
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 if ([@"asd" isEqualToString:@"asd"]) {
 	//字符串相等   
 }
@@ -105,7 +105,7 @@ if ([@"asd" isEqualToString:@"asd"]) {
 
 比较字符串的大小，返回值 NSComparisonResult 是枚举类型，有三个值，NSOrderedAscending、NSOrderedSame、NSOrderedDescending，分别表示-1，0，1，对应小于、等于、大于
 
-{% highlight Objective-C linenos %}
+{% highlight Objective-C  %}
 NSString *stra = @"asd";
 NSString *strb = @"dfs";
 NSComparisonResult compResult = [stra compare:strb];
@@ -126,13 +126,13 @@ switch (compResult) {
 
 ##### 10）将字符串类型的数据内容转换为相应的数据类型
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *str4 = @"123";
 nt num = [str4 intValue];
 {% endhighlight %}
 
 ##### 11）判断字符串前缀/后缀
-{% highlight objc linenos %}
+{% highlight objc  %}
 //判断字符串前缀
 if ([str3 hasPrefix:@"http://"]){
     NSLog(@"is url");
@@ -151,7 +151,7 @@ if ([str3 hasSuffix:@".mp3"]){
 * 不可变字符串immutable，不可以对字符串进行增加，删除，改变等操作，NSString 是不可变字符串
 * 可变字符串mutable，可对字符串进行增加，删除，改变等操作，NSMutableString 是可变字符串
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSMutableString *mutableString = [NSMutableString stringWithString:@"www.baidu.com"];
 //替换字符串
 [mutableString replaceCharactersInRange:NSMakeRange(4, 5) withString:@"changhong"];
@@ -177,7 +177,7 @@ NSMutableString *mutableString = [NSMutableString stringWithString:@"www.baidu.c
 
 ##### 1）创建数组
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //以下是两种方法创建了一个数组
 NSArray *namesArray = @[@"abc",@"123",@"ncs"];
 NSArray *array2 = [NSArray arrayWithObjects:@"abc",@"123",@"ios",@"qwer",nil];
@@ -185,13 +185,13 @@ NSArray *array2 = [NSArray arrayWithObjects:@"abc",@"123",@"ios",@"qwer",nil];
 
 ##### 2）获取数组的元素个数
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSInteger num = array2.count;
 NSInteger num_2 = [array2 count];
 {% endhighlight %}
 
 ##### 3）获取某一个元素
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *temp = [array2 objectAtIndex:3]; //第4个元素
 NSString *temp2 = [array2 firstObject]; //第一个元素
 NSString *temp3 = [array2 lastObject]; //最后一个元素
@@ -199,19 +199,19 @@ NSString *temp3 = [array2 lastObject]; //最后一个元素
 
 ##### 4）获取某个元素所对应的索引值/位置
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSInteger index = [array2 indexOfObject:@"123"];
 {% endhighlight %}
 
 **注意：**
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *array = [NSArray arrayWithObjects:@"hello",@"123",@"ios",@"123",nil];
 NSInteger index = [array2 indexOfObject:@"123"];
 //index = 1;
 {% endhighlight %}
 
 ##### 5）判断数组是否包含某一个对象
-{% highlight objc linenos %}
+{% highlight objc  %}
 if ([array2 containsObject:@"ncs"]){
 	NSLog(@"Contains!");
 }else{
@@ -221,7 +221,7 @@ if ([array2 containsObject:@"ncs"]){
 
 ##### 6）将数组的所有字符串对象拼接成一个字符串
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSArray *urlsArray = @[@"www",@"baidu",@"com"];
 NSString *url = [urlsArray componentsJoinedByString:@"."]; //用.拼接
 {% endhighlight %}
@@ -229,7 +229,7 @@ NSString *url = [urlsArray componentsJoinedByString:@"."]; //用.拼接
 ### 四、NSMutableArray
 ##### 1）创建
 创建一个array的方法有很多种：
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSMutableArray *mArray1 = [NSMutableArray array];//创建并初始化，元素个数不定
 NSMutableArray *mArray2 = [NSMutableArray arrayWithCapacity:3];//预留3个元素空间
 NSMutableArray *mArray3 = [NSMutableArray arrayWithArray:mArray1];//从另外一个array创建
@@ -239,7 +239,7 @@ NSMutableArray *mArray6 = [NSMutableArray arrayWithObjects:@"HELLO", @"WORLD", n
 {% endhighlight %}
 
 ##### 2）添加数据
-{% highlight objc linenos %}
+{% highlight objc  %}
 [mArray addObject:@"hello"];
 [mArray addObject:@"world"];
 [mArray addObject:@"iOS"];
@@ -247,13 +247,13 @@ NSMutableArray *mArray6 = [NSMutableArray arrayWithObjects:@"HELLO", @"WORLD", n
 
 ##### 3）插入数据，数组元素个数增加
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [mArray insertObject:@"Duang" atIndex:2];
 {% endhighlight %}
 
 ##### 4）删除对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [mArray removeObject:@"Duang"];
 [mArray removeObjectAtIndex:2];//删除第3个元素
 [mArray removeLastObject];//删除最后一个元素
@@ -262,7 +262,7 @@ NSMutableArray *mArray6 = [NSMutableArray arrayWithObjects:@"HELLO", @"WORLD", n
 
 ##### 5）替换一个对象
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [mArray replaceObjectAtIndex:1 withObject:@"world"];
 {% endhighlight %}
 
@@ -270,7 +270,7 @@ NSMutableArray *mArray6 = [NSMutableArray arrayWithObjects:@"HELLO", @"WORLD", n
 
 * for循环
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 for(int i = 0; i < mArray.count; i ++){
 	NSString *string = [mArray objectAtIndex:i];
 	NSLog(@"%@",string);
@@ -282,7 +282,7 @@ for(int i = 0; i < mArray.count; i ++){
 
 * 快速枚举
 
-{% highlight objc linenos %}
+{% highlight objc  %}
  for(NSString *string in mArray){
     NSLog(@"%@",string);
     if([string isEqualToString:@"iOS"]){
@@ -292,7 +292,7 @@ for(int i = 0; i < mArray.count; i ++){
 {% endhighlight %}
 
 * Block遍历
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 每遍历到一个元素，就会调用一次block
 // 并且当前元素和索引位置当做参数传给block
 [mArray enumerateObjectsUsingBlock:^(id obj, NSInteger idx, BOOL *stop){
@@ -310,7 +310,7 @@ for(int i = 0; i < mArray.count; i ++){
 OC中的NSDictionary：根据key找到value。里面存储的东西都是键值对。
 
 ##### 1）创建
-{% highlight objc linenos %}
+{% highlight objc  %}
 //1.
 NSDictionary *mydic = [NSDictionary dictionaryWithObject:@"10086" forKey:@"PhoneNumber"];
 //2.前面是值，后面是键
@@ -332,7 +332,7 @@ NSDictionary *newdic = [NSDictionary dictionaryWithObjects:objects forKeys:keys]
 {% endhighlight %}
 
 ##### 2）访问
-{% highlight objc linenos %}
+{% highlight objc  %}
 //1. 获取字典所有的keys
 NSArray *allKeys = [dic allKeys];
 //2. 获取所有的values
@@ -348,7 +348,7 @@ NSString *value = dic[@"name"];
 ##### 3）遍历
 * 字典不允许有相同的key，但可以有相同的value（object）
 * 字典是无序的
-{% highlight objc linenos %}
+{% highlight objc  %}
 //1. for循环
 NSArray *allKeys = [dic allKeys];
 for(int i = 0; i < dic.count; i ++){
@@ -368,7 +368,7 @@ for(int i = 0; i < dic.count; i ++){
 ### 六、NSMutableDictionary
 ##### 1）创建
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSMutableDictionary *mdic = [NSMutableDictionary dictionary]; //创建一个空的可变字典
 NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:0];
 //注意不可变字典的快速创建方式不适用于可变字典       
@@ -376,7 +376,7 @@ NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:0];
 
 ##### 2）添加键值对
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [mdic setObject:@"4" forKey:@"four"];
 [mdic setObject:@"3" forKey:@"three"];
 [mdic setObject:@"2" forKey:@"two"];
@@ -385,12 +385,12 @@ NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:0];
 
 ##### 3）更改一个key对应的object
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [mdic setObject:@"two2" forKey:@"two"];
 {% endhighlight %}
 
 ##### 4）删除
-{% highlight objc linenos %}
+{% highlight objc  %}
 //删除一个特定键值对
 [mdic removeObjectForKey:@"four"];
 //删除所有的键值对
@@ -400,7 +400,7 @@ NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:0];
 ### 七、NSNumber
 * NSNumber可以将基本数据类型包装起来，形成一个对象，这样就可以给其发送消息，装入NSArray中等等。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //封装
 NSNumber *intNumber=[NSNumber numberWithInt：100];
 NSNumber *floatNumber=[NSNUmber numberWithFloat:100.00];
@@ -419,12 +419,12 @@ if([intNumber isEqualToNumber:floatNumber]) ....
 3. NSDate存储的是GMT时间，使用的时候会根据 当前应用 指定的 时区 进行时间上的增减，以供计算或显示。
 
 ##### 1）获取当前的时间
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSDate *nowDate = [NSDate date];
 {% endhighlight %}
 
 ##### 2）设置日期格式
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
 [formatter setDateFormat :@"yyyy-MM-dd aa:H-mm-ss"];
 NSString *dateString = [formatter stringFromDate:nowDate];
@@ -433,7 +433,7 @@ NSString *dateString = [formatter stringFromDate:nowDate];
 
 ##### 3）常用的方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSDate *dateFromNow = [NSDate dateWithTimeIntervalSinceNow:60];
 NSDate *dateFromAnotherDate = [[NSDate alloc] initWithTimeInterval:60 sinceDate:dateFromNow];
 NSTimeInterval timeInterval1 = [now timeIntervalSinceDate:dateFromNow];

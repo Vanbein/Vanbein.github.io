@@ -10,11 +10,11 @@ toc: true
 ---
 
 
-NSOperation:是在GCD的基础上进行的一层面向对象的包装.
+`NSOperation`:是在 GCD 的基础上进行的一层面向对象的包装.
 
 ### 核心概念:
 
-任务和队列.和GCD基本上是一样的,只不过更加的面向对象.用起来比较爽.
+任务和队列: 和GCD基本上是一样的,只不过更加的面向对象.用起来比较爽.
 
 ### NSOperation的作用
 
@@ -34,14 +34,15 @@ NSOperation:是在GCD的基础上进行的一层面向对象的包装.
 * 第二个参数：该操作要调用的方法，最多接受一个参数
 * 第三个参数：调用方法传递的参数，如果方法不接受参数，那么该值传nil
 
-{% highlight objc linenos %}
- //1.封装任务
-    NSInvocationOperation *op1 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(run) object:nil];
-    //2.要想执行任务必须调用start
-    [op1 start];
+{% highlight objc  %}
+{
+//1.封装任务
+NSInvocationOperation *op1 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(run) object:nil];
+//2.要想执行任务必须调用start
+[op1 start];
 //
-    NSInvocationOperation *op2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(run2) object:nil];
-    [op2 start];
+NSInvocationOperation *op2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(run2) object:nil];
+[op2 start];
 }
 - (void)run
 {
@@ -57,8 +58,8 @@ NSOperation:是在GCD的基础上进行的一层面向对象的包装.
 
 NSBlockOperation提供了一个类方法，在该类方法中封装操作
 
-{% highlight objc linenos %}
-//1. 封装任务
+{% highlight objc  %}
+  //1. 封装任务
   NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{      
       NSLog(@"1---%@", [NSThread currentThread]);
   }];
@@ -86,7 +87,7 @@ NSBlockOperation提供了一个类方法，在该类方法中封装操作
 * 自定义一个继承自NSOperation的子类,通过重写 `- (void)main` 方法实现封装操作,在里面实现想执行的任务.
 * 只要将任务添加到队列中, 那么队列在执行自定义任务的时候,就会自动调用main方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //1.创建队列
  NSOperationQueue *queue = [[NSOperationQueue alloc] init];
   //2.创建任务
@@ -103,7 +104,9 @@ NSBlockOperation提供了一个类方法，在该类方法中封装操作
 	* 经常通过 `- (BOOL)isCancelled` 方法检测操作是否被取消，对取消做出响应
 
 ### NSOperationQueue
+
 #### NSOperationQueue的作用
+
 * NSOperation可以调用start方法来执行任务，但默认是同步执行的,如果将NSOperation添加到
 * NSOperationQueue（操作队列）中，系统会自动异步执行NSOperation中的操作
 
@@ -116,7 +119,7 @@ NSBlockOperation提供了一个类方法，在该类方法中封装操作
 
 #### 自定义NSOperation与NSBlockOperation
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)customOperation
 {
     //1.创建队列
@@ -135,7 +138,7 @@ NSBlockOperation提供了一个类方法，在该类方法中封装操作
 
 #### NSOperationQueue与NSBlockOperation
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //1.创建队列
 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 //2.创建任务
@@ -157,7 +160,7 @@ NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
 
 #### NSOperationQueue与 NSInvocationOperation
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
      //2.创建任务
      //只要是自己创建的队列, 就会在子线程中执行,而且默认就是并发执行
@@ -184,14 +187,14 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
 最大并发数的相关方法:
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (NSInteger)maxConcurrentOperationCount;
 - (void)setMaxConcurrentOperationCount:(NSInteger)cnt;
 {% endhighlight %}
 
 自己创建的队列默认是并发, 如果按下面设置，就是串行
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 queue.maxConcurrentOperationCount = 1;//
 {% endhighlight %}
@@ -202,7 +205,7 @@ queue.maxConcurrentOperationCount = 1;//
 ### 队列的取消、暂停、恢复
 * 只要设置队列的suspended为YES, 那么就会暂停队列中其它任务的执行
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 self.queue.suspended = YES;
 {% endhighlight %}
 
@@ -213,7 +216,7 @@ self.queue.suspended = YES;
 * 注意: 暂停是可以恢复的,只要设置队列的suspended为NO, 那么就会恢复队列中其它任务的执行
 取消队列中所有的任务的执行
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [self.queue cancelAllOperations];
 {% endhighlight %}
 
@@ -224,14 +227,14 @@ self.queue.suspended = YES;
 ### 操作依赖
 * NSOperation之间可以设置依赖来保证执行顺序,比如一定要让操作A执行完后，才能执行操作B，可以这么写
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 [operationB addDependency:operationA]; // 操作B依赖于操作A
 {% endhighlight %}
 
 * 注意：不能相互依赖,比如A依赖B，B依赖A.
 * 可以在不同 queue 的 NSOperation 之间创建依赖关系
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 1.创建队列
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSOperationQueue *queue2 = [[NSOperationQueue alloc] init];
@@ -275,7 +278,7 @@ self.queue.suspended = YES;
 ## NSOperation实现线程间通信
 ### （1）开子线程下载图片
 
-{% highlight objc linenos %}
+{% highlight objc  %}
    //1.创建队列
    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
 //
@@ -298,7 +301,7 @@ self.queue.suspended = YES;
 
 ### （2）下载多张图片合成综合案例（设置操作依赖）
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //02 综合案例
 (void)download2
 {

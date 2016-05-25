@@ -14,7 +14,7 @@ homepage: true
 
 ### 1. 将图片设置为圆形，或给button，label等设置圆角
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UIImageView *testImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)] ;
 // 设置圆角半径，一般要求图片是正方形，
 // 若不是则需要将半径设置为宽和高比较大的值的一半即可
@@ -45,7 +45,7 @@ testButton.layer.masksToBounds = YES;
      */    
     // 枚举值中的 " | "  意思是要满足所有的枚举值设置.
 
-{% highlight objc linenos %} 
+{% highlight objc  %} 
 //例子
 NSString *contentString = @"String! String!" ; //目标字符串
 CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:15]} context:nil] ;
@@ -53,7 +53,7 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
 
 ### 3. 隐藏状态栏 修改状态栏风格
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(UIStatusBarStyle)preferredStatusBarStyle 
 { 
     return UIStatusBarStyleLightContent;  // 暗背景色时使用
@@ -67,7 +67,7 @@ CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.si
 
 ### 4. 当有多个导航控制器时,一次设置多个导航控制器
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 UINavigationBar *navBar = [UINavigationBar appearance] ;
 // 所有导航条颜色都会改变 -- 一键设置
 //navBar.barTintColor = [UIColor yellowColor] ;
@@ -79,21 +79,21 @@ UINavigationBar *navBar = [UINavigationBar appearance] ;
 #### (1). @
 + @() 代表NSNumber类型	
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @1; 等价于 [NSNumber numberWithInt:1];   
 @('c'); 等价于 [NSNumber numberWithChar:'c']; 
 {% endhighlight %}
 	
 + @[] 代表数组NSArray类型
 	
-{% highlight objc linenos %}
+{% highlight objc  %}
 @[@"1",@"2",@"3"]; //等价于 
 [NSArray arrayWithObjects:@"1",@"2",@"3", nil];
 {% endhighlight %}
 
 + @{}代表字典NSDictionary类型
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @{@"456":@"123"}; //等价于 
 [NSDictionary dictionaryWithObject:@"123" forKey:@"456"];
 {% endhighlight %}
@@ -101,42 +101,42 @@ UINavigationBar *navBar = [UINavigationBar appearance] ;
 #### (2).方法声明
 * 返回值如果不写括号，编译器默认是id类型:
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -sendMessage;  //等价于
 -(id)sendMessage;
 {% endhighlight %}
 
 * 参数如果不写类型默认也是id类型
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)sendMessage:msg; //等价于
 -(void)sendMessage:(id)msg;
 {% endhighlight %}
 
 * 有多参数时方法名和参数提示语可以为空
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void):msg1 :msg2; // 不建议这样简写，代码可读性降低
 -(void)sendMessage:(id)msg1 message2:(id)msg2; 
 {% endhighlight %}
 
 #### (3).结构体
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 CGRect rect = {1, 2};  //等价于
 CGRect rect = {1, 2, 0, 0};
 {% endhighlight %}
 
 #### (4).三元条件表达式（针对字符串）
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString *string = inputString ?: @"default"; // 等价于
 NSString *string = inputString ? inputString : @"default"; 
 {% endhighlight %}
 
 #### (5).小括号内联复合表达式
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 RETURN_VALUE_RECEIVER = {( 
 // Do whatever you want
  RETURN_VALUE;  // 返回值
@@ -155,7 +155,7 @@ UIView *view = ({
 
 ### 6. UIImage与字符串互转
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //图片转字符串  
 -(NSString *)UIImageToBase64Str:(UIImage *) image  
 {  
@@ -175,7 +175,7 @@ UIView *view = ({
 
 ### 7. 根据汉字字符串 获取该字符串的拼音 然后取得首字母
 
-{% highlight objc linenos %} 
+{% highlight objc  %} 
 //第一种方法：先将汉字转换为 拼音 再获取首字母
 //获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
 /*
@@ -228,7 +228,7 @@ if ([string length])
 
 比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 	UIButton *rightbutton1;
 	UIButton *rightbutton2;
     UIBarButtonItem *backButton1 = [[UIBarButtonItem alloc] initWithCustomView:rightbutton1];
@@ -253,14 +253,14 @@ if ([string length])
 
 ### 9、获得任意 view 相对于屏幕的 frame
 
-{% highlight objc linenos %}
+{% highlight objc  %}
     CGRect frame = [[UIApplication sharedApplication].keyWindow convertRect:CGRectMake(0, 0, targetView.frame.size.width, targetView.frame.size.height) fromView:targetView];
     NSLog(@"\n\n targetView frame: x: %f   y: %f  \n\n width: %f   height: %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
 {% endhighlight %}
 
 ### 10、通过颜色来生成一个纯色图片
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (UIImage *)imageFromColor:(UIColor *)color{
     CGRect rect = CGRectMake(0, 0, 100, 100);
     UIGraphicsBeginImageContext(rect.size);
@@ -277,7 +277,7 @@ if ([string length])
 
 下面的代码，可以设置 UINavigationBar 背景色和背景图片
    
-{% highlight objc linenos %}
+{% highlight objc  %}
 	//背景色
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]];
 	//背景图
@@ -286,7 +286,7 @@ if ([string length])
 
 如果你发现实际的颜色比设置的颜色淡一点，那是因为导航栏默认带了半透明效果，我们可以通过代码或在storyboard中取消半透明效果。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
     [[UINavigationBar appearance] setTranslucent:NO];
 {% endhighlight %}
 
@@ -298,7 +298,7 @@ if ([string length])
 
 此时会在导航栏下方出现一根黑线，比较难看，使用下面的代码可以去除导航栏下方的横线，
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 	//#107cdb
 	[[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
 	[[UINavigationBar appearance] setShadowImage:[UIImage new]];
@@ -315,7 +315,7 @@ if ([string length])
 我们可以使用标准库中的`drand48()`函数，它会随机生成一个0.0-1.0之间的double，因此我们只需要随机生成R, G, B三个值最后用UIColor的`colorWithRed:green:blue:alpha`方法创建UIColor，即可。
 
 需要注意的是，`drand48`函数需要使用`srand48`来初始化随机数种子，示例代码如下：
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (UIColor *)randomColor{    
     static BOOL seeded = NO;
     if (!seeded) {
@@ -348,7 +348,7 @@ if ([string length])
 
 ### 15、屏幕截图并保存
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //snapshotImage 这个方法效率比较低，
 - (UIImage *)snapshotImage {
     UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);

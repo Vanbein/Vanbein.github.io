@@ -19,7 +19,7 @@ toc: true
 * Release编译时定义
 * 当我们想要某些代码只在Debug环境下才运行可以使用此宏定义判别，代码如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (BOOL)isDebugMode{ 
 #ifndef __OPTIMIZE__
     return YES;
@@ -33,7 +33,7 @@ toc: true
 
 有时工程依赖的Lib库只编译了真机的代码，模拟器编译出错。为了可以模拟器调试，使用此宏略过不能编译的代码
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (BOOL)isSimulatorMode{
 #if defined (__i386__) || defined (__x86_64__)
     return YES;  //模拟器
@@ -49,7 +49,7 @@ toc: true
 * 有时我们编写的代码可能不会在最新的SDK编译，旧版本SDK编译会有潜在问题。使用此判定针对新老SDK版本分别编写代码
 * `__IPHONE_OS_VERSION_MAX_ALLOWED`，此宏定义声明了当前编译的SDK版本，可进行比较
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #define __IPHONE_2_0     20000
 #define __IPHONE_2_1     20100
 #define __IPHONE_2_2     20200
@@ -82,7 +82,7 @@ toc: true
 * C语言中有nop()函数，表示一条空语句。OC中没有提供。
 * 可以设计一个宏进行代替，用于挂载条件断点调试使用。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #ifndef __OPTIMIZE__
     #define ___NOP___   \assert(1)
 #else

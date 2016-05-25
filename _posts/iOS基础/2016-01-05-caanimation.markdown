@@ -73,7 +73,7 @@ toc: true
 
 看一段动画代码：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 	//给imageView设置新图片
 	[_imgView setImage:[UIImage imageNamed:@"QQ"]];
 	//添加imageView的切换动画，
@@ -90,7 +90,7 @@ toc: true
 
 首先第一句：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 CATransition *animation = [CATransition animation];
 {% endhighlight %}
 
@@ -102,7 +102,7 @@ CATransition *animation = [CATransition animation];
 
 * delegate
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(retain) id delegate
 {% endhighlight %}
 
@@ -111,7 +111,7 @@ CATransition *animation = [CATransition animation];
 
 * removedOnCompletion
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(getter=isRemovedOnCompletion) BOOL removedOnCompletion
 {% endhighlight %}
 
@@ -119,7 +119,7 @@ CATransition *animation = [CATransition animation];
 
 * timingFunction
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @property(retain) CAMediaTimingFunction *timingFunction
 {% endhighlight %}
 
@@ -127,7 +127,7 @@ CATransition *animation = [CATransition animation];
 
 * animation
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 + (id)animation
 {% endhighlight %}
 
@@ -135,7 +135,7 @@ CATransition *animation = [CATransition animation];
 
 * defaultValueForKey
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 + (id)defaultValueForKey:(NSString *)key
 {% endhighlight %}
 
@@ -157,7 +157,7 @@ CATransition *animation = [CATransition animation];
 
 * shouldArchiveValueForKey
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (BOOL)shouldArchiveValueForKey:(NSString *)key
 {% endhighlight %}
 
@@ -168,7 +168,7 @@ CATransition *animation = [CATransition animation];
 #### CAAnimation协议方法
 * animationDidStart
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)animationDidStart:(CAAnimation *)theAnimation
 {% endhighlight %}
 
@@ -177,7 +177,7 @@ theAnimation：正在执行动画的CAAnimation实例。
 
 * animationDidStop:finished
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {% endhighlight %}
 

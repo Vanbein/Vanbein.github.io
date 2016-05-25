@@ -18,13 +18,13 @@ GitHub上有个现成的[jquery-qrcode.js](https://github.com/jeromeetienne/jque
 
 首先去GitHub上clone这个js（[https://github.com/jeromeetienne/jquery-qrcode.git](https://github.com/jeromeetienne/jquery-qrcode.git)），放到合适的地方，在需要生成二维码的地方引用：
 
-{% highlight html linenos %}
+{% highlight html  %}
 <script type="text/javascript" src="jquery.qrcode.min.js"></script>
 {% endhighlight %}
 
 然后创建任意一个元素来包含所生成的二维码图片，比如说一个`<div>`：
 
-{% highlight html linenos %}
+{% highlight html  %}
 <div id="qrcode"></div>
 
 <script type="text/javascript">

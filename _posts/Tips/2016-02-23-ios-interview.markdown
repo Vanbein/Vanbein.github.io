@@ -33,7 +33,7 @@ homepage: false
 
 线程安全情况下的setter和getter：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (NSString *) value  {     
         @synchronized(self) {         
         return [[_value retain] autorelease];     
@@ -100,7 +100,7 @@ homepage: false
 
 ### 6.假设有一个字符串aabcad，请写一段程序，去掉字符串中不相邻的重复字符串，即上述字符串处理之后的输出结果为：aabcd
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSMutableString * str = [[NSMutableString alloc]initWithFormat;@“aabcad”];
 for (int i = 0 ,i < str.length - 1 ;i++){
     unsigned char a = [str characterAtIndex:i];
@@ -159,7 +159,7 @@ NSLog(@"%@",str);
 ### 11.写出方法获取iOS内存使用情况。
 [http://blog.sina.com.cn/s/blog_698415f20100yjlo.html](http://blog.sina.com.cn/s/blog_698415f20100yjlo.html)
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // 获取当前设备可用内存及所占内存的头文件
 #import <sys/sysctl.h>
 #import <mach/mach.h>
@@ -229,7 +229,7 @@ NSLog(@"%@",str);
 
 ### 17.写一个标准宏MIN，这个宏输入两个参数并返回较小的一个？
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 #define MIN(X,Y)  ((X)>(Y)?(Y):(X))
 {% endhighlight %}
 
@@ -250,14 +250,14 @@ iOS没有垃圾回收机制  oc的内存管理是**谁创建谁释放**  程序�
 自己可以写个demo来测试一下
 进入后台时
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)applicationWillResignActive:(UIApplication *)application;
 -(void)applicationDidEnterBackground:(UIApplication *)application;
 {% endhighlight %}
 
 进入前台时
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)applicationDidEnterForeground:(UIApplication *)application;
 -(void)applicationWillResignActive:(UIApplication *)application;
 {% endhighlight %}
@@ -288,19 +288,19 @@ iOS没有垃圾回收机制  oc的内存管理是**谁创建谁释放**  程序�
 
 ### 23.使用UITableView时候必须要实现的几种方法？
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(NSInteger)tableView:(UITableView *)tableView NumberOfRowsInSection:(NSInteger)section;
 {% endhighlight %}
  这个方法返回每个分段(section)的行数，不同分段返回不同的行数可以用switch来做，如果是单个列表就直接返回单个你想要的函数即可。
 
-{% highlight objc linenos %} - (UITableViewCell *)tableView:(UITableView *)tableView CellForRowAtIndexPath:(NSIndexPath)indexPath;
+{% highlight objc  %} - (UITableViewCell *)tableView:(UITableView *)tableView CellForRowAtIndexPath:(NSIndexPath)indexPath;
 {% endhighlight %}
  这个方法是返回我们调用的每一个单元格。通过我们索引的路径的section和row来确定
 
 
 ### 24.写一个便利构造器。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //id代表任意类型指针，这里代表Student *,类方法
 +(id)studentWithName:(NSString *)newName  andAge:(int)newAge {     Student *stu=[[Student alloc]initName:newName andAge:newAge];     return [stu autorelease];//自动释放 }
 {% endhighlight %}
@@ -317,14 +317,14 @@ iOS没有垃圾回收机制  oc的内存管理是**谁创建谁释放**  程序�
 
 ### 26.回答person的retainCount值，并解释为什么
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 Person * per = [[Person alloc] init];
 self.person = per;
 {% endhighlight %}
 
 ### 27.这段代码有什么问题吗:
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation Person
 - (void)setAge:(int)newAge {
 	self.age = newAge;
@@ -334,7 +334,7 @@ self.person = per;
 
 会造成死循环，正确写法：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)setAge:(int)newAge {
 	if(_age){
 		[_age release];
@@ -347,7 +347,7 @@ self.person = per;
 
 ### 28.这段代码有什么问题,如何修改
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 for (int i = 0; i < someLargeNumber; i++) { 
 	NSString *string = @"Abc";//常量区
 	string = [string lowercaseString];//新的堆区
@@ -363,7 +363,7 @@ for (int i = 0; i < someLargeNumber; i++) {
 
 使用方法`componentsSeparatedByString:`，示例如下：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 NSString * str = @“20 | http://www.baidu.com”;
 for(NSString*s in [str componentsSeparatedByString:"|"]){
 NSLog(@“%@“,s);
@@ -371,7 +371,7 @@ NSLog(@“%@“,s);
 
 ### 30.用obj-c写一个冒泡排序
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 for（int i = 0, i < arr.count - 1,i++){
 	for (int j = 0,j < arr.count - 1 - i;j++){
 		int a = [[arr objectAtIndex:j]intValue];
@@ -415,14 +415,14 @@ for（int i = 0, i < arr.count - 1,i++){
 OC的多态体现是：重写，没有重载这种表现形式
 
 举例说明：
-{% highlight objc linenos %}
+{% highlight objc  %}
 // Parent类
 @interface Parent : NSObject    //父类
 - (void)simpleCall;
 @end 
 {% endhighlight %}
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // Child_A类
 @interface Child_A : Parent   //子类  Child_A
 @end 
@@ -434,7 +434,7 @@ OC的多态体现是：重写，没有重载这种表现形式
 @end
 {% endhighlight %}
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 // Child_B类
 @interface Child_B : Parent     //子类Child_B
 @end
@@ -446,7 +446,7 @@ OC的多态体现是：重写，没有重载这种表现形式
 {% endhighlight %}
 然后，我们就可以看到多态所展示的特性了：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 Parent * pa=[[Child_A alloc] init];// 父类指针指向子类Child_A对象
 Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 [pa simpleCall];// 显然是调用Child_A的方法
@@ -455,7 +455,7 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 
 在OC中常看见的多态体现：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  
  {  
@@ -470,7 +470,7 @@ Parent * pb=[[Child_B alloc] init]; //父类指针指向子类Child_B对象
 
 ### 36.重写一个NSString类型的，retain方式声明name属性的setter和getter方法
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 -(void)settetName:(NSString *)name{
 	if(_name){
 		[_name release];
@@ -525,7 +525,7 @@ mvc - model view controller ，避免了view与model 的强耦合 使代码更�
 
 ### 44.如监测系统键盘的弹出
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 //监听通知
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector( ) name:UIKeyboardWillShowNotification object:nil];
 {% endhighlight %}
@@ -544,7 +544,7 @@ AFWorking / WebKit / SQLite / Core Data / Address Book
 
 ### 47.如何将敏感字变成**
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 	search = @"某某某";
     replace = @"***";
     range = [mstr rangeOfString:search];
@@ -561,7 +561,7 @@ AFWorking / WebKit / SQLite / Core Data / Address Book
 ### 49.单例目的是什么，并写出一个？
 
 避免重复创建  节省内存空间
-{% highlight objc linenos %}
+{% highlight objc  %}
 static Model * model;
 +(id)singleton{
 	if(!model){

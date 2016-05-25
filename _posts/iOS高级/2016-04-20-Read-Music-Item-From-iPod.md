@@ -19,7 +19,7 @@ toc: true
 
 MediaPicker是一个高度封装的iPod Library访问方式，通过使用 `MPMediaPickerController`类来访问iPod Library。这是一个UI控件，用户可以根据需要选择其中的音乐。这个类使用时非常方便，只需要生成一个 `MPMediaPickerController` 的实例，设置一下属性和 delegate 后 present 出来，接下来只要等待回调即可，在回调时需要手动 dismiss picker。
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 - (void)convertMediaPickerController{
 
     //MPMediaPicker
@@ -65,7 +65,7 @@ MediaQuery 功能十分强大，它可以根据一个或多个条件查询满足
 
 也可以自己生成 `MPMediaPredicate` 设置条件，并把它加到 Query 中，最后通过 items 和 collections 访问查询到的结果，例如：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 MPMediaPropertyPredicate *artistNamePredicate =
 [MPMediaPropertyPredicate predicateWithValue:@"Happy the Clown"
                                  forProperty:MPMediaItemPropertyArtist
@@ -85,7 +85,7 @@ NSArray *collectionsFromArtistQuery = [quert collections];
 
 于是可以得到从 iPod 读取音乐文件信息的方法为：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 @implementation VNBMusicManager
 
 /**
@@ -180,7 +180,7 @@ NSArray *collectionsFromArtistQuery = [quert collections];
 
 下面的代码就是利用了 AVAssetExportSession 将 iPod 库中的歌曲数据导出为 m4a 文件：
 
-{% highlight objc linenos %}
+{% highlight objc  %}
 
 #define Cache_Directory [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"Web"]
 
