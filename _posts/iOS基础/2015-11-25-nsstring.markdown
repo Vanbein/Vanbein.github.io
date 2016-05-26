@@ -3,7 +3,7 @@ layout: post
 title: Foundation框架基础
 category: iOS基础
 tags: iOS Objective-C
-image: /images/head-800x400/-15.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-15.png
 description: 介绍Foundation框架中一些常用的类
 toc: true
 homepage: false

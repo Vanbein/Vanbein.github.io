@@ -3,7 +3,7 @@ layout: post
 title: View间传值的几种方式
 category: iOS基础
 tags: iOS Tip
-image: /images/head-800x400/-41.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-41.png
 description: 在一个iOS应用程序中，我们经常遇到需要将一个页面的值传给下一个页面，或者反向传回上一个界面。
 homepage: false
 toc: true

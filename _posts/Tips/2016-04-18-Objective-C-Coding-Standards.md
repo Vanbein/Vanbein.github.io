@@ -3,7 +3,7 @@ layout: post
 title: 我的Objective-C编码规范
 category: iOS基础
 tags: Objective-C
-image: /images/head-800x400/-55.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-55.png
 description: 这是我根据网络上的一些编码规范，配合自己的偏好，总结的Objective-C编码规范
 homepage: true
 toc: true
@@ -13,11 +13,11 @@ toc: true
 
 (1) 缩进使用 4 个空格,检查 Xcode 中缩进部分的设置
 
-![image](/images/2016/04/text.png)
+![image](http://o7rxin1of.qnssl.com/images/2016/04/text.png)
 
 (2) 行宽为 100 个字符,在 Xcode 中打开行宽提醒
 
-![image](/images/2016/04/text2.png)
+![image](http://o7rxin1of.qnssl.com/images/2016/04/text2.png)
 
 ### 2. 语言
 

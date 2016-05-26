@@ -3,7 +3,7 @@ layout: post
 title: subView 的获取和响应
 category: iOS基础
 tags: iOS Tip
-image: /images/head-800x400/-20.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-20.png
 description: 最近在项目中需要判断当前是否打开了YouTube播放视频，因为YouTube播放后有一个可收缩的播控条，它是在 `AppDelegate.m` 中添加在window上的，因此在需要判断的时候，就需要判断当前window的subViews中是否有YouTube的播控条View。此时就是通过设置播控条的**Tag**值，遍历window的subViews，进行比较判断出来的。
 homepage: false
 toc: true
@@ -32,7 +32,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 
 　　下面通过一个小例子验证一下，其View层级结构如下：
 　　
-![subViews](/images/2015/12/subView1.png "View层级结构")
+![subViews](http://o7rxin1of.qnssl.com/images/2015/12/subView1.png)
 
 代码如下：
 　
@@ -186,7 +186,7 @@ for (UIView *isShowView in [[UIApplication sharedApplication].keyWindow subviews
 {% endhighlight %}
 
 
-![subView2](/images/2015/12/subView2.png "View的响应")
+![subView2](http://o7rxin1of.qnssl.com/images/2015/12/subView2.png "View的响应")
 
 
 该例子中我们设置定制 `fatherView` 的背景颜色为红色，然后创建一个一半位于 fatherView 内，一半位于 `fatherView` 外的UIButton，我们可以发现点击 `fatherView` 外的button界面根本没有变化，在`test`函数中加断点，也不会进去，这就说明该按钮根本没有接受到消息，同时点击 `fatherView` 内的button界面时按钮运行正常，点击后控制台会输出信息“ 点击了kidButton ”。这些可以说明subview接收事件的范围是受其superview的frame闲限制的，不可能接受到superview的frame以外的touch事件。

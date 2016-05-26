@@ -3,7 +3,7 @@ layout: post
 title: KVC/KVO理解
 category: iOS基础
 tags: iOS KVC KVO Objective-C
-image: /images/head-800x400/-47.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-47.png
 description: KVC 与 KVO 是 Objective C 的关键概念，是必须要理解的东西。
 toc: true
 homepage: false

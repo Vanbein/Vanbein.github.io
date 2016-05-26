@@ -3,7 +3,7 @@ layout: post
 title: 一个简单的 loading 动画
 category: Code
 tags: Animation
-image: /images/head-800x400/-11.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-11.png
 description: 使用 Core Animation 实现的一个简单的 loading 动画。
 homepage: false
 toc: true
@@ -15,7 +15,7 @@ toc: true
 
 效果预览图：
 
-![loading](/images/2016/04/loading.gif)
+![loading](http://o7rxin1of.qnssl.com/images/2016/04/loading.gif)
 
 首先来分析下这个动画的效果，明显它分为两部分动画
 
@@ -23,7 +23,7 @@ toc: true
 2. loading... 这几个字的出现动画，从左到右依次出现， 并且每个字有一个从上落下渐入动画
 3. 图片上下跳动两次，旋转 360 度的时间，等于 loading... 文字完成一次动画的时间，约1.6s
 
-![resolution](/images/2016/04/resolution.png)
+![resolution](http://o7rxin1of.qnssl.com/images/2016/04/resolution.png)
 
 
 ### 二、图片上下跳动旋转动画

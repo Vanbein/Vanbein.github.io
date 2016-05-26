@@ -4,7 +4,7 @@ date: 2016-02-23 23:52:02 +0800
 title: iOS 面试题集锦
 category: Tips
 tags: iOS Tip 
-image: /images/head-800x400/-28.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-28.png
 description: 整理一些面试相关的知识，持续更新
 toc: false
 homepage: false

@@ -3,7 +3,7 @@ layout: post
 title: property属性修饰符总结
 category: iOS基础
 tags: iOS Objective-C
-image: /images/head-800x400/-49.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-49.png
 description: 刚接触iOS的时候对属性的@property的可选参数如何使用，什么情况下使用哪种选项不了解，很多时候虽然知道怎么用，但是有些说不出其区别。在这里，再次深入学习一遍，对 copy/strong/weak/__weak/__strong/assign 的使用场景总结总结。
 toc: true
 homepage: false

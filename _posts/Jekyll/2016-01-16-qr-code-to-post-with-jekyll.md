@@ -4,7 +4,7 @@ date: 2016-01-16 23:52:02 +0800
 title: 转 - 为Jekyll文章添加二维码
 category: Jekyll
 tags: Jekyll QRcode
-image: /images/head-800x400/-2.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-2.png
 description: 自己动手，用jquery-qrcode生成二维码。
 homepage: false
 ---

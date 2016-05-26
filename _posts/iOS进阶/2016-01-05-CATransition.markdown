@@ -3,7 +3,7 @@ layout: post
 title: 动画CAAnimation系列--CATransition
 category: iOS进阶
 tags: iOS Animation
-image: /images/head-800x400/-21.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-21.png
 description: CATransition 类是 CAAnimation 的子类，用于做转场动画，能够为层提供移出屏幕和移入屏幕的动画效果。CATransition 实现了layer的过渡动画；也就是说它是一个控制layer的过渡动画的类；iOS 比 Mac OS X 的转场动画效果少一点，UINavigationController 就是通过 CATransition 实现了将控制器的视图推入屏幕的动画效果；我们可以通过 CATransition 来实现我们特定的过渡动画；也可以通过一个自定义的 CIFilter 实体来实现过渡动画。
 toc: true
 homepage: false

@@ -3,7 +3,7 @@ layout: post
 title: CAAnimation入门
 category: iOS基础
 tags: iOS Animation
-image: /images/head-800x400/-21.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-21.png
 description: 初次学习使用动画，需要用到`CATransition`，于是就先来了解下`CAAnimation`
 homepage: false
 toc: true
@@ -34,7 +34,7 @@ toc: true
 ### 三、CAAnimation类的继承结构图
 
 
-![CAAnimation](/images/2016/01/CAAnimation.png "CAAnimation类继承结构图")
+![CAAnimation](http://o7rxin1of.qnssl.com/images/2016/01/CAAnimation.png "CAAnimation类继承结构图")
 
 #### CAAnimation类
 

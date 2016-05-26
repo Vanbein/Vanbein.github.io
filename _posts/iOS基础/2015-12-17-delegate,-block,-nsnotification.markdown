@@ -3,7 +3,7 @@ layout: post
 title: delegate、block、NSNotification的用法区分
 category: iOS基础
 tags: iOS delegate block
-image: /images/head-800x400/-36.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-36.png
 description: 对delegate、block、NSNotification的用法做一个总结
 homepage: false
 toc: true

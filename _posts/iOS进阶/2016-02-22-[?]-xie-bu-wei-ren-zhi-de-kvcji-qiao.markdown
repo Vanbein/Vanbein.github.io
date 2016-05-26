@@ -3,7 +3,7 @@ layout: post
 title: KVC的一些不为人知小技巧
 category: iOS进阶
 tags: iOS KVC
-image: /images/head-800x400/-30.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-30.png
 description: 本文主要来记录下一些不为人知，也经常被忽略掉，并且很实用的KVC干货小技巧
 homepage: false
 toc: true

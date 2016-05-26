@@ -3,7 +3,7 @@ layout: post
 title: 关于Block代码块
 category: iOS基础
 tags: iOS Block Objective-C
-image: /images/head-800x400/-48.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-48.png
 description: 本文主要来阐述下Block是个什么玩意
 toc: true
 homepage: false

@@ -3,7 +3,7 @@ layout: post
 title: NSThread的基本使用
 category: iOS进阶
 tags: iOS 多线程
-image: /images/head-800x400/-38.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-38.png
 description: NSThread是iOS中实现多线程的四种方案之一，这个虽然自己管理线程的生命周期，但这是面向对象的，OC语言，不常用到但要会用
 homepage: false
 toc: true

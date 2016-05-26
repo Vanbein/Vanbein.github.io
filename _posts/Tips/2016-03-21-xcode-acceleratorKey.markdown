@@ -4,7 +4,7 @@ date: 2016-03-21 23:52:02 +0800
 title: Xcode基础快捷键 -- 提高你的编码速率
 category: Tips
 tags: Xocde iOS
-image: /images/head-800x400/-19.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-19.png
 description: 在 Xcode 中有许多快捷键，它可以使得我们的编码工作更为高效，对于在代码文件中快速导航、定位Bug以及新增应用特性都是极有效的。
 homepage: false
 toc: true
@@ -99,13 +99,13 @@ toc: true
 
 在编写代码的过程中，我通常会使用该快捷键来自由运行应用程序。尽可能地测试应用程序，这样你可以在早期找到并修复应用中的bug。
 
-![Command + R](/images/2015/11/Command+R.png)
+![Command + R](http://o7rxin1of.qnssl.com/images/2015/11/Command+R.png)
 
 #### 2. 清除工程: Command + Shift + K
 
 当Xcode运行出现问题，比如应用无法响应，或者出现了意料之外的情况，我们应该首先去清除工程并再次运行它。如果这样还不能解决问题，那就只能重启Xcode了。
 
-![Command + Shift + K](/images/2015/11/Command+Shift+K.png)
+![Command + Shift + K](http://o7rxin1of.qnssl.com/images/2015/11/Command+Shift+K.png)
 
 #### 3. 构建应用程序: Command + B
 
@@ -113,7 +113,7 @@ toc: true
 
 因此假如仅仅做一些小的改变，我们无需总是运行应用程序，那么编译工作可帮你做一个快速检查，这样可以返回添加下一行代码。
 
-![Command + B](/images/2015/11/Command+B.png)
+![Command + B](http://o7rxin1of.qnssl.com/images/2015/11/Command+B.png)
 
 ### 三、Xcode导航快捷键
 
@@ -121,7 +121,7 @@ toc: true
 
 快速浏览代码、图片以及用户界面文件。
 
-![Command+1](/images/2015/11/Command+1.png)
+![Command+1](http://o7rxin1of.qnssl.com/images/2015/11/Command+1.png)
 
 > 还可以试试 Command + 2/3/4/5/6/7/8
 
@@ -129,37 +129,37 @@ toc: true
 
 当在对屏幕进行截图的时候可能会想要隐藏起与我们感兴趣内容的无关的部分。假如想要使用辅助编辑器或者想要设计用户界面并将其连接到代码的时候，这个快捷键会相当有用
 
-![Command+0](/images/2015/11/Command+0.png)
+![Command+0](http://o7rxin1of.qnssl.com/images/2015/11/Command+0.png)
 #### 3.显示/隐藏实用工具面板:Command+Option+0
 
 实用工具面板主要用于编辑用户界面文件时，在只考虑写代码的时候，就可以隐藏它。
 
-![Command+Option+0.png](/images/2015/11/Command+Option+0.png)
+![Command+Option+0.png](http://o7rxin1of.qnssl.com/images/2015/11/Command+Option+0.png)
 
 #### 4.在辅助编辑器中打开文件:在项目导航器中选中文件执行Option+(左键)点击操作。
 
 一个快速打开`Assistant Editor`的方式--只需要按住Option键并点击你想要在当前编辑框右边打开的文件即可。
 
-![Option+Left-click.png](/images/2015/11/Option+Left-click.png)
+![Option+Left-click.png](http://o7rxin1of.qnssl.com/images/2015/11/Option+Left-click.png)
 
 #### 5.搜索导航器(Find Navigator，也就是搜索):Command+Shift+F
 
 使用项目搜索可以找到某个变量或方法名的被提到的次数。可以依据实例来匹配，并可忽略大小写字母。另外还可以对查找的变量名进行替换。
 
-![Command+Shift+F.png](/images/2015/11/Command+Shift+F.png)
+![Command+Shift+F.png](http://o7rxin1of.qnssl.com/images/2015/11/Command+Shift+F.png)
 
 #### 6.快速打开: Command + Shift + O
 
 喜欢使用键盘但不喜欢使用鼠标的人会大爱这个快捷方式，可以直接跳转到某个方法定义或者指定的代码文件。
 另外，键入第一个字母即可快速切换至某个文件或者找到特定的代码行。
 
-![Command+Shift+O.png](/images/2015/11/Command+Shift+0.png)
+![Command+Shift+O.png](http://o7rxin1of.qnssl.com/images/2015/11/Command+Shift+0.png)
 
 #### 7. .h & .m文件间的快速切换: Control + Command + 上下或左右方向键
 
 如果你用Objective-C或Swift来编写程序，或者使用其他语言编写。我们可以使用**Control + Command + 方向键**组合键操作在两个文件间相互切换
 
-![Control+Command+方向键.png](/images/2015/11/Control+Command+方向键.png)
+![Control+Command+方向键.png](http://o7rxin1of.qnssl.com/images/2015/11/Control+Command+方向键.png)
 
 ### 四、文档和帮助
 
@@ -171,7 +171,7 @@ toc: true
 
 通过 Documentation and Reference 指南了解如何使用代码
 
-![Command+Shift+0.png](/images/2015/11/Command+Shift+0.png)
+![Command+Shift+0.png](http://o7rxin1of.qnssl.com/images/2015/11/Command+Shift+0.png)
 
 #### 12.快速帮助: 在类或者方法名上执行Option + Left-click操作
 
@@ -179,12 +179,12 @@ toc: true
 
 编写代码时获得快速帮助
 
-![Option+Leftclick.png](/images/2015/11/Option+Leftclick.png)
+![Option+Leftclick.png](http://o7rxin1of.qnssl.com/images/2015/11/Option+Leftclick.png)
 
 #### 13.打开'Show Related Items弹出菜单：Control + 1
 该快捷键可打开 **Show Related Items** 弹出菜单。当把光标放在任何方法中，并按下 **CTRL + 1**，就可以很方便地通过弹出的视图访问该方法的所有调用者和被调用者。我们可以通过浏览方法的调用者从而了解如何使用该方法。
 
-![Control+1.png](/images/2015/11/Control+1.png)
+![Control+1.png](http://o7rxin1of.qnssl.com/images/2015/11/Control+1.png)
 
 ### 五、其他一些常用的快捷键
 

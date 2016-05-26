@@ -3,7 +3,7 @@ layout: post
 title: Method结构, SEL, IMP理解
 category: iOS进阶
 tags: iOS runtime
-image: /images/head-800x400/-43.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-43.png
 description: 一直在代码中使用@Selector(method:)，但其原理也是有必要去了解的。
 homepage: false
 toc: true

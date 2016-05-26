@@ -3,7 +3,7 @@ layout: post
 title: 动画CAAnimation系列--CAAnimationGroup
 category: iOS进阶
 tags: iOS Animation
-image: /images/head-800x400/-8.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-8.png
 description: CAAnimationGroup 是 CAAnimation 的子类，可以保存一组动画对象，将CAAnimationGroup 对象加入层后，组中所有动画对象可以同时并发运，默认情况下，一组动画对象是同时运行的，也可以通过设置动画对象的 beginTime 属性来更改动画的开始时间
 homepage: false
 toc: true

@@ -3,7 +3,7 @@ layout: post
 title: 通过代码调整系统音量，监听音量实体按键
 category: iOS进阶
 tags: iOS 
-image: /images/head-800x400/-14.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-14.png
 description: 最近项目有个功能需要用到监听音量实体键，并能够通过滑动应用内的UISlider调整系统的音量，其中遇到不少问题，所以记录下这个学习过程。
 homepage: false
 toc: true
@@ -41,7 +41,7 @@ toc: true
 ### 虽然有效果，但是问题来了
 #### 1.实体键按下的时候，会出现系统的"铃声"，而我想要显示"音量"
 
-![出现系统铃声控制](/images/2015/12/systemRingVC.PNG "按下音量实体键系统显示铃声")
+![出现系统铃声控制](http://o7rxin1of.qnssl.com/images/2015/12/systemRingVC.PNG "按下音量实体键系统显示铃声")
 
 这个时候可以添加一句代码，即可让在这个页面时，按下音量实体键显示**音量**，而不是铃声
 
@@ -50,7 +50,7 @@ toc: true
 [[AVAudioSession sharedInstance] setActive:YES error:NULL];
 {% endhighlight %}
 
-![出现系统铃声控制](/images/2015/12/systemVolumeVC.PNG "按下音量实体键系统显示音量")
+![出现系统铃声控制](http://o7rxin1of.qnssl.com/images/2015/12/systemVolumeVC.PNG "按下音量实体键系统显示音量")
 
 
 #### 2.出现了"音量"，但是因锁屏、进入后台等原因 ResignActive 重新激活后，又显示了"铃声"而不是"音量"
@@ -154,7 +154,7 @@ volumeView.hidden = NO;
 
 设置后即可使 VolSlider 与系统的音量提示框同步了，效果如下：
 
-![同步效果](/images/2015/12/synchronizeControl.PNG "实体按键与自定义UI同步控制")
+![同步效果](http://o7rxin1of.qnssl.com/images/2015/12/synchronizeControl.PNG "实体按键与自定义UI同步控制")
 
 
 > 附上代码github链接：[changeSystemVolume](https://github.com/Vanbein/changeSystemVolume)

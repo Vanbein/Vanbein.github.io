@@ -3,7 +3,7 @@ layout: post
 title: NSKeyedArchiver--对象归档
 category: iOS基础
 tags: iOS Objective-C
-image: /images/head-800x400/-44.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-44.png
 description: 归档（又名序列化）：把对象转为字节码，以文件的形式存储到磁盘上；程序运行过程中或者当再次重写打开程序的时候，可以通过解归档（反序列化）还原这些对象。
 toc: true
 homepage: false

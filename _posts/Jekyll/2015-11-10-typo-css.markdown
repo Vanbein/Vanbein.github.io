@@ -4,7 +4,7 @@ date: 2015-11-10 23:52:02 +0800
 title:  排版实例TYPO.CSS
 categories: Jekyll
 tags: Jekyll markdown
-image: /images/head-800x400/-25.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-25.png
 description: 使用 typo.css 的目的是在一致化浏览器排版效果的同时，构建最适合中文阅读的网页排版。
 homepage: false
 ---

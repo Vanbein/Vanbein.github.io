@@ -4,7 +4,7 @@ date: 2016-01-26 23:52:02 +0800
 title: 翻墙的正确方式 - 免费且简单粗暴
 category: Tips
 tags: Tip 翻墙
-image: /images/head-800x400/-27.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-27.png
 description: 本文主要介绍两种免费的翻墙的方式。
 toc: true
 homepage: true
@@ -45,7 +45,7 @@ homepage: true
 
 由于我觉得上面的教程中配置比较麻烦，发现有现成的集成软件可用，于是我的安装方法如下：
 
-![集成XX-Net的软件](/images/2016/01/XX-Net.png)
+![集成XX-Net的软件](http://o7rxin1of.qnssl.com/images/2016/01/XX-Net.png)
 
 
 #### 1、下载`appifed-xx-net`
@@ -56,7 +56,7 @@ homepage: true
 
 官方的设置代理方法([https://github.com/XX-net/XX-Net/wiki/设置代理](https://github.com/XX-net/XX-Net/wiki/设置代理))没有包括Mac OS系统的设置方法，经过我自己的测试，只需要在`Safari - 偏好设置 - 高级 - 代理`选择`更改设置`，然后选择`自动代理配置`，在URL中输入`http://127.0.0.1:8086/proxy.pac`保存应用即可完成代理的设置，此时我们就可以打开google进行搜索了。
 
-![设置代理](/images/2016/01/delegate.png)
+![设置代理](http://o7rxin1of.qnssl.com/images/2016/01/delegate.png)
 
 #### 3、添加自己的AppID
 
@@ -73,7 +73,7 @@ homepage: true
 
 启用弱安全应用后，打开 [https://console.developers.google.com](https://console.developers.google.com) ，你会看到下图的界面
 
-![创建AppID](/images/2016/01/creatappid.png)
+![创建AppID](http://o7rxin1of.qnssl.com/images/2016/01/creatappid.png)
 
 
 点击`创建专案`进行创建，然后输入相关信息即可。
@@ -81,18 +81,18 @@ homepage: true
 * 注意：AppID只能由字母、-、和数字组成，可填入你希望的AppID，
 * 点选不要发送邮件
 
-![设置AppID](/images/2016/01/appidsetting.png)
+![设置AppID](http://o7rxin1of.qnssl.com/images/2016/01/appidsetting.png)
 
 #### 4、设置部署权限
 提示：在部署之前，AppID是无法使用的，不要将他们填入到XX-Net的配置中。
 1、打开[http://127.0.0.1:8085/?module=goagent&menu=deploy](http://127.0.0.1:8085/?module=goagent&menu=deploy) ，按下图说明操作： 
 
-![配置AppID](/images/2016/01/setting1.png)
-![部署AppID](/images/2016/01/setting3.png)
+![配置AppID](http://o7rxin1of.qnssl.com/images/2016/01/setting1.png)
+![部署AppID](http://o7rxin1of.qnssl.com/images/2016/01/setting3.png)
 
 2、如果你成功做到这一步，那么恭喜你，你即将修成正果，只差最后一步。 打开[http://127.0.0.1:8085/?module=goagent&menu=config](http://127.0.0.1:8085/?module=goagent&menu=config)，然后老样子看图即可。 
 
-![最后配置](/images/2016/01/setting2.png)
+![最后配置](http://o7rxin1of.qnssl.com/images/2016/01/setting2.png)
 
 3、当你点击“保存并重启”的那一刻，你就脱离了苦海，视频畅饮，没有任何限制
 

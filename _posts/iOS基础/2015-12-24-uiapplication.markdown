@@ -3,7 +3,7 @@ layout: post
 title: UIApplication详解
 category: iOS基础
 tags: iOS
-image: /images/head-800x400/-22.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-22.png
 description: 总结一下和 UIApplication 相关的知识点.
 homepage: false
 toc: true
@@ -132,7 +132,7 @@ UIApplication *app = [UIApplication sharedApplication];
 	* 1, 在`project target`的`Info.plist`中，插入一个新的key，名字为`View controller-based status bar appearance`，并将其值设置为NO。
 	* 2, 在代码中设置状态栏样式
 	
-![利用UIApplication来管理状态栏](/images/2015/12/UIApplicationManageState.png "修改Info.plist")
+![利用UIApplication来管理状态栏](http://o7rxin1of.qnssl.com/images/2015/12/UIApplicationManageState.png "修改Info.plist")
 
 
 {% highlight objc  %}

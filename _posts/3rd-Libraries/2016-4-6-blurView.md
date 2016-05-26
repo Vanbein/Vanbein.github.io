@@ -4,7 +4,7 @@ date: 2016-04-06 20:08:02 +0800
 title: iOS实现模糊效果的几种方法
 category: 3rd-Libraries
 tags: iOS Blur
-image: /images/head-800x400/-54.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-54.png
 description: iOS7后，半透明模糊效果得到了广泛的使用，所以iOS开发过程中经常需要用到半透明模糊效果，本文对比列举几种实现半透明模糊效果的方法，包括Core Image、vImage、BlurEffect，第三方库FXBlurView、GPUImage等。 
 toc: true
 homepage: true
@@ -63,7 +63,7 @@ homepage: true
 }
 {% endhighlight %}
 
-![coreImage](/images/2016/04/coreImage.png)
+![coreImage](https://o7rxin1of.qnssl.com/images/2016/04/coreImage.png)
 
 > 更多的滤镜效果可以参见这个 [Filter官方列表](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIGaussianBlur)
 
@@ -168,7 +168,7 @@ Accelerate这个framework主要是用来做数字信号处理、图像处理相�
 {% endhighlight %}
 
 
-![vImage.png](/images/2016/04/vImage.png)
+![vImage.png](https://o7rxin1of.qnssl.com/images/2016/04/vImage.png)
 
 ### 3、UIVisualEffectView
 
@@ -180,7 +180,7 @@ effectView.frame = self.view.frame;
 [self.view addSubview:effectView];
 {% endhighlight %}
 
-![blurEffect.png](/images/2016/04/blurEffect.png)
+![blurEffect.png](https://o7rxin1of.qnssl.com/images/2016/04/blurEffect.png)
 
 实现中间透明文字效果的代码为：
 
@@ -248,7 +248,7 @@ self.blurView.blurRadius = 10.0;
 {% endhighlight %}
 
 
-![FXBlurView.png](/images/2016/04/FXBlurView.png)
+![FXBlurView.png](https://o7rxin1of.qnssl.com/images/2016/04/FXBlurView.png)
 
 
 ### 2、GPUImage
@@ -272,7 +272,7 @@ self.blurView.blurRadius = 10.0;
 8. 在工程使用 `#import "GPUImage.h"` 即可开始使用了
 
 
-![HeaderSearchPaths.png](/images/2016/04/HeaderSearchPaths.png)
+![HeaderSearchPaths.png](https://o7rxin1of.qnssl.com/images/2016/04/HeaderSearchPaths.png)
 
 如果要使用 GPUImage 实现高斯模糊，则非常简单，代码如下：
 
@@ -289,7 +289,7 @@ self.blurView.blurRadius = 10.0;
 {% endhighlight %}
 
 
-![GPUImage.png](/images/2016/04/GPUImage.png)
+![GPUImage.png](https://o7rxin1of.qnssl.com/images/2016/04/GPUImage.png)
 
 ### 3、UIImage+ImageEffects
 
@@ -311,7 +311,7 @@ self.partBlurView.image = [[UIImage imageNamed:@"WID-small"] blurImageAtFrame:CG
 self.grayScaleView.image = [[UIImage imageNamed:@"WID-small"] grayScale];
 {% endhighlight %}
 
-![UIImage+ImageEffects.png](/images/2016/04/UIImage+ImageEffects.png)
+![UIImage+ImageEffects.png](https://o7rxin1of.qnssl.com/images/2016/04/UIImage+ImageEffects.png)
 
 
 > 附上代码的github地址 [BlurViewExample](https://github.com/Vanbein/BlurViewExample)

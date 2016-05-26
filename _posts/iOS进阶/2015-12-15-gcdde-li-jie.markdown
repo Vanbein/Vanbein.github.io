@@ -3,7 +3,7 @@ layout: post
 title: GCD的理解
 category: iOS进阶
 tags: iOS 多线程
-image: /images/head-800x400/-40.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-40.png
 description: GCD(Grand Central Dispatch)是iOS开发中的一大“利器“，需要仔细研究学习。
 homepage: false
 toc: true
@@ -295,7 +295,7 @@ dispatch_group_notify(group, dispatch_get_main_queue(), ^{
     // 1.下载图片1
     dispatch_group_async(group, queue, ^{
         // 图片的网络路径
-        NSURL *url = [NSURL URLWithString:@"http://img.pconline.com.cn/images/photoblog/9/9/8/1/9981681/200910/11/1255259355826.jpg"];
+        NSURL *url = [NSURL URLWithString:@"http://img.pconline.com.cnhttp://o7rxin1of.qnssl.com/images/photoblog/9/9/8/1/9981681/200910/11/1255259355826.jpg"];
 //
         // 加载图片
         NSData *data = [NSData dataWithContentsOfURL:url];

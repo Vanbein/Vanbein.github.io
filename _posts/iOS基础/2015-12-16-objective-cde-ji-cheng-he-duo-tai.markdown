@@ -3,7 +3,7 @@ layout: post
 title: Objective-C的继承和多态
 category: iOS基础
 tags: iOS Objective-C
-image: /images/head-800x400/-37.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-37.png
 description: 面向对象编程之所以成为主流的编程思想和他的继承和多态是分不开的，只要是面向对象语言都支持继承和多态，当然不同的OOP语言之间都有其特点。
 toc: true
 homepage: false

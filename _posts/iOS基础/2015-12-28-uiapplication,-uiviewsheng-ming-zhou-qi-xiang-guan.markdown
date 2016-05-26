@@ -3,7 +3,7 @@ layout: post
 title: UIApplication、UIView生命周期相关
 category: iOS基础
 tags: iOS Tip
-image: /images/head-800x400/-33.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-33.png
 description: 记录下和 UIApplication、UIView生命周期相关的知识点
 homepage: false
 toc: true

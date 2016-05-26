@@ -4,7 +4,7 @@ date: 2016-04-06 20:08:02 +0800
 title: iOS中第三方库的汇总
 category: 3rd-Libraries
 tags: 第三方库
-image: /images/head-800x400/-56.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-56.png
 description: Github 上有太多优秀好用的第三方库，在开发中学习使用它们既能学习到新技能，也能提高开发效率，一起为开源点赞！！渴望以后也能为开源贡献一分力量。 
 toc: true
 homepage: true

@@ -3,7 +3,7 @@ layout: post
 title: Xcode常用的Debug调试技巧总结
 category: iOS进阶
 tags: iOS debug
-image: /images/head-800x400/-13.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-13.png
 description: 本文主要记录下Xcode结合LLDB调试命令以及OBJC运行时的调试技巧，不定期更新.
 homepage: true
 toc: true
@@ -107,7 +107,7 @@ toc: true
 * 使用格式：p (类型)表达式
 * 除了值类型，也可以直接打印结构体数据
 
-![p,输出变量的值](/images/2016/01/p.png "LLDB--p,输出变量的值")
+![p,输出变量的值](http://o7rxin1of.qnssl.com/images/2016/01/p.png "LLDB--p,输出变量的值")
 
 
 #### 3、Call，执行一段代码
@@ -115,21 +115,21 @@ toc: true
 * 使用格式：call (返回类型)表达式
 * 调试状态下，对于点语法支持不佳。如果发现符号未找到的情况，尝试使用发送消息的方式。如果还不行，根据提示，声明类型。对于PO、P等指令同样也需要注意
 
-![call_1](/images/2016/01/call_1.png)
+![call_1](http://o7rxin1of.qnssl.com/images/2016/01/call_1.png)
 
 * 使用call可以修改值。
 * gdb下可以使用set实现，但LLDB下set语法含义变化了，用call替代set指令
 配合NOP与断点，可以在运行时动态的控制程序的运行状态
 
-![call_2](/images/2016/01/call_2.png)
+![call_2](http://o7rxin1of.qnssl.com/images/2016/01/call_2.png)
 
 * 可以执行一段代码
 
-![call_3](/images/2016/01/call_3.png)
+![call_3](http://o7rxin1of.qnssl.com/images/2016/01/call_3.png)
 
 #### 4、bt，打印调用栈
 
-![bt](/images/2016/01/bt.png)
+![bt](http://o7rxin1of.qnssl.com/images/2016/01/bt.png)
 
 
 ### 三、断点的使用技巧
@@ -141,13 +141,13 @@ toc: true
 3. 可以执行若干种类的action
 4. 当经过此断点时，执行action但是不会中断程序
 
-![breakpoint](/images/2016/01/breakpoint_1.png)
+![breakpoint](http://o7rxin1of.qnssl.com/images/2016/01/breakpoint_1.png)
 
 #### 2、略特殊的断点
 
 在`Breakpoint Navigator`栏的左下角，点击加号可以给程序添加几种不同类型的断点：
 
-![breakpoint_2](/images/2016/01/breakpoint_2.png)
+![breakpoint_2](http://o7rxin1of.qnssl.com/images/2016/01/breakpoint_2.png)
 
 #### 3、Exception Breakpoint 全局异常断点 
 
@@ -159,7 +159,7 @@ toc: true
 * -/+[类 方法]
 * 举个例子：当UIViewController被载入时触发，并将当前的调用栈输出
 
-![breakpoint_3](/images/2016/01/breakpoint_3.png)
+![breakpoint_3](http://o7rxin1of.qnssl.com/images/2016/01/breakpoint_3.png)
 
 
 #### 5、内存断点
@@ -167,19 +167,19 @@ toc: true
 * 当该块内存被调用时中断
 * 可通过XCode调试界面简化指令添加
 
-![breakpoint_4](/images/2016/01/breakpoint_4.png)
+![breakpoint_4](http://o7rxin1of.qnssl.com/images/2016/01/breakpoint_4.png)
 
 * 添加时，需要预先打断，找到要监视的内存地址（注意，地址每次启动都会失效）
 * 可以输出值的变化。可以找出内存是何时被修改的，值是如何变化的。
 
-![breakpoint_5](/images/2016/01/breakpoint_5.png)
+![breakpoint_5](http://o7rxin1of.qnssl.com/images/2016/01/breakpoint_5.png)
 
 ### 四、灵活的使用调试手段
 
 以上这些调试手段虽然看起来比较简单，但只要灵活运用，就可以为调试带来很多便利和可能性。
 比如下面一个例子
 
-![debug](/images/2016/01/debug.png)
+![debug](http://o7rxin1of.qnssl.com/images/2016/01/debug.png)
 
 图中有三个变量a，b，c。只要在NOP语句加入一个执行call命令的条件断点，通过调节断点的开闭，就可以在程序运行时动态的控制a,b,c的数值。这使得不用编写调试代码，就可以模拟各个状态，动态的调试程序分支。
 

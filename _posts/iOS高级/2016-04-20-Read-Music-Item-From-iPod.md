@@ -3,7 +3,7 @@ layout: post
 title: iOS 获取 iPod 音乐库歌曲文件信息并拷贝文件到个人的 App 中
 category: iOS高级
 tags: iPod
-image: /images/head-800x400/-57.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-57.png
 description: 最近有需要从 iOS 系统的音乐库里面拷贝歌曲到 APP 的 Documents 目录下进行共享使用，于是总结一下使用的方法。其中使用了 MPMediaQuery 来获得音乐文件的信息，比如歌手、专辑名、专辑封面、时长、 ASSetURL 地址等，然后通过 ASSetURL 地址使用 AVAssetExportSession 导出其数据。
 homepage: false
 toc: true
@@ -47,7 +47,7 @@ MediaPicker是一个高度封装的iPod Library访问方式，通过使用 `MPMe
 
 得到的效果图如下：
 
-![MPMediaPickerController](/images/2016/04/MPMediaPickerController.png)
+![MPMediaPickerController](http://o7rxin1of.qnssl.com/images/2016/04/MPMediaPickerController.png)
 
 通过 MediaPicker 最终可以得到 MPMediaItemCollection，其中存放着所有在Picker中选中的歌曲，每一个歌曲使用一个 `MPMediaItem` 对象表示。对于MediaPicker的使用也可以参考[Apple官方文档](https://developer.apple.com/library/ios/documentation/Audio/Conceptual/iPodLibraryAccess_Guide/UsingtheMediaItemPicker/UsingtheMediaItemPicker.html#//apple_ref/doc/uid/TP40008765-CH104-SW1)。
 

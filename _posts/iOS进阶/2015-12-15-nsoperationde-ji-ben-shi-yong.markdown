@@ -3,7 +3,7 @@ layout: post
 title: NSOperation的基本使用
 category: iOS进阶
 tags: iOS 多线程
-image: /images/head-800x400/-39.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-39.png
 description: NSOperation是在GCD的基础上进行的一层面向对象的包装.，需要仔细研究学习。
 homepage: false
 toc: true

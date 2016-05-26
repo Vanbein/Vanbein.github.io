@@ -4,7 +4,7 @@ title: markdown 语法总结
 date: 2015-10-30 23:52:02 +0800
 categories: Jekyll
 tags: Jekyll markdown
-image: /images/head-800x400/-23.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-23.png
 description: 使用 Github pages 搭建好博客后，就需要使用 markdown 编写自己的文章，经过查找资料和不断尝试后，总结了下面的一些要点，若有不当或者遗漏之处，恳请指出。
 homepage: true
 toc: true

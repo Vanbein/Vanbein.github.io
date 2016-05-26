@@ -3,7 +3,7 @@ layout: post
 title: 我的iOS开发技能树
 category: iOS高级
 tags: iOS SkillMap
-image: /images/head-800x400/-52.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-52.png
 description: iOS开发工程师的职业图谱！路漫漫其修远兮，吾将上下而求索。
 homepage: true
 toc: true

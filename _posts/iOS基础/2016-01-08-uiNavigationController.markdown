@@ -3,7 +3,7 @@ layout: post
 title: UINavigationController基础
 category: iOS基础
 tags: iOS
-image: /images/head-800x400/-6.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-6.png
 description: UINavigationController通常被我们称为导航栏，它是视图与视图之间联系沟通的桥梁，几乎所有app都用到了它。这里记录下它的基本使用.
 homepage: false
 toc: true
@@ -119,7 +119,7 @@ UINavigationController通常被我们称为导航栏，它是视图与视图之�
 {% endhighlight %}
 
 
-!["UISegmentedControl"](/images/2016/02/navigation.png "UISegmentedControl")
+!["UISegmentedControl"](http://o7rxin1of.qnssl.com/images/2016/02/navigation.png "UISegmentedControl")
 
 对，我们看到中间的字变成了两个可选的按钮，这就是navigation的另一个属性：`navigationitem.titleview`。
 

@@ -4,7 +4,7 @@ date: 2016-03-18 23:52:02 +0800
 title: iOS开发中一些常用的小知识或技巧
 category: Tips
 tags: iOS Tip
-image: /images/head-800x400/-26.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-26.png
 description: 本文将记录在学习iOS开发过程中所学到的小知识点，以及一些技巧，会保持更新。
 toc: true
 homepage: true
@@ -31,7 +31,7 @@ testButton.layer.masksToBounds = YES;
 如果控件是在 stroyBoard 中，可以 `User Defined Runtime Attributes
 `中按照下面一样设置即可
 
-![storyBoard设置圆角](/images/2015/12/cornerRadius.png "设置圆角")
+![storyBoard设置圆角](http://o7rxin1of.qnssl.com/images/2015/12/cornerRadius.png "设置圆角")
 
 
 ### 2. 根据内容计算高度，宽度
@@ -290,7 +290,7 @@ if ([string length])
     [[UINavigationBar appearance] setTranslucent:NO];
 {% endhighlight %}
 
-![storyboard取消Translucent](/images/2016/03/Translucent.png)
+![storyboard取消Translucent](http://o7rxin1of.qnssl.com/images/2016/03/Translucent.png)
 
 但是如果导航栏下方刚好有一个颜色和导航栏背景色一样的View时，比如 SegmentFalut，
 
@@ -307,7 +307,7 @@ if ([string length])
 	//[[UINavigationBar appearance] setBackgroundImage: [UIImage new] forBarMetrics:UIBarMetricsDefault];
 {% endhighlight %}
 
-![compare](/images/2016/03/compare.png)
+![compare](http://o7rxin1of.qnssl.com/images/2016/03/compare.png)
 
 
 ### 12、随机生成一种颜色
@@ -341,9 +341,9 @@ if ([string length])
 
 如果我们源代码有版本控制，那么当程序出了问题或bug，找到问题代码所在行后，可以通过右键 - Show Blame for Line 查看是谁改动的代码。
 
-![Show Balme for Line](/images/2016/03/ShowBalmeForLine.png)
+![Show Balme for Line](http://o7rxin1of.qnssl.com/images/2016/03/ShowBalmeForLine.png)
 
-![Show Balme for Line](/images/2016/03/ShowBalme.png)
+![Show Balme for Line](http://o7rxin1of.qnssl.com/images/2016/03/ShowBalme.png)
 
 
 ### 15、屏幕截图并保存

@@ -3,7 +3,7 @@ layout: post
 title: UIView动画封装
 category: iOS进阶
 tags: iOS Tip Animation
-image: /images/head-800x400/-31.png
+image: http://o7rxin1of.qnssl.com/images/head-800x400/-31.png
 description: 虽然了解了核心动画的使用，但其实UIView本身对于基本动画和关键帧动画、转场动画都有相应的封装，在对动画细节没有特殊要求的情况下使用起来也要简单的多。可以说在日常开发中90%以上的情况使用UIView的动画封装方法都可以搞定，因此在熟悉了核心动画的原理之后还是有必要学习一下UIView中各类动画使用方法的。
 homepage: false
 toc: true
