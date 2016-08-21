@@ -160,7 +160,8 @@ PHLibrary 表示整个相册库，包括整个相册和图片等
 
 
 {% highlight objc  %}
-#define albumName @"你的相册名"
+// 获取应用名作为自定义相册名
+#define albumName [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleNameKey]
 - (PHAssetCollection *)createdCollection {
     
     // 获得所有的自定义相册
@@ -203,10 +204,8 @@ PHLibrary 表示整个相册库，包括整个相册和图片等
     } error:&error];
     
     if (error) {
-        weakself.saveToAlbumBlock(NO, error);
         NSLog(@"保存失败：%@", error);
     } else {
-        weakself.saveToAlbumBlock(YES, error);
         NSLog(@"保存成功");
     }
 }
