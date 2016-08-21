@@ -1,7 +1,7 @@
 
 ## The website address
 
-Of course, it's [vanbein.github.io](http://vanbein.github.io) and [vanbein.com](http://vanbein.com).
+Of course, it's [vanbein.github.io](http://vanbein.github.io) and [vanbein.com](http://www.vanbein.com).
 
 
 ## For use of this theme
