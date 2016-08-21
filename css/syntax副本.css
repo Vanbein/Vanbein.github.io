@@ -1,4 +1,6 @@
-.highlight  { background: #f0f0f0; }
+.highlight  { color: #000; background: #f0f0f0; } /* 符号，比如 . , []  */
+.highlight .n, .highlight .py, .highlight .nx { color: #000; } /* 普通字符  */
+
 .highlight .c { color: #559c26; font-style: italic }  /* 注释 Comment */
 .highlight .c1 { color: #559c26; font-style: italic } /* //的注释 Comment.Single #989888*/
 .highlight .cm { color: #559c26; font-style: italic }    /* /*的注释 Comment.Multiline */
@@ -18,7 +20,6 @@
 .highlight .mo { color: #786dff } /* Literal.Number.Oct */
 .highlight .il { color: #786dff } /* Literal.Number.Integer.Long */
 .highlight .o { color: #000; font-weight: normal } /* 操作符号 Operator bold */
-
 
 .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
 .highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
@@ -63,3 +64,5 @@
 
 .highlight .lineno { color: #000; display:inline-block; padding: 0 5px; border-right:0px solid #ccc; }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; background: #f0f0f0; }
+
+.highlight .nl { color: #000; }
