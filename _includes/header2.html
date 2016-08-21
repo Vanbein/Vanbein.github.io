@@ -93,7 +93,32 @@
     <!-- Top menu -->
     <nav class="top_navigation" role="navigation">
       <span class="top_navigation_toggle"><i class="fa fa-reorder"></i></span>
-      
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="menu-item-has-children"><a href="#">Pages</a>
+            <span class="top_sub_menu_toggle"></span>
+            <ul class="sub-menu">
+                <li><a href="/categories/">Categories</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/posts/">Archives</a></li>
+                <li><a href="/archieves/">Posts</a></li>
+                <li><a href="/404.html">404 Page</a></li>
+                <!--<li><a href="/shortcodes/">Shortcodes</a></li>-->
+                <!--<li><a href="/douban/">我的豆瓣</a></li>-->
+                 <!--<li><a href="/posts/">Blog Posts</a></li>-->
+            </ul>
+        </li>
+        <li><a href="/shortcodes/">Shortcodes</a></li>
+        <li class="search_icon_form"><a href="#"><i class="fa fa-search"></i></a>
+          <div class="sub-search">
+            <form action="/search/" target="_blank" method="get">
+              <input type="search" name=q size=40 placeholder="Search in site...">
+              <input type="submit" value="Search">
+            </form>
+          </div>
+        </li>
+      </ul>
     </nav><!-- End Top menu -->
   </div>
 </div><!-- End Header meta -->
@@ -110,11 +135,13 @@
           <span class="site_navigation_toggle"><i class="fa fa-reorder"></i></span>
           <ul class="menu">
             <li><a href="/">Home</a></li>
-<!--            <li><a href="/blog/">Blog</a></li>
--->         <li><a href="/archieves/">Posts</a></li>
-            <li><a href="/categories/">Categories</a></li>
+            <li><a href="/blog/">Blog</a></li>
+
             <li><a href="/posts/">Archives</a></li>
-            <!--<li><a href="/tags/">Tags</a></li>-->
+            <li><a href="/archieves/">Posts</a></li>
+            <li><a href="/categories/">Categories</a></li>
+            <li><a href="/tags/">Tags</a></li>
+
             {% include megamenu.html %}
           </ul>
         </nav><!-- End Site navigation -->
