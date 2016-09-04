@@ -18,9 +18,9 @@ homepage: true
 
 iOS7 以后，有导航的话，controller 的 view 默认是会以导航栏的下方为起点开始，如果需要让它从屏幕顶部开始的话，只需要一句话就可以搞定了：
 
-```
+{% highlight objc  %}
     self.extendedLayoutIncludesOpaqueBars = YES;
-```
+{% endhighlight %}
 
 同样的，设置为 NO 就不会从顶部开始了
 
@@ -32,12 +32,14 @@ iOS7 以后，有导航的话，controller 的 view 默认是会以导航栏的�
 ![QQ20160904-0@2x.png](http://upload-images.jianshu.io/upload_images/635689-9a7e1f6b9ed674da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 (1) 首先在 appDelegate.h 中创建一个 `BOOL` 属性，比如：
-```
+
+{% highlight objc  %}
 @property (nonatomic,assign)BOOL allowRotation; //是否支持横屏
-```
+{% endhighlight %}
+
 然后到 appDelegate.m 中实现：
 
-```
+{% highlight objc  %}
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window{
     
     if (self.allowRotation) {
@@ -45,42 +47,43 @@ iOS7 以后，有导航的话，controller 的 view 默认是会以导航栏的�
     }
     return UIInterfaceOrientationMaskPortrait;
 }
-```
+{% endhighlight %}
 
 这样，当 `allowRotation` 为 YES 时，就支持横屏了，反之就不支持。
 
 (2) 在需要支持的页面中，修改 `allowRotation` 的值为 YES，即可支持横竖屏旋转了：
-```
+
+{% highlight objc  %}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 出现时可旋转
     ((AppDelegate *)[UIApplication sharedApplication].delegate).allowRotation = YES;
 }
-```
+{% endhighlight %}
 
 同样重要的记得在页面将要消失时修改为只支持竖屏：
 
-```
+{% highlight objc  %}
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     // 消失时恢复竖屏
     ((AppDelegate *)[UIApplication sharedApplication].delegate).allowRotation = NO;
     // 立即变为竖屏
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
-```
+{% endhighlight %}
 
 (3) 上述代码实现的是自动旋转、如果需要强制旋转的的话，在上述把横屏打开的前提下，使用下面的代码即可进行强制的横屏或者竖屏了：
 
-```
+{% highlight objc  %}
     // 竖屏
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     // 横屏
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-```
+{% endhighlight %}
 
 (4) 对于有导航栏的，有一个坑要记得填，那就是横屏后，使用侧滑返回时可能会出现问题，于是需要在将要进入横屏时禁用侧滑返回手势，退出横屏时再开启即可：
 
-```
+{% highlight objc  %}
 // 屏幕即将旋转
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
@@ -92,27 +95,27 @@ iOS7 以后，有导航的话，controller 的 view 默认是会以导航栏的�
         //竖屏，开启侧滑返回手势  
     }
 }
-```
+{% endhighlight %}
 
 关于侧滑返回手势的开启与禁用见下面第 26 点。
 
 ### 26、禁用 iOS7 以后的侧滑返回手势
 
 iOS7 以后默认 push 到下个界面后支持侧滑返回，在某些界面我们可能不需要这个自带的功能，于是我们可以通过下面的一句代码禁用它：
-```
+{% highlight objc  %}
 // 禁用侧滑返回手势
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
-```
+{% endhighlight %}
 
 如果需要开启，同样的，把 `NO` 改为 `YES` 就可以了，如下：
-```
+{% highlight objc  %}
 // 开启侧滑返回手势
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
-```
+{% endhighlight %}
 ### 25、添加备注
 
 写代码过程中，写到某个位置时，当时会想到以后需要在这儿添加什么样的功能代码、或继续做点什么的，为了以防后面忘记，这时候我们可以使用 `// FIXME: `、`// TODO: `、`// MARK: `来备注说明。
@@ -126,10 +129,9 @@ iOS7 以后默认 push 到下个界面后支持侧滑返回，在某些界面我
 ### 23、收起键盘
 
 当输入完成，想要收起键盘最果断的办法就是，
-
-```
+{% highlight objc  %}
     [self.view endEditing:YES];
-```
+{% endhighlight %}
 
 当然也可以通过 `resignFirstResponder` 来收起，但是上面的 `endEditing:`在有多个输入框的时候更方便。
 
@@ -137,7 +139,7 @@ iOS7 以后默认 push 到下个界面后支持侧滑返回，在某些界面我
 
 应用中添加适当的音效，可以提高用户体验。如果要实现播放一小段的音效功能，代码如下：
 
-```
+{% highlight objc  %}
     // 比如添加一个：截图音效
     // 1. 定义要播放的音频文件的URL
     NSURL *screenshotURL = [[NSBundle mainBundle] URLForResource:@"captureVoice" withExtension:@"wav"];
@@ -149,13 +151,13 @@ iOS7 以后默认 push 到下个界面后支持侧滑返回，在某些界面我
     // AudioServicesPlaySystemSound(screenshotSound); // 只播放声音
     // AudioServicesPlayAlertSound(screenshotSound); // 同时手机会震动
     // AudioServicesPlaySystemSound(kSystemSoundID_Vibrate); // 控制手机振动
-```
+{% endhighlight %}
 
 ### 21、UITableView 分割线左对齐
 
 对于 tableView 的 cell 间的分割线，一般情况下可以通过设置 separatorInset 来改变分割线长度，但是不能设置距离左端为0，此时如果需要设置 separator 左端对齐，可通过下面的方法设置：
 
-```
+{% highlight objc  %}
 /**
 *  设置分割线左对齐
 */
@@ -180,24 +182,24 @@ iOS7 以后默认 push 到下个界面后支持侧滑返回，在某些界面我
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
 }
-```
+{% endhighlight %}
 
 
 ### 20、旋转某个 ViewController
 
 让某个 Controller 旋转到某个方向的利器，
 
-```
+{% highlight objc  %}
  // 进入横屏
 NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
 [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-```
+{% endhighlight %}
 
-```
+{% highlight objc  %}
  // 进入竖屏
 NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
 [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-```
+{% endhighlight %}
 
 
 ### 19、 让UITableView的 section header view 不悬停
@@ -206,7 +208,7 @@ NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
 
 解决办法是重载scrollview的delegate方法
 
-```
+{% highlight objc  %}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat sectionHeaderHeight = 40;
     if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
@@ -215,7 +217,7 @@ NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
 }
-```
+{% endhighlight %}
 
 ### 18、全局设置导航栏的样式
 
@@ -223,7 +225,7 @@ NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
 
  在 Appdelegate 里面设置根视图控制器为UINavigationController时（navc），加入下面的代码：
 
-```
+{% highlight objc  %}
     HomeViewController *vc = [[HomeViewController alloc] init];
     UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:vc];
     
@@ -248,7 +250,7 @@ NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     navc.navigationBar.backIndicatorTransitionMaskImage = image;
 
     self.window.rootViewController = navc;
-```
+{% endhighlight %}
 
 于是就有了下面的效果：
 
@@ -260,12 +262,12 @@ NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
 
 办法是有的，通过下面的几行代码即可进行 push：
 
-```
+{% highlight objc  %}
 ViewController *vc = [[ViewController alloc] init];
     vc.view.backgroundColor = [UIColor purpleColor];
     UINavigationController *navc = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
     [navc pushViewController:vc animated:YES];
-```
+{% endhighlight %}
 
 当然，这里的根视图控制器我在 Appdelegate 里面设置为了UINavigationController。
 
@@ -279,7 +281,7 @@ ViewController *vc = [[ViewController alloc] init];
 
 ### 15、屏幕截图并保存
 
-```
+{% highlight objc  %}
 //snapshotImage 这个方法效率比较低，
 - (UIImage *)snapshotImage {
     UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
@@ -311,7 +313,7 @@ ViewController *vc = [[ViewController alloc] init];
         NSLog(@"\n\n保存失败\n\n");
     }
 }
-```
+{% endhighlight %}
 
 
 ### 14、Xcode 查看谁改动的代码
@@ -331,7 +333,7 @@ ViewController *vc = [[ViewController alloc] init];
 我们可以使用标准库中的`drand48()`函数，它会随机生成一个0.0-1.0之间的double，因此我们只需要随机生成R, G, B三个值最后用UIColor的`colorWithRed:green:blue:alpha`方法创建UIColor，即可。
 
 需要注意的是，`drand48`函数需要使用`srand48`来初始化随机数种子，示例代码如下：
-```
+{% highlight objc  %}
 - (UIColor *)randomColor{    
     static BOOL seeded = NO;
     if (!seeded) {
@@ -343,7 +345,7 @@ ViewController *vc = [[ViewController alloc] init];
     CGFloat b = (CGFloat)drand48();
     return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
 }
-```
+{% endhighlight %}
 
 > demo的github地址：[随机生成一个UIColor](https://github.com/Vanbein/RandomColor)
 
@@ -353,18 +355,18 @@ ViewController *vc = [[ViewController alloc] init];
 
 下面的代码，可以设置 UINavigationBar 背景色和背景图片
    
-```
+{% highlight objc  %}
 	//背景色
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]];
 	//背景图
     [[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
-```
+{% endhighlight %}
 
 如果你发现实际的颜色比设置的颜色淡一点，那是因为导航栏默认带了半透明效果，我们可以通过代码或在storyboard中取消半透明效果。
 
-```
+{% highlight objc  %}
     [[UINavigationBar appearance] setTranslucent:NO];
-```
+{% endhighlight %}
 
 ![storyboard取消Translucent](http://upload-images.jianshu.io/upload_images/635689-2a6e80e63f0e34fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -374,21 +376,21 @@ ViewController *vc = [[ViewController alloc] init];
 
 此时会在导航栏下方出现一根黑线，比较难看，使用下面的代码可以去除导航栏下方的横线，
 
-```
+{% highlight objc  %}
 	//#107cdb
 	[[UINavigationBar appearance] setBackgroundImage:[self imageFromColor:[UIColor colorWithRed:16/255.0 green:126/255.0 blue:219/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
 	[[UINavigationBar appearance] setShadowImage:[UIImage new]];
 	//
 	//如果设置了导航栏背景色，不想要 backgroundImage，则 backgroundImage 可以设置为 `[UIImage new]`，如下
 	//[[UINavigationBar appearance] setBackgroundImage: [UIImage new] forBarMetrics:UIBarMetricsDefault];
-```
+{% endhighlight %}
 
 
 ![去掉黑线](http://upload-images.jianshu.io/upload_images/635689-4fba836aeb6f17c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 10、通过颜色来生成一个纯色图片
 
-```
+{% highlight objc  %}
 - (UIImage *)imageFromColor:(UIColor *)color{
     CGRect rect = CGRectMake(0, 0, 100, 100);
     UIGraphicsBeginImageContext(rect.size);
@@ -399,20 +401,20 @@ ViewController *vc = [[ViewController alloc] init];
     UIGraphicsEndImageContext();
     return img;
 }
-```
+{% endhighlight %}
 
 ### 9、获得任意 view 相对于屏幕的 frame
 
-```
+{% highlight objc  %}
     CGRect frame = [[UIApplication sharedApplication].keyWindow convertRect:CGRectMake(0, 0, targetView.frame.size.width, targetView.frame.size.height) fromView:targetView];
     NSLog(@"\n\n targetView frame: x: %f   y: %f  \n\n width: %f   height: %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-```
+{% endhighlight %}
 
 ### 8、调整导航栏自定义的 BarButtonItem 到屏幕边侧的间距
 
 比如我们导航栏右侧有两个自定义的按钮，那就可以通过以下代码调整他们之间的间隔
 
-```
+{% highlight objc  %}
 	UIButton *rightbutton1;
 	UIButton *rightbutton2;
     UIBarButtonItem *backButton1 = [[UIBarButtonItem alloc] initWithCustomView:rightbutton1];
@@ -433,11 +435,11 @@ ViewController *vc = [[ViewController alloc] init];
     rightNegativeSpacer2.width = 18; // rightButton1 和 rightButton2 的间隔默认为0
     //
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightNegativeSpacer, backButton1, rightNegativeSpacer2, backButton2, nil]];
-```
+{% endhighlight %}
 
 ### 7. 根据汉字字符串 获取该字符串的拼音 然后取得首字母
 
-``` 
+{% highlight objc  %} 
 //第一种方法：先将汉字转换为 拼音 再获取首字母
 //获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
 /*
@@ -481,14 +483,14 @@ if ([string length])
     // 每个单词的首字母大写 后再截取字符串
     NSString *str = [[mutableString capitalizedString] substringToIndex:1];
 }
-```
+{% endhighlight %}
 
 若需要得到汉字字符串的首字母缩写，只需对上述方法稍作修改即可。
 
 
 ### 6. UIImage与字符串互转
 
-```
+{% highlight objc  %}
 //图片转字符串  
 -(NSString *)UIImageToBase64Str:(UIImage *) image  
 {  
@@ -504,71 +506,71 @@ if ([string length])
     UIImage *_decodedImage      = [UIImage imageWithData:_decodedImageData];  
     return _decodedImage;  
 }
-```
+{% endhighlight %}
 
 ### 5. Objective-C语法简写
 
 #### (1). @
 + @() 代表NSNumber类型	
 
-```
+{% highlight objc  %}
 @1; 等价于 [NSNumber numberWithInt:1];   
 @('c'); 等价于 [NSNumber numberWithChar:'c']; 
-```
+{% endhighlight %}
 	
 + @[] 代表数组NSArray类型
 	
-```
+{% highlight objc  %}
 @[@"1",@"2",@"3"]; //等价于 
 [NSArray arrayWithObjects:@"1",@"2",@"3", nil];
-```
+{% endhighlight %}
 
 + @{}代表字典NSDictionary类型
 
-```
+{% highlight objc  %}
 @{@"456":@"123"}; //等价于 
 [NSDictionary dictionaryWithObject:@"123" forKey:@"456"];
-```
+{% endhighlight %}
 
 #### (2).方法声明
 * 返回值如果不写括号，编译器默认是id类型:
 
-```
+{% highlight objc  %}
 -sendMessage;  //等价于
 -(id)sendMessage;
-```
+{% endhighlight %}
 
 * 参数如果不写类型默认也是id类型
 
-```
+{% highlight objc  %}
 -(void)sendMessage:msg; //等价于
 -(void)sendMessage:(id)msg;
-```
+{% endhighlight %}
 
 * 有多参数时方法名和参数提示语可以为空
 
-```
+{% highlight objc  %}
 -(void):msg1 :msg2; // 不建议这样简写，代码可读性降低
 -(void)sendMessage:(id)msg1 message2:(id)msg2; 
-```
+{% endhighlight %}
 
 #### (3).结构体
 
-```
+{% highlight objc  %}
 CGRect rect = {1, 2};  //等价于
 CGRect rect = {1, 2, 0, 0};
-```
+{% endhighlight %}
 
 #### (4).三元条件表达式（针对字符串）
 
-```
+{% highlight objc  %}
 NSString *string = inputString ?: @"default"; // 等价于
 NSString *string = inputString ? inputString : @"default"; 
-```
+{% endhighlight %}
 
 #### (5).小括号内联复合表达式
 
-```
+{% highlight objc  %}
 RETURN_VALUE_RECEIVER = {( 
 // Do whatever you want
  RETURN_VALUE;  // 返回值
@@ -583,20 +585,20 @@ UIView *view = ({
     });
     [self.view addSubview:view];
 //这样使得代码量增大时层次仍然能比较明确。
-```
+{% endhighlight %}
 
 ### 4. 当有多个导航控制器时,一次设置多个导航控制器
 
-```
+{% highlight objc  %}
 UINavigationBar *navBar = [UINavigationBar appearance] ;
 // 所有导航条颜色都会改变 -- 一键设置
 //navBar.barTintColor = [UIColor yellowColor] ;
 [navBar setBackgroundImage:[UIImage imageNamed:@"bg_nav.png"] forBarMetrics:UIBarMetricsDefault] ;
-```
+{% endhighlight %}
 
 ### 3. 隐藏状态栏 修改状态栏风格
 
-```
+{% highlight objc  %}
 -(UIStatusBarStyle)preferredStatusBarStyle { 
     return UIStatusBarStyleLightContent;  // 暗背景色时使用
 } 
@@ -604,7 +606,7 @@ UINavigationBar *navBar = [UINavigationBar appearance] ;
 - (BOOL)prefersStatusBarHidden { 
     return YES; 
 }
-```
+{% endhighlight %}
 
 ### 2. 根据内容计算高度，宽度
 
@@ -617,16 +619,16 @@ UINavigationBar *navBar = [UINavigationBar appearance] ;
      */    
     // 枚举值中的 " | "  意思是要满足所有的枚举值设置.
 
-``` 
+{% highlight objc  %} 
 //例子
 NSString *contentString = @"String! String!" ; //目标字符串
 CGRect rect = [contentString boundingRectWithSize:CGSizeMake(tableView.bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:15]} context:nil] ;
-```
+{% endhighlight %}
 
 
 ### 1. 将图片设置为圆形，或给button，label等设置圆角
 
-```
+{% highlight objc  %}
 UIImageView *testImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)] ;
 // 设置圆角半径，一般要求图片是正方形，
 // 若不是则需要将半径设置为宽和高比较大的值的一半即可
@@ -638,7 +640,8 @@ UIButton *testButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 testButton.frame = CGRectMake(50, 80, 80, 40);
 testButton.layer.cornerRadius = 5; 
 testButton.layer.masksToBounds = YES;
-```
+{% endhighlight %}
+
 如果控件是在 stroyBoard 中，可以 `User Defined Runtime Attributes
 `中按照下面一样设置即可
 
