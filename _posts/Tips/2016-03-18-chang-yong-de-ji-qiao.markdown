@@ -29,7 +29,7 @@ iOS7 以后，有导航的话，controller 的 view 默认是会以导航栏的�
 假如应用中只有少数几个界面需要支持横屏时，其实我们不必要打开工程的支持横屏开关，让工程支持竖屏也可以实现：
 
 
-![QQ20160904-0@2x.png](http://upload-images.jianshu.io/upload_images/635689-9a7e1f6b9ed674da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![QQ20160904-0@2x.png](http://upload-images.jianshu.io/upload_images/635689-9a7e1f6b9ed674da.png)
 
 (1) 首先在 appDelegate.h 中创建一个 `BOOL` 属性，比如：
 
