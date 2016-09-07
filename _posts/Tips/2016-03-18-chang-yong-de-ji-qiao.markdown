@@ -14,6 +14,29 @@ homepage: true
 
 ---
 
+### 29、创建自定义代码段 - code snippet
+
+Xcode默认提供了非常丰富的代码片段可供选择，我们写代码是很多的提示就是一个代码片段，具体可以参加 Xcode 的右侧工具栏下方：
+
+![codeSnippet.png](http://upload-images.jianshu.io/upload_images/635689-e3930d2a46b9daf4.png)
+
+那如何创建自定义的代码段呢？很简单，首先在 Xcode 中写出你想创建的代码，然后选中拖动至上面图片的 code snippet library 中，这里有个技巧就是如果代码中有可变参数的话，可以用 <#parammeter#> 这样的形式包起来，比如我们经常创建的属性 property，首先在 Xcode 中写上：
+
+{% highlight objc  %}
+@property (nonatomic, strong) <#UIView#> *<#myView#>;
+{% endhighlight %}
+
+然后选中这行代码，拖动到 **code snippet library** 中，然后你就会发现在代码段库的最底部生成了一个自定义的代码段，再进行编辑其 title，completion shortcut，如下：
+
+![QQ20160907-1@2x.png](http://upload-images.jianshu.io/upload_images/635689-4de3290612f1d9ff.png)
+
+点击右下角 Done 之后，再回到 Xcode 中键入 @property 你就回惊奇的发现刚才创建的代码段出现在代码自动提示列表中：
+
+![QQ20160907-2@2x.png](http://upload-images.jianshu.io/upload_images/635689-562eecab7641f012.png)
+
+选中回车，你就发现以后再也不用每次创建属性都把整个属性定义的代码一个个敲出来了，强烈建议类似的多创建几个常用的代码段
+
+
 ### 28、让 view 从屏幕顶部开始而不是导航栏下方开始
 
 iOS7 以后，有导航的话，controller 的 view 默认是会以导航栏的下方为起点开始，如果需要让它从屏幕顶部开始的话，只需要一句话就可以搞定了：
